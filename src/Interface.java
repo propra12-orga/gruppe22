@@ -111,6 +111,8 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 
 		this.setTitle("Bomberman!");
 		this.setSize(640, 480);
+		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		panel = new JPanel(new GridBagLayout());
 		single = new JButton("Singleplayer");
 		single.addActionListener(this);
