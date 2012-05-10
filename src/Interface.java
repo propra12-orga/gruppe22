@@ -1,20 +1,9 @@
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class Interface extends JFrame implements KeyListener, ActionListener {
-	static JButton single, multi, options, exit, sound, controls, backtomain,
-			save, backtooptions;
+	static JButton single, multi, options, exit, sound, controls, backtomain, save, backtooptions;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2;
 	static JTextField getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
@@ -99,11 +88,11 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		panel.add(getLeft2, c);
 		c.gridy = 5;
 		panel.add(getBomb2, c);
-		c.gridx = 2;
-		c.gridy = 6;
-		panel.add(save);
 		c.gridx = 1;
-		panel.add(backtooptions);
+		c.gridy = 6;
+		panel.add(save, c);
+		c.gridx = 2;
+		panel.add(backtooptions, c);
 
 	}
 
