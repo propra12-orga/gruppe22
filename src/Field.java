@@ -77,7 +77,7 @@ public class Field extends JPanel {
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	public static void main(String[] args) {
-		new Field();
+		// (noch?) leer
 	}
 
 }
