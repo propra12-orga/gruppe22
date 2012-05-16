@@ -80,12 +80,9 @@ public class Eingabe {
 	 */
 
 	public static void CtrlWrite() { /* 0815 Writer */
-		String CtrlString = "";
+		String CtrlString = "Oben_Unten_Rechts_Links_Leertaste_ESC_";
 
-		for (int i = 0; i < 4; i++) {
-			CtrlString = CtrlString + CtrlArray[i] + "_";
-		}
-		CtrlString = CtrlString + "Leertaste_ESC_";
+		
 
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("Test.TXT"));

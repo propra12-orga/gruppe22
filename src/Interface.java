@@ -145,13 +145,19 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getBomb2 = new JTextField(6);
 		panel.setFocusable(true); 
 		panel.addKeyListener(this);
+		
 		MainMenu();
 		this.add(panel);
 	}
 
 	public static void main(String[] args) {
+		
+		Eingabe.CtrlReader();
+		
 		Interface Menu = new Interface();
+		
 		Menu.setVisible(true);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
