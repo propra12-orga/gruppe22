@@ -146,7 +146,6 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getBomb2 = new JTextField(6);
 		panel.setFocusable(true); 
 		panel.addKeyListener(this);
-		
 		MainMenu();
 		this.add(panel);
 	}
@@ -182,6 +181,9 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 			panel.removeAll();
 			OptionsMenu();
 			panel.updateUI();
+		} else if (e.getSource() == this.single) {
+			this.setVisible(false);
+			TestInterface.main(null);
 		}
 
 	}
