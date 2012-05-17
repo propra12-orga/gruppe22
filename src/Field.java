@@ -82,38 +82,30 @@ public class Field extends JPanel {
 	public static void movement(String s) {
 
 		if (s == "Oben") {
-			if (checkMove(fieldNumbers[Player.player_x][Player.player_y + 1])) {
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
+			if (checkMove(fieldNumbers[Player.player_x][Player.player_y - 1])) {
 				Player.goUp(Player.player_x, Player.player_y);
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
 				System.out.println();
 				Player.playerToField();
 				f = new Field();
 				f.newPaint();
 			}
 		} else if (s == "Unten") {
-			if (checkMove(fieldNumbers[Player.player_x][Player.player_y - 1])) {
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
+			if (checkMove(fieldNumbers[Player.player_x][Player.player_y + 1])) {
 				Player.goDown(Player.player_x, Player.player_y);
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
 				Player.playerToField();
 				f = new Field();
 				f.newPaint();
 			}
 		} else if (s == "Links") {
 			if (checkMove(fieldNumbers[Player.player_x - 1][Player.player_y])) {
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
 				Player.goLeft(Player.player_x, Player.player_y);
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
 				Player.playerToField();
 				f = new Field();
 				f.newPaint();
 			}
 		} else if (s == "Rechts") {
 			if (checkMove(fieldNumbers[Player.player_x + 1][Player.player_y])) {
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
 				Player.goRight(Player.player_x, Player.player_y);
-				System.out.println("X = " + Player.player_x + " | Y = " + Player.player_y);
 				Player.playerToField();
 				f = new Field();
 				f.newPaint();
