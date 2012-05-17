@@ -83,7 +83,7 @@ public class Field extends JPanel {
 		else if (coord == 9){
 			Game.panel.setVisible(false);
 			Interface.panel.setVisible(true);
-			Interface.MainMenu();
+			Interface.main(null);
 		}
 		return false;
 	}
@@ -95,7 +95,6 @@ public class Field extends JPanel {
 		if (s == "Oben") {
 			if (checkMove(fieldNumbers[Player.player_x][Player.player_y - 1])) {
 				Player.goUp(Player.player_x, Player.player_y);
-				System.out.println();
 				Player.playerToField();
 				f = new Field();
 				f.newPaint();
