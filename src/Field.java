@@ -12,6 +12,8 @@ public class Field extends JPanel {
 	public static int[][] basicField = Init.basicField();
 	public static int[][] fieldNumbers = Init.fieldContent(basicField);
 	public static Field f;
+	public static boolean isBomb = false;
+	public static int x, y;
 
 	public Field() {
 		super();
@@ -30,6 +32,11 @@ public class Field extends JPanel {
 						(i + 1) * (getWidth() / 21), (j + 1)
 								* (getHeight() / 18));
 			}
+		
+		if (isBomb) {		
+			g.setColor(Color.RED);
+			g.fillOval(x * (getWidth() / 21), y * (getHeight() / 18), 20, 20);
+		}
 
 	}
 
@@ -121,7 +128,7 @@ public class Field extends JPanel {
 				f.newPaint();
 			}
 		} else if (s == "Bombe") {
-			Bomb bombe = new Bomb();
+			Bomb.placeBomb();
 		} else if (s == "Esc") {
 			// noch leer
 		}
