@@ -7,14 +7,14 @@ public class Player {
 
 	public static void goUp(int x, int y) {
 		player_x = x;
-		player_y = y + 1;
+		player_y = y - 1;
 		old_x = x;
 		old_y = y;
 	}
 
 	public static void goDown(int x, int y) {
 		player_x = x;
-		player_y = y - 1;
+		player_y = y + 1;
 		old_x = x;
 		old_y = y;
 	}
@@ -27,8 +27,8 @@ public class Player {
 	}
 
 	public static void goRight(int x, int y) {
-		player_x = x;
-		player_y = y + 1;
+		player_x = x + 1;
+		player_y = y;
 		old_x = x;
 		old_y = y;
 	}
