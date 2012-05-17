@@ -34,17 +34,17 @@ public class Eingabe {
 		  Vergleichen der Steuerungs-Optionen mit dem KeyText
 		*/
 		if (KeyId.equals(CtrlArray[0])) { 
-			
+			Field.movement("Oben");
 		} else if (KeyId.equals(CtrlArray[1])) {
-			
+			Field.movement("Unten");
 		} else if (KeyId.equals(CtrlArray[2])) {
-			
+			Field.movement("Rechts");
 		} else if (KeyId.equals(CtrlArray[3])) {
-			
+			Field.movement("Links");
 		} else if (KeyId.equals(CtrlArray[4])) {
-			
+			Field.movement("Bombe");
 		} else if (KeyId.equals(CtrlArray[5])) {
-			
+			Field.movement("Esc");
 		}
 
 		return KeyId;

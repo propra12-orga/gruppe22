@@ -86,24 +86,27 @@ public class Field extends JPanel {
 				Player.goUp(Player.player_x, Player.player_y);
 				Player.playerToField();
 				f = new Field();
-
+				
 			}
 		} else if (s == "Unten") {
 			if (checkMove(fieldNumbers[Player.player_x][Player.player_y - 1])) {
 				Player.goDown(Player.player_x, Player.player_y);
 				Player.playerToField();
 				f = new Field();
+				
 			}
 		} else if (s == "Links") {
 			if (checkMove(fieldNumbers[Player.player_x - 1][Player.player_y])) {
 				Player.goLeft(Player.player_x, Player.player_y);
 				Player.playerToField();
 				f = new Field();
+				
 			}
 		} else if (s == "Rechts") {
 			if (checkMove(fieldNumbers[Player.player_x + 1][Player.player_y])) {
 				Player.goRight(Player.player_x, Player.player_y);
 				Player.playerToField();
+				
 				f = new Field();
 			}
 		} else if (s == "Bombe") {
@@ -111,7 +114,8 @@ public class Field extends JPanel {
 		} else if (s == "Esc") {
 			// noch leer
 		}
-
+		
+		System.out.println(s);
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////////
