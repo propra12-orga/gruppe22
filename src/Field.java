@@ -14,6 +14,7 @@ public class Field extends JPanel {
 	public static Field f;
 	public static boolean isBomb = false;
 	public static int x, y;
+	public static int bombCnt = 1;
 
 	public Field() {
 		super();
@@ -128,7 +129,7 @@ public class Field extends JPanel {
 				f.newPaint();
 			}
 		} else if (s == "Bombe") {
-			Bomb.placeBomb();
+			if (bombCnt > 0) new Carl("Bomb").start();
 		} else if (s == "Esc") {
 			// noch leer
 		}
