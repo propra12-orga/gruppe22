@@ -31,6 +31,8 @@ public class Init {
 		for (int i = 2; i < 19; i += 2)
 			for (int j = 2; j < 15; j += 2)
 				fields[i][j] = 1;
+		
+		fields[1][2] = 9;
 
 		return fields;
 	}

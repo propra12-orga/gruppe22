@@ -44,21 +44,28 @@ public class Field extends JPanel {
 	 */
 
 	public Color getColor(int coord) {
-		Color fieldcolor;
+		Color fieldcolor = Color.WHITE;
 
-		if (coord == 1)
-			fieldcolor = Color.GRAY; // GRAU = Unzerstörbare Mauer
+		if (coord == 0)
+			fieldcolor = Color.WHITE; //begehbares Feld
+		else if (coord == 1)
+			fieldcolor = Color.GRAY; //unzerstörbares Feld
 		else if (coord == 2)
-			fieldcolor = Color.YELLOW; // GELB = Kiste
+			fieldcolor = Color.YELLOW; //Kiste
 		else if (coord == 3)
-			fieldcolor = Color.BLACK; // SCHWARZ = Spieler
+			fieldcolor = Color.BLACK; //Spieler1
 		else if (coord == 4)
-			fieldcolor = Color.RED; // ROT = Bombe
-		// else if (coord == 5) fieldcolor = ....; //??? = Detonation
+			fieldcolor = Color.BLACK; //Spieler2
+		else if (coord == 5)
+			fieldcolor = Color.BLACK; //Spieler3
 		else if (coord == 6)
-			fieldcolor = Color.WHITE; // WEISS = Ausgang
-		else
-			fieldcolor = Color.WHITE; // WEISS = Frei begehbares Feld
+			fieldcolor = Color.BLACK; //Spieler4
+		else if (coord == 7)
+			fieldcolor = Color.RED; //Bombe
+		else if (coord == 8)
+			fieldcolor = Color.RED; //Detonation
+		else if (coord == 9)
+			fieldcolor = Color.BLUE; //Ausgang
 
 		return fieldcolor;
 	}
@@ -73,8 +80,11 @@ public class Field extends JPanel {
 	public static boolean checkMove(int coord) {
 		if (coord == 0)
 			return true;
-		else
-			return false;
+		else if (coord == 9){
+			Game.panel.setVisible(false);
+			Interface.panel.setVisible(true);
+		}
+		return false;
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////////
