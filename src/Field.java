@@ -86,34 +86,21 @@ public class Field extends JPanel {
 				Player.goUp(Player.player_x, Player.player_y);
 				Player.playerToField();
 				f = new Field();
-<<<<<<< HEAD
 				f.newPaint();
-
-=======
-				
->>>>>>> 183c8982af0ee82c486c7508343f3c680f61273a
 			}
 		} else if (s == "Unten") {
 			if (checkMove(fieldNumbers[Player.player_x][Player.player_y - 1])) {
 				Player.goDown(Player.player_x, Player.player_y);
 				Player.playerToField();
 				f = new Field();
-<<<<<<< HEAD
 				f.newPaint();
-=======
-				
->>>>>>> 183c8982af0ee82c486c7508343f3c680f61273a
 			}
 		} else if (s == "Links") {
 			if (checkMove(fieldNumbers[Player.player_x - 1][Player.player_y])) {
 				Player.goLeft(Player.player_x, Player.player_y);
 				Player.playerToField();
 				f = new Field();
-<<<<<<< HEAD
 				f.newPaint();
-=======
-				
->>>>>>> 183c8982af0ee82c486c7508343f3c680f61273a
 			}
 		} else if (s == "Rechts") {
 			if (checkMove(fieldNumbers[Player.player_x + 1][Player.player_y])) {
