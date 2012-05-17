@@ -101,6 +101,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		this.setTitle("Bomberman!");
 		this.setSize(640, 480);
 		this.setResizable(false);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		panel = new JPanel(new GridBagLayout());
 		single = new JButton("Singleplayer");
@@ -145,13 +146,19 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getBomb2 = new JTextField(6);
 		panel.setFocusable(true); 
 		panel.addKeyListener(this);
+		
 		MainMenu();
 		this.add(panel);
 	}
 
 	public static void main(String[] args) {
+		
+		Eingabe.CtrlReader();
+		
 		Interface Menu = new Interface();
+		
 		Menu.setVisible(true);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
