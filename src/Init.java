@@ -70,7 +70,7 @@ public class Init {
 		// fields[1][15] = 4; Zunächst sind Spieler 2-4 auskommentiert,
 		// fields[19][1] = 5; reicht ja erstmal den Singleplayer gebacken
 		// fields[19][15] = 6; zu bekommen.
-		fields[1][2] = 0;
+		//fields[1][2] = 0;
 		fields[2][1] = 0;
 		// fields[1][14] = 0;
 		// fields[2][15] = 0;
