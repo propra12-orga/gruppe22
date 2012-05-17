@@ -145,6 +145,26 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getRight2 = new JTextField(6);
 		getLeft2 = new JTextField(6);
 		getBomb2 = new JTextField(6);
+		
+		
+		/* Später rausnehmen */
+		getUp1.setEditable(false);
+		getUp2.setEditable(false);
+		getDown1.setEditable(false);
+		getDown2.setEditable(false);
+		getRight1.setEditable(false);
+		getRight2.setEditable(false);
+		getLeft1.setEditable(false);
+		getLeft2.setEditable(false);
+		getBomb1.setEditable(false);
+		getBomb2.setEditable(false);
+		
+		
+		
+		
+		
+		
+		
 		panel.setFocusable(true); 
 		panel.addKeyListener(this);
 		MainMenu();
