@@ -30,22 +30,21 @@ public class Eingabe {
 												 * Umwandelung des KeyCodes in
 												 * den KeyText
 												 */
-
-		if (KeyId.equals(CtrlArray[0])) { /*
-										 * Vergleichen der Steuerungs-Optionen
-										 * mit dem KeyText
-										 */
-			System.out.println("Es ist oben");
+		/*
+		  Vergleichen der Steuerungs-Optionen mit dem KeyText
+		*/
+		if (KeyId.equals(CtrlArray[0])) { 
+			
 		} else if (KeyId.equals(CtrlArray[1])) {
-			System.out.println("Es ist unten");
+			
 		} else if (KeyId.equals(CtrlArray[2])) {
-			System.out.println("Es ist rechts");
+			
 		} else if (KeyId.equals(CtrlArray[3])) {
-			System.out.println("Es ist links");
+			
 		} else if (KeyId.equals(CtrlArray[4])) {
-			System.out.println("Bombelegen");
+			
 		} else if (KeyId.equals(CtrlArray[5])) {
-			System.out.println("Ingame-Menue");
+			
 		}
 
 		return KeyId;

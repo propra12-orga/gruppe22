@@ -185,6 +185,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.single) {
 			this.setVisible(false);
 			Game.main(null);
+			
 		}
 
 	}
@@ -195,22 +196,11 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getRight1.setText(Eingabe.CtrlArray[2]);
 		getLeft1.setText(Eingabe.CtrlArray[3]);
 		getBomb1.setText(Eingabe.CtrlArray[4]);
-		
-		
-		
+	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public void keyPressed(KeyEvent e) {
 		String Key = Eingabe.Ctrl(e);
-		System.out.println(Key);
-
 	}
 
 	public void keyReleased(KeyEvent e) {
