@@ -6,7 +6,7 @@ public class Init {
 	 * Initialisierung des Feldarrays Jede Koordinate des Feldes bekommt einen
 	 * Wert: 0) Frei begehbares Feld 1) Unzerstörbare Mauer 2) Zerstörbare Kiste
 	 * 3) Spieler1 4) Spieler2 5) Spieler3 6) Spieler4 7) Bombe 8) Detonation 9)
-	 * Ausgang
+	 * Ausgang ...
 	 */
 
 	public static int[][] basicField() {

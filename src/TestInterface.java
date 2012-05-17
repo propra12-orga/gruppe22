@@ -1,6 +1,8 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+//nur zum Testen
+
 public class TestInterface extends JFrame {
 
 	private static final long serialVersionUID = 1L;

@@ -3,6 +3,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+//Hier wird das Feld gezeichnet
+
 public class Field extends JPanel {
 
 	private static final long serialVersionUID = 1L;
