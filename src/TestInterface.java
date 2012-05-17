@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-//nur zum Testen
+//nur zum Testen...
 
 public class TestInterface extends JFrame {
 

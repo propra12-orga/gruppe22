@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-//Hier wird das Feld gezeichnet
+//Hier wird das Feld gezeichnet...
 
 public class Field extends JPanel {
 
