@@ -115,8 +115,7 @@ public class Field extends JPanel {
 		} else if (s == "Esc") {
 			// noch leer
 		}
-		
-		System.out.println(s);
+
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////////
