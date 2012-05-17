@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class Interface extends JFrame implements KeyListener, ActionListener {
@@ -200,7 +201,11 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		String Key = Eingabe.Ctrl(e);
+		/*
+		int code = e.getKeyCode(); 
+		String KeyId = KeyEvent.getKeyText(code);
+		System.out.println(KeyId);
+		*/
 	}
 
 	public void keyReleased(KeyEvent e) {
