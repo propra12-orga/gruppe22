@@ -17,7 +17,24 @@ public class Carl extends Thread {
 		}
 		
 		Field.isBomb = false;
+		Bomb.detonate();
 		Field.f.newPaint();
+		
+		try {
+			sleep(1000);
+		} catch (InterruptedException e) {
+
+		}
+		
+		Bomb.endDetonation();
+		Field.f.newPaint();
+		
+		try {
+			sleep(1000);
+		} catch (InterruptedException e) {
+
+		}
+		
 		Field.bombCnt += 1;
 	}
 

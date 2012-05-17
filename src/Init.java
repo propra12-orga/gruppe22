@@ -81,28 +81,4 @@ public class Init {
 
 		return fields;
 	}
-
-	// /////////////////////////////////////////////////////////////////////////////////////
-
-	public static boolean isDestructable(int coord) {
-		if (coord == 1)
-			return false;
-		else
-			return true;
-	}
-
-	// /////////////////////////////////////////////////////////////////////////////////////
-
-	// Boolean-Array zur Kollisionsabfrage
-
-	public static boolean[][] checkArray() {
-		boolean[][] checkArray = new boolean[21][17];
-		int[][] fieldNumbers = basicField();
-
-		for (int i = 0; i < 21; i++)
-			for (int j = 0; j < 17; j++)
-				checkArray[i][j] = isDestructable(fieldNumbers[i][j]);
-
-		return checkArray;
-	}
 }

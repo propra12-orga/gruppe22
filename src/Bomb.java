@@ -14,6 +14,45 @@ public class Bomb extends JPanel {
 	}
 	
 	public static void detonate(){
+		int x = Field.x;
+		int y = Field.y;
 		
+		isGameOver(Field.fieldNumbers[x + 1][y]);
+		isGameOver(Field.fieldNumbers[x - 1][y]);
+		isGameOver(Field.fieldNumbers[x][y + 1]);
+		isGameOver(Field.fieldNumbers[x][y - 1]);
+		isGameOver(Field.fieldNumbers[x][y]);
+		
+		Field.fieldNumbers[x][y] = 8;
+		if (isDestructable(Field.fieldNumbers[x + 1][y])) Field.fieldNumbers[x + 1][y] = 8;
+		if (isDestructable(Field.fieldNumbers[x - 1][y])) Field.fieldNumbers[x - 1][y] = 8;
+		if (isDestructable(Field.fieldNumbers[x][y + 1])) Field.fieldNumbers[x][y + 1] = 8;
+		if (isDestructable(Field.fieldNumbers[x][y - 1])) Field.fieldNumbers[x][y - 1] = 8;
+	}
+	
+	public static void endDetonation(){
+		int x = Field.x;
+		int y = Field.y;
+		
+		Field.fieldNumbers[x][y] = 0;
+		if (isDestructable(Field.fieldNumbers[x + 1][y])) Field.fieldNumbers[x + 1][y] = 0;
+		if (isDestructable(Field.fieldNumbers[x - 1][y])) Field.fieldNumbers[x - 1][y] = 0;
+		if (isDestructable(Field.fieldNumbers[x][y + 1])) Field.fieldNumbers[x][y + 1] = 0;
+		if (isDestructable(Field.fieldNumbers[x][y - 1])) Field.fieldNumbers[x][y - 1] = 0;
+	}
+	
+	public static boolean isDestructable(int coord) {
+		if (coord == 1)
+			return false;
+		else
+			return true;
+	}
+	
+	public static void isGameOver(int coord){
+		if (coord == 3) {
+			Game.panel.setVisible(false);
+			Interface.panel.setVisible(true);
+			Interface.main(null);
+		}
 	}
 }
