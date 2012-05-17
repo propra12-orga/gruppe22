@@ -121,7 +121,7 @@ public class Field extends JPanel {
 				f.newPaint();
 			}
 		} else if (s == "Bombe") {
-			// noch leer
+			Bomb bombe = new Bomb();
 		} else if (s == "Esc") {
 			// noch leer
 		}
