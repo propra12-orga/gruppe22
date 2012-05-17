@@ -157,6 +157,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		Interface Menu = new Interface();
 		
 		Menu.setVisible(true);
+		displayCtrl();
 		
 	}
 
@@ -187,6 +188,24 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		}
 
 	}
+	
+	public static void displayCtrl(){
+		getUp1.setText(Eingabe.CtrlArray[0]);
+		getDown1.setText(Eingabe.CtrlArray[1]);
+		getRight1.setText(Eingabe.CtrlArray[2]);
+		getLeft1.setText(Eingabe.CtrlArray[3]);
+		getBomb1.setText(Eingabe.CtrlArray[4]);
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	public void keyPressed(KeyEvent e) {
 		String Key = Eingabe.Ctrl(e);
