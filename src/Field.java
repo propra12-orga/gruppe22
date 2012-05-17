@@ -83,6 +83,7 @@ public class Field extends JPanel {
 		else if (coord == 9){
 			Game.panel.setVisible(false);
 			Interface.panel.setVisible(true);
+			Interface.MainMenu();
 		}
 		return false;
 	}
