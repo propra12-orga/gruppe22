@@ -183,7 +183,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 			panel.updateUI();
 		} else if (e.getSource() == this.single) {
 			this.setVisible(false);
-			TestInterface.main(null);
+			Game.main(null);
 		}
 
 	}
