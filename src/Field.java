@@ -38,8 +38,10 @@ public class Field extends JPanel {
 				if (fieldNumbers[i][j] == 0) {
 					g.drawImage(image, i * (getWidth() / 21), j
 							* (getHeight() / 18), null);
-
-				} else if(fieldNumbers[i][j] == 2){g.drawImage(image, i * (getWidth() / 21), j
+				}
+				else if(fieldNumbers[i][j] == 1){g.drawImage(image, i * (getWidth() / 21), j
+						* (getHeight() / 18), null);}
+				else if(fieldNumbers[i][j] == 2){g.drawImage(image, i * (getWidth() / 21), j
 						* (getHeight() / 18), null);} 
 				else if(fieldNumbers[i][j] == 3){g.drawImage(image, i * (getWidth() / 21), j
 								* (getHeight() / 18), null);}
@@ -84,7 +86,12 @@ public class Field extends JPanel {
 			} catch (IOException e) {
 			}
 		else if (coord == 1)
-			fieldcolor = Color.GRAY; //unzerstörbares Feld
+			try {
+				image = ImageIO
+						.read(new File(
+								"src/Pictures/Stein.jpg"));
+			} catch (IOException e) {
+			}
 		else if (coord == 2)
 			try {
 				image = ImageIO
