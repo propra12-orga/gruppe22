@@ -13,7 +13,7 @@ public class Game extends JFrame implements KeyListener{
 
 	public Game() {
 		this.setTitle("Bomberman!");
-		this.setSize(640, 480);
+		this.setSize(800, 600);
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -30,7 +30,7 @@ public class Field extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		setSize(640, 480);
+		setSize(800, 600);
 
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++) {

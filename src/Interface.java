@@ -100,7 +100,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 	public Interface() {
 
 		this.setTitle("Bomberman!");
-		this.setSize(640, 480);
+		this.setSize(800, 600);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
