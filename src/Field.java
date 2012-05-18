@@ -39,15 +39,22 @@ public class Field extends JPanel {
 					g.drawImage(image, i * (getWidth() / 21), j
 							* (getHeight() / 18), null);
 
-				} else {
+				} else if(fieldNumbers[i][j] == 7){g.drawImage(image, i * (getWidth() / 21), j
+						* (getHeight() / 18), null);} else {
 					g.fillRect(i * (getWidth() / 21), j * (getHeight() / 18),
 							(i + 1) * (getWidth() / 21), (j + 1)
 									* (getHeight() / 18));
 				}
 			}
 		if (isBomb) {
-			g.setColor(Color.RED);
-			g.fillOval(x * (getWidth() / 21), y * (getHeight() / 18), 20, 20);
+			try {
+				image = ImageIO
+						.read(new File(
+								"src/Pictures/Bombe.jpg"));
+			} catch (IOException e) {
+			}
+			g.drawImage(image, x * (getWidth() / 21), y
+					* (getHeight() / 18), null);
 		}
 
 	}
@@ -85,7 +92,12 @@ public class Field extends JPanel {
 		else if (coord == 6)
 			fieldcolor = Color.BLACK; //Spieler4
 		else if (coord == 7)
-			fieldcolor = Color.RED; //Bombe
+			try {
+				image = ImageIO
+						.read(new File(
+								"src/Pictures/Bombe.jpg"));
+			} catch (IOException e) {
+			}
 		else if (coord == 8)
 			fieldcolor = Color.RED; //Detonation
 		else if (coord == 9)
