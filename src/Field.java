@@ -39,8 +39,12 @@ public class Field extends JPanel {
 					g.drawImage(image, i * (getWidth() / 21), j
 							* (getHeight() / 18), null);
 
-				} else if(fieldNumbers[i][j] == 7){g.drawImage(image, i * (getWidth() / 21), j
-						* (getHeight() / 18), null);} else {
+				} else if(fieldNumbers[i][j] == 2){g.drawImage(image, i * (getWidth() / 21), j
+						* (getHeight() / 18), null);} 
+				else if(fieldNumbers[i][j] == 3){g.drawImage(image, i * (getWidth() / 21), j
+								* (getHeight() / 18), null);}
+				else if(fieldNumbers[i][j] == 7){g.drawImage(image, i * (getWidth() / 21), j
+						* (getHeight() / 18), null);}  else {
 					g.fillRect(i * (getWidth() / 21), j * (getHeight() / 18),
 							(i + 1) * (getWidth() / 21), (j + 1)
 									* (getHeight() / 18));
@@ -82,22 +86,25 @@ public class Field extends JPanel {
 		else if (coord == 1)
 			fieldcolor = Color.GRAY; //unzerstörbares Feld
 		else if (coord == 2)
-			fieldcolor = Color.YELLOW; //Kiste
+			try {
+				image = ImageIO
+						.read(new File(
+								"src/Pictures/Kiste.jpg"));
+			} catch (IOException e) {
+			}
 		else if (coord == 3)
-			fieldcolor = Color.BLACK; //Spieler1
+			try {
+				image = ImageIO
+						.read(new File(
+								"src/Pictures/BM.jpg"));
+			} catch (IOException e) {
+			}
 		else if (coord == 4)
 			fieldcolor = Color.BLACK; //Spieler2
 		else if (coord == 5)
 			fieldcolor = Color.BLACK; //Spieler3
 		else if (coord == 6)
-			fieldcolor = Color.BLACK; //Spieler4
-		else if (coord == 7)
-			try {
-				image = ImageIO
-						.read(new File(
-								"src/Pictures/Bombe.jpg"));
-			} catch (IOException e) {
-			}
+			fieldcolor = Color.BLACK; //Spieler4	
 		else if (coord == 8)
 			fieldcolor = Color.RED; //Detonation
 		else if (coord == 9)
