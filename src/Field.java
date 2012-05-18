@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 //Hier wird das Feld gezeichnet...
@@ -15,6 +19,8 @@ public class Field extends JPanel {
 	public static boolean isBomb = false;
 	public static int x, y;
 	public static int bombCnt = 1;
+	
+	private BufferedImage image;
 
 	public Field() {
 		super();
@@ -29,12 +35,17 @@ public class Field extends JPanel {
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++) {
 				g.setColor(getColor(fieldNumbers[i][j]));
-				g.fillRect(i * (getWidth() / 21), j * (getHeight() / 18),
-						(i + 1) * (getWidth() / 21), (j + 1)
-								* (getHeight() / 18));
+				if (fieldNumbers[i][j] == 0) {
+					g.drawImage(image, i * (getWidth() / 21), j
+							* (getHeight() / 18), null);
+
+				} else {
+					g.fillRect(i * (getWidth() / 21), j * (getHeight() / 18),
+							(i + 1) * (getWidth() / 21), (j + 1)
+									* (getHeight() / 18));
+				}
 			}
-		
-		if (isBomb) {		
+		if (isBomb) {
 			g.setColor(Color.RED);
 			g.fillOval(x * (getWidth() / 21), y * (getHeight() / 18), 20, 20);
 		}
@@ -55,7 +66,12 @@ public class Field extends JPanel {
 		Color fieldcolor = Color.WHITE;
 
 		if (coord == 0)
-			fieldcolor = Color.WHITE; //begehbares Feld
+			try {
+				image = ImageIO
+						.read(new File(
+								"src/Pictures/Boden.jpg"));
+			} catch (IOException e) {
+			}
 		else if (coord == 1)
 			fieldcolor = Color.GRAY; //unzerstörbares Feld
 		else if (coord == 2)
