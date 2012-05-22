@@ -1,101 +1,25 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Interface extends JFrame implements KeyListener, ActionListener {
-	static JButton single, multi, options, exit, sound, controls, backtomain, save, backtooptions;
+	static JButton single, multi, options, exit, sound, controls, backtomain,
+			save, backtooptions;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2;
 	static JTextField getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2;
-	static JPanel panel;
-
-	public static void MainMenu() {
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(10, 10, 10, 10);
-		c.gridx = 1;
-		c.gridy = 0;
-		panel.add(single, c);
-		c.gridy = 1;
-		panel.add(multi, c);
-		c.gridy = 2;
-		panel.add(options, c);
-		c.gridy = 3;
-		panel.add(exit, c);
-	}
-
-	public static void OptionsMenu() {
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(10, 10, 10, 10);
-		c.gridx = 1;
-		c.gridy = 0;
-		panel.add(sound, c);
-		c.gridy = 1;
-		panel.add(controls, c);
-		c.gridy = 2;
-		panel.add(backtomain, c);
-
-	}
-
-	public static void ControlMenu() {
-		GridBagConstraints c = new GridBagConstraints();
-		c.insets = new Insets(10, 10, 10, 10);
-		c.gridx = 0;
-		c.gridy = 0;
-		panel.add(player1, c);
-		c.gridy = 1;
-		panel.add(up1, c);
-		c.gridy = 2;
-		panel.add(down1, c);
-		c.gridy = 3;
-		panel.add(right1, c);
-		c.gridy = 4;
-		panel.add(left1, c);
-		c.gridy = 5;
-		panel.add(bomb1, c);
-		c.gridx = 1;
-		c.gridy = 1;
-		panel.add(getUp1, c);
-		c.gridy = 2;
-		panel.add(getDown1, c);
-		c.gridy = 3;
-		panel.add(getRight1, c);
-		c.gridy = 4;
-		panel.add(getLeft1, c);
-		c.gridy = 5;
-		panel.add(getBomb1, c);
-		c.gridx = 2;
-		c.gridy = 0;
-		panel.add(player2, c);
-		c.gridy = 1;
-		panel.add(up2, c);
-		c.gridy = 2;
-		panel.add(down2, c);
-		c.gridy = 3;
-		panel.add(right2, c);
-		c.gridy = 4;
-		panel.add(left2, c);
-		c.gridy = 5;
-		panel.add(bomb2, c);
-		c.gridx = 3;
-		c.gridy = 1;
-		panel.add(getUp2, c);
-		c.gridy = 2;
-		panel.add(getDown2, c);
-		c.gridy = 3;
-		panel.add(getRight2, c);
-		c.gridy = 4;
-		panel.add(getLeft2, c);
-		c.gridy = 5;
-		panel.add(getBomb2, c);
-		c.gridx = 1;
-		c.gridy = 6;
-		panel.add(save, c);
-		c.gridx = 2;
-		panel.add(backtooptions, c);
-
-	}
+	static JPanel panel, game;
 
 	public Interface() {
 
@@ -105,6 +29,9 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		panel = new JPanel(new GridBagLayout());
+		game = new JPanel();
+		game.setFocusable(true);
+		game.addKeyListener(this);
 		single = new JButton("Singleplayer");
 		single.addActionListener(this);
 		multi = new JButton("  Multiplayer ");
@@ -145,8 +72,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getRight2 = new JTextField(6);
 		getLeft2 = new JTextField(6);
 		getBomb2 = new JTextField(6);
-		
-		
+
 		/* Später rausnehmen */
 		getUp1.setEditable(false);
 		getUp2.setEditable(false);
@@ -158,28 +84,22 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getLeft2.setEditable(false);
 		getBomb1.setEditable(false);
 		getBomb2.setEditable(false);
-		
-		
-		
-		
-		
-		
-		
-		panel.setFocusable(true); 
+
+		panel.setFocusable(true);
 		panel.addKeyListener(this);
-		MainMenu();
+		Menue.MainMenu();
 		this.add(panel);
 	}
 
 	public static void main(String[] args) {
-		
+
 		Eingabe.CtrlReader();
-		
+
 		Interface Menu = new Interface();
-		
+
 		Menu.setVisible(true);
 		displayCtrl();
-		
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -188,44 +108,32 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		if (e.getSource() == this.exit) {
 			System.exit(0);
 		} else if (e.getSource() == this.options) {
-			panel.removeAll();
-			OptionsMenu();
-			panel.updateUI();
+			Options.OptionsMenu();
 		} else if (e.getSource() == this.backtomain) {
-			panel.removeAll();
-			MainMenu();
-			panel.updateUI();
+			Menue.MainMenu();
 		} else if (e.getSource() == this.controls) {
-			panel.removeAll();
-			ControlMenu();
-			panel.updateUI();
+			Control.ControlMenu();
 		} else if (e.getSource() == this.backtooptions) {
-			panel.removeAll();
-			OptionsMenu();
-			panel.updateUI();
+			Options.OptionsMenu();
 		} else if (e.getSource() == this.single) {
-			this.setVisible(false);
+			panel.setVisible(false);
 			Game.main(null);
-			
+
 		}
 
 	}
-	
-	public static void displayCtrl(){
+
+	public static void displayCtrl() {
 		getUp1.setText(Eingabe.CtrlArray[0]);
 		getDown1.setText(Eingabe.CtrlArray[1]);
 		getRight1.setText(Eingabe.CtrlArray[2]);
 		getLeft1.setText(Eingabe.CtrlArray[3]);
 		getBomb1.setText(Eingabe.CtrlArray[4]);
-	
+
 	}
 
 	public void keyPressed(KeyEvent e) {
-		/*
-		int code = e.getKeyCode(); 
-		String KeyId = KeyEvent.getKeyText(code);
-		System.out.println(KeyId);
-		*/
+		// String Key = Eingabe.Ctrl(e);
 	}
 
 	public void keyReleased(KeyEvent e) {
