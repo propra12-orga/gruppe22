@@ -63,9 +63,6 @@ public class Eingabe {
 			Ctrl = in.readLine();
 		} catch (IOException e) {
 		}
-
-		System.out.println(Ctrl);
-
 		CtrlArray = Ctrl.split("_"); /*
 									 * Splitten des gelesenen Strings am "_" und
 									 * füllen den Feldes was zum vergleichen mit
