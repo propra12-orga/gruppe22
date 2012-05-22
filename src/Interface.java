@@ -116,7 +116,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtooptions) {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.single) {
-			panel.setVisible(false);
+			this.setVisible(false);
 			Game.main(null);
 
 		}
