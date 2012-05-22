@@ -50,13 +50,14 @@ public class Init {
 
 		double randomBox;
 		int value = 0;
+		int maxKisten = 100;
 
-		while (value < 100) {
+		while (value < maxKisten) {
 			for (int i = 1; i < 20; i++)
-				for (int j = 1; j < 16; j++) {
+				for (int j = 1; j < 16 && value < maxKisten; j++) {
 					if (fields[i][j] == 0) {
 						randomBox = Math.random();
-						if (randomBox > 0.5) {
+						if (randomBox > 0.66) {
 							fields[i][j] = 2;
 							value++;
 						}
