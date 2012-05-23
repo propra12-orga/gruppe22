@@ -56,7 +56,9 @@ public class Eingabe {
 			Player.playerNumber = 1;
 			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[5])) {
-
+			Player.ctrl = "Esc";
+			Player.playerNumber = 1;
+			Movement.getMovement(Player);
 		}
 		return KeyId;
 	}

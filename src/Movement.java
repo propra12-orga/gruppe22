@@ -36,6 +36,10 @@ public class Movement {
 				if (Interface.Player1.bCnt > 0)
 					new Carl("Bomb").start();
 
+			} else if (Player.ctrl == "Esc") {
+				Interface.closeGameOpenMenu();
+				IngameMenu.ingame();
+				
 			}
 		}
 		/* hier erweitern mit if-Bedinungen für weitere Spieler */
@@ -45,9 +49,8 @@ public class Movement {
 		if (coord == 0)
 			return true;
 		else if (coord == 9) {
-			Interface.game.setVisible(false);
-			Interface.menu.setVisible(true);
-			Interface.main(null);
+			Interface.closeGameOpenMenu();
+			GameEnd.end();
 		}
 		return false;
 	}

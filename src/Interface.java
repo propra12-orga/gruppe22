@@ -140,14 +140,13 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtosingle) {
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
-			menu.setVisible(false);
+			closeMenuOpenGame();
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
 			Game.main(null);
 		} else if (e.getSource() == this.continueGame) {
-			menu.setVisible(false);
-			game.setVisible(true);
+			closeMenuOpenGame();
 		} else if (e.getSource() == this.restart) {
-			menu.setVisible(false);
+			closeMenuOpenGame();
 			Game.main(null);
 		}
 
@@ -162,13 +161,14 @@ public class Interface implements KeyListener, ActionListener {
 
 	}
 	
-	public static void IngameMenu(){
+	public static void closeGameOpenMenu(){
+		game.setVisible(false);
 		menu.setVisible(true);
-		IngameMenu.ingame();
 	}
 	
-	public static void closeGameContent(){
-		game.setVisible(false);
+	public static void closeMenuOpenGame(){
+		menu.setVisible(false);
+		game.setVisible(true);
 	}
 
 	public void keyPressed(KeyEvent e) {

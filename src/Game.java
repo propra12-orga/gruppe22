@@ -18,8 +18,6 @@ public class Game implements KeyListener{
 		Interface.game.addKeyListener(this);
 		
 		Interface.frame.add(Interface.game);
-		
-		Interface.game.setVisible(true);
 	}
 
 	public static void main(String[] args) {
