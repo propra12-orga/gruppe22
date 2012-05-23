@@ -37,7 +37,6 @@ public class Movement {
 					new Carl("Bomb").start();
 
 			} else if (Player.ctrl == "Esc") {
-				Init.reset();
 				Interface.closeGameOpenMenu();
 				IngameMenu.ingame();
 				
