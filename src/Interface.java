@@ -12,26 +12,25 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Interface extends JFrame implements KeyListener, ActionListener {
+public class Interface implements KeyListener, ActionListener {
+	static JFrame frame = new JFrame();
 	static JButton single, multi, options, exit, sound, controls, backtomain,
 			save, backtooptions, rndMap, constMap, startGame, backtosingle;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
 	static JTextField getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2, getBoxNumber;
-	static JPanel panel, game;
+	static JPanel menu;
+	public static JPanel game = new JPanel();
 
 	public Interface() {
 
-		this.setTitle("Bomberman!");
-		this.setSize(800, 662);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		panel = new JPanel(new GridBagLayout());
-		game = new JPanel();
-		game.setFocusable(true);
-		game.addKeyListener(this);
+		frame.setTitle("Bomberman!");
+		frame.setSize(800, 662);
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		menu = new JPanel(new GridBagLayout());
 		single = new JButton(" Singleplayer");
 		single.addActionListener(this);
 		multi = new JButton("  Multiplayer ");
@@ -96,10 +95,12 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getBomb1.setEditable(false);
 		getBomb2.setEditable(false);
 
-		panel.setFocusable(true);
-		panel.addKeyListener(this);
+		game.setFocusable(true);
+		game.addKeyListener(this);
+		menu.setFocusable(true);
+		Game.main(null);
 		Menue.MainMenu();
-		this.add(panel);
+		frame.add(menu);
 	}
 
 	public static void main(String[] args) {
@@ -108,7 +109,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 
 		Interface Menu = new Interface();
 
-		Menu.setVisible(true);
+		frame.setVisible(true);
 		displayCtrl();
 
 	}
@@ -133,8 +134,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtosingle) {
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
-			this.removeAll();
-			this.setVisible(false);
+			menu.setVisible(false);
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
 			Game.main(null);
 		}
@@ -149,9 +149,18 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getBomb1.setText(Eingabe.CtrlArray[4]);
 
 	}
+	
+	public static void backToMenu(){
+		menu.setVisible(true);
+		main(null);
+	}
+	
+	public static void closeGameContent(){
+		game.setVisible(false);
+	}
 
 	public void keyPressed(KeyEvent e) {
-		// String Key = Eingabe.Ctrl(e);
+		String Key = Eingabe.Ctrl(e);
 	}
 
 	public void keyReleased(KeyEvent e) {

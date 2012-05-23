@@ -30,13 +30,8 @@ public class Field extends JPanel {
 	private BufferedImage exp_m;
 	private BufferedImage exp_h;
 
-	public Field() {
-		super();
-	}
-
 	// Zeichnen:
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
 		setSize(800, 662);
 		
 		try {
@@ -133,9 +128,8 @@ public class Field extends JPanel {
 		if (coord == 0)
 			return true;
 		else if (coord == 9){
-			Game.panel.setVisible(false);
-			Interface.panel.setVisible(true);
-			Interface.main(null);
+			Interface.closeGameContent();
+			Interface.backToMenu();
 		}
 		return false;
 	}
@@ -175,7 +169,8 @@ public class Field extends JPanel {
 		} else if (s == "Bombe") {
 			if (bombCnt > 0) new Carl("Bomb").start();
 		} else if (s == "Esc") {
-			// noch leer
+			Interface.closeGameContent();
+			Interface.backToMenu();
 		}
 
 	}
@@ -183,7 +178,7 @@ public class Field extends JPanel {
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	public void newPaint() {
-		Game.panel.repaint();
+		Interface.game.repaint();
 	}
 	
 

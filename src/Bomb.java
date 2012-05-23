@@ -50,9 +50,8 @@ public class Bomb extends JPanel {
 	
 	public static void isGameOver(int coord){
 		if (coord == 3) {
-			Game.panel.setVisible(false);
-			Interface.panel.setVisible(true);
-			Interface.main(null);
+			Interface.closeGameContent();
+			Interface.backToMenu();
 		}
 	}
 }

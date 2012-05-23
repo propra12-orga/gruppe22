@@ -6,25 +6,20 @@ import javax.swing.JPanel;
 
 //nur zum Testen...
 
-public class Game extends JFrame implements KeyListener{
+public class Game implements KeyListener{
 
 	private static final long serialVersionUID = 1L;
-	public static JPanel panel = new JPanel();
 
 	public Game() {
-		this.setTitle("Bomberman!");
-		this.setSize(800, 662);
-		this.setResizable(false);
-		this.setLocationRelativeTo(null);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		panel = new Field();
+		Interface.game = new Field();
 		
-		panel.setFocusable(true); 
-		panel.addKeyListener(this);
+		Interface.game.setFocusable(true); 
+		Interface.game.addKeyListener(this);
 		
-		this.add(panel);
-		this.setVisible(true);
+		Interface.frame.add(Interface.game);
+		
+		Interface.game.setVisible(true);
 	}
 
 	public static void main(String[] args) {
