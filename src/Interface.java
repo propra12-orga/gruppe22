@@ -14,11 +14,11 @@ import javax.swing.JTextField;
 
 public class Interface extends JFrame implements KeyListener, ActionListener {
 	static JButton single, multi, options, exit, sound, controls, backtomain,
-			save, backtooptions;
+			save, backtooptions, rndMap, constMap, startGame, backtosingle;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
-			up2, down2, right2, left2, bomb2;
+			up2, down2, right2, left2, bomb2, boxNumber;
 	static JTextField getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
-			getLeft1, getLeft2, getBomb1, getBomb2;
+			getLeft1, getLeft2, getBomb1, getBomb2, getBoxNumber;
 	static JPanel panel, game;
 
 	public Interface() {
@@ -32,7 +32,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		game = new JPanel();
 		game.setFocusable(true);
 		game.addKeyListener(this);
-		single = new JButton("Singleplayer");
+		single = new JButton(" Singleplayer");
 		single.addActionListener(this);
 		multi = new JButton("  Multiplayer ");
 		multi.addActionListener(this);
@@ -49,6 +49,14 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		save.addActionListener(this);
 		backtooptions = new JButton("Zurueck");
 		backtooptions.addActionListener(this);
+		rndMap = new JButton("             Zufallsmap             ");
+		rndMap.addActionListener(this);
+		constMap = new JButton("          Map aus Datei          ");
+		constMap.addActionListener(this);
+		startGame = new JButton("          Spiel starten           ");
+		startGame.addActionListener(this);
+		backtosingle = new JButton("Zuruck zum Singleplayer");
+		backtosingle.addActionListener(this);
 		ctrlmenu = new JLabel("Steuerung");
 		player1 = new JLabel("Spieler 1");
 		player2 = new JLabel("Spieler 2");
@@ -62,6 +70,7 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		right2 = new JLabel("Rechts :");
 		left2 = new JLabel("Links :");
 		bomb2 = new JLabel("Bombe legen :");
+		boxNumber = new JLabel("Kistenanzahl : ");
 		getUp1 = new JTextField(6);
 		getDown1 = new JTextField(6);
 		getRight1 = new JTextField(6);
@@ -72,8 +81,10 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		getRight2 = new JTextField(6);
 		getLeft2 = new JTextField(6);
 		getBomb2 = new JTextField(6);
+		getBoxNumber = new JTextField(6);
+		getBoxNumber.setText(String.valueOf(Init.maxKisten));
 
-		/* Später rausnehmen */
+		/* Spï¿½ter rausnehmen */
 		getUp1.setEditable(false);
 		getUp2.setEditable(false);
 		getDown1.setEditable(false);
@@ -116,9 +127,15 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtooptions) {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.single) {
+			SingleMenu.SingleMenu();
+		} else if (e.getSource() == this.rndMap) {
+			RandomMapMenu.RandomMap();
+		} else if (e.getSource() == backtosingle) {
+			SingleMenu.SingleMenu();
+		} else if (e.getSource() == this.startGame) {
+			this.removeAll();
 			this.setVisible(false);
 			Game.main(null);
-
 		}
 
 	}
