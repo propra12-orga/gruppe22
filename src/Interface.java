@@ -22,6 +22,8 @@ public class Interface implements KeyListener, ActionListener {
 			getLeft1, getLeft2, getBomb1, getBomb2, getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
+	
+	static Player Player1 = new Player();
 
 	public Interface() {
 

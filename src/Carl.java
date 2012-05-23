@@ -6,7 +6,7 @@ public class Carl extends Thread {
 
 	public void run() {
 
-		Field.bombCnt -= 1;
+		Interface.Player1.bCnt -= 1;
 
 		Bomb.placeBomb();
 		try {
@@ -37,7 +37,7 @@ public class Carl extends Thread {
 
 		}
 
-		Field.bombCnt += 1;
+		Interface.Player1.bCnt += 1;
 	}
 
 }

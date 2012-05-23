@@ -5,15 +5,15 @@ import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
 	
-	public static void placeBomb(){
+	public static void placeBomb() {
 		Field.isBomb = true;
-		Field.x = Player.player_x;
-		Field.y = Player.player_y;
+		Field.x = Interface.Player1.x;
+		Field.y = Interface.Player1.y;
 		Field.f = new Field();
 		Field.f.newPaint();
 	}
 	
-	public static void detonate(){
+	public static void detonate() {
 		int x = Field.x;
 		int y = Field.y;
 		

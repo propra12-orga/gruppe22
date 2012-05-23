@@ -21,6 +21,8 @@ public class Eingabe {
 	 */
 
 	public static String Ctrl(KeyEvent e) { /* erhält KeyEvent */
+		
+		Paul Player = new Paul();
 
 		int code = e.getKeyCode(); /*
 									 * Umwandelung des KeyEvents in die passende
@@ -33,20 +35,29 @@ public class Eingabe {
 		/*
 		  Vergleichen der Steuerungs-Optionen mit dem KeyText
 		*/
-		if (KeyId.equals(CtrlArray[0])) { 
-			Field.movement("Oben");
+		if (KeyId.equals(CtrlArray[0])) {
+			Player.ctrl = "Oben";
+			Player.playerNumber = 1;
+			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[1])) {
-			Field.movement("Unten");
+			Player.ctrl = "Unten";
+			Player.playerNumber = 1;
+			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[2])) {
-			Field.movement("Rechts");
+			Player.ctrl = "Rechts";
+			Player.playerNumber = 1;
+			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[3])) {
-			Field.movement("Links");
+			Player.ctrl = "Links";
+			Player.playerNumber = 1;
+			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[4])) {
-			Field.movement("Bombe");
+			Player.ctrl = "Bombe";
+			Player.playerNumber = 1;
+			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[5])) {
-			Field.movement("Esc");
-		}
 
+		}
 		return KeyId;
 	}
 
