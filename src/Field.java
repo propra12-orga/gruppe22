@@ -126,7 +126,7 @@ public class Field extends JPanel {
 			return true;
 		else if (coord == 9){
 			Interface.closeGameContent();
-			Interface.backToMenu();
+			Interface.IngameMenu();
 		}
 		return false;
 	}

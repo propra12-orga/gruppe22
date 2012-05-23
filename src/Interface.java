@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
 	static JButton single, multi, options, exit, sound, controls, backtomain,
-			save, backtooptions, rndMap, constMap, startGame, backtosingle;
+			save, backtooptions, rndMap, constMap, startGame, backtosingle, continueGame, restart;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
 	static JTextField getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
@@ -58,6 +58,10 @@ public class Interface implements KeyListener, ActionListener {
 		startGame.addActionListener(this);
 		backtosingle = new JButton("Zuruck zum Singleplayer");
 		backtosingle.addActionListener(this);
+		continueGame = new JButton("Spiel fortsetzen");
+		continueGame.addActionListener(this);
+		restart = new JButton("Nochmal spielen?");
+		restart.addActionListener(this);
 		ctrlmenu = new JLabel("Steuerung");
 		player1 = new JLabel("Spieler 1");
 		player2 = new JLabel("Spieler 2");
@@ -139,6 +143,12 @@ public class Interface implements KeyListener, ActionListener {
 			menu.setVisible(false);
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
 			Game.main(null);
+		} else if (e.getSource() == this.continueGame) {
+			menu.setVisible(false);
+			game.setVisible(true);
+		} else if (e.getSource() == this.restart) {
+			menu.setVisible(false);
+			Game.main(null);
 		}
 
 	}
@@ -152,8 +162,9 @@ public class Interface implements KeyListener, ActionListener {
 
 	}
 	
-	public static void backToMenu(){
+	public static void IngameMenu(){
 		menu.setVisible(true);
+		IngameMenu.ingame();
 	}
 	
 	public static void closeGameContent(){
