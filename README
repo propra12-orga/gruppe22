@@ -1,0 +1,36 @@
+---------
+REFERATE
+---------
+
+- GUI (Basti)
+- Interaktion (Jan)
+- nebenläufige Programmierung (Pierre)
+
+
+-----------------------------------
+TO-DO-LISTE BIS ZUM 2. MEILENSTEIN
+-----------------------------------
+
+- Player-Objekt (Jan) [done]
+- Kistenanzahl veränderbar (Basti) [done]
+- Nurnoch ein Frame nutzen (Pierre) [done]
+- Reset-Methode für das Spielfeld (Pierre) [done]
+- Menü-Erweiterung (Basti) [done]
+
+- 2. Player (Jan)
+- Bombenradius editieren (Jan)
+- Radius der Detonation auf erstnächste Kisten beschränken (Jan)
+- Ketten-Detonation (Pierre)
+- zusätzliche Kisten mit etwas drunter (Pierre)
+- Eingabefeld für Kistenzahl auf Integers beschränken (Basti)
+- Level aus Datei einlesen
+- repaint-Thread
+- Steuerungsanimation per Pixel
+- Bombenanzahl
+- JDocs
+
+----------
+SONSTIGES
+----------
+
+He's dead, Jim.
