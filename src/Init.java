@@ -51,7 +51,6 @@ public class Init {
 
 		double randomBox;
 		int value = 0;
-		//int maxKisten = 90;
 
 		while (value < maxKisten) {
 			for (int i = 1; i < 20; i++)

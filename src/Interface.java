@@ -104,7 +104,6 @@ public class Interface implements KeyListener, ActionListener {
 		game.setFocusable(true);
 		game.addKeyListener(this);
 		menu.setFocusable(true);
-		Game.main(null);
 		Menue.MainMenu();
 		frame.add(menu);
 	}
@@ -140,9 +139,9 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtosingle) {
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
-			closeMenuOpenGame();
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
 			Game.main(null);
+			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.restart) {
