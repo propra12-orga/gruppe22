@@ -148,7 +148,6 @@ public class Interface implements KeyListener, ActionListener {
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.restart) {
 			Game.main(null);
-			Game.main(null);
 			closeMenuOpenGame();
 		}
 
