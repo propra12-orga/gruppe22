@@ -37,6 +37,7 @@ public class Movement {
 					new Carl("Bomb").start();
 
 			} else if (Player.ctrl == "Esc") {
+				Init.reset();
 				Interface.closeGameOpenMenu();
 				IngameMenu.ingame();
 				
@@ -49,6 +50,7 @@ public class Movement {
 		if (coord == 0)
 			return true;
 		else if (coord == 9) {
+			Init.reset();
 			Interface.closeGameOpenMenu();
 			GameEnd.end();
 		}

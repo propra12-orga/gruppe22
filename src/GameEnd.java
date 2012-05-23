@@ -5,6 +5,7 @@ public class GameEnd {
 
 
 	public static void end() {
+		Init.reset();
 		Interface.menu.removeAll();
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(10, 10, 10, 10);

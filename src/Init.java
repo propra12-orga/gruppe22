@@ -82,4 +82,16 @@ public class Init {
 
 		return fields;
 	}
+	
+	public static void reset(){
+		
+		for (int i = 0; i < 21; i++)
+			for (int j = 0; j < 17; j++)
+				if (Field.fieldNumbers[i][j] != 1 && Field.fieldNumbers[i][j] != 9) Field.fieldNumbers[i][j] = 0;
+		
+		
+		Field.fieldNumbers = fieldContent(Field.basicField);
+		Interface.Player1.x = 1;
+		Interface.Player1.y = 1;
+	}
 }

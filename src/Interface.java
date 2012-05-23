@@ -127,6 +127,7 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.options) {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.backtomain) {
+			Init.reset();
 			Menue.MainMenu();
 		} else if (e.getSource() == this.controls) {
 			Control.ControlMenu();
@@ -137,16 +138,19 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.rndMap) {
 			RandomMapMenu.RandomMap();
 		} else if (e.getSource() == this.backtosingle) {
+			Init.reset();
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
+			Init.reset();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.restart) {
-			closeMenuOpenGame();
+			Init.reset();
 			Game.main(null);
+			closeMenuOpenGame();
 		}
 
 	}
