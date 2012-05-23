@@ -130,11 +130,12 @@ public class Interface extends JFrame implements KeyListener, ActionListener {
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.rndMap) {
 			RandomMapMenu.RandomMap();
-		} else if (e.getSource() == backtosingle) {
+		} else if (e.getSource() == this.backtosingle) {
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
 			this.removeAll();
 			this.setVisible(false);
+			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
 			Game.main(null);
 		}
 
