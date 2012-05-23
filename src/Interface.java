@@ -152,7 +152,6 @@ public class Interface implements KeyListener, ActionListener {
 	
 	public static void backToMenu(){
 		menu.setVisible(true);
-		main(null);
 	}
 	
 	public static void closeGameContent(){
