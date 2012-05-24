@@ -14,13 +14,13 @@ public class Field extends JPanel {
 
 	public static int[][] basicField = Init.basicField();
 	public static int[][] fieldNumbers = Init.fieldContent(basicField);
-	
+
 	public static Field f;
 	public static boolean isBomb = false;
 	public static boolean isExp = false;
 	public static int x, y;
 	public static int bombCnt = 1;
-	
+
 	private BufferedImage hintergrund;
 	private BufferedImage kiste;
 	private BufferedImage bomberman;
@@ -33,7 +33,7 @@ public class Field extends JPanel {
 	// Zeichnen:
 	protected void paintComponent(Graphics g) {
 		setSize(800, 662);
-		
+
 		try {
 			hintergrund = ImageIO
 					.read(new File("src/Pictures/Hintergrund.jpg"));
@@ -70,8 +70,6 @@ public class Field extends JPanel {
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++) {
 
-				
-
 				if (fieldNumbers[i][j] == 2) {
 					g.drawImage(kiste, i * (getWidth() / 21), j
 							* (getHeight() / 17), null);
@@ -82,7 +80,7 @@ public class Field extends JPanel {
 				}
 
 			}
-		
+
 		if (isBomb) {
 
 			g.drawImage(bombe, x * (getWidth() / 21), y * (getHeight() / 17),
@@ -90,21 +88,28 @@ public class Field extends JPanel {
 		}
 
 		if (isExp) {
-			if (Bomb.isDestructable(fieldNumbers[x + 1][y])) {
-				g.drawImage(exp_h, (x + 1) * (getWidth() / 21), y
+
+			for (int dr = 0; dr <= Bomb.r; dr++) {
+				g.drawImage(exp_h, (x + dr) * (getWidth() / 21), y
 						* (getHeight() / 17), null);
 			}
-			if (Bomb.isDestructable(fieldNumbers[x - 1][y])) {
-				g.drawImage(exp_h, (x - 1) * (getWidth() / 21), y
+
+			for (int dl = 0; dl <= Bomb.l; dl++) {
+				g.drawImage(exp_h, (x - dl) * (getWidth() / 21), y
 						* (getHeight() / 17), null);
+
 			}
-			if (Bomb.isDestructable(fieldNumbers[x][y + 1])) {
-				g.drawImage(exp_v, x * (getWidth() / 21), (y + 1)
+
+			for (int du = 0; du <= Bomb.u; du++) {
+				g.drawImage(exp_v, x * (getWidth() / 21), (y + du)
 						* (getHeight() / 17), null);
+
 			}
-			if (Bomb.isDestructable(fieldNumbers[x][y - 1])) {
-				g.drawImage(exp_v, x * (getWidth() / 21), (y - 1)
+
+			for (int dob = 0; dob <= Bomb.o; dob++) {
+				g.drawImage(exp_v, x * (getWidth() / 21), (y - dob)
 						* (getHeight() / 17), null);
+
 			}
 
 			g.drawImage(exp_m, x * (getWidth() / 21), y * (getHeight() / 17),
@@ -124,7 +129,7 @@ public class Field extends JPanel {
 	public static boolean checkMove(int coord) {
 		if (coord == 0)
 			return true;
-		else if (coord == 9){
+		else if (coord == 9) {
 			Interface.closeGameOpenMenu();
 			IngameMenu.ingame();
 		}
@@ -133,14 +138,11 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
-
-
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	public void newPaint() {
 		Interface.game.repaint();
 	}
-	
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 

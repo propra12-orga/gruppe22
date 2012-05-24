@@ -1,10 +1,7 @@
-import java.awt.Color;
-import java.awt.Graphics;
-
 import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
-	
+
 	static Boolean ob;
 	static Boolean ub;
 	static Boolean lb;
@@ -14,7 +11,7 @@ public class Bomb extends JPanel {
 	static int u;
 	static int l;
 	static int r;
-	
+
 	public static void placeBomb() {
 		Field.isBomb = true;
 		Field.x = Interface.Player1.x;
@@ -22,100 +19,69 @@ public class Bomb extends JPanel {
 		Field.f = new Field();
 		Field.f.newPaint();
 	}
-	
+
 	public static void detonate() {
 		int x = Field.x;
 		int y = Field.y;
-		
+
 		for (int gor = 1; gor <= r; gor++) {
 			isGameOver(Field.fieldNumbers[x + gor][y]);
-			
-			if(isDestructable(Field.fieldNumbers[x + gor][y]))
-				{
-				Field.fieldNumbers[x + gor][y] = 8;
-				}
+			Field.fieldNumbers[x + gor][y] = 8;
 		}
 		for (int gol = 1; gol <= l; gol++) {
 			isGameOver(Field.fieldNumbers[x - gol][y]);
-			
-			if(isDestructable(Field.fieldNumbers[x - gol][y]))
-			{
 			Field.fieldNumbers[x - gol][y] = 8;
-			}
 		}
 		for (int goo = 1; goo <= o; goo++) {
 			isGameOver(Field.fieldNumbers[x][y - goo]);
-			
-			if(isDestructable(Field.fieldNumbers[x][y - goo]))
-			{
-			Field.fieldNumbers[x][y -goo] = 8;
-			}
+			Field.fieldNumbers[x][y - goo] = 8;
 		}
-		for (int gou = 1; gou <= r; gou++) {
+		for (int gou = 1; gou <= u; gou++) {
 			isGameOver(Field.fieldNumbers[x][y + gou]);
-			
-			if(isDestructable(Field.fieldNumbers[x][y + gou]))
-			{
 			Field.fieldNumbers[x][y + gou] = 8;
-			}
 		}
 		isGameOver(Field.fieldNumbers[x][y]);
 		Field.fieldNumbers[x][y] = 8;
-		
+
 	}
-	
-	public static void endDetonation(){
+
+	public static void endDetonation() {
 		int x = Field.x;
 		int y = Field.y;
-		
+
 		for (int gor = 1; gor <= r; gor++) {
-			
-			if(isDestructable(Field.fieldNumbers[x + gor][y]))
-				{
-				Field.fieldNumbers[x + gor][y] = 0;
-				}
+			Field.fieldNumbers[x + gor][y] = 0;
 		}
 		for (int gol = 1; gol <= l; gol++) {
-			
-			if(isDestructable(Field.fieldNumbers[x - gol][y]))
-			{
 			Field.fieldNumbers[x - gol][y] = 0;
-			}
 		}
 		for (int goo = 1; goo <= o; goo++) {
-			
-			if(isDestructable(Field.fieldNumbers[x][y - goo]))
-			{
-			Field.fieldNumbers[x][y -goo] = 0;
-			}
+			Field.fieldNumbers[x][y - goo] = 0;
 		}
-		for (int gou = 1; gou <= r; gou++) {
-			
-			if(isDestructable(Field.fieldNumbers[x][y + gou]))
-			{
+		for (int gou = 1; gou <= u; gou++) {
 			Field.fieldNumbers[x][y + gou] = 0;
-			}
 		}
 		isGameOver(Field.fieldNumbers[x][y]);
 		Field.fieldNumbers[x][y] = 0;
-		
+
 	}
-	
+
 	public static boolean isDestructable(int coord) {
-		if (coord == 1)
+		if (coord == 1) {
 			return false;
-		else
+		} else {
 			return true;
+		}
 	}
-	
-	public static void isGameOver(int coord){
+
+	public static void isGameOver(int coord) {
 		if (coord == 3) {
 			Init.reset();
 			Interface.closeGameOpenMenu();
 			GameEnd.end();
 		}
 	}
-	
+
 	public static void radCheck(Player crtP) {
 		ob = true;
 		ub = true;
@@ -125,45 +91,65 @@ public class Bomb extends JPanel {
 		int x = crtP.x;
 		int y = crtP.y;
 
-		for (int i = 1; i <= crtP.rad; i++) {
-			/* nach rechts überprüfen */
-			if (isDestructable(Field.fieldNumbers[x + i][y]) && rb) {
-				r = i;
-				if (Field.fieldNumbers[x + 1][y] == 2) {
+		r = 0;
+		l = 0;
+		o = 0;
+		u = 0;
+
+		for (int e = 0; e <= 3; e++) {
+			if (rb) {
+				r = e;
+				if (Field.fieldNumbers[x + e][y] == 2) {
 					rb = false;
-					// System.out.println("Kiste ist rechts nach " + r +
-					// " stellen erreicht, Boolean rb = " + rb);
+				}
+				if (!isDestructable(Field.fieldNumbers[x + e + 1][y])) {
+					rb = false;
 				}
 			}
+		}
+
+		for (int i = 0; i <= crtP.rad; i++) {
+			/* nach rechts überprüfen */
+			if (rb) {
+				r = i;
+				if (Field.fieldNumbers[x + i][y] == 2) {
+					rb = false;
+				}
+				if (!isDestructable(Field.fieldNumbers[x + (i + 1)][y])) {
+					rb = false;
+				}
+			}
+
 			/* nach links überprüfen */
-			if (isDestructable(Field.fieldNumbers[x - i][y]) && lb) {
+			if (lb) {
 				l = i;
-				if (Field.fieldNumbers[x - 1][y] == 2) {
+				if (Field.fieldNumbers[x - i][y] == 2) {
 					lb = false;
-					// System.out.println("Kiste ist links nach " + l +
-					// " stellen erreicht, Boolean lb = " + lb);
+				}
+				if (!isDestructable(Field.fieldNumbers[x - (i + 1)][y])) {
+					lb = false;
 				}
 			}
 			/* nach unten überprüfen */
-			if (isDestructable(Field.fieldNumbers[x][y + 1]) && ub) {
+			if (ub) {
 				u = i;
-				if (Field.fieldNumbers[x][y + 1] == 2) {
+				if (Field.fieldNumbers[x][y + i] == 2) {
 					ub = false;
-					// System.out.println("Kiste ist unten nach " + u +
-					// " stellen erreicht, Boolean ub = " + ub);
+				}
+				if (!isDestructable(Field.fieldNumbers[x][y + (i + 1)])) {
+					ub = false;
 				}
 			}
 			/* nach oben überprüfen */
-			if (isDestructable(Field.fieldNumbers[x][y - i]) && ob) {
+			if (ob) {
 				o = i;
 				if (Field.fieldNumbers[x][y - i] == 2) {
 					ob = false;
-					// System.out.println("Kiste ist oben nach " + o +
-					// " stellen erreicht, Boolean ob = " + ob);
+				}
+				if (!isDestructable(Field.fieldNumbers[x][y - (i + 1)])) {
+					ob = false;
 				}
 			}
-
 		}
-
 	}
 }
