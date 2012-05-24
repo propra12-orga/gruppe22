@@ -27,11 +27,18 @@ public class Bomb extends JPanel {
 		int x = Field.x;
 		int y = Field.y;
 		
-		isGameOver(Field.fieldNumbers[x + 1][y]);
-		isGameOver(Field.fieldNumbers[x - 1][y]);
-		isGameOver(Field.fieldNumbers[x][y + 1]);
-		isGameOver(Field.fieldNumbers[x][y - 1]);
-		isGameOver(Field.fieldNumbers[x][y]);
+		for (int gor = 1; gor <= r; gor++) {
+			isGameOver(Field.fieldNumbers[x + gor][y]);
+		}
+		for (int gol = 1; gol <= l; gol++) {
+			isGameOver(Field.fieldNumbers[x - gol][y]);
+		}
+		for (int goo = 1; goo <= o; goo++) {
+			isGameOver(Field.fieldNumbers[x][y - goo]);
+		}
+		for (int gou = 1; gou <= r; gou++) {
+			isGameOver(Field.fieldNumbers[x][y + gou]);
+		}
 		
 		Field.fieldNumbers[x][y] = 8;
 		if (isDestructable(Field.fieldNumbers[x + 1][y])) Field.fieldNumbers[x + 1][y] = 8;
