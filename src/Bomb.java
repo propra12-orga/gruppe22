@@ -96,18 +96,6 @@ public class Bomb extends JPanel {
 		o = 0;
 		u = 0;
 
-		for (int e = 0; e <= 3; e++) {
-			if (rb) {
-				r = e;
-				if (Field.fieldNumbers[x + e][y] == 2) {
-					rb = false;
-				}
-				if (!isDestructable(Field.fieldNumbers[x + e + 1][y])) {
-					rb = false;
-				}
-			}
-		}
-
 		for (int i = 0; i <= crtP.rad; i++) {
 			/* nach rechts überprüfen */
 			if (rb) {

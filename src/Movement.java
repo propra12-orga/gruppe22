@@ -39,7 +39,6 @@ public class Movement {
 			} else if (Player.ctrl == "Esc") {
 				Interface.closeGameOpenMenu();
 				IngameMenu.ingame();
-
 			}
 		}
 		/* hier erweitern mit if-Bedinungen für weitere Spieler */

@@ -59,7 +59,12 @@ public class Eingabe {
 			Player.ctrl = "Esc";
 			Player.playerNumber = 1;
 			Movement.getMovement(Player);
+		} else if (KeyId.equals("NumPad +")) {
+			Interface.Player1.rad ++;
+		} else if (KeyId.equals("NumPad -")) {
+			Interface.Player1.rad --;
 		}
+				
 		return KeyId;
 	}
 
