@@ -68,11 +68,37 @@ public class Bomb extends JPanel {
 		int x = Field.x;
 		int y = Field.y;
 		
+		for (int gor = 1; gor <= r; gor++) {
+			
+			if(isDestructable(Field.fieldNumbers[x + gor][y]))
+				{
+				Field.fieldNumbers[x + gor][y] = 0;
+				}
+		}
+		for (int gol = 1; gol <= l; gol++) {
+			
+			if(isDestructable(Field.fieldNumbers[x - gol][y]))
+			{
+			Field.fieldNumbers[x - gol][y] = 0;
+			}
+		}
+		for (int goo = 1; goo <= o; goo++) {
+			
+			if(isDestructable(Field.fieldNumbers[x][y - goo]))
+			{
+			Field.fieldNumbers[x][y -goo] = 0;
+			}
+		}
+		for (int gou = 1; gou <= r; gou++) {
+			
+			if(isDestructable(Field.fieldNumbers[x][y + gou]))
+			{
+			Field.fieldNumbers[x][y + gou] = 0;
+			}
+		}
+		isGameOver(Field.fieldNumbers[x][y]);
 		Field.fieldNumbers[x][y] = 0;
-		if (isDestructable(Field.fieldNumbers[x + 1][y])) Field.fieldNumbers[x + 1][y] = 0;
-		if (isDestructable(Field.fieldNumbers[x - 1][y])) Field.fieldNumbers[x - 1][y] = 0;
-		if (isDestructable(Field.fieldNumbers[x][y + 1])) Field.fieldNumbers[x][y + 1] = 0;
-		if (isDestructable(Field.fieldNumbers[x][y - 1])) Field.fieldNumbers[x][y - 1] = 0;
+		
 	}
 	
 	public static boolean isDestructable(int coord) {
