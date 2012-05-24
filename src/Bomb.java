@@ -5,6 +5,16 @@ import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
 	
+	static Boolean ob;
+	static Boolean ub;
+	static Boolean lb;
+	static Boolean rb;
+
+	static int o;
+	static int u;
+	static int l;
+	static int r;
+	
 	public static void placeBomb() {
 		Field.isBomb = true;
 		Field.x = Interface.Player1.x;
@@ -54,5 +64,56 @@ public class Bomb extends JPanel {
 			Interface.closeGameOpenMenu();
 			GameEnd.end();
 		}
+	}
+	
+	public static void radCheck(Player crtP) {
+		ob = true;
+		ub = true;
+		lb = true;
+		rb = true;
+
+		int x = crtP.x;
+		int y = crtP.y;
+
+		for (int i = 1; i <= crtP.rad; i++) {
+			/* nach rechts überprüfen */
+			if (isDestructable(Field.fieldNumbers[x + i][y]) && rb) {
+				r = i;
+				if (Field.fieldNumbers[x + 1][y] == 2) {
+					rb = false;
+					// System.out.println("Kiste ist rechts nach " + r +
+					// " stellen erreicht, Boolean rb = " + rb);
+				}
+			}
+			/* nach links überprüfen */
+			if (isDestructable(Field.fieldNumbers[x - i][y]) && lb) {
+				l = i;
+				if (Field.fieldNumbers[x - 1][y] == 2) {
+					lb = false;
+					// System.out.println("Kiste ist links nach " + l +
+					// " stellen erreicht, Boolean lb = " + lb);
+				}
+			}
+			/* nach unten überprüfen */
+			if (isDestructable(Field.fieldNumbers[x][y + 1]) && ub) {
+				u = i;
+				if (Field.fieldNumbers[x][y + 1] == 2) {
+					ub = false;
+					// System.out.println("Kiste ist unten nach " + u +
+					// " stellen erreicht, Boolean ub = " + ub);
+				}
+			}
+			/* nach oben überprüfen */
+			if (isDestructable(Field.fieldNumbers[x][y - i]) && ob) {
+				o = i;
+				if (Field.fieldNumbers[x][y - i] == 2) {
+					ob = false;
+					// System.out.println("Kiste ist oben nach " + o +
+					// " stellen erreicht, Boolean ob = " + ob);
+				}
+			}
+
+		}
+
 	}
 }
