@@ -29,22 +29,39 @@ public class Bomb extends JPanel {
 		
 		for (int gor = 1; gor <= r; gor++) {
 			isGameOver(Field.fieldNumbers[x + gor][y]);
+			
+			if(isDestructable(Field.fieldNumbers[x + gor][y]))
+				{
+				Field.fieldNumbers[x + gor][y] = 8;
+				}
 		}
 		for (int gol = 1; gol <= l; gol++) {
 			isGameOver(Field.fieldNumbers[x - gol][y]);
+			
+			if(isDestructable(Field.fieldNumbers[x - gol][y]))
+			{
+			Field.fieldNumbers[x - gol][y] = 8;
+			}
 		}
 		for (int goo = 1; goo <= o; goo++) {
 			isGameOver(Field.fieldNumbers[x][y - goo]);
+			
+			if(isDestructable(Field.fieldNumbers[x][y - goo]))
+			{
+			Field.fieldNumbers[x][y -goo] = 8;
+			}
 		}
 		for (int gou = 1; gou <= r; gou++) {
 			isGameOver(Field.fieldNumbers[x][y + gou]);
+			
+			if(isDestructable(Field.fieldNumbers[x][y + gou]))
+			{
+			Field.fieldNumbers[x][y + gou] = 8;
+			}
 		}
-		
+		isGameOver(Field.fieldNumbers[x][y]);
 		Field.fieldNumbers[x][y] = 8;
-		if (isDestructable(Field.fieldNumbers[x + 1][y])) Field.fieldNumbers[x + 1][y] = 8;
-		if (isDestructable(Field.fieldNumbers[x - 1][y])) Field.fieldNumbers[x - 1][y] = 8;
-		if (isDestructable(Field.fieldNumbers[x][y + 1])) Field.fieldNumbers[x][y + 1] = 8;
-		if (isDestructable(Field.fieldNumbers[x][y - 1])) Field.fieldNumbers[x][y - 1] = 8;
+		
 	}
 	
 	public static void endDetonation(){
