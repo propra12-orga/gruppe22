@@ -16,10 +16,10 @@ TO-DO-LISTE BIS ZUM 2. MEILENSTEIN
 - Nurnoch ein Frame nutzen (Pierre) [done]
 - Reset-Methode für das Spielfeld (Pierre) [done]
 - Menü-Erweiterung (Basti) [done]
+- Bombenradius editieren (Jan) [done]
+- Radius der Detonation auf erstnächste Kisten beschränken (Jan) [done]
 
 - 2. Player (Jan)
-- Bombenradius editieren (Jan)
-- Radius der Detonation auf erstnächste Kisten beschränken (Jan)
 - Ketten-Detonation (Pierre)
 - zusätzliche Kisten mit etwas drunter (Pierre)
 - Eingabefeld für Kistenzahl auf Integers beschränken (Basti)

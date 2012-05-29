@@ -34,11 +34,8 @@ public class Movement {
 				}
 			} else if (Player.ctrl == "Bombe") {
 				if (Interface.Player1.bCnt > 0)
-				new Carl("Bomb").start();
+					new Carl("Bomb").start();
 				Bomb.radCheck(Interface.Player1);
-			} else if (Player.ctrl == "Esc") {
-				Interface.closeGameOpenMenu();
-				IngameMenu.ingame();
 			}
 		}
 		/* hier erweitern mit if-Bedinungen für weitere Spieler */

@@ -10,19 +10,23 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
 	static JButton single, multi, options, exit, sound, controls, backtomain,
-			save, backtooptions, rndMap, constMap, startGame, backtosingle, continueGame, restart;
+			save, backtooptions, rndMap, constMap, startGame, backtosingle,
+			continueGame, restart;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
-	static JTextField getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
-			getLeft1, getLeft2, getBomb1, getBomb2, getBoxNumber;
+	static JTextField getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
-	
+
+	static JTextArea getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
+			getLeft1, getLeft2, getBomb1, getBomb2;
+
 	static Player Player1 = new Player();
 
 	public Interface() {
@@ -76,18 +80,29 @@ public class Interface implements KeyListener, ActionListener {
 		left2 = new JLabel("Links :");
 		bomb2 = new JLabel("Bombe legen :");
 		boxNumber = new JLabel("Kistenanzahl : ");
-		getUp1 = new JTextField(6);
-		getDown1 = new JTextField(6);
-		getRight1 = new JTextField(6);
-		getLeft1 = new JTextField(6);
-		getBomb1 = new JTextField(6);
-		getUp2 = new JTextField(6);
-		getDown2 = new JTextField(6);
-		getRight2 = new JTextField(6);
-		getLeft2 = new JTextField(6);
-		getBomb2 = new JTextField(6);
+		getUp1 = new JTextArea(1, 6);
+		getDown1 = new JTextArea(1, 6);
+		getRight1 = new JTextArea(1, 6);
+		getLeft1 = new JTextArea(1, 6);
+		getBomb1 = new JTextArea(1, 6);
+		getUp2 = new JTextArea(1, 6);
+		getDown2 = new JTextArea(1, 6);
+		getRight2 = new JTextArea(1, 6);
+		getLeft2 = new JTextArea(1, 6);
+		getBomb2 = new JTextArea(1, 6);
 		getBoxNumber = new JTextField(6);
 		getBoxNumber.setText(String.valueOf(Init.maxKisten));
+
+		getUp1.addKeyListener(this);
+		getUp2.addKeyListener(this);
+		getDown1.addKeyListener(this);
+		getDown2.addKeyListener(this);
+		getRight1.addKeyListener(this);
+		getRight2.addKeyListener(this);
+		getLeft1.addKeyListener(this);
+		getLeft2.addKeyListener(this);
+		getBomb1.addKeyListener(this);
+		getBomb2.addKeyListener(this);
 
 		/* Sp�ter rausnehmen */
 		getUp1.setEditable(false);
@@ -110,12 +125,9 @@ public class Interface implements KeyListener, ActionListener {
 
 	public static void main(String[] args) {
 
-		Eingabe.CtrlReader();
-
 		Interface Menu = new Interface();
 
 		frame.setVisible(true);
-		displayCtrl();
 
 	}
 
@@ -130,10 +142,13 @@ public class Interface implements KeyListener, ActionListener {
 			Init.reset();
 			Menue.MainMenu();
 		} else if (e.getSource() == this.controls) {
+			Eingabe.CtrlReader();
+			displayCtrl();
 			Control.ControlMenu();
 		} else if (e.getSource() == this.backtooptions) {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.single) {
+			Eingabe.CtrlReader();
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.rndMap) {
 			RandomMapMenu.RandomMap();
@@ -149,6 +164,8 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.restart) {
 			Game.main(null);
 			closeMenuOpenGame();
+		} else if (e.getSource() == this.save) {
+			Eingabe.CtrlWrite();
 		}
 
 	}
@@ -159,15 +176,20 @@ public class Interface implements KeyListener, ActionListener {
 		getRight1.setText(Eingabe.CtrlArray[2]);
 		getLeft1.setText(Eingabe.CtrlArray[3]);
 		getBomb1.setText(Eingabe.CtrlArray[4]);
+		getUp2.setText(Eingabe.CtrlArray[5]);
+		getDown2.setText(Eingabe.CtrlArray[6]);
+		getRight2.setText(Eingabe.CtrlArray[7]);
+		getLeft2.setText(Eingabe.CtrlArray[8]);
+		getBomb2.setText(Eingabe.CtrlArray[9]);
 
 	}
-	
-	public static void closeGameOpenMenu(){
+
+	public static void closeGameOpenMenu() {
 		game.setVisible(false);
 		menu.setVisible(true);
 	}
-	
-	public static void closeMenuOpenGame(){
+
+	public static void closeMenuOpenGame() {
 		menu.setVisible(false);
 		game.setVisible(true);
 	}

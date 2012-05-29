@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class Eingabe {
 
-	static String[] CtrlArray = new String[6]; /*
+	static String[] CtrlArray = new String[10]; /*
 												 * Feld zum speichern der
 												 * Steuerung
 												 */
@@ -21,7 +21,7 @@ public class Eingabe {
 	 */
 
 	public static String Ctrl(KeyEvent e) { /* erhält KeyEvent */
-		
+
 		Paul Player = new Paul();
 
 		int code = e.getKeyCode(); /*
@@ -32,9 +32,41 @@ public class Eingabe {
 												 * Umwandelung des KeyCodes in
 												 * den KeyText
 												 */
+		if (e.getSource() == Interface.getUp1) {
+			Interface.getUp1.setText(KeyId);
+			CtrlArray[0] = KeyId;
+		} else if (e.getSource() == Interface.getUp2) {
+			Interface.getUp2.setText(KeyId);
+			CtrlArray[5] = KeyId;
+		} else if (e.getSource() == Interface.getDown1) {
+			Interface.getDown1.setText(KeyId);
+			CtrlArray[1] = KeyId;
+		} else if (e.getSource() == Interface.getDown2) {
+			Interface.getDown2.setText(KeyId);
+			CtrlArray[6] = KeyId;
+		} else if (e.getSource() == Interface.getRight1) {
+			Interface.getRight1.setText(KeyId);
+			CtrlArray[2] = KeyId;
+		} else if (e.getSource() == Interface.getRight2) {
+			Interface.getRight2.setText(KeyId);
+			CtrlArray[7] = KeyId;
+		} else if (e.getSource() == Interface.getLeft1) {
+			Interface.getLeft1.setText(KeyId);
+			CtrlArray[3] = KeyId;
+		} else if (e.getSource() == Interface.getLeft2) {
+			Interface.getLeft2.setText(KeyId);
+			CtrlArray[8] = KeyId;
+		} else if (e.getSource() == Interface.getBomb1) {
+			Interface.getBomb1.setText(KeyId);
+			CtrlArray[4] = KeyId;
+		} else if (e.getSource() == Interface.getBomb2) {
+			Interface.getBomb2.setText(KeyId);
+			CtrlArray[9] = KeyId;
+		}
+
 		/*
-		  Vergleichen der Steuerungs-Optionen mit dem KeyText
-		*/
+		 * Vergleichen der Steuerungs-Optionen mit dem KeyText
+		 */
 		if (KeyId.equals(CtrlArray[0])) {
 			Player.ctrl = "Oben";
 			Player.playerNumber = 1;
@@ -56,15 +88,34 @@ public class Eingabe {
 			Player.playerNumber = 1;
 			Movement.getMovement(Player);
 		} else if (KeyId.equals(CtrlArray[5])) {
-			Player.ctrl = "Esc";
-			Player.playerNumber = 1;
+			Player.ctrl = "Oben";
+			Player.playerNumber = 2;
 			Movement.getMovement(Player);
-		} else if (KeyId.equals("NumPad +")) {
-			Interface.Player1.rad ++;
-		} else if (KeyId.equals("NumPad -")) {
-			Interface.Player1.rad --;
+		} else if (KeyId.equals(CtrlArray[6])) {
+			Player.ctrl = "Unten";
+			Player.playerNumber = 2;
+			Movement.getMovement(Player);
+		} else if (KeyId.equals(CtrlArray[7])) {
+			Player.ctrl = "Links";
+			Player.playerNumber = 2;
+			Movement.getMovement(Player);
+		} else if (KeyId.equals(CtrlArray[8])) {
+			Player.ctrl = "Rechts";
+			Player.playerNumber = 2;
+			Movement.getMovement(Player);
+		} else if (KeyId.equals(CtrlArray[9])) {
+			Player.ctrl = "Bombe";
+			Player.playerNumber = 2;
+			Movement.getMovement(Player);
+		} else if (KeyId.equals("O")) {
+			Interface.Player1.rad++;
+		} else if (KeyId.equals("P")) {
+			Interface.Player1.rad--;
+		} else if (KeyId.equals("ESC")) {
+			Interface.closeGameOpenMenu();
+			IngameMenu.ingame();
 		}
-				
+
 		return KeyId;
 	}
 
@@ -94,9 +145,11 @@ public class Eingabe {
 	 */
 
 	public static void CtrlWrite() { /* 0815 Writer */
-		String CtrlString = "Oben_Unten_Rechts_Links_Leertaste_ESC_";
 
-		
+		String CtrlString = "";
+		for (int i = 0; i <= 9; i++) {
+			CtrlString += CtrlArray[i] + "_";
+		}
 
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter("Test.TXT"));
