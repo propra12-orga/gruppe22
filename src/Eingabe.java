@@ -107,9 +107,9 @@ public class Eingabe {
 			Player.ctrl = "Bombe";
 			Player.playerNumber = 2;
 			Movement.getMovement(Player);
-		} else if (KeyId.equals("O")) {
+		} else if (KeyId.equals("NumPad +")) {
 			Interface.Player1.rad++;
-		} else if (KeyId.equals("P")) {
+		} else if (KeyId.equals("NumPad -")) {
 			Interface.Player1.rad--;
 		} else if (KeyId.equals("ESC")) {
 			Interface.closeGameOpenMenu();

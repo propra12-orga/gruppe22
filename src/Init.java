@@ -1,14 +1,56 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class Init {
 
 	static int maxKisten = 90;
+
+	static BufferedReader in;
+
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	/*
 	 * Initialisierung des Feldarrays Jede Koordinate des Feldes bekommt einen
-	 * Wert: 0) Frei begehbares Feld 1) Unzerst�rbare Mauer 2) Zerst�rbare Kiste
-	 * 3) Spieler1 4) Spieler2 5) Spieler3 6) Spieler4 7) Bombe 8) Detonation 9)
-	 * Ausgang ......
+	 * Wert: 0) Frei begehbares Feld 1) Unzerst�rbare Mauer 2) Zerst�rbare
+	 * Kiste 3) Spieler1 4) Spieler2 5) Spieler3 6) Spieler4 7) Bombe 8)
+	 * Detonation 9) Ausgang ......
 	 */
+	public static void MapReader() { /* 0815 Reader */
+
+		try {
+			in = new BufferedReader(new FileReader("Map1.TXT"));
+
+		} catch (IOException e) {
+		}
+
+	}
+
+	public static int[][] constMap() {
+		String[] bufmap = new String[21];
+		String zeile;
+		zeile = "";
+		int[][] feld = new int[21][17];
+		MapReader();
+
+		for (int i = 0; i <= 16; i++) {
+
+			try {
+				zeile = in.readLine();
+			} catch (IOException e) {
+
+			}
+			bufmap = zeile.split("_");
+			for (int o = 0; o <= 20; o++) {
+				feld[o][i] = Integer.parseInt(bufmap[o]);
+
+			}
+
+		}
+
+		return feld;
+
+	}
 
 	public static int[][] basicField() {
 		int[][] fields = new int[21][17];
@@ -32,7 +74,7 @@ public class Init {
 		for (int i = 2; i < 19; i += 2)
 			for (int j = 2; j < 15; j += 2)
 				fields[i][j] = 1;
-		
+
 		fields[20][15] = 9;
 
 		return fields;
@@ -82,14 +124,15 @@ public class Init {
 
 		return fields;
 	}
-	
-	public static void reset(){
-		
+
+	public static void reset() {
+
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
-				if (Field.fieldNumbers[i][j] != 1 && Field.fieldNumbers[i][j] != 9) Field.fieldNumbers[i][j] = 0;
-		
-		
+				if (Field.fieldNumbers[i][j] != 1
+						&& Field.fieldNumbers[i][j] != 9)
+					Field.fieldNumbers[i][j] = 0;
+
 		Field.fieldNumbers = fieldContent(Field.basicField);
 		Interface.Player1.x = 1;
 		Interface.Player1.y = 1;

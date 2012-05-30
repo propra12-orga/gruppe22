@@ -78,7 +78,7 @@ public class Bomb extends JPanel {
 		if (coord == 3) {
 			Init.reset();
 			Interface.closeGameOpenMenu();
-			GameEnd.end();
+			Menue.MainMenu();
 		}
 	}
 

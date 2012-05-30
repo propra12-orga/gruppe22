@@ -156,16 +156,26 @@ public class Interface implements KeyListener, ActionListener {
 			SingleMenu.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
+			Field.basicField = Init.basicField();
+			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
 			Game.main(null);
 			closeMenuOpenGame();
+			Field.f.newPaint();
 		} else if (e.getSource() == this.restart) {
 			Game.main(null);
 			closeMenuOpenGame();
+			Field.f.newPaint();
 		} else if (e.getSource() == this.save) {
 			Eingabe.CtrlWrite();
+		} else if (e.getSource() == this.constMap) {
+			Field.basicField = Init.basicField();
+			Field.fieldNumbers = Init.constMap();
+			Game.main(null);
+			closeMenuOpenGame();
+			// Field.f.newPaint();
 		}
 
 	}

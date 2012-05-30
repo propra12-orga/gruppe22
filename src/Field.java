@@ -12,8 +12,8 @@ public class Field extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	public static int[][] basicField = Init.basicField();
-	public static int[][] fieldNumbers = Init.fieldContent(basicField);
+	public static int[][] basicField;
+	public static int[][] fieldNumbers;
 
 	public static Field f;
 	public static boolean isBomb = false;

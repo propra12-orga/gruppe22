@@ -47,7 +47,7 @@ public class Movement {
 		else if (coord == 9) {
 			Init.reset();
 			Interface.closeGameOpenMenu();
-			GameEnd.end();
+			Menue.MainMenu();
 		}
 		return false;
 	}
