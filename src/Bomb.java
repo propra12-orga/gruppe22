@@ -13,9 +13,9 @@ public class Bomb extends JPanel {
 	static int r;
 	int x, y;
 	
-	public Bomb(){
-		this.x = Interface.Player1.x;
-		this.y = Interface.Player1.y;
+	public Bomb(Player player){
+		this.x = player.x;
+		this.y = player.y;
 	}
 
 	public static void placeBomb(int x, int y) {
@@ -76,7 +76,7 @@ public class Bomb extends JPanel {
 	}
 
 	public static void isGameOver(int coord) {
-		if (coord == 3) {
+		if (coord == 3 || coord == 4) {
 			Init.reset();
 			Interface.closeGameOpenMenu();
 			Menue.MainMenu();

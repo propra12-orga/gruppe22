@@ -34,7 +34,7 @@ public class Movement {
 				}
 			} else if (Player.ctrl == "Bombe") {
 				if (Interface.Player1.bCnt > 0)
-					new Carl("Bomb").start();
+					new Carl(Interface.Player1).start();
 				Bomb.radCheck(Interface.Player1);
 			}
 		}

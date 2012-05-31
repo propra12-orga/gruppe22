@@ -1,13 +1,16 @@
 public class Carl extends Thread {
 
-	public Carl(String str) {
+	public Player player;
+	
+	public Carl(Player crtPlayer) {
 		super();
+		player = crtPlayer;
 	}
 
 	public void run() {
 
-		Interface.Player1.bCnt -= 1;
-		Bomb bomb = new Bomb();
+		player.bCnt -= 1;
+		Bomb bomb = new Bomb(player);
 		Bomb.placeBomb(bomb.x, bomb.y);
 		try {
 			sleep(3000);
@@ -36,7 +39,7 @@ public class Carl extends Thread {
 
 		}
 
-		Interface.Player1.bCnt += 1;
+		player.bCnt += 1;
 	}
 
 }
