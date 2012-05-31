@@ -6,6 +6,7 @@ public class Player {
 	int rad;
 	int xo;
 	int yo;
+	String ctrl;
 
 	public Player() {
 		this.x = 1;
@@ -14,5 +15,6 @@ public class Player {
 		this.yo = y;
 		this.bCnt = 2;
 		this.rad = 1;
+		this.ctrl ="";
 	}
 }

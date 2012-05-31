@@ -17,6 +17,7 @@ public class Interface implements KeyListener, ActionListener {
 			getLeft1, getLeft2, getBomb1, getBomb2;
 	static String[] amountBoxes = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
 	static Player Player1 = new Player();
+	static Player Player2 = new Player();
 	static Dimension dim = new Dimension(200, 25);
 
 	public Interface() {

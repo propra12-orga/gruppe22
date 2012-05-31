@@ -1,43 +1,43 @@
 public class Movement {
 
-	public static void getMovement(Paul Player) {
+	public static void getMovement(Player pl) {
 
-		if (Player.playerNumber == 1) {
+			
 
-			if (Player.ctrl == "Oben") {
-				if (checkMove(Field.fieldNumbers[Interface.Player1.x][Interface.Player1.y - 1])) {
-					goUp(Interface.Player1.x, Interface.Player1.y);
-					playerToField();
+			if (pl.ctrl == "Oben") {
+				if (checkMove(Field.fieldNumbers[pl.x][pl.y - 1])) {
+					goUp(pl.x, pl.y, pl);
+					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
-			} else if (Player.ctrl == "Unten") {
-				if (checkMove(Field.fieldNumbers[Interface.Player1.x][Interface.Player1.y + 1])) {
-					goDown(Interface.Player1.x, Interface.Player1.y);
-					playerToField();
+			} else if (pl.ctrl == "Unten") {
+				if (checkMove(Field.fieldNumbers[pl.x][pl.y + 1])) {
+					goDown(pl.x, pl.y, pl);
+					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
-			} else if (Player.ctrl == "Links") {
-				if (checkMove(Field.fieldNumbers[Interface.Player1.x - 1][Interface.Player1.y])) {
-					goLeft(Interface.Player1.x, Interface.Player1.y);
-					playerToField();
+			} else if (pl.ctrl == "Links") {
+				if (checkMove(Field.fieldNumbers[pl.x - 1][pl.y])) {
+					goLeft(pl.x, pl.y, pl);
+					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
-			} else if (Player.ctrl == "Rechts") {
-				if (checkMove(Field.fieldNumbers[Interface.Player1.x + 1][Interface.Player1.y])) {
-					goRight(Interface.Player1.x, Interface.Player1.y);
-					playerToField();
+			} else if (pl.ctrl == "Rechts") {
+				if (checkMove(Field.fieldNumbers[pl.x + 1][pl.y])) {
+					goRight(pl.x, pl.y, pl);
+					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
-			} else if (Player.ctrl == "Bombe") {
-				if (Interface.Player1.bCnt > 0)
-					new Carl(Interface.Player1).start();
-				Bomb.radCheck(Interface.Player1);
+			} else if (pl.ctrl == "Bombe") {
+				if (pl.bCnt > 0)
+					new Carl(pl).start();
+				Bomb.radCheck(pl);
 			}
-		}
+		
 		/* hier erweitern mit if-Bedinungen für weitere Spieler */
 	}
 
@@ -52,41 +52,41 @@ public class Movement {
 		return false;
 	}
 
-	public static void goUp(int x, int y) {
-		Interface.Player1.xo = x;
-		Interface.Player1.yo = y;
-		Interface.Player1.x = x;
-		Interface.Player1.y = y - 1;
+	public static void goUp(int x, int y, Player pl) {
+		pl.xo = x;
+		pl.yo = y;
+		pl.x = x;
+		pl.y = y - 1;
 
 	}
 
-	public static void goDown(int x, int y) {
-		Interface.Player1.xo = x;
-		Interface.Player1.yo = y;
-		Interface.Player1.x = x;
-		Interface.Player1.y = y + 1;
+	public static void goDown(int x, int y, Player pl) {
+		pl.xo = x;
+		pl.yo = y;
+		pl.x = x;
+		pl.y = y + 1;
 
 	}
 
-	public static void goRight(int x, int y) {
-		Interface.Player1.xo = x;
-		Interface.Player1.yo = y;
-		Interface.Player1.x = x + 1;
-		Interface.Player1.y = y;
+	public static void goRight(int x, int y, Player pl) {
+		pl.xo = x;
+		pl.yo = y;
+		pl.x = x + 1;
+		pl.y = y;
 
 	}
 
-	public static void goLeft(int x, int y) {
-		Interface.Player1.xo = x;
-		Interface.Player1.yo = y;
-		Interface.Player1.x = x - 1;
-		Interface.Player1.y = y;
+	public static void goLeft(int x, int y, Player pl) {
+		pl.xo = x;
+		pl.yo = y;
+		pl.x = x - 1;
+		pl.y = y;
 
 	}
 
-	public static void playerToField() {
-		Field.fieldNumbers[Interface.Player1.xo][Interface.Player1.yo] = 0;
-		Field.fieldNumbers[Interface.Player1.x][Interface.Player1.y] = 3;
+	public static void playerToField(Player pl) {
+		Field.fieldNumbers[pl.xo][pl.yo] = 0;
+		Field.fieldNumbers[pl.x][pl.y] = 3;
 	}
 
 }
