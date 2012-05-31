@@ -12,20 +12,20 @@ TO-DO-LISTE BIS ZUM 2. MEILENSTEIN
 -----------------------------------
 
 - Player-Objekt (Jan) [done]
-- Kistenanzahl ver�nderbar (Basti) [done]
+- Kistenanzahl veraenderbar (Basti) [done]
 - Nurnoch ein Frame nutzen (Pierre) [done]
-- Reset-Methode f�r das Spielfeld (Pierre) [done]
-- Men�-Erweiterung (Basti) [done]
+- Reset-Methode fuer das Spielfeld (Pierre) [done]
+- Menue-Erweiterung (Basti) [done]
 - Level aus Datei einlesen (Basti) [done]
 - Bombenradius editieren (Jan) [done]
-- Radius der Detonation auf erstn�chste Kisten beschr�nken (Jan) [done]
+- Dropdown Menue fuer Kistenanzahl (Basti) [done]
+- Radius der Detonation auf erstnaechste Kisten beschraenken (Jan) [done]
 
 
 
 - 2. Player (Jan)
 - Ketten-Detonation (Pierre)
-- zus�tzliche Kisten mit etwas drunter (Pierre)
-- Eingabefeld f�r Kistenzahl auf Integers beschr�nken (Basti)
+- zusaetzliche Kisten mit etwas drunter (Pierre)
 - Steuerungsanimation per Pixel
 - Bombenanzahl
 - JDocs

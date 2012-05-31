@@ -4,10 +4,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,13 +23,13 @@ public class Interface implements KeyListener, ActionListener {
 			continueGame, restart, backtomulti;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
-	static JTextField getBoxNumber;
+	static JComboBox getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
 
 	static JTextArea getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2;
-
+	static String[] amountBoxes = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
 	static Player Player1 = new Player();
 	static Dimension dim = new Dimension(200, 25);
 
@@ -113,8 +115,7 @@ public class Interface implements KeyListener, ActionListener {
 		getRight2 = new JTextArea(1, 6);
 		getLeft2 = new JTextArea(1, 6);
 		getBomb2 = new JTextArea(1, 6);
-		getBoxNumber = new JTextField(6);
-		getBoxNumber.setText(String.valueOf(Init.maxKisten));
+		getBoxNumber = new JComboBox(amountBoxes);
 
 		getUp1.addKeyListener(this);
 		getUp2.addKeyListener(this);
@@ -177,7 +178,7 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtosingle) {
 			GameMode.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
-			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
+			Boxes();
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombs();
@@ -211,6 +212,34 @@ public class Interface implements KeyListener, ActionListener {
 			Control.ControlMenu2();
 		}
 
+	}
+	
+
+
+	private void Boxes() {
+		if (getBoxNumber.getSelectedItem()== "10"){
+			Init.maxKisten = 10;
+		} else if (getBoxNumber.getSelectedItem()== "20"){
+			Init.maxKisten = 20;
+		} else if (getBoxNumber.getSelectedItem()== "30"){
+			Init.maxKisten = 30;
+		} else if (getBoxNumber.getSelectedItem()== "40"){
+			Init.maxKisten = 40;
+		} else if (getBoxNumber.getSelectedItem()== "50"){
+			Init.maxKisten = 50;
+		} else if (getBoxNumber.getSelectedItem()== "60"){
+			Init.maxKisten = 60;
+		} else if (getBoxNumber.getSelectedItem()== "70"){
+			Init.maxKisten = 70;
+		} else if (getBoxNumber.getSelectedItem()== "80"){
+			Init.maxKisten = 80;
+		} else if (getBoxNumber.getSelectedItem()== "90"){
+			Init.maxKisten = 90;
+		} else if (getBoxNumber.getSelectedItem()== "100"){
+			Init.maxKisten = 100;
+		}
+		
+		
 	}
 
 	public static void displayCtrl() {
