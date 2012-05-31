@@ -134,8 +134,8 @@ public class Init {
 		Field.fieldNumbers = fieldContent(Field.basicField);
 		Interface.Player1.x = 1;
 		Interface.Player1.y = 1;
-		Interface.Player2.x = 20;
-		Interface.Player2.y = 16;
+		Interface.Player2.x = 19;
+		Interface.Player2.y = 15;
 	}
 	
 	public static boolean[][] bombs(){
