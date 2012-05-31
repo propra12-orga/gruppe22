@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class RandomMapMenu {
 	
-	public static void RandomMap() {
+	public static void RandomMapSingle() {
 		Interface.menu.removeAll();
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(10, 10, 10, 10);
@@ -14,6 +14,23 @@ public class RandomMapMenu {
 		c.gridx = 1;
 		c.gridy = 1;
 		Interface.menu.add(Interface.startGame, c);
+		c.gridy = 2;
+		Interface.menu.add(Interface.backtosingle, c);
+		Interface.menu.updateUI();
+	}
+	
+	public static void RandomMapMulti() {
+		Interface.menu.removeAll();
+		GridBagConstraints c = new GridBagConstraints();
+		c.insets = new Insets(10, 10, 10, 10);
+		c.gridx = 1;
+		c.gridy = 0;
+		Interface.menu.add(Interface.boxNumber, c);
+		c.gridx = 2;
+		Interface.menu.add(Interface.getBoxNumber, c);
+		c.gridx = 1;
+		c.gridy = 1;
+		Interface.menu.add(Interface.startGame2, c);
 		c.gridy = 2;
 		Interface.menu.add(Interface.backtosingle, c);
 		Interface.menu.updateUI();

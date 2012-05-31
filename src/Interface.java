@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
 	static JButton single, multi, options, exit, sound, controls, controls2, backtomain,
-			save, backtooptions, rndMap, constMap, startGame, backtosingle,
+			save, backtooptions, rndMapSingle, rndMapMulti, constMap, startGame, startGame2, backtosingle,
 			continueGame, restart, backtomulti;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
@@ -57,15 +57,18 @@ public class Interface implements KeyListener, ActionListener {
 		backtooptions = new JButton("Zurueck");
 		backtooptions.setPreferredSize(dim);
 		backtooptions.addActionListener(this);
-		rndMap = new JButton("Zufallsmap");
-		rndMap.setPreferredSize(dim);
-		rndMap.addActionListener(this);
+		rndMapSingle = new JButton("Zufallsmap");
+		rndMapSingle.setPreferredSize(dim);
+		rndMapSingle.addActionListener(this);
 		constMap = new JButton("Map aus Datei");
 		constMap.setPreferredSize(dim);
 		constMap.addActionListener(this);
 		startGame = new JButton("Spiel starten");
 		startGame.setPreferredSize(dim);
 		startGame.addActionListener(this);
+		startGame2 = new JButton("Spiel starten");
+		startGame2.setPreferredSize(dim);
+		startGame2.addActionListener(this);
 		backtosingle = new JButton("Zuruck zum Singleplayer");
 		backtosingle.setPreferredSize(dim);
 		backtosingle.addActionListener(this);
@@ -160,8 +163,8 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.single) {
 			Eingabe.CtrlReader();
 			GameMode.SingleMenu();
-		} else if (e.getSource() == this.rndMap) {
-			RandomMapMenu.RandomMap();
+		} else if (e.getSource() == this.rndMapSingle) {
+			RandomMapMenu.RandomMapSingle();
 		} else if (e.getSource() == this.backtosingle) {
 			GameMode.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
@@ -170,8 +173,6 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombs();
 			Field.expPos = Init.bombs();
-			Player2 = new Player();
-			Player.getStartPos2(Player2);
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
@@ -201,6 +202,18 @@ public class Interface implements KeyListener, ActionListener {
 			Eingabe.CtrlReader();
 			displayCtrl();
 			Control.ControlMenu2();
+		} else if (e.getSource() == this.startGame2) {
+			Boxes();
+			Field.basicField = Init.basicField();
+			Field.fieldNumbers = Init.fieldContent(Field.basicField);
+			Field.bombPos = Init.bombs();
+			Field.expPos = Init.bombs();
+			Player2 = new Player();
+			Player.getStartPos2(Player2);
+			Game.main(null);
+			closeMenuOpenGame();
+		} else if (e.getSource() == rndMapMulti) {
+			RandomMapMenu.RandomMapMulti();
 		}
 
 	}

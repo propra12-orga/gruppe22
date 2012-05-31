@@ -9,7 +9,7 @@ public class GameMode {
 		c.insets = new Insets(10, 10, 10, 10);
 		c.gridx = 1;
 		c.gridy = 0;
-		Interface.menu.add(Interface.rndMap, c);
+		Interface.menu.add(Interface.rndMapSingle, c);
 		c.gridy = 1;
 		Interface.menu.add(Interface.constMap, c);
 		c.gridy = 2;
@@ -23,7 +23,7 @@ public class GameMode {
 		c.insets = new Insets(10, 10, 10, 10);
 		c.gridx = 1;
 		c.gridy = 0;
-		Interface.menu.add(Interface.rndMap, c);
+		Interface.menu.add(Interface.rndMapMulti, c);
 		c.gridy = 1;
 		Interface.menu.add(Interface.constMap, c);
 		c.gridy = 2;
