@@ -19,6 +19,7 @@ public class Carl extends Thread {
 		}
 
 		Field.expPos[bomb.x][bomb.y] = true;
+		Bomb.radCheck(bomb.x, bomb.y, player.rad);
 		Bomb.detonate(bomb.x, bomb.y);
 
 		Field.f.newPaint();

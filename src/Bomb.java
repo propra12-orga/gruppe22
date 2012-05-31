@@ -83,21 +83,21 @@ public class Bomb extends JPanel {
 		}
 	}
 
-	public static void radCheck(Player crtP) {
+	public static void radCheck(int bx, int by, int br) {
 		ob = true;
 		ub = true;
 		lb = true;
 		rb = true;
 
-		int x = crtP.x;
-		int y = crtP.y;
+		int x = bx;
+		int y = by;
 
 		r = 0;
 		l = 0;
 		o = 0;
 		u = 0;
 
-		for (int i = 0; i <= crtP.rad; i++) {
+		for (int i = 0; i <= br; i++) {
 			/* nach rechts überprüfen */
 			if (rb) {
 				r = i;

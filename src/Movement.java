@@ -35,7 +35,7 @@ public class Movement {
 			} else if (pl.ctrl == "Bombe") {
 				if (pl.bCnt > 0)
 					new Carl(pl).start();
-				Bomb.radCheck(pl);
+				
 			}
 		
 		/* hier erweitern mit if-Bedinungen für weitere Spieler */
