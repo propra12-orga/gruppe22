@@ -12,7 +12,7 @@ public class Player {
 		this.y = 1;
 		this.xo = x;
 		this.yo = y;
-		this.bCnt = 1;
+		this.bCnt = 2;
 		this.rad = 1;
 	}
 }

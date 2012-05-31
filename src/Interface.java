@@ -180,6 +180,8 @@ public class Interface implements KeyListener, ActionListener {
 			Init.maxKisten = Integer.parseInt(getBoxNumber.getText());
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
+			Field.bombPos = Init.bombs();
+			Field.expPos = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
@@ -195,6 +197,8 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.constMap) {
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.constMap();
+			Field.bombPos = Init.bombs();
+			Field.expPos = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.multi) {

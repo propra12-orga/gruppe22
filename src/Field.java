@@ -14,11 +14,9 @@ public class Field extends JPanel {
 
 	public static int[][] basicField;
 	public static int[][] fieldNumbers;
-
+	public static boolean[][] bombPos, expPos;
+	
 	public static Field f;
-	public static boolean isBomb = false;
-	public static boolean isExp = false;
-	public static int x, y;
 	public static int bombCnt = 1;
 
 	private BufferedImage hintergrund;
@@ -81,39 +79,40 @@ public class Field extends JPanel {
 
 			}
 
-		if (isBomb) {
+		for (int i = 0; i < 21; i++)
+			for (int j = 0; j < 17; j++)
+				if (bombPos[i][j]) {
 
-			g.drawImage(bombe, x * (getWidth() / 21), y * (getHeight() / 17),
+					g.drawImage(bombe, i * (getWidth() / 21), j * (getHeight() / 17),
 					null);
 		}
 
-		if (isExp) {
+		for (int i = 0; i < 21; i++)
+			for (int j = 0; j < 17; j++)
+				if (expPos[i][j]) {
 
-			for (int dr = 0; dr <= Bomb.r; dr++) {
-				g.drawImage(exp_h, (x + dr) * (getWidth() / 21), y
-						* (getHeight() / 17), null);
-			}
+					for (int dr = 0; dr <= Bomb.r; dr++) {
+						g.drawImage(exp_h, (i + dr) * (getWidth() / 21), j
+								* (getHeight() / 17), null);
+					}
 
-			for (int dl = 0; dl <= Bomb.l; dl++) {
-				g.drawImage(exp_h, (x - dl) * (getWidth() / 21), y
-						* (getHeight() / 17), null);
+					for (int dl = 0; dl <= Bomb.l; dl++) {
+						g.drawImage(exp_h, (i - dl) * (getWidth() / 21), j
+								* (getHeight() / 17), null);
+					}
 
-			}
+					for (int du = 0; du <= Bomb.u; du++) {
+						g.drawImage(exp_v, i * (getWidth() / 21), (j + du)
+								* (getHeight() / 17), null);
+					}
 
-			for (int du = 0; du <= Bomb.u; du++) {
-				g.drawImage(exp_v, x * (getWidth() / 21), (y + du)
-						* (getHeight() / 17), null);
+					for (int dob = 0; dob <= Bomb.o; dob++) {
+						g.drawImage(exp_v, i * (getWidth() / 21), (j - dob)
+								* (getHeight() / 17), null);
+					}
 
-			}
-
-			for (int dob = 0; dob <= Bomb.o; dob++) {
-				g.drawImage(exp_v, x * (getWidth() / 21), (y - dob)
-						* (getHeight() / 17), null);
-
-			}
-
-			g.drawImage(exp_m, x * (getWidth() / 21), y * (getHeight() / 17),
-					null);
+					g.drawImage(exp_m, i * (getWidth() / 21), j * (getHeight() / 17),
+							null);
 
 		}
 

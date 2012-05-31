@@ -137,4 +137,15 @@ public class Init {
 		Interface.Player1.x = 1;
 		Interface.Player1.y = 1;
 	}
+	
+	public static boolean[][] bombs(){
+		boolean[][] bombPos = new boolean[21][17];
+		
+		for (int i = 0; i < 21; i++)
+			for (int j = 0; j < 17; j++)
+				bombPos[i][j] = false;
+		
+		return bombPos;
+	}
+	
 }

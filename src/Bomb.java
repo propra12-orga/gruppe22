@@ -11,18 +11,20 @@ public class Bomb extends JPanel {
 	static int u;
 	static int l;
 	static int r;
+	int x, y;
+	
+	public Bomb(){
+		this.x = Interface.Player1.x;
+		this.y = Interface.Player1.y;
+	}
 
-	public static void placeBomb() {
-		Field.isBomb = true;
-		Field.x = Interface.Player1.x;
-		Field.y = Interface.Player1.y;
+	public static void placeBomb(int x, int y) {
+		Field.bombPos[x][y] = true;
 		Field.f = new Field();
 		Field.f.newPaint();
 	}
 
-	public static void detonate() {
-		int x = Field.x;
-		int y = Field.y;
+	public static void detonate(int x, int y) {
 
 		for (int gor = 1; gor <= r; gor++) {
 			isGameOver(Field.fieldNumbers[x + gor][y]);
@@ -42,13 +44,12 @@ public class Bomb extends JPanel {
 		}
 		isGameOver(Field.fieldNumbers[x][y]);
 		Field.fieldNumbers[x][y] = 8;
-
+		Field.bombPos[x][y] = false;
 	}
 
-	public static void endDetonation() {
-		int x = Field.x;
-		int y = Field.y;
 
+	public static void endDetonation(int x, int y) {
+				
 		for (int gor = 1; gor <= r; gor++) {
 			Field.fieldNumbers[x + gor][y] = 0;
 		}

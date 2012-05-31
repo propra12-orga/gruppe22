@@ -7,17 +7,16 @@ public class Carl extends Thread {
 	public void run() {
 
 		Interface.Player1.bCnt -= 1;
-
-		Bomb.placeBomb();
+		Bomb bomb = new Bomb();
+		Bomb.placeBomb(bomb.x, bomb.y);
 		try {
 			sleep(3000);
 		} catch (InterruptedException e) {
 
 		}
 
-		Field.isBomb = false;
-		Field.isExp = true;
-		Bomb.detonate();
+		Field.expPos[bomb.x][bomb.y] = true;
+		Bomb.detonate(bomb.x, bomb.y);
 
 		Field.f.newPaint();
 
@@ -27,8 +26,8 @@ public class Carl extends Thread {
 
 		}
 
-		Bomb.endDetonation();
-		Field.isExp = false;
+		Bomb.endDetonation(bomb.x, bomb.y);
+		Field.expPos[bomb.x][bomb.y] = false;
 		Field.f.newPaint();
 
 		try {
