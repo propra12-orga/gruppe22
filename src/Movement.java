@@ -86,7 +86,10 @@ public class Movement {
 
 	public static void playerToField(Player pl) {
 		Field.fieldNumbers[pl.xo][pl.yo] = 0;
-		Field.fieldNumbers[pl.x][pl.y] = 3;
+		if (pl.num == 1)
+			Field.fieldNumbers[pl.x][pl.y] = 3;
+		else	
+			Field.fieldNumbers[pl.x][pl.y] = 4;
 	}
 
 }

@@ -74,6 +74,10 @@ public class Field extends JPanel {
 					g.drawImage(bomberman, i * (getWidth() / 21), j
 							* (getHeight() / 17), null);
 				}
+				else if (fieldNumbers[i][j] == 4) {
+					g.drawImage(bomberman, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+				}
 
 			}
 

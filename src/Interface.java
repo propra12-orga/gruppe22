@@ -17,7 +17,7 @@ public class Interface implements KeyListener, ActionListener {
 			getLeft1, getLeft2, getBomb1, getBomb2;
 	static String[] amountBoxes = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
 	static Player Player1 = new Player();
-	static Player Player2 = new Player();
+	static Player Player2;
 	static Dimension dim = new Dimension(200, 25);
 
 	public Interface() {
@@ -170,6 +170,8 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombs();
 			Field.expPos = Init.bombs();
+			Player2 = new Player();
+			Player.getStartPos2(Player2);
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
@@ -187,6 +189,8 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.constMap();
 			Field.bombPos = Init.bombs();
 			Field.expPos = Init.bombs();
+			Player2 = new Player();
+			Player.getStartPos2(Player2);
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.multi) {

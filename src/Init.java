@@ -108,17 +108,17 @@ public class Init {
 		// Setze die 4 Eckpunkte (Startpunkte der Spieler) auf 3
 		// und die 2 jeweils angrenzenden Felder auf 0.
 		fields[1][1] = 3;
-		// fields[1][15] = 4; Zun�chst sind Spieler 2-4 auskommentiert,
-		// fields[19][1] = 5; reicht ja erstmal den Singleplayer gebacken
-		// fields[19][15] = 6; zu bekommen.
+		//fields[1][15] = 6;
+		// fields[19][1] = 5;
+		fields[19][15] = 4;
 		fields[1][2] = 0;
 		fields[2][1] = 0;
-		// fields[1][14] = 0;
-		// fields[2][15] = 0;
+		//fields[1][14] = 0;
+		//fields[2][15] = 0;
 		// fields[18][1] = 0;
 		// fields[19][2] = 0;
-		// fields[18][15] = 0;
-		// fields[19][14] = 0;
+		fields[18][15] = 0;
+		fields[19][14] = 0;
 
 		return fields;
 	}
@@ -134,6 +134,8 @@ public class Init {
 		Field.fieldNumbers = fieldContent(Field.basicField);
 		Interface.Player1.x = 1;
 		Interface.Player1.y = 1;
+		Interface.Player2.x = 20;
+		Interface.Player2.y = 16;
 	}
 	
 	public static boolean[][] bombs(){
