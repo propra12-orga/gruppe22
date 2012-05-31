@@ -60,6 +60,9 @@ public class Interface implements KeyListener, ActionListener {
 		rndMapSingle = new JButton("Zufallsmap");
 		rndMapSingle.setPreferredSize(dim);
 		rndMapSingle.addActionListener(this);
+		rndMapMulti = new JButton("Zufallsmap");
+		rndMapMulti.setPreferredSize(dim);
+		rndMapMulti.addActionListener(this);
 		constMap = new JButton("Map aus Datei");
 		constMap.setPreferredSize(dim);
 		constMap.addActionListener(this);
