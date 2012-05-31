@@ -1,9 +1,5 @@
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Eingabe {
 
@@ -13,14 +9,14 @@ public class Eingabe {
 												 */
 
 	/*
-	 * Diese Methode kriegt das KeyEvent übergeben das beim Tastendruck
-	 * ausgelöst wurde übergeben. Es gleicht den KeyText mit den
-	 * eingespeicherten Steuerungs-Optionen ab und übergibt falls diese
-	 * übereinstimmen den Befehl fürs Bewegen usw. an die Funktion weiter die
+	 * Diese Methode kriegt das KeyEvent ï¿½bergeben das beim Tastendruck
+	 * ausgelï¿½st wurde ï¿½bergeben. Es gleicht den KeyText mit den
+	 * eingespeicherten Steuerungs-Optionen ab und ï¿½bergibt falls diese
+	 * ï¿½bereinstimmen den Befehl fï¿½rs Bewegen usw. an die Funktion weiter die
 	 * Bomberman auf der GUI bewegt weiter
 	 */
 
-	public static String Ctrl(KeyEvent e) { /* erhält KeyEvent */
+	public static String Ctrl(KeyEvent e) { /* erhï¿½lt KeyEvent */
 
 		Paul Player = new Paul();
 
@@ -121,7 +117,7 @@ public class Eingabe {
 
 	/*
 	 * Diese Funktion liest die zuletzt gespeicherten Steuerungs-Optionen aus
-	 * der Datei Test.TXT aus. Zusätzlich legt sie diese im Feld CtrlArray fest.
+	 * der Datei Test.TXT aus. Zusï¿½tzlich legt sie diese im Feld CtrlArray fest.
 	 */
 
 	public static void CtrlReader() { /* 0815 Reader */
@@ -134,14 +130,14 @@ public class Eingabe {
 		}
 		CtrlArray = Ctrl.split("_"); /*
 									 * Splitten des gelesenen Strings am "_" und
-									 * füllen den Feldes was zum vergleichen mit
-									 * der gedrückten Taste nötig ist
+									 * fï¿½llen den Feldes was zum vergleichen mit
+									 * der gedrï¿½ckten Taste nï¿½tig ist
 									 */
 	}
 
 	/*
 	 * Diese Funktion schreibt die im Menue fest gelegten Steuerungs-Optionen in
-	 * die Datei Test.TXT.(Name noch ändern)
+	 * die Datei Test.TXT.(Name noch ï¿½ndern)
 	 */
 
 	public static void CtrlWrite() { /* 0815 Writer */

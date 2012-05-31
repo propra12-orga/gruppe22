@@ -1,5 +1,4 @@
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.*;
 
 public class IngameMenu {
 
