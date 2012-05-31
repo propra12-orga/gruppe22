@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -28,6 +29,7 @@ public class Interface implements KeyListener, ActionListener {
 			getLeft1, getLeft2, getBomb1, getBomb2;
 
 	static Player Player1 = new Player();
+	static Dimension dim = new Dimension(200, 25);
 
 	public Interface() {
 
@@ -37,34 +39,49 @@ public class Interface implements KeyListener, ActionListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		menu = new JPanel(new GridBagLayout());
-		single = new JButton(" Singleplayer");
+		single = new JButton("Singleplayer");
+		single.setPreferredSize(dim);
 		single.addActionListener(this);
-		multi = new JButton("  Multiplayer ");
+		multi = new JButton("Multiplayer");
+		multi.setPreferredSize(dim);
 		multi.addActionListener(this);
-		options = new JButton("   Optionen    ");
+		options = new JButton("Optionen");
+		options.setPreferredSize(dim);
 		options.addActionListener(this);
-		exit = new JButton("    Beenden    ");
+		exit = new JButton("Beenden");
+		exit.setPreferredSize(dim);
 		exit.addActionListener(this);
-		controls = new JButton("               Steuerung               ");
+		controls = new JButton("Steuerung");
+		controls.setPreferredSize(dim);
 		controls.addActionListener(this);
-		sound = new JButton("                   Sound                   ");
+		sound = new JButton("Sound");
+		sound.setPreferredSize(dim);
 		backtomain = new JButton("Zurueck zum Hauptmenue");
+		backtomain.setPreferredSize(dim);
 		backtomain.addActionListener(this);
 		save = new JButton("Speichern");
+		save.setPreferredSize(dim);
 		save.addActionListener(this);
 		backtooptions = new JButton("Zurueck");
+		backtooptions.setPreferredSize(dim);
 		backtooptions.addActionListener(this);
-		rndMap = new JButton("             Zufallsmap             ");
+		rndMap = new JButton("Zufallsmap");
+		rndMap.setPreferredSize(dim);
 		rndMap.addActionListener(this);
-		constMap = new JButton("          Map aus Datei          ");
+		constMap = new JButton("Map aus Datei");
+		constMap.setPreferredSize(dim);
 		constMap.addActionListener(this);
-		startGame = new JButton("          Spiel starten           ");
+		startGame = new JButton("Spiel starten");
+		startGame.setPreferredSize(dim);
 		startGame.addActionListener(this);
 		backtosingle = new JButton("Zuruck zum Singleplayer");
+		backtosingle.setPreferredSize(dim);
 		backtosingle.addActionListener(this);
 		continueGame = new JButton("Spiel fortsetzen");
+		continueGame.setPreferredSize(dim);
 		continueGame.addActionListener(this);
 		restart = new JButton("Nochmal spielen?");
+		restart.setPreferredSize(dim);
 		restart.addActionListener(this);
 		ctrlmenu = new JLabel("Steuerung");
 		player1 = new JLabel("Spieler 1");
@@ -139,7 +156,6 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.options) {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.backtomain) {
-			Init.reset();
 			Menue.MainMenu();
 		} else if (e.getSource() == this.controls) {
 			Eingabe.CtrlReader();
