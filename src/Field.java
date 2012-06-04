@@ -13,6 +13,7 @@ public class Field extends JPanel {
 	public static int[][] basicField;
 	public static int[][] fieldNumbers;
 	public static boolean[][] bombPos, expPos;
+	static Bomb crtBomb;
 	
 	public static Field f;
 	public static int bombCnt = 1;
@@ -26,6 +27,10 @@ public class Field extends JPanel {
 	private BufferedImage exp_m;
 	private BufferedImage exp_h;
 
+	public Field(Bomb bomb){
+		crtBomb = bomb;
+	}
+	
 	// Zeichnen:
 	protected void paintComponent(Graphics g) {
 		setSize(800, 662);
@@ -89,32 +94,31 @@ public class Field extends JPanel {
 					null);
 		}
 
-		for (int i = 0; i < 21; i++)
-			for (int j = 0; j < 17; j++)
-				if (expPos[i][j]) {
-
-					for (int dr = 0; dr <= Bomb.r; dr++) {
-						g.drawImage(exp_h, (i + dr) * (getWidth() / 21), j
+			if (crtBomb != null){
+				if (expPos[crtBomb.x][crtBomb.y]) {
+					for (int dr = 0; dr <= crtBomb.r; dr++) {
+						g.drawImage(exp_h, (crtBomb.x + dr) * (getWidth() / 21), crtBomb.y
 								* (getHeight() / 17), null);
 					}
 
-					for (int dl = 0; dl <= Bomb.l; dl++) {
-						g.drawImage(exp_h, (i - dl) * (getWidth() / 21), j
+					for (int dl = 0; dl <= crtBomb.l; dl++) {
+						g.drawImage(exp_h, (crtBomb.x - dl) * (getWidth() / 21), crtBomb.y
 								* (getHeight() / 17), null);
 					}
 
-					for (int du = 0; du <= Bomb.u; du++) {
-						g.drawImage(exp_v, i * (getWidth() / 21), (j + du)
+					for (int du = 0; du <= crtBomb.u; du++) {
+						g.drawImage(exp_v, crtBomb.x * (getWidth() / 21), (crtBomb.y + du)
 								* (getHeight() / 17), null);
 					}
 
-					for (int dob = 0; dob <= Bomb.o; dob++) {
-						g.drawImage(exp_v, i * (getWidth() / 21), (j - dob)
+					for (int dob = 0; dob <= crtBomb.o; dob++) {
+						g.drawImage(exp_v, crtBomb.x * (getWidth() / 21), (crtBomb.y - dob)
 								* (getHeight() / 17), null);
 					}
 
-					g.drawImage(exp_m, i * (getWidth() / 21), j * (getHeight() / 17),
+					g.drawImage(exp_m, crtBomb.x * (getWidth() / 21), crtBomb.y * (getHeight() / 17),
 							null);
+				}
 
 		}
 
@@ -138,7 +142,8 @@ public class Field extends JPanel {
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////////
-
+	
+	
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	public void newPaint() {

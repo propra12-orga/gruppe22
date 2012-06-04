@@ -8,28 +8,28 @@ public class Movement {
 				if (checkMove(Field.fieldNumbers[pl.x][pl.y - 1])) {
 					goUp(pl.x, pl.y, pl);
 					playerToField(pl);
-					Field.f = new Field();
+					Field.f = new Field(null);
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Unten") {
 				if (checkMove(Field.fieldNumbers[pl.x][pl.y + 1])) {
 					goDown(pl.x, pl.y, pl);
 					playerToField(pl);
-					Field.f = new Field();
+					Field.f = new Field(null);
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Links") {
 				if (checkMove(Field.fieldNumbers[pl.x - 1][pl.y])) {
 					goLeft(pl.x, pl.y, pl);
 					playerToField(pl);
-					Field.f = new Field();
+					Field.f = new Field(null);
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Rechts") {
 				if (checkMove(Field.fieldNumbers[pl.x + 1][pl.y])) {
 					goRight(pl.x, pl.y, pl);
 					playerToField(pl);
-					Field.f = new Field();
+					Field.f = new Field(null);
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Bombe") {

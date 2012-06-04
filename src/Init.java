@@ -110,7 +110,7 @@ public class Init {
 		fields[1][1] = 3;
 		//fields[1][15] = 6;
 		// fields[19][1] = 5;
-		fields[19][15] = 4;
+		//fields[19][15] = 4;
 		fields[1][2] = 0;
 		fields[2][1] = 0;
 		//fields[1][14] = 0;
@@ -134,8 +134,8 @@ public class Init {
 		Field.fieldNumbers = fieldContent(Field.basicField);
 		Interface.Player1.x = 1;
 		Interface.Player1.y = 1;
-		Interface.Player2.x = 19;
-		Interface.Player2.y = 15;
+		//Interface.Player2.x = 19;
+		//Interface.Player2.y = 15;
 	}
 	
 	public static boolean[][] bombs(){

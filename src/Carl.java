@@ -19,10 +19,13 @@ public class Carl extends Thread {
 		}
 
 		Field.expPos[bomb.x][bomb.y] = true;
-		Bomb.radCheck(bomb.x, bomb.y, player.rad);
-		Bomb.detonate(bomb.x, bomb.y);
+		Bomb.radCheck(bomb, player.rad);
+		Bomb.detonate(bomb);
 
+
+		Field.f = new Field(bomb);
 		Field.f.newPaint();
+		
 
 		try {
 			sleep(1000);
@@ -30,9 +33,12 @@ public class Carl extends Thread {
 
 		}
 
-		Bomb.endDetonation(bomb.x, bomb.y);
+		Bomb.endDetonation(bomb);
 		Field.expPos[bomb.x][bomb.y] = false;
+
+		Field.f = new Field(bomb);
 		Field.f.newPaint();
+		
 
 		try {
 			sleep(50);

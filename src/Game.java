@@ -9,7 +9,7 @@ public class Game implements KeyListener{
 
 	public Game() {
 		
-		Interface.game = new Field();
+		Interface.game = new Field(null);
 		
 		Interface.game.setFocusable(true); 
 		Interface.game.addKeyListener(this);
