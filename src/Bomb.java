@@ -4,7 +4,6 @@ public class Bomb extends JPanel {
 
 	Boolean ob, ub, lb, rb;
 	int x, y, o, u, l, r;
-	static int paintO, paintU, paintL, paintR;
 	
 	public Bomb(Player player){
 		this.x = player.x;
@@ -82,13 +81,6 @@ public class Bomb extends JPanel {
 			Interface.closeGameOpenMenu();
 			Menue.MainMenu();
 		}
-	}
-	
-	public static void getRad(Bomb bomb){
-		paintO = bomb.o;
-		paintU = bomb.u;
-		paintL = bomb.l;
-		paintR = bomb.r;
 	}
 
 	public static void radCheck(Bomb bomb, int br) {
