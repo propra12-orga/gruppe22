@@ -77,6 +77,12 @@ public class Bomb extends JPanel {
 
 	public static void isGameOver(int coord) {
 		if (coord == 3) {
+			System.out.println("Spieler 2 siegt");
+			Init.reset();
+			Interface.closeGameOpenMenu();
+			Menue.MainMenu();
+		} else 		if (coord == 4) {
+			System.out.println("Spieler 1 siegt");
 			Init.reset();
 			Interface.closeGameOpenMenu();
 			Menue.MainMenu();

@@ -16,8 +16,6 @@ public class Interface implements KeyListener, ActionListener {
 	static JTextArea getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2;
 	static String[] amountBoxes = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
-	static Player Player1 = new Player();
-	static Player Player2;
 	static Dimension dim = new Dimension(200, 25);
 
 	public Interface() {
@@ -164,7 +162,6 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtooptions) {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.single) {
-			Eingabe.CtrlReader();
 			GameMode.SingleMenu();
 		} else if (e.getSource() == this.rndMapSingle) {
 			RandomMapMenu.RandomMapSingle();
@@ -193,8 +190,6 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.constMap();
 			Field.bombPos = Init.bombs();
 			Field.expPos = Init.bombs();
-			Player2 = new Player();
-			Player.getStartPos2(Player2);
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.multi) {
@@ -206,14 +201,14 @@ public class Interface implements KeyListener, ActionListener {
 			displayCtrl();
 			Control.ControlMenu2();
 		} else if (e.getSource() == this.startGame2) {
-			Boxes();
+			Init.MP = true;
+			Boxes(); // Anzeige wie viele Boxen auf der Zufallskarte sein sollen
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombs();
 			Field.expPos = Init.bombs();
-			Player2 = new Player();
-			Player.getStartPos2(Player2);
 			Game.main(null);
+			closeMenuOpenGame();
 			closeMenuOpenGame();
 		} else if (e.getSource() == rndMapMulti) {
 			RandomMapMenu.RandomMapMulti();

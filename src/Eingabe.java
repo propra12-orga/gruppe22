@@ -1,5 +1,9 @@
 import java.awt.event.KeyEvent;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Eingabe {
 
@@ -17,8 +21,6 @@ public class Eingabe {
 	 */
 
 	public static String Ctrl(KeyEvent e) { /* erhält KeyEvent */
-
-		
 
 		int code = e.getKeyCode(); /*
 									 * Umwandelung des KeyEvents in die passende
@@ -64,49 +66,54 @@ public class Eingabe {
 		 * Vergleichen der Steuerungs-Optionen mit dem KeyText
 		 */
 		if (KeyId.equals(CtrlArray[0])) {
-			Interface.Player1.ctrl = "Oben";
-			
-			Movement.getMovement(Interface.Player1);
+			Init.Player1.ctrl = "Oben";
+
+			Movement.getMovement(Init.Player1);
 		} else if (KeyId.equals(CtrlArray[1])) {
-			Interface.Player1.ctrl = "Unten";
-			
-			Movement.getMovement(Interface.Player1);
+			Init.Player1.ctrl = "Unten";
+
+			Movement.getMovement(Init.Player1);
 		} else if (KeyId.equals(CtrlArray[2])) {
-			Interface.Player1.ctrl = "Rechts";
-			
-			Movement.getMovement(Interface.Player1);
+			Init.Player1.ctrl = "Rechts";
+
+			Movement.getMovement(Init.Player1);
 		} else if (KeyId.equals(CtrlArray[3])) {
-			Interface.Player1.ctrl = "Links";
-			
-			Movement.getMovement(Interface.Player1);
+			Init.Player1.ctrl = "Links";
+
+			Movement.getMovement(Init.Player1);
 		} else if (KeyId.equals(CtrlArray[4])) {
-			Interface.Player1.ctrl = "Bombe";
-			
-			Movement.getMovement(Interface.Player1);
-		} else if (KeyId.equals(CtrlArray[5])) {
-			Interface.Player2.ctrl = "Oben";
-			
-			Movement.getMovement(Interface.Player2);
-		} else if (KeyId.equals(CtrlArray[6])) {
-			Interface.Player2.ctrl = "Unten";
-			
-			Movement.getMovement(Interface.Player2);
-		} else if (KeyId.equals(CtrlArray[7])) {
-			Interface.Player2.ctrl = "Links";
-			
-			Movement.getMovement(Interface.Player2);
-		} else if (KeyId.equals(CtrlArray[8])) {
-			Interface.Player2.ctrl = "Rechts";
-			
-			Movement.getMovement(Interface.Player2);
-		} else if (KeyId.equals(CtrlArray[9])) {
-			Interface.Player2.ctrl = "Bombe";
-			
-			Movement.getMovement(Interface.Player2);
-		} else if (KeyId.equals("NumPad +")) {
-			Interface.Player1.rad++;
+			Init.Player1.ctrl = "Bombe";
+
+			Movement.getMovement(Init.Player1);
+		}
+
+		if (Init.MP == true) {
+			if (KeyId.equals(CtrlArray[5])) {
+				Init.Player2.ctrl = "Oben";
+
+				Movement.getMovement(Init.Player2);
+			} else if (KeyId.equals(CtrlArray[6])) {
+				Init.Player2.ctrl = "Unten";
+
+				Movement.getMovement(Init.Player2);
+			} else if (KeyId.equals(CtrlArray[7])) {
+				Init.Player2.ctrl = "Links";
+
+				Movement.getMovement(Init.Player2);
+			} else if (KeyId.equals(CtrlArray[8])) {
+				Init.Player2.ctrl = "Rechts";
+
+				Movement.getMovement(Init.Player2);
+			} else if (KeyId.equals(CtrlArray[9])) {
+				Init.Player2.ctrl = "Bombe";
+
+				Movement.getMovement(Init.Player2);
+			}
+		}
+		if (KeyId.equals("NumPad +")) {
+			Init.Player1.rad++;
 		} else if (KeyId.equals("NumPad -")) {
-			Interface.Player1.rad--;
+			Init.Player1.rad--;
 		} else if (KeyId.equals("ESC")) {
 			Interface.closeGameOpenMenu();
 			IngameMenu.ingame();
@@ -114,10 +121,11 @@ public class Eingabe {
 
 		return KeyId;
 	}
-	
+
 	/*
 	 * Diese Funktion liest die zuletzt gespeicherten Steuerungs-Optionen aus
-	 * der Datei Test.TXT aus. Zusï¿½tzlich legt sie diese im Feld CtrlArray fest.
+	 * der Datei Test.TXT aus. Zusï¿½tzlich legt sie diese im Feld CtrlArray
+	 * fest.
 	 */
 
 	public static void CtrlReader() { /* 0815 Reader */
@@ -130,8 +138,8 @@ public class Eingabe {
 		}
 		CtrlArray = Ctrl.split("_"); /*
 									 * Splitten des gelesenen Strings am "_" und
-									 * fï¿½llen den Feldes was zum vergleichen mit
-									 * der gedrï¿½ckten Taste nï¿½tig ist
+									 * fï¿½llen den Feldes was zum vergleichen
+									 * mit der gedrï¿½ckten Taste nï¿½tig ist
 									 */
 	}
 

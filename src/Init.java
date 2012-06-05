@@ -3,7 +3,9 @@ import java.io.*;
 public class Init {
 
 	static int maxKisten = 90;
-
+	static Boolean MP = false;
+	static Player Player1 = new Player();
+	static Player Player2 = new Player();
 	static BufferedReader in;
 
 	// /////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +53,7 @@ public class Init {
 	}
 
 	public static int[][] basicField() {
+		Eingabe.CtrlReader();
 		int[][] fields = new int[21][17];
 
 		// Zun�chst bekommen alle Feldkoordinaten den Wert "0"
@@ -108,17 +111,15 @@ public class Init {
 		// Setze die 4 Eckpunkte (Startpunkte der Spieler) auf 3
 		// und die 2 jeweils angrenzenden Felder auf 0.
 		fields[1][1] = 3;
-		//fields[1][15] = 6;
-		// fields[19][1] = 5;
-		//fields[19][15] = 4;
 		fields[1][2] = 0;
 		fields[2][1] = 0;
-		//fields[1][14] = 0;
-		//fields[2][15] = 0;
-		// fields[18][1] = 0;
-		// fields[19][2] = 0;
-		fields[18][15] = 0;
-		fields[19][14] = 0;
+		
+		if (MP) {
+			fields[19][15] = 4;
+			fields[18][15] = 0;
+			fields[19][14] = 0;
+			Player.getStartPos2(Player2);
+		}
 
 		return fields;
 	}
@@ -132,10 +133,14 @@ public class Init {
 					Field.fieldNumbers[i][j] = 0;
 
 		Field.fieldNumbers = fieldContent(Field.basicField);
-		Interface.Player1.x = 1;
-		Interface.Player1.y = 1;
-		//Interface.Player2.x = 19;
-		//Interface.Player2.y = 15;
+		Player1.x = 1;
+		Player1.y = 1;
+		if (MP) {
+			Player2.x = 20;
+			Player2.y = 16;
+
+			MP = false;
+		};
 	}
 	
 	public static boolean[][] bombs(){
