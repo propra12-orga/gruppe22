@@ -2,8 +2,9 @@ import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
 
-	Boolean ob, ub, lb, rb;
-	int x, y, o, u, l, r;
+	Boolean ob, ub, lb, rb, det;
+	int x, y, o, u, l, r, num;
+	static Bomb[] bombs = Init.bombs();
 	
 	public Bomb(Player player){
 		this.x = player.x;
@@ -16,40 +17,73 @@ public class Bomb extends JPanel {
 		this.ub = true;
 		this.lb = true;
 		this.rb = true;
+		this.det = false;
+		this.num = 0;
 	}
 
-	public static void placeBomb(int x, int y) {
-		Field.bombPos[x][y] = true;
-		Field.f = new Field(null);
+	public static void placeBomb(Bomb bomb, Player player) {
+		Field.bombPos[bomb.x][bomb.y] = true;
+		Field.f = new Field();
 		Field.f.newPaint();
+		
+		if (Init.MP){
+			if (player == Init.Player1){
+				bombs[player.bP] = bomb;
+			}
+			else
+				bombs[player.bP + 3] = bomb;
+		}
+		else
+			bombs[player.bP] = bomb;
+		
+		bomb.num = player.bP;
+		player.bP += 1;
 	}
 
-	public static void detonate(Bomb bomb) {
+	public static void detonate(Bomb bomb, Player player) {
 
+		bomb.det = true;
+		bombs[bomb.num] = bomb;
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			isGameOver(Field.fieldNumbers[bomb.x + gor][bomb.y]);
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 8;
+			if (Field.bombPos[bomb.x + gor][bomb.y]){
+				Field.expPos[bomb.x + gor][bomb.y] = true;
+			}
 		}
 		for (int gol = 1; gol <= bomb.l; gol++) {
 			isGameOver(Field.fieldNumbers[bomb.x - gol][bomb.y]);
 			Field.fieldNumbers[bomb.x - gol][bomb.y] = 8;
+			if (Field.bombPos[bomb.x + gol][bomb.y]){
+				Field.expPos[bomb.x + gol][bomb.y] = true;
+			}
 		}
 		for (int goo = 1; goo <= bomb.o; goo++) {
 			isGameOver(Field.fieldNumbers[bomb.x][bomb.y - goo]);
 			Field.fieldNumbers[bomb.x][bomb.y - goo] = 8;
+			if (Field.bombPos[bomb.x][bomb.y - goo]){
+				Field.expPos[bomb.x][bomb.y - goo] = true;
+			}
 		}
 		for (int gou = 1; gou <= bomb.u; gou++) {
 			isGameOver(Field.fieldNumbers[bomb.x][bomb.y + gou]);
 			Field.fieldNumbers[bomb.x][bomb.y + gou] = 8;
+			if (Field.bombPos[bomb.x][bomb.y + gou]){
+				Field.expPos[bomb.x][bomb.y + gou] = true;
+			}
 		}
 		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 8;
 		Field.bombPos[bomb.x][bomb.y] = false;
+		player.bP -= 1;
 	}
 
+	
 
 	public static void endDetonation(Bomb bomb) {
 				
+		bomb.det = false;
+		bombs[bomb.num] = bomb;
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 0;
 		}

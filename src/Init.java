@@ -143,7 +143,7 @@ public class Init {
 		};
 	}
 	
-	public static boolean[][] bombs(){
+	public static boolean[][] bombPos(){
 		boolean[][] bombPos = new boolean[21][17];
 		
 		for (int i = 0; i < 21; i++)
@@ -152,5 +152,26 @@ public class Init {
 		
 		return bombPos;
 	}
+	
+	public static Bomb[] bombs(){
+		Bomb[] bombs;
+		if (MP){
+			bombs = new Bomb[6];
+			for (int i = 0; i < 3; i++)
+				bombs[i] = new Bomb(Player1);
+			for (int i = 3; i < 6; i++)
+				bombs[i] = new Bomb(Player2);
+		}
+		else {
+			bombs = new Bomb[3];
+			for (int i = 0; i < 3; i++)
+				bombs[i] = new Bomb(Player1);
+		}
+		
+		return bombs;
+			
+	}
+	
+	
 	
 }

@@ -26,10 +26,6 @@ public class Field extends JPanel {
 	private BufferedImage exp_v;
 	private BufferedImage exp_m;
 	private BufferedImage exp_h;
-
-	public Field(Bomb bomb){
-		crtBomb = bomb;
-	}
 	
 	// Zeichnen:
 	protected void paintComponent(Graphics g) {
@@ -93,30 +89,30 @@ public class Field extends JPanel {
 					g.drawImage(bombe, i * (getWidth() / 21), j * (getHeight() / 17),
 					null);
 		}
-
-			if (crtBomb != null){
-				if (expPos[crtBomb.x][crtBomb.y]) {
-					for (int dr = 0; dr <= crtBomb.r; dr++) {
-						g.drawImage(exp_h, (crtBomb.x + dr) * (getWidth() / 21), crtBomb.y
+		
+			for (int i = 0; i < Bomb.bombs.length; i++){
+				if (Bomb.bombs[i].det) {
+					for (int dr = 0; dr <= Bomb.bombs[i].r; dr++) {
+						g.drawImage(exp_h, (Bomb.bombs[i].x + dr) * (getWidth() / 21), Bomb.bombs[i].y
 								* (getHeight() / 17), null);
 					}
 
-					for (int dl = 0; dl <= crtBomb.l; dl++) {
-						g.drawImage(exp_h, (crtBomb.x - dl) * (getWidth() / 21), crtBomb.y
+					for (int dl = 0; dl <= Bomb.bombs[i].l; dl++) {
+						g.drawImage(exp_h, (Bomb.bombs[i].x - dl) * (getWidth() / 21), Bomb.bombs[i].y
 								* (getHeight() / 17), null);
 					}
 
-					for (int du = 0; du <= crtBomb.u; du++) {
-						g.drawImage(exp_v, crtBomb.x * (getWidth() / 21), (crtBomb.y + du)
+					for (int du = 0; du <= Bomb.bombs[i].u; du++) {
+						g.drawImage(exp_v, Bomb.bombs[i].x * (getWidth() / 21), (Bomb.bombs[i].y + du)
 								* (getHeight() / 17), null);
 					}
 
-					for (int dob = 0; dob <= crtBomb.o; dob++) {
-						g.drawImage(exp_v, crtBomb.x * (getWidth() / 21), (crtBomb.y - dob)
+					for (int dob = 0; dob <= Bomb.bombs[i].o; dob++) {
+						g.drawImage(exp_v, Bomb.bombs[i].x * (getWidth() / 21), (Bomb.bombs[i].y - dob)
 								* (getHeight() / 17), null);
 					}
 
-					g.drawImage(exp_m, crtBomb.x * (getWidth() / 21), crtBomb.y * (getHeight() / 17),
+					g.drawImage(exp_m, Bomb.bombs[i].x * (getWidth() / 21), Bomb.bombs[i].y * (getHeight() / 17),
 							null);
 				}
 

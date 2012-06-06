@@ -11,19 +11,20 @@ public class Carl extends Thread {
 
 		player.bCnt -= 1;
 		Bomb bomb = new Bomb(player);
-		Bomb.placeBomb(bomb.x, bomb.y);
+		Bomb.placeBomb(bomb, player);
 		try {
-			sleep(3000);
+			for (int i = 0; i < 30; i++){
+				sleep(100);
+				isChain(bomb);
+			}
 		} catch (InterruptedException e) {
-
+			interrupt();
 		}
-
-		Field.expPos[bomb.x][bomb.y] = true;
 		Bomb.radCheck(bomb, player.rad);
-		Bomb.detonate(bomb);
+		Bomb.detonate(bomb, player);
 
 
-		Field.f = new Field(bomb);
+		Field.f = new Field();
 		Field.f.newPaint();
 		
 
@@ -36,7 +37,7 @@ public class Carl extends Thread {
 		Bomb.endDetonation(bomb);
 		Field.expPos[bomb.x][bomb.y] = false;
 
-		Field.f = new Field(bomb);
+		Field.f = new Field();
 		Field.f.newPaint();
 		
 
@@ -47,6 +48,11 @@ public class Carl extends Thread {
 		}
 
 		player.bCnt += 1;
+	}
+	
+	public void isChain(Bomb bomb){
+		if (Field.expPos[bomb.x][bomb.y])
+			this.interrupt();
 	}
 
 }

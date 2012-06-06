@@ -171,8 +171,8 @@ public class Interface implements KeyListener, ActionListener {
 			Boxes();
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
-			Field.bombPos = Init.bombs();
-			Field.expPos = Init.bombs();
+			Field.bombPos = Init.bombPos();
+			Field.expPos = Init.bombPos();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
@@ -188,8 +188,8 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.constMap) {
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.constMap();
-			Field.bombPos = Init.bombs();
-			Field.expPos = Init.bombs();
+			Field.bombPos = Init.bombPos();
+			Field.expPos = Init.bombPos();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.multi) {
@@ -205,8 +205,8 @@ public class Interface implements KeyListener, ActionListener {
 			Boxes(); // Anzeige wie viele Boxen auf der Zufallskarte sein sollen
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
-			Field.bombPos = Init.bombs();
-			Field.expPos = Init.bombs();
+			Field.bombPos = Init.bombPos();
+			Field.expPos = Init.bombPos();
 			Game.main(null);
 			closeMenuOpenGame();
 			closeMenuOpenGame();

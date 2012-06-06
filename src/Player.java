@@ -7,6 +7,7 @@ public class Player {
 	int xo;
 	int yo;
 	int num;
+	int bP; //bombs placed
 	String ctrl;
 
 	public Player() {
@@ -19,6 +20,7 @@ public class Player {
 		this.rad = 1;
 		this.ctrl ="";
 		this.num = 1;
+		this.bP = 0;
 	}
 	
 	public static void getStartPos2(Player player){
