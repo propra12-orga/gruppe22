@@ -1,6 +1,7 @@
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.*;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -18,8 +19,9 @@ public class Field extends JPanel {
 	public static Field f;
 	public static int bombCnt = 1;
 
-	private BufferedImage hintergrund;
 	private BufferedImage kiste;
+	private BufferedImage boden;
+	private BufferedImage stein;
 	private BufferedImage bomberman;
 	private BufferedImage bombe;
 
@@ -32,16 +34,11 @@ public class Field extends JPanel {
 		setSize(800, 662);
 
 		try {
-			hintergrund = ImageIO
-					.read(new File("src/Pictures/Hintergrund.jpg"));
+			kiste = ImageIO.read(new File("src/Pictures/Kiste.png"));
 		} catch (IOException e) {
 		}
 		try {
-			kiste = ImageIO.read(new File("src/Pictures/Kiste.jpg"));
-		} catch (IOException e) {
-		}
-		try {
-			bomberman = ImageIO.read(new File("src/Pictures/BM.png"));
+			bomberman = ImageIO.read(new File("src/Pictures/player_green.png"));
 		} catch (IOException e) {
 		}
 		try {
@@ -61,23 +58,36 @@ public class Field extends JPanel {
 			exp_m = ImageIO.read(new File("src/Pictures/exp_m.jpg"));
 		} catch (IOException e) {
 		}
+		try {
+			boden = ImageIO.read(new File("src/Pictures/boden.png"));
+		} catch (IOException e) {
+		}
+		try {
+			stein = ImageIO.read(new File("src/Pictures/stein.png"));
+		} catch (IOException e) {
+		}
 
-		g.drawImage(hintergrund, 0, 0, null);
-
+		g.drawImage(boden,1 * (getWidth() / 21),1
+				* (getHeight() / 17), null);
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++) {
 
-				if (fieldNumbers[i][j] == 2) {
+				if (fieldNumbers[i][j] == 0) {
+					g.drawImage(boden, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+
+				} else if (fieldNumbers[i][j] == 1) {
+					g.drawImage(stein, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+
+				} else if (fieldNumbers[i][j] == 2) {
 					g.drawImage(kiste, i * (getWidth() / 21), j
 							* (getHeight() / 17), null);
 
-				} else if (fieldNumbers[i][j] == 3) {
+				} else if (fieldNumbers[i][j] == 4) {
 					g.drawImage(bomberman, i * (getWidth() / 21), j
 							* (getHeight() / 17), null);
-				}
-				else if (fieldNumbers[i][j] == 4) {
-					g.drawImage(bomberman, i * (getWidth() / 21), j
-							* (getHeight() / 17), null);
+
 				}
 
 			}
@@ -117,6 +127,8 @@ public class Field extends JPanel {
 				}
 
 		}
+			g.drawImage(bomberman, Init.Player1.x * (getWidth() / 21),
+					Init.Player1.y * (getHeight() / 17), null);
 
 	}
 
