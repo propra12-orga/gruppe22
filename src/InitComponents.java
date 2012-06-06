@@ -109,6 +109,12 @@ public class InitComponents {
 		Interface.controls.setVerticalTextPosition(JButton.CENTER);
 		Interface.controls.setForeground(Color.white);
 		
+		Interface.controls2.setPreferredSize(Interface.dim);
+		Interface.controls2.setIcon(new ImageIcon(Interface.Button));
+		Interface.controls2.setHorizontalTextPosition(JButton.CENTER);
+		Interface.controls2.setVerticalTextPosition(JButton.CENTER);
+		Interface.controls2.setForeground(Color.white);
+		
 		
 		Interface.sound.setPreferredSize(Interface.dim);
 		Interface.sound.setIcon(new ImageIcon(Interface.Button));
@@ -140,26 +146,27 @@ public class InitComponents {
 		
 		Interface.player1.setForeground(Color.white);
 		Interface.player2.setForeground(Color.white);
-		Interface.getUp1.setForeground(Color.white);
-		Interface.getUp2.setForeground(Color.white);
-		Interface.getDown1.setForeground(Color.white);
-		Interface.getDown2.setForeground(Color.white);
-		Interface.getRight1.setForeground(Color.white);
-		Interface.getRight2.setForeground(Color.white);
-		Interface.getLeft1.setForeground(Color.white);
-		Interface.getLeft2.setForeground(Color.white);
-		Interface.getBomb1.setForeground(Color.white);
-		Interface.getBomb2.setForeground(Color.white);
-//		Interface.getUp1.setEditable(false);
-//		Interface.getUp2.setEditable(false);
-//		Interface.getDown1.setEditable(false);
-//		Interface.getDown2.setEditable(false);
-//		Interface.getRight1.setEditable(false);
-//		Interface.getRight2.setEditable(false);
-//		Interface.getLeft1.setEditable(false);
-//		Interface.getLeft2.setEditable(false);
-//		Interface.getBomb1.setEditable(false);
-//		Interface.getBomb2.setEditable(false);
+		Interface.up1.setForeground(Color.white);
+		Interface.up2.setForeground(Color.white);
+		Interface.down1.setForeground(Color.white);
+		Interface.down2.setForeground(Color.white);
+		Interface.right1.setForeground(Color.white);
+		Interface.right2.setForeground(Color.white);
+		Interface.left1.setForeground(Color.white);
+		Interface.left2.setForeground(Color.white);
+		Interface.bomb1.setForeground(Color.white);
+		Interface.bomb2.setForeground(Color.white);
+		Interface.boxNumber.setForeground(Color.white);
+		Interface.getUp1.setEditable(false);
+		Interface.getUp2.setEditable(false);
+		Interface.getDown1.setEditable(false);
+		Interface.getDown2.setEditable(false);
+		Interface.getRight1.setEditable(false);
+		Interface.getRight2.setEditable(false);
+		Interface.getLeft1.setEditable(false);
+		Interface.getLeft2.setEditable(false);
+		Interface.getBomb1.setEditable(false);
+		Interface.getBomb2.setEditable(false);
 	}
 	
 	public static void IngameMenuComponents() {
