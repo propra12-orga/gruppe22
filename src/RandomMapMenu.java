@@ -32,7 +32,7 @@ public class RandomMapMenu {
 		c.gridy = 1;
 		Interface.menu.add(Interface.startGame2, c);
 		c.gridy = 2;
-		Interface.menu.add(Interface.backtosingle, c);
+		Interface.menu.add(Interface.backtomulti, c);
 		Interface.menu.updateUI();
 	}
 }
