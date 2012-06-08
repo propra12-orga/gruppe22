@@ -46,8 +46,8 @@ public class Movement {
 			return true;
 		else if (coord == 9) {
 			Init.reset();
-			Interface.closeGameOpenMenu();
-			Menue.MainMenu();
+			GameOverPic.pic=2;
+			GameOverPic.DrawPic();
 		}
 		return false;
 	}

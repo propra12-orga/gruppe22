@@ -5,8 +5,8 @@ public class Bomb extends JPanel {
 	Boolean ob, ub, lb, rb, det;
 	int x, y, o, u, l, r, num;
 	static Bomb[] bombs = Init.bombs();
-	
-	public Bomb(Player player){
+
+	public Bomb(Player player) {
 		this.x = player.x;
 		this.y = player.y;
 		this.o = 0;
@@ -25,17 +25,15 @@ public class Bomb extends JPanel {
 		Field.bombPos[bomb.x][bomb.y] = true;
 		Field.f = new Field();
 		Field.f.newPaint();
-		
-		if (Init.MP){
-			if (player == Init.Player1){
+
+		if (Init.MP) {
+			if (player == Init.Player1) {
 				bombs[player.bP] = bomb;
-			}
-			else
+			} else
 				bombs[player.bP + 3] = bomb;
-		}
-		else
+		} else
 			bombs[player.bP] = bomb;
-		
+
 		bomb.num = player.bP;
 		player.bP += 1;
 	}
@@ -47,28 +45,28 @@ public class Bomb extends JPanel {
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			isGameOver(Field.fieldNumbers[bomb.x + gor][bomb.y]);
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 8;
-			if (Field.bombPos[bomb.x + gor][bomb.y]){
+			if (Field.bombPos[bomb.x + gor][bomb.y]) {
 				Field.expPos[bomb.x + gor][bomb.y] = true;
 			}
 		}
 		for (int gol = 1; gol <= bomb.l; gol++) {
 			isGameOver(Field.fieldNumbers[bomb.x - gol][bomb.y]);
 			Field.fieldNumbers[bomb.x - gol][bomb.y] = 8;
-			if (Field.bombPos[bomb.x + gol][bomb.y]){
+			if (Field.bombPos[bomb.x + gol][bomb.y]) {
 				Field.expPos[bomb.x + gol][bomb.y] = true;
 			}
 		}
 		for (int goo = 1; goo <= bomb.o; goo++) {
 			isGameOver(Field.fieldNumbers[bomb.x][bomb.y - goo]);
 			Field.fieldNumbers[bomb.x][bomb.y - goo] = 8;
-			if (Field.bombPos[bomb.x][bomb.y - goo]){
+			if (Field.bombPos[bomb.x][bomb.y - goo]) {
 				Field.expPos[bomb.x][bomb.y - goo] = true;
 			}
 		}
 		for (int gou = 1; gou <= bomb.u; gou++) {
 			isGameOver(Field.fieldNumbers[bomb.x][bomb.y + gou]);
 			Field.fieldNumbers[bomb.x][bomb.y + gou] = 8;
-			if (Field.bombPos[bomb.x][bomb.y + gou]){
+			if (Field.bombPos[bomb.x][bomb.y + gou]) {
 				Field.expPos[bomb.x][bomb.y + gou] = true;
 			}
 		}
@@ -78,10 +76,8 @@ public class Bomb extends JPanel {
 		player.bP -= 1;
 	}
 
-	
-
 	public static void endDetonation(Bomb bomb) {
-				
+
 		bomb.det = false;
 		bombs[bomb.num] = bomb;
 		for (int gor = 1; gor <= bomb.r; gor++) {
@@ -98,7 +94,7 @@ public class Bomb extends JPanel {
 		}
 		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 0;
-		
+
 		if (Field.fieldNumbers[Init.ex][Init.ey] == 0) {
 			Field.fieldNumbers[Init.ex][Init.ey] = 9;
 		}
@@ -117,13 +113,17 @@ public class Bomb extends JPanel {
 		if (coord == 3) {
 			System.out.println("Spieler 2 siegt");
 			Init.reset();
-			Interface.closeGameOpenMenu();
-			Menue.MainMenu();
-		} else 		if (coord == 4) {
+			GameOverPic.pic=1;
+			GameOverPic.DrawPic();
+			// Interface.closeGameOpenMenu();
+			// Menue.MainMenu();
+		} else if (coord == 4) {
 			System.out.println("Spieler 1 siegt");
 			Init.reset();
-			Interface.closeGameOpenMenu();
-			Menue.MainMenu();
+			GameOverPic.pic=1;
+			GameOverPic.DrawPic();
+			// Interface.closeGameOpenMenu();
+			// Menue.MainMenu();
 		}
 	}
 

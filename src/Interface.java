@@ -1,35 +1,57 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
-	static JButton single, multi, options, exit, sound, controls, controls2, backtomain,
-			save, backtooptions, rndMapSingle, rndMapMulti, constMap, startGame, startGame2, backtosingle,
-			continueGame, restart, backtomulti;
+	static JButton single, multi, options, exit, sound, controls, controls2,
+			backtomain, save, backtooptions, rndMapSingle, rndMapMulti,
+			constMap, startGame, startGame2, backtosingle, continueGame,
+			restart, backtomulti;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
 	static JComboBox getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
+	static JPanel endPic = new JPanel() {
+		public void paintComponent(Graphics g) {
+
+			g.drawImage(GameOverPic.endGame, 0, 0, null);
+		}
+	};
 
 	static JTextArea getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2;
-	static String[] amountBoxes = {"10", "20", "30", "40", "50", "60", "70", "80", "90", "100"};
+	static String[] amountBoxes = { "10", "20", "30", "40", "50", "60", "70",
+			"80", "90", "100" };
 	static Dimension dim = new Dimension(200, 25);
 	static Image img = new ImageIcon("src/Pictures/menubg.jpg").getImage();
 	static Image Button = new ImageIcon("src/Pictures/button.png").getImage();
 
 	public Interface() {
-		
-		/*Frame initialisieren*/
+
+		/* Frame initialisieren */
 		frame.setTitle("BomberDroid!");
 		frame.setSize(800, 662);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
-		
-		
+
 		menu = new JPanel(new GridBagLayout());
 		single = new JButton("Singleplayer");
 		multi = new JButton("Multiplayer");
@@ -111,6 +133,8 @@ public class Interface implements KeyListener, ActionListener {
 		getBomb1.addKeyListener(this);
 		getBomb2.addKeyListener(this);
 		game.addKeyListener(this);
+		endPic.addKeyListener(this);
+
 		Menue.MainMenu();
 		frame.add(menu);
 	}
@@ -192,33 +216,30 @@ public class Interface implements KeyListener, ActionListener {
 		}
 
 	}
-	
-
 
 	private void Boxes() {
-		if (getBoxNumber.getSelectedItem()== "10"){
+		if (getBoxNumber.getSelectedItem() == "10") {
 			Init.maxKisten = 10;
-		} else if (getBoxNumber.getSelectedItem()== "20"){
+		} else if (getBoxNumber.getSelectedItem() == "20") {
 			Init.maxKisten = 20;
-		} else if (getBoxNumber.getSelectedItem()== "30"){
+		} else if (getBoxNumber.getSelectedItem() == "30") {
 			Init.maxKisten = 30;
-		} else if (getBoxNumber.getSelectedItem()== "40"){
+		} else if (getBoxNumber.getSelectedItem() == "40") {
 			Init.maxKisten = 40;
-		} else if (getBoxNumber.getSelectedItem()== "50"){
+		} else if (getBoxNumber.getSelectedItem() == "50") {
 			Init.maxKisten = 50;
-		} else if (getBoxNumber.getSelectedItem()== "60"){
+		} else if (getBoxNumber.getSelectedItem() == "60") {
 			Init.maxKisten = 60;
-		} else if (getBoxNumber.getSelectedItem()== "70"){
+		} else if (getBoxNumber.getSelectedItem() == "70") {
 			Init.maxKisten = 70;
-		} else if (getBoxNumber.getSelectedItem()== "80"){
+		} else if (getBoxNumber.getSelectedItem() == "80") {
 			Init.maxKisten = 80;
-		} else if (getBoxNumber.getSelectedItem()== "90"){
+		} else if (getBoxNumber.getSelectedItem() == "90") {
 			Init.maxKisten = 90;
-		} else if (getBoxNumber.getSelectedItem()== "100"){
+		} else if (getBoxNumber.getSelectedItem() == "100") {
 			Init.maxKisten = 100;
 		}
-		
-		
+
 	}
 
 	public static void displayCtrl() {
@@ -245,8 +266,20 @@ public class Interface implements KeyListener, ActionListener {
 		game.setVisible(true);
 	}
 
+	public static void invisPicOpenMenu() {
+		endPic.setVisible(false);
+		menu.setVisible(true);
+
+	}
+
 	public void keyPressed(KeyEvent e) {
-		String Key = Eingabe.Ctrl(e);
+
+		if (GameOverPic.picOn == true) {
+			invisPicOpenMenu();
+
+		} else {
+			String Key = Eingabe.Ctrl(e);
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {
