@@ -7,6 +7,9 @@ public class Init {
 	static Player Player1 = new Player();
 	static Player Player2 = new Player();
 	static BufferedReader in;
+	
+	static int ex;
+	static int ey;
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
@@ -76,8 +79,6 @@ public class Init {
 			for (int j = 2; j < 15; j += 2)
 				fields[i][j] = 1;
 
-		fields[20][15] = 9;
-
 		return fields;
 	}
 
@@ -102,6 +103,21 @@ public class Init {
 						randomBox = Math.random();
 						if (randomBox > 0.99) {
 							fields[i][j] = 2;
+							value++;
+						}
+					}
+				}
+		}
+		value = 0;
+
+		while (value < 1) {
+			for (int i = 1; i < 20; i++)
+				for (int j = 1; j < 16 && value < maxKisten; j++) {
+					if (fields[i][j] == 2) {
+						randomBox = Math.random();
+						if (randomBox > 0.99) {
+							ex = i;
+							ey = j;
 							value++;
 						}
 					}

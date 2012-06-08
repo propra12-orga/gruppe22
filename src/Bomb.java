@@ -98,6 +98,10 @@ public class Bomb extends JPanel {
 		}
 		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 0;
+		
+		if (Field.fieldNumbers[Init.ex][Init.ey] == 0) {
+			Field.fieldNumbers[Init.ex][Init.ey] = 9;
+		}
 
 	}
 

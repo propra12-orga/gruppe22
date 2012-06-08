@@ -24,6 +24,7 @@ public class Field extends JPanel {
 	private BufferedImage stein;
 	private BufferedImage bomberman;
 	private BufferedImage bombe;
+	private BufferedImage exit;
 
 	private BufferedImage exp_v;
 	private BufferedImage exp_m;
@@ -66,6 +67,10 @@ public class Field extends JPanel {
 			stein = ImageIO.read(new File("src/Pictures/stein.png"));
 		} catch (IOException e) {
 		}
+		try {
+			exit = ImageIO.read(new File("src/Pictures/ausgang.png"));
+		} catch (IOException e) {
+		}
 
 		g.drawImage(boden,1 * (getWidth() / 21),1
 				* (getHeight() / 17), null);
@@ -88,6 +93,9 @@ public class Field extends JPanel {
 					g.drawImage(bomberman, i * (getWidth() / 21), j
 							* (getHeight() / 17), null);
 
+				} else if (fieldNumbers[i][j] == 9) {
+					g.drawImage(exit, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
 				}
 
 			}
@@ -134,25 +142,6 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
-	/*
-	 * Methode zur Abfrage der Begehbarkeit eines Feldes true : Begehbar false :
-	 * Nicht begehbar
-	 */
-
-	public static boolean checkMove(int coord) {
-		if (coord == 0)
-			return true;
-		else if (coord == 9) {
-			Interface.closeGameOpenMenu();
-			IngameMenu.ingame();
-		}
-		return false;
-	}
-
-	// /////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	// /////////////////////////////////////////////////////////////////////////////////////
 
 	public void newPaint() {
 		Interface.game.repaint();
@@ -160,8 +149,5 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
-	public static void main(String[] args) {
-		// (noch?) leer
-	}
 
 }
