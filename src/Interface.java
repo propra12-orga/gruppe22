@@ -21,12 +21,15 @@ public class Interface implements KeyListener, ActionListener {
 	static Image Button = new ImageIcon("src/Pictures/button.png").getImage();
 
 	public Interface() {
-
+		
+		/*Frame initialisieren*/
 		frame.setTitle("BomberDroid!");
 		frame.setSize(800, 662);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+		
+		
 		menu = new JPanel(new GridBagLayout());
 		single = new JButton("Singleplayer");
 		multi = new JButton("Multiplayer");

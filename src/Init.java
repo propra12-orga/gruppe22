@@ -50,6 +50,8 @@ public class Init {
 			}
 
 		}
+		
+		SetExit(feld);
 
 		return feld;
 
@@ -108,21 +110,6 @@ public class Init {
 					}
 				}
 		}
-		value = 0;
-
-		while (value < 1) {
-			for (int i = 1; i < 20; i++)
-				for (int j = 1; j < 16 && value < maxKisten; j++) {
-					if (fields[i][j] == 2) {
-						randomBox = Math.random();
-						if (randomBox > 0.99) {
-							ex = i;
-							ey = j;
-							value++;
-						}
-					}
-				}
-		}
 
 		// Setze die 4 Eckpunkte (Startpunkte der Spieler) auf 3
 		// und die 2 jeweils angrenzenden Felder auf 0.
@@ -136,7 +123,9 @@ public class Init {
 			fields[19][14] = 0;
 			Player.getStartPos2(Player2);
 		}
-
+		
+		SetExit(fields);
+		
 		return fields;
 	}
 
@@ -186,6 +175,27 @@ public class Init {
 		
 		return bombs;
 			
+	}
+	
+	public static void SetExit(int[][] fields){
+		int value = 0;
+		double randomBox;
+		
+		while (value < 1) {
+			for (int i = 1; i < 20; i++)
+				for (int j = 1; j < 16 && value < maxKisten; j++) {
+					if (fields[i][j] == 2) {
+						randomBox = Math.random();
+						if (randomBox > 0.99) {
+							ex = i;
+							ey = j;
+							value++;
+						}
+					}
+				}
+		}
+		
+		
 	}
 	
 	
