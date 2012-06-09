@@ -126,6 +126,20 @@ public class Bomb extends JPanel {
 			// Menue.MainMenu();
 		}
 	}
+	
+	/**
+	 * Die Methode bekommt ein Objekt der Klasse Bomb übergeben und die Größe
+	 * des Bombenradiuses. Es folg eine Überprüfung in jede Richtung. Die Explosion
+	 * der Bombe wird solange weiter geführt bis sie den maximal Wert erreicht hat
+	 * oder diese auf die erste Kiste in der jeweiligen Richtung stößt.
+	 * Hier zu werden Boolean-Werte eingesetzt welche solange auf True bleiben bis
+	 * einer diese Fälle auftritt.
+	 * Die länge der Explosion wir für jede Richtung abgespeichert so das diese 
+	 * später abgefragt werden kann.
+	 * 
+	 * @param bomb
+	 * @param br
+	 */
 
 	public static void radCheck(Bomb bomb, int br) {
 		bomb.ob = true;

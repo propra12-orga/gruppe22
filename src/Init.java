@@ -19,6 +19,11 @@ public class Init {
 	 * Kiste 3) Spieler1 4) Spieler2 5) Spieler3 6) Spieler4 7) Bombe 8)
 	 * Detonation 9) Ausgang ......
 	 */
+	
+	/**
+	 * Methode zum öffnen des Datenkanals zur Datei welche die Daten für die
+	 * konstante Karte beinhaltet.
+	 */
 	public static void MapReader() { /* 0815 Reader */
 
 		try {
@@ -28,7 +33,16 @@ public class Init {
 		}
 
 	}
-
+	/**
+	 * Die Methode ruft den BufferedReader der für die Karten auslesung zuständig ist auf.
+	 * Sie liest die Zeilen der Datei einzelt aus und spaltet den String den sie erhält auf
+	 * die jeweiligen zahlenw erden in ein zweidimensionales Feld eingespeichert. Dieses 
+	 * befüllte Feld wird zurück gegeben.
+	 * 
+	 * @return feld
+	 */
+	
+	
 	public static int[][] constMap() {
 		String[] bufmap = new String[21];
 		String zeile;
@@ -176,6 +190,16 @@ public class Init {
 		return bombs;
 			
 	}
+	
+	/**
+	 * Die Methode durch läuft bevor das Spiel beginnt das Spielfeld und überprüft wo 
+	 * sich Kisten befinden. Wenn eine Kiste vorhanden ist an der Stelle wo sich die 
+	 * For-Schleifen befinden wird ein zufälliger Wert erzeugt. Bei einem Ergebniss
+	 * größer als 0,99 (bei einem Maximum von 1) wird der Ausgang gesetzt. Es kann sich 
+	 * maximal ein Ausgang auf dem Spielfeld befinden.
+	 * 
+	 * @param fields
+	 */
 	
 	public static void SetExit(int[][] fields){
 		int value = 0;

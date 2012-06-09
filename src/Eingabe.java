@@ -4,7 +4,11 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
+/**
+ * Klasse für die Methoden zur Feststellung der Tastatureingabe
+ * @author Jan Reckfort
+ *
+ */
 public class Eingabe {
 
 	static String[] CtrlArray = new String[10]; /*
@@ -18,6 +22,15 @@ public class Eingabe {
 	 * eingespeicherten Steuerungs-Optionen ab und übergibt falls diese
 	 * übereinstimmen den Befehl fürs Bewegen usw. an die Funktion weiter die
 	 * Bomberman auf der GUI bewegt weiter
+	 */
+	
+	/**
+	 * Methode regelt das einspeichern der Steuerung die im Menü festgelegt wird. 
+	 * Sie überprüft zusätzlich die eingabe während des Spiels und ordnet wenn die 
+	 * gedrückte Taste eine Bewegungstaste eines Spielers ist diese dem 
+	 * entsprechenden Spieler zu.
+	 * @author Jan Reckfort
+	 *
 	 */
 
 	public static String Ctrl(KeyEvent e) { /* erhält KeyEvent */
@@ -128,6 +141,10 @@ public class Eingabe {
 	 * fest.
 	 */
 
+	/**
+	 * Liest die Steuerung aus der Datei aus und spaltet den String an jedem "_".
+	 *
+	 */
 	public static void CtrlReader() { /* 0815 Reader */
 		String Ctrl = "";
 
@@ -146,6 +163,12 @@ public class Eingabe {
 	/*
 	 * Diese Funktion schreibt die im Menue fest gelegten Steuerungs-Optionen in
 	 * die Datei Test.TXT.(Name noch ï¿½ndern)
+	 */
+	/**
+	 * Wenn im Menü auf den Button "Speichern" gedrückt wurde schreibt die Methode,
+	 * die vom Spieler festgelegte Steuerung in einer Datei damit später wieder auf
+	 * diese Steuerung zugegriffen werden kann. 
+	 *
 	 */
 
 	public static void CtrlWrite() { /* 0815 Writer */

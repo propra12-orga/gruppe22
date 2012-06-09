@@ -31,6 +31,9 @@ public class Field extends JPanel {
 	private BufferedImage exp_h;
 	
 	// Zeichnen:
+	/**
+	 * Laden der Bilder und Zeichnen der Bilder im Spiel. 
+	 */
 	protected void paintComponent(Graphics g) {
 		setSize(800, 662);
 
@@ -39,7 +42,7 @@ public class Field extends JPanel {
 		} catch (IOException e) {
 		}
 		try {
-			bomberman = ImageIO.read(new File("src/Pictures/player_green.png"));
+			bomberman = ImageIO.read(new File("src/Pictures/silver_skin_front.png"));
 		} catch (IOException e) {
 		}
 		try {
@@ -141,7 +144,9 @@ public class Field extends JPanel {
 	}
 
 	// /////////////////////////////////////////////////////////////////////////////////////
-
+	/**
+	 * Methode zum neumalen des Inhaltes des Spielfeldes
+	 */
 
 	public void newPaint() {
 		Interface.game.repaint();
