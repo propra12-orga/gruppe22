@@ -16,7 +16,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
+/**
+ * Bomberdroid Startklasse
+ * @author Bastian Siefen
+ *
+ */
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
 	static JButton single, multi, options, exit, sound, controls, controls2,
@@ -43,8 +47,13 @@ public class Interface implements KeyListener, ActionListener {
 	static Image img = new ImageIcon("src/Pictures/menubg.jpg").getImage();
 	static Image Button = new ImageIcon("src/Pictures/button.png").getImage();
 
+	/**
+	 * Konstruktor initialisiert alle Widgets,
+	 * addet KeyListener und ActionListener,
+	 * ruft Menue.MainMenu() auf
+	 */
 	public Interface() {
-
+		
 		/* Frame initialisieren */
 		frame.setTitle("BomberDroid!");
 		frame.setSize(800, 662);
@@ -138,7 +147,9 @@ public class Interface implements KeyListener, ActionListener {
 		Menue.MainMenu();
 		frame.add(menu);
 	}
-
+	/**
+	 * Neuer Konstruktoraufruf & frame aus Konstruktor sichtbar machen
+	 */
 	public static void main(String[] args) {
 
 		Interface Menu = new Interface();
@@ -147,7 +158,12 @@ public class Interface implements KeyListener, ActionListener {
 
 	}
 
+	/**
+	 * Hier werden die Klicks auf Buttons etc. verarbeitet
+	 * Bei Klick auf z.B. Optionen wird Klassen Options mit der Methode OptionsMenu aufgerufen
+	 */
 	public void actionPerformed(ActionEvent e) {
+		
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(10, 10, 10, 10);
 		if (e.getSource() == this.exit) {
@@ -216,7 +232,9 @@ public class Interface implements KeyListener, ActionListener {
 		}
 
 	}
-
+	/** 
+	 * verarbeitet Combobox Auswahl fuer Kistenanzahl bei Random Map
+	 */
 	private void Boxes() {
 		if (getBoxNumber.getSelectedItem() == "10") {
 			Init.maxKisten = 10;
@@ -255,17 +273,21 @@ public class Interface implements KeyListener, ActionListener {
 		getBomb2.setText(Eingabe.CtrlArray[9]);
 
 	}
-
+	/**
+	 * Menu Panel unsichtbar, Game Panel sichtbar
+	 */
 	public static void closeGameOpenMenu() {
 		game.setVisible(false);
 		menu.setVisible(true);
 	}
-
+	/**
+	 * Menu Panel sichtbar, Game Panel unsichtbar
+	 */
 	public static void closeMenuOpenGame() {
 		menu.setVisible(false);
 		game.setVisible(true);
 	}
-
+	
 	public static void invisPicOpenMenu() {
 		endPic.setVisible(false);
 		menu.setVisible(true);

@@ -9,9 +9,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-
+/**
+ * Interface Initialisierungsklasse
+ * hier werden alle Widgets die im Programm verwendet werden,
+ * initialisiert und weist ihnen Groesse, Farbe etc zu.
+ * @author Bastian Siefen
+ *
+ */
 public class InitComponents {
-	
+	/**
+	 * Hier werden die Widgets fuer das Hauptmenue initialisiert und verarbeitet
+	 */
 	public static void MainMenuComponents(){
 		Interface.menu = new JPanel(new GridBagLayout()) {
 			public void paintComponent(Graphics g) {
@@ -65,6 +73,9 @@ public class InitComponents {
 		Interface.backtomulti.setForeground(Color.white);
 	}
 	
+	/**
+	 * Hier werden die Widgets fuer das SingleplayerMenue initialisiert und verarbeitet
+	 */
 	public static void SingleComponents() {
 		Interface.rndMapSingle.setPreferredSize(Interface.dim);
 		Interface.rndMapSingle.setIcon(new ImageIcon(Interface.Button));
@@ -87,6 +98,9 @@ public class InitComponents {
 		Interface.startGame.setForeground(Color.white);
 	}
 	
+	/**
+	 * Hier werden die Widgets fuer das MultiplayerMenue initialisiert und verarbeitet
+	 */
 	public static void MultiComponents() {
 		Interface.rndMapMulti.setPreferredSize(Interface.dim);
 		Interface.rndMapMulti.setIcon(new ImageIcon(Interface.Button));
@@ -102,6 +116,9 @@ public class InitComponents {
 		Interface.startGame2.setForeground(Color.white);
 	}
 	
+	/**
+	 * Hier werden die Widgets fuer das OptionsMenue initialisiert und verarbeitet
+	 */
 	public static void OptionsComponents() {
 		Interface.controls.setPreferredSize(Interface.dim);
 		Interface.controls.setIcon(new ImageIcon(Interface.Button));
@@ -169,6 +186,9 @@ public class InitComponents {
 		Interface.getBomb2.setEditable(false);
 	}
 	
+	/**
+	 * Hier werden die Widgets fuer das IngameMenue initialisiert und verarbeitet
+	 */
 	public static void IngameMenuComponents() {
 		Interface.continueGame.setPreferredSize(Interface.dim);
 		Interface.continueGame.setIcon(new ImageIcon(Interface.Button));

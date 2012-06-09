@@ -1,7 +1,14 @@
 import java.awt.*;
-
+/**
+ * Unterklasse fuer das IngameMenue
+ * @author Bastian Siefen
+ *
+ */
 public class IngameMenu {
-
+	/**
+	 * Wird aufgerufen, wenn waehrend des Spiels ESC gedrueckt wird,
+	 * cleart Panel und befuellt es mit IngameMenue Widgets
+	 */
 	public static void ingame() {
 		Interface.menu.removeAll();
 		GridBagConstraints c = new GridBagConstraints();

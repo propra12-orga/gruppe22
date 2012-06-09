@@ -1,7 +1,16 @@
 import java.awt.*;
-
+/**
+ * Unterklasse fuer das SteuerungsMenue
+ * @author Bastian Siefen
+ *
+ */
 public class Control {
 	static GridBagConstraints c = new GridBagConstraints();
+	
+	/**
+	 * Cleart das Panel und befuellt es mit den Steuerungs Widgets neu,
+	 * wird ausgefuehrt wenn im OptionsMenue auf Steuerung geklickt wurde.
+	 */
 	public static void ControlMenu() {
 		Interface.menu.removeAll();
 		c.insets = new Insets(10, 10, 10, 10);
@@ -62,6 +71,10 @@ public class Control {
 
 	}
 	
+	/**
+	 * Cleart das Panel und befuellt es mit den Steuerungs Widgets neu,
+	 * wird ausgefuehrt wenn im MultiplayerMenue auf Steuerung geklickt wurde.
+	 */
 	public static void ControlMenu2() {
 		Interface.menu.removeAll();
 		c.insets = new Insets(10, 10, 10, 10);

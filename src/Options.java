@@ -1,7 +1,13 @@
 import java.awt.*;
-
+/**
+ * Unterklasse fuer OptionsMenue
+ * @author Bastian Siefen
+ *
+ */
 public class Options {
-
+	/**
+	 * Cleart Panel und befuellt es mit OptionsMenue Widgets
+	 */
 	public static void OptionsMenu() {
 		Interface.menu.removeAll();
 		GridBagConstraints c = new GridBagConstraints();

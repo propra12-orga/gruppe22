@@ -1,9 +1,15 @@
 import java.awt.*;
-
+/**
+ * Unterklasse fuer Menues Singeplayer & Multiplayer
+ * @author Bastian Siefen
+ *
+ */
 public class GameMode {
 
 	static GridBagConstraints c = new GridBagConstraints();
-	
+	/**
+	 * Cleart Panel und befuellt es neu mit Singleplayer Widgets
+	 */
 	public static void SingleMenu() {
 		Interface.menu.removeAll();
 		c.insets = new Insets(10, 10, 10, 10);
@@ -17,7 +23,9 @@ public class GameMode {
 		Interface.menu.updateUI();
 		
 	}
-	
+	/**
+	 * Cleart Panel und befuellt es neu mit Multiplayer Widgets
+	 */
 	public static void MultiMenu() {
 		Interface.menu.removeAll();
 		c.insets = new Insets(10, 10, 10, 10);

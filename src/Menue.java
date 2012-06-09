@@ -1,7 +1,13 @@
 import java.awt.*;
-
+/**
+ * Unterklasse fuer das Hauptmenue
+ * @author Bastian Siefen
+ *
+ */
 public class Menue {
-
+	/**
+	 * Cleart Panel und befuellt es mit den Hauptmenue Widgets
+	 */
 	public static void MainMenu() {
 
 		Interface.menu.removeAll();

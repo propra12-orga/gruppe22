@@ -1,7 +1,14 @@
 import java.awt.*;
-
+/**
+ * Unterklasse fuer das ZufallsMapMenue
+ * @author Bastian Siefen
+ *
+ */
 public class RandomMapMenu {
-	
+	/**
+	 * Wird ausgefuehrt wenn im Singleplayer auf ZufallsMap gedrueckt wurde,
+	 * cleart das Panel und befuellt es mit den Zufallsmap Widgets neu
+	 */
 	public static void RandomMapSingle() {
 		Interface.menu.removeAll();
 		GridBagConstraints c = new GridBagConstraints();
@@ -18,7 +25,10 @@ public class RandomMapMenu {
 		Interface.menu.add(Interface.backtosingle, c);
 		Interface.menu.updateUI();
 	}
-	
+	/**
+	 * Wird ausgefuehrt wenn im Multieplayer auf ZufallsMap gedrueckt wurde,
+	 * cleart das Panel und befuellt es mit den Zufallsmap Widgets neu
+	 */
 	public static void RandomMapMulti() {
 		Interface.menu.removeAll();
 		GridBagConstraints c = new GridBagConstraints();
