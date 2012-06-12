@@ -107,6 +107,7 @@ public class Bomb extends JPanel {
 						bombs[i].det = true;
 			}
 		}
+		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 8;
 		Field.bombPos[bomb.x][bomb.y] = false;
 		
