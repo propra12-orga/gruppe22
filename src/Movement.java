@@ -13,28 +13,28 @@ public class Movement {
 			
 
 			if (pl.ctrl == "Oben") {
-				if (checkMove(Field.fieldNumbers[pl.x][pl.y - 1])) {
+				if (checkMove(pl.x, pl.y - 1)) {
 					goUp(pl.x, pl.y, pl);
 					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Unten") {
-				if (checkMove(Field.fieldNumbers[pl.x][pl.y + 1])) {
+				if (checkMove(pl.x, pl.y + 1)) {
 					goDown(pl.x, pl.y, pl);
 					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Links") {
-				if (checkMove(Field.fieldNumbers[pl.x - 1][pl.y])) {
+				if (checkMove(pl.x - 1, pl.y)) {
 					goLeft(pl.x, pl.y, pl);
 					playerToField(pl);
 					Field.f = new Field();
 					Field.f.newPaint();
 				}
 			} else if (pl.ctrl == "Rechts") {
-				if (checkMove(Field.fieldNumbers[pl.x + 1][pl.y])) {
+				if (checkMove(pl.x + 1, pl.y)) {
 					goRight(pl.x, pl.y, pl);
 					playerToField(pl);
 					Field.f = new Field();
@@ -58,10 +58,10 @@ public class Movement {
 	 * @param coord
 	 * @return Boolean
 	 */
-	public static boolean checkMove(int coord) {
-		if (coord == 0)
+	public static boolean checkMove(int x, int y) {
+		if (Field.fieldNumbers[x][y] == 0 && !Field.bombPos[x][y])
 			return true;
-		else if (coord == 9) {
+		else if (Field.fieldNumbers[x][y] == 9) {
 			Init.reset();
 			GameOverPic.pic=2;
 			GameOverPic.DrawPic();
