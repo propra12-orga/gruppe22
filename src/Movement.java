@@ -66,6 +66,11 @@ public class Movement {
 			GameOverPic.pic=2;
 			GameOverPic.DrawPic();
 		}
+		else if (Field.fieldNumbers[x][y] == 8){
+			Init.reset();
+			GameOverPic.pic=1;
+			GameOverPic.DrawPic();
+		}
 		return false;
 	}
 	/**
