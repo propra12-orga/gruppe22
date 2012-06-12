@@ -38,10 +38,8 @@ public class Carl extends Thread {
 		
 		Bomb.detonate(bomb, player);
 			
-		if (!isInterrupted()){
 			Field.f = new Field();
 			Field.f.newPaint();
-		}
 		
 		
 		
