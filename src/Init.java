@@ -71,6 +71,12 @@ public class Init {
 
 	}
 
+	/**
+	 * Initialisierungsmethode eines Standard-Spielfeldes, lediglich
+	 * bestehend aus festen Mauerstuecken und frei begehbaren Feldern.
+	 * @return
+	 */
+	
 	public static int[][] basicField() {
 		Eingabe.CtrlReader();
 		int[][] fields = new int[21][17];
@@ -100,10 +106,17 @@ public class Init {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Initialisierung des Inhalts eines Spielfeldes
+	 * (Kisten, Spieler....)
+	 * @param fields
+	 * @return
+	 */
+	
 	public static int[][] fieldContent(int[][] fields) {
 
 		/*
-		 * double randomBox lediglich f�r Math.random() Das Feldarray wird
+		 * double randomBox lediglich fuer Math.random() Das Feldarray wird
 		 * einmal durchgegangen. Sofern eine frei begehbare Stelle gefunden
 		 * wird, wird diese per Zufall (Math.random()) zum Kistenfeld im Array
 		 * editiert.
@@ -143,6 +156,12 @@ public class Init {
 		return fields;
 	}
 
+	/**
+	 * Reset-Methode fuer das Spielfeld.
+	 * Befuellt das Spielfeld neu und setzt die Spieler
+	 * wieder auf ihre Startpositionen.
+	 */
+	
 	public static void reset() {
 
 		for (int i = 0; i < 21; i++)
@@ -162,6 +181,13 @@ public class Init {
 		};
 	}
 	
+	/**
+	 * Initialisierung eines Boolean-Arrays fuer die Bomben.
+	 * Legt spaeter fest, wo sich Bomben befinden, und von 
+	 * welchen Bomben Detonationen gestartet werden.
+	 * @return
+	 */
+	
 	public static boolean[][] bombPos(){
 		boolean[][] bombPos = new boolean[21][17];
 		
@@ -171,6 +197,12 @@ public class Init {
 		
 		return bombPos;
 	}
+	
+	/**
+	 * Initialisierung des statischen Bombenarrays der Klasse Bomb,
+	 * unter der Beruecksichtigung des Spielmodus.
+	 * @return
+	 */
 	
 	public static Bomb[] bombs(){
 		Bomb[] bombs;

@@ -1,6 +1,19 @@
+/**
+ * Carl ist unser Bombenthread.
+ * @author Pierre Schwarz
+ *
+ */
+
+
 public class Carl extends Thread {
 
 	public Player player;
+	
+	/**
+	 * Der Thread bekommt einen Spieler uebergeben, alles Weitere
+	 * ist von diesem abhaengig.
+	 * @param crtPlayer
+	 */
 	
 	public Carl(Player crtPlayer) {
 		super();
@@ -12,47 +25,45 @@ public class Carl extends Thread {
 		player.bCnt -= 1;
 		Bomb bomb = new Bomb(player);
 		Bomb.placeBomb(bomb, player);
+		Bomb.radCheck(bomb, player);
 		try {
 			for (int i = 0; i < 30; i++){
 				sleep(100);
-				isChain(bomb);
+				if (bomb.det)
+					interrupt();
 			}
 		} catch (InterruptedException e) {
-			interrupt();
+			
 		}
-		Bomb.radCheck(bomb, player.rad);
-		Bomb.detonate(bomb, player);
-
-
-		Field.f = new Field();
-		Field.f.newPaint();
 		
-
+		Bomb.detonate(bomb, player);
+			
+		if (!isInterrupted()){
+			Field.f = new Field();
+			Field.f.newPaint();
+		}
+		
+		
+		
 		try {
 			sleep(1000);
 		} catch (InterruptedException e) {
 
 		}
-
-		Bomb.endDetonation(bomb);
+		
+		Bomb.endDetonation(bomb, player);
 		Field.expPos[bomb.x][bomb.y] = false;
-
+		
 		Field.f = new Field();
 		Field.f.newPaint();
-		
+	
 
 		try {
 			sleep(50);
 		} catch (InterruptedException e) {
 
 		}
-
 		player.bCnt += 1;
-	}
-	
-	public void isChain(Bomb bomb){
-		if (Field.expPos[bomb.x][bomb.y])
-			this.interrupt();
 	}
 
 }

@@ -190,6 +190,7 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombPos();
 			Field.expPos = Init.bombPos();
+			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.continueGame) {
@@ -207,6 +208,7 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.constMap();
 			Field.bombPos = Init.bombPos();
 			Field.expPos = Init.bombPos();
+			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
 		} else if (e.getSource() == this.multi) {
@@ -224,6 +226,7 @@ public class Interface implements KeyListener, ActionListener {
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombPos();
 			Field.expPos = Init.bombPos();
+			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
 			closeMenuOpenGame();

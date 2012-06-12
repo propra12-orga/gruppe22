@@ -1,12 +1,20 @@
 import java.awt.event.*;
 import javax.swing.*;
 
-//nur zum Testen...
+/**
+ * Startklasse einer Bomberdroid-Runde.
+ * 
+ * @author Pierre Schwarz
+ *
+ */
 
 public class Game implements KeyListener{
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Initialisierung des Game-Panels.
+	 */
 	public Game() {
 		
 		Interface.game = new Field();

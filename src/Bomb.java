@@ -1,11 +1,25 @@
 import javax.swing.JPanel;
 
+/**
+ * Bombenklasse fuer das Objekt Bombe und zugehörige Methoden.
+ * 
+ * @author Pierre Schwarz
+ *
+ */
+
 public class Bomb extends JPanel {
 
 	Boolean ob, ub, lb, rb, det;
 	int x, y, o, u, l, r, num;
 	static Bomb[] bombs = Init.bombs();
 
+	/**
+	 * Bombenobjekt wird initialisiert und bekommt sowohl Koordinaten,
+	 * als auch Radien fuer die einzelnen Richtungen, eine Nummer
+	 * und Detonationsabfrage.
+	 * 
+	 * @param player
+	 */
 	public Bomb(Player player) {
 		this.x = player.x;
 		this.y = player.y;
@@ -18,68 +32,100 @@ public class Bomb extends JPanel {
 		this.lb = true;
 		this.rb = true;
 		this.det = false;
-		this.num = 0;
 	}
 
+	/**
+	 * Bombe wird platziert, bekommt eine Nummer und wird gezeichnet.
+	 * @param bomb
+	 * @param player
+	 * @return
+	 */
+	
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
 		Field.f = new Field();
 		Field.f.newPaint();
-
-		if (Init.MP) {
-			if (player == Init.Player1) {
-				bombs[player.bP] = bomb;
-			} else
-				bombs[player.bP + 3] = bomb;
-		} else
-			bombs[player.bP] = bomb;
-
 		bomb.num = player.bP;
+		bombToArray(bomb, player);
+
 		player.bP += 1;
+		
 	}
 
+	/**
+	 * Detonation der Bombe wird aktiviert und ueberprueft, ob sich
+	 * weitere Bomben im Detonationsradius befinden. Sollte dies
+	 * gegeben sein, wird die entsprechende Detonation der jeweiligen
+	 * Bombe ebenfalls aktiviert und das Sleep vom 1. Try-Blocks 
+	 * des zugehoerigen Threads interrupted.
+	 * 
+	 * @param bomb
+	 * @param player
+	 * @return
+	 */
 	public static void detonate(Bomb bomb, Player player) {
 
 		bomb.det = true;
-		bombs[bomb.num] = bomb;
+		bombToArray(bomb, player);
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			isGameOver(Field.fieldNumbers[bomb.x + gor][bomb.y]);
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 8;
 			if (Field.bombPos[bomb.x + gor][bomb.y]) {
-				Field.expPos[bomb.x + gor][bomb.y] = true;
+				Field.bombPos[bomb.x + gor][bomb.y] = false;
+				for (int i = 0; i < bombs.length; i++)
+					if (bombs[i].x == bomb.x + gor && bombs[i].y == bomb.y)
+						bombs[i].det = true;
 			}
 		}
 		for (int gol = 1; gol <= bomb.l; gol++) {
 			isGameOver(Field.fieldNumbers[bomb.x - gol][bomb.y]);
 			Field.fieldNumbers[bomb.x - gol][bomb.y] = 8;
-			if (Field.bombPos[bomb.x + gol][bomb.y]) {
-				Field.expPos[bomb.x + gol][bomb.y] = true;
+			if (Field.bombPos[bomb.x - gol][bomb.y]) {
+				Field.bombPos[bomb.x - gol][bomb.y] = false;
+				for (int i = 0; i < bombs.length; i++)
+					if (bombs[i].x == bomb.x - gol && bombs[i].y == bomb.y)
+						bombs[i].det = true;
 			}
 		}
 		for (int goo = 1; goo <= bomb.o; goo++) {
 			isGameOver(Field.fieldNumbers[bomb.x][bomb.y - goo]);
 			Field.fieldNumbers[bomb.x][bomb.y - goo] = 8;
 			if (Field.bombPos[bomb.x][bomb.y - goo]) {
-				Field.expPos[bomb.x][bomb.y - goo] = true;
+				Field.bombPos[bomb.x][bomb.y - goo] = false;
+				for (int i = 0; i < bombs.length; i++)
+					if (bombs[i].x == bomb.x && bombs[i].y == bomb.y - goo)
+						bombs[i].det = true;
 			}
 		}
 		for (int gou = 1; gou <= bomb.u; gou++) {
 			isGameOver(Field.fieldNumbers[bomb.x][bomb.y + gou]);
 			Field.fieldNumbers[bomb.x][bomb.y + gou] = 8;
 			if (Field.bombPos[bomb.x][bomb.y + gou]) {
-				Field.expPos[bomb.x][bomb.y + gou] = true;
+				Field.bombPos[bomb.x][bomb.y + gou] = false;
+				for (int i = 0; i < bombs.length; i++)
+					if (bombs[i].x == bomb.x && bombs[i].y == bomb.y + gou)
+						bombs[i].det = true;
 			}
 		}
-		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 8;
 		Field.bombPos[bomb.x][bomb.y] = false;
-		player.bP -= 1;
+		
 	}
+	
 
-	public static void endDetonation(Bomb bomb) {
+	/**
+	 * Detonation wird beendet.
+	 * Abfrage bzgl. des Ausganges, ob dieser sich unter einer
+	 * Kiste befunden hat.
+	 * @param bomb
+	 * @param pl
+	 * @return
+	 */
+	
+	public static void endDetonation(Bomb bomb, Player pl) {
 
 		bomb.det = false;
-		bombs[bomb.num] = bomb;
+		bombToArray(bomb, pl);
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 0;
 		}
@@ -92,15 +138,19 @@ public class Bomb extends JPanel {
 		for (int gou = 1; gou <= bomb.u; gou++) {
 			Field.fieldNumbers[bomb.x][bomb.y + gou] = 0;
 		}
-		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 0;
 
 		if (Field.fieldNumbers[Init.ex][Init.ey] == 0) {
 			Field.fieldNumbers[Init.ex][Init.ey] = 9;
 		}
-
+		pl.bP -= 1;
 	}
 
+	/**
+	 * Abfrage, ob sich ein Feld zerstoeren laesst oder nicht.
+	 * @param coord
+	 * @return
+	 */
 	public static boolean isDestructable(int coord) {
 		if (coord == 1) {
 			return false;
@@ -108,7 +158,28 @@ public class Bomb extends JPanel {
 			return true;
 		}
 	}
+	
+	/**
+	 * Bombe wird zum statischen Bombenarray dieser Klasse hinzugefuegt.
+	 * @param bomb
+	 * @param pl
+	 */
+	
+	public static void bombToArray(Bomb bomb, Player pl){
+		if (pl == Init.Player1)
+			bombs[bomb.num] = bomb;
+		
+		if (Init.MP)
+			if (pl == Init.Player2)
+				bombs[bomb.num] = bomb;
+	}
 
+	/**
+	 * Abfrage, ob sich ein Spieler innerhalb eines Detonationsradius
+	 * einer Bombe befand. Falls ja, ist das Spiel vorbei.
+	 * @param coord
+	 */
+	
 	public static void isGameOver(int coord) {
 		if (coord == 3) {
 			System.out.println("Spieler 2 siegt");
@@ -141,7 +212,7 @@ public class Bomb extends JPanel {
 	 * @param br
 	 */
 
-	public static void radCheck(Bomb bomb, int br) {
+	public static void radCheck(Bomb bomb, Player pl) {
 		bomb.ob = true;
 		bomb.ub = true;
 		bomb.lb = true;
@@ -155,7 +226,7 @@ public class Bomb extends JPanel {
 		bomb.o = 0;
 		bomb.u = 0;
 
-		for (int i = 0; i <= br; i++) {
+		for (int i = 0; i <= pl.rad; i++) {
 			/* nach rechts überprüfen */
 			if (bomb.rb) {
 				bomb.r = i;
@@ -198,5 +269,8 @@ public class Bomb extends JPanel {
 				}
 			}
 		}
+		
+		bombToArray(bomb, pl);
+		
 	}
 }

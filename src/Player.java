@@ -19,7 +19,7 @@ public class Player {
 	 * rad - Radius der Bomben des Spielers,
 	 * ctrl - Richtungsangabe des Spielers in die er geht,
 	 * num - Nummer des Spielers,
-	 * bP - 
+	 * bP - aktive Bomben des Spielers auf dem Spielfeld
 	 */
 
 	public Player() {
@@ -42,6 +42,7 @@ public class Player {
 		player.x = 19;
 		player.y = 15;
 		player.num = 2;
+		player.bP = 3;
 	}
 	
 }
