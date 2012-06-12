@@ -210,7 +210,7 @@ public class Bomb extends JPanel {
 	 * später abgefragt werden kann.
 	 * 
 	 * @param bomb
-	 * @param br
+	 * @param pl
 	 */
 
 	public static void radCheck(Bomb bomb, Player pl) {
