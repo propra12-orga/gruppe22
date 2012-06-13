@@ -1,27 +1,25 @@
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Startklasse einer Bomberdroid-Runde.
  * 
  * @author Pierre Schwarz
- *
+ * 
  */
 
-public class Game implements KeyListener{
-
-	private static final long serialVersionUID = 1L;
+public class Game implements KeyListener {
 
 	/**
 	 * Initialisierung des Game-Panels.
 	 */
 	public Game() {
-		
+
 		Interface.game = new Field();
-		
-		Interface.game.setFocusable(true); 
+
+		Interface.game.setFocusable(true);
 		Interface.game.addKeyListener(this);
-		
+
 		Interface.frame.add(Interface.game);
 	}
 
@@ -31,17 +29,14 @@ public class Game implements KeyListener{
 	}
 
 	public void keyPressed(KeyEvent e) {
-		String Key = Eingabe.Ctrl(e);	
+		String Key = Eingabe.Ctrl(e);
 	}
 
 	public void keyReleased(KeyEvent e) {
-		
-		
+
 	}
 
-	
 	public void keyTyped(KeyEvent e) {
-		
-		
+
 	}
 }
