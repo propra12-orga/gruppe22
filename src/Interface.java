@@ -57,7 +57,7 @@ public class Interface implements KeyListener, ActionListener {
 
 		/* Frame initialisieren */
 		frame.setTitle("BomberDroid!");
-		frame.setSize(800, 662);
+		frame.setSize(800, 674);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
