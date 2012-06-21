@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Init {
 
@@ -7,21 +9,22 @@ public class Init {
 	static Player Player1 = new Player();
 	static Player Player2 = new Player();
 	static BufferedReader in;
-	
+
 	static int ex;
 	static int ey;
+	static int[][] powerUps = new int[21][17];
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	/*
 	 * Initialisierung des Feldarrays Jede Koordinate des Feldes bekommt einen
-	 * Wert: 0) Frei begehbares Feld 1) Unzerstï¿½rbare Mauer 2) Zerstï¿½rbare
+	 * Wert: 0) Frei begehbares Feld 1) Unzerstï¿½?rbare Mauer 2) Zerstï¿½?rbare
 	 * Kiste 3) Spieler1 4) Spieler2 5) Spieler3 6) Spieler4 7) Bombe 8)
 	 * Detonation 9) Ausgang ......
 	 */
-	
+
 	/**
-	 * Methode zum öffnen des Datenkanals zur Datei welche die Daten für die
+	 * Methode zum ï¿½ffnen des Datenkanals zur Datei welche die Daten fï¿½r die
 	 * konstante Karte beinhaltet.
 	 */
 	public static void MapReader() { /* 0815 Reader */
@@ -33,16 +36,17 @@ public class Init {
 		}
 
 	}
+
 	/**
-	 * Die Methode ruft den BufferedReader der für die Karten auslesung zuständig ist auf.
-	 * Sie liest die Zeilen der Datei einzelt aus und spaltet den String den sie erhält auf
-	 * die jeweiligen zahlenw erden in ein zweidimensionales Feld eingespeichert. Dieses 
-	 * befüllte Feld wird zurück gegeben.
+	 * Die Methode ruft den BufferedReader der fï¿½r die Karten auslesung
+	 * zustï¿½ndig ist auf. Sie liest die Zeilen der Datei einzelt aus und spaltet
+	 * den String den sie erhï¿½lt auf die jeweiligen zahlenw erden in ein
+	 * zweidimensionales Feld eingespeichert. Dieses befï¿½llte Feld wird zurï¿½ck
+	 * gegeben.
 	 * 
 	 * @return feld
 	 */
-	
-	
+
 	public static int[][] constMap() {
 		String[] bufmap = new String[21];
 		String zeile;
@@ -64,7 +68,7 @@ public class Init {
 			}
 
 		}
-		
+
 		SetExit(feld);
 
 		return feld;
@@ -72,16 +76,17 @@ public class Init {
 	}
 
 	/**
-	 * Initialisierungsmethode eines Standard-Spielfeldes, lediglich
-	 * bestehend aus festen Mauerstuecken und frei begehbaren Feldern.
+	 * Initialisierungsmethode eines Standard-Spielfeldes, lediglich bestehend
+	 * aus festen Mauerstuecken und frei begehbaren Feldern.
+	 * 
 	 * @return
 	 */
-	
+
 	public static int[][] basicField() {
 		Eingabe.CtrlReader();
 		int[][] fields = new int[21][17];
 
-		// Zunï¿½chst bekommen alle Feldkoordinaten den Wert "0"
+		// Zunï¿½?chst bekommen alle Feldkoordinaten den Wert "0"
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
 				fields[i][j] = 0;
@@ -107,12 +112,12 @@ public class Init {
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	/**
-	 * Initialisierung des Inhalts eines Spielfeldes
-	 * (Kisten, Spieler....)
+	 * Initialisierung des Inhalts eines Spielfeldes (Kisten, Spieler....)
+	 * 
 	 * @param fields
 	 * @return
 	 */
-	
+
 	public static int[][] fieldContent(int[][] fields) {
 
 		/*
@@ -143,25 +148,25 @@ public class Init {
 		fields[1][1] = 3;
 		fields[1][2] = 0;
 		fields[2][1] = 0;
-		
+
 		if (MP) {
 			fields[19][15] = 4;
 			fields[18][15] = 0;
 			fields[19][14] = 0;
 			Player.getStartPos2(Player2);
 		}
-		
+
+		setPowerUps(fields);
 		SetExit(fields);
-		
+
 		return fields;
 	}
 
 	/**
-	 * Reset-Methode fuer das Spielfeld.
-	 * Befuellt das Spielfeld neu und setzt die Spieler
-	 * wieder auf ihre Startpositionen.
+	 * Reset-Methode fuer das Spielfeld. Befuellt das Spielfeld neu und setzt
+	 * die Spieler wieder auf ihre Startpositionen.
 	 */
-	
+
 	public static void reset() {
 
 		for (int i = 0; i < 21; i++)
@@ -178,65 +183,68 @@ public class Init {
 			Player2.y = 16;
 
 			MP = false;
-		};
+		}
+		;
 	}
-	
+
 	/**
-	 * Initialisierung eines Boolean-Arrays fuer die Bomben.
-	 * Legt spaeter fest, wo sich Bomben befinden, und von 
-	 * welchen Bomben Detonationen gestartet werden.
+	 * Initialisierung eines Boolean-Arrays fuer die Bomben. Legt spaeter fest,
+	 * wo sich Bomben befinden, und von welchen Bomben Detonationen gestartet
+	 * werden.
+	 * 
 	 * @return
 	 */
-	
-	public static boolean[][] bombPos(){
+
+	public static boolean[][] bombPos() {
 		boolean[][] bombPos = new boolean[21][17];
-		
+
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
 				bombPos[i][j] = false;
-		
+
 		return bombPos;
 	}
-	
+
 	/**
-	 * Initialisierung des statischen Bombenarrays der Klasse Bomb,
-	 * unter der Beruecksichtigung des Spielmodus.
+	 * Initialisierung des statischen Bombenarrays der Klasse Bomb, unter der
+	 * Beruecksichtigung des Spielmodus.
+	 * 
 	 * @return
 	 */
-	
-	public static Bomb[] bombs(){
+
+	public static Bomb[] bombs() {
 		Bomb[] bombs;
-		if (MP){
+		if (MP) {
 			bombs = new Bomb[6];
 			for (int i = 0; i < 3; i++)
 				bombs[i] = new Bomb(Player1);
 			for (int i = 3; i < 6; i++)
 				bombs[i] = new Bomb(Player2);
-		}
-		else {
+		} else {
 			bombs = new Bomb[3];
 			for (int i = 0; i < 3; i++)
 				bombs[i] = new Bomb(Player1);
 		}
-		
+
 		return bombs;
-			
+
 	}
-	
+
 	/**
-	 * Die Methode durch läuft bevor das Spiel beginnt das Spielfeld und überprüft wo 
-	 * sich Kisten befinden. Wenn eine Kiste vorhanden ist an der Stelle wo sich die 
-	 * For-Schleifen befinden wird ein zufälliger Wert erzeugt. Bei einem Ergebniss
-	 * größer als 0,99 (bei einem Maximum von 1) wird der Ausgang gesetzt. Es kann sich 
-	 * maximal ein Ausgang auf dem Spielfeld befinden.
+	 * Die Methode durch lï¿½uft bevor das Spiel beginnt das Spielfeld und
+	 * ï¿½berprï¿½ft wo sich Kisten befinden. Wenn eine Kiste vorhanden ist an der
+	 * Stelle wo sich die For-Schleifen befinden wird ein zufï¿½lliger Wert
+	 * erzeugt. Bei einem Ergebniss grï¿½ï¿½er als 0,99 (bei einem Maximum von 1)
+	 * wird der Ausgang gesetzt. Es kann sich maximal ein Ausgang auf dem
+	 * Spielfeld befinden.
 	 * 
 	 * @param fields
 	 */
-	
-	public static void SetExit(int[][] fields){
+
+	public static void SetExit(int[][] fields) {
 		int value = 0;
 		double randomBox;
-		
+
 		while (value < 1) {
 			for (int i = 1; i < 20; i++)
 				for (int j = 1; j < 16 && value < maxKisten; j++) {
@@ -250,10 +258,35 @@ public class Init {
 					}
 				}
 		}
-		
-		
+
 	}
-	
-	
-	
+
+	public static void setPowerUps(int[][] fields) {
+		int value = 0;
+		double randomBox;
+		double whichPower;
+		int bombCnt = 1;
+
+		while (value < (maxKisten / 2)) {
+			for (int i = 1; i < 20; i++)
+				for (int j = 1; j < 16 && value < (maxKisten / 2); j++) {
+					if (fields[i][j] == 2) {
+						randomBox = Math.random();
+						if (randomBox > 0.99) {
+							whichPower = Math.random();
+							if (whichPower > 0.5 && bombCnt <= 3){
+								bombCnt++;
+								powerUps[i][j] = 42;
+								value++;
+							} else if (whichPower < 0.5) {
+								powerUps[i][j] = 41;
+								value++;
+							}
+						}
+					}
+				}
+		}
+
+	}
+
 }

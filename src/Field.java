@@ -24,6 +24,8 @@ public class Field extends JPanel {
 	private static BufferedImage bomberman;
 	private static BufferedImage bombe;
 	private static BufferedImage exit;
+	private static BufferedImage powerBomb;
+	private static BufferedImage powerRad;
 
 	private static BufferedImage exp_v;
 	private static BufferedImage exp_m;
@@ -41,6 +43,7 @@ public class Field extends JPanel {
 		PaintBombs(g);
 		PaintExplosion(g);
 		PaintBD(g);
+		PaintPowerUp(g);
 
 	}
 
@@ -130,6 +133,31 @@ public class Field extends JPanel {
 				} else if (fieldNumbers[i][j] == 9) {
 					g.drawImage(exit, i * (getWidth() / 21), j
 							* (getHeight() / 17), null);
+				} else if (fieldNumbers[i][j] == 42) {
+					g.drawImage(powerBomb, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+				}
+
+			}
+		}
+	}
+
+	// /////////////////////////////////////////////////////////////////////////////////////
+
+	public void PaintPowerUp(Graphics g) {
+
+		for (int i = 0; i < 21; i++) {
+			for (int j = 0; j < 17; j++) {
+				if (fieldNumbers[i][j] == 42) {
+					g.drawImage(boden, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+					g.drawImage(powerBomb, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+				} else if (fieldNumbers[i][j] == 41) {
+					g.drawImage(boden, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
+					g.drawImage(powerRad, i * (getWidth() / 21), j
+							* (getHeight() / 17), null);
 				}
 
 			}
@@ -148,6 +176,8 @@ public class Field extends JPanel {
 	// /////////////////////////////////////////////////////////////////////////////////////
 
 	public void PaintBD(Graphics g) {
+		g.drawImage(boden, Init.Player1.x * (getWidth() / 21), Init.Player1.y
+				* (getHeight() / 17), null);
 		g.drawImage(bomberman, Init.Player1.x * (getWidth() / 21),
 				Init.Player1.y * (getHeight() / 17), null);
 	}
@@ -192,6 +222,17 @@ public class Field extends JPanel {
 		try {
 			exit = ImageIO.read(new File("src/Pictures/ausgang.png"));
 		} catch (IOException e) {
+		}
+		try {
+			powerBomb = ImageIO.read(new File("src/Pictures/bombe_plus.png"));
+		} catch (IOException e) {
+			System.out
+					.println("Bild bombe_plus.png konnte nicht gemalt werden");
+		}
+		try {
+			powerRad = ImageIO.read(new File("src/Pictures/power_up.png"));
+		} catch (IOException e) {
+			System.out.println("Bild power_up.png konnte nicht gemalt werden");
 		}
 
 	}

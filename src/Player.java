@@ -28,7 +28,7 @@ public class Player {
 		
 		this.xo = x;
 		this.yo = y;
-		this.bCnt = 2;
+		this.bCnt = 1;
 		this.rad = 1;
 		this.ctrl ="";
 		this.num = 1;

@@ -1,10 +1,10 @@
 import javax.swing.JPanel;
 
 /**
- * Bombenklasse fuer das Objekt Bombe und zugehörige Methoden.
+ * Bombenklasse fuer das Objekt Bombe und zugehï¿½rige Methoden.
  * 
  * @author Pierre Schwarz
- *
+ * 
  */
 
 public class Bomb extends JPanel {
@@ -14,9 +14,8 @@ public class Bomb extends JPanel {
 	static Bomb[] bombs = Init.bombs();
 
 	/**
-	 * Bombenobjekt wird initialisiert und bekommt sowohl Koordinaten,
-	 * als auch Radien fuer die einzelnen Richtungen, eine Nummer
-	 * und Detonationsabfrage.
+	 * Bombenobjekt wird initialisiert und bekommt sowohl Koordinaten, als auch
+	 * Radien fuer die einzelnen Richtungen, eine Nummer und Detonationsabfrage.
 	 * 
 	 * @param player
 	 */
@@ -36,11 +35,12 @@ public class Bomb extends JPanel {
 
 	/**
 	 * Bombe wird platziert, bekommt eine Nummer und wird gezeichnet.
+	 * 
 	 * @param bomb
 	 * @param player
 	 * @return
 	 */
-	
+
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
 		Field.f = new Field();
@@ -49,15 +49,14 @@ public class Bomb extends JPanel {
 		bombToArray(bomb, player);
 
 		player.bP += 1;
-		
+
 	}
 
 	/**
-	 * Detonation der Bombe wird aktiviert und ueberprueft, ob sich
-	 * weitere Bomben im Detonationsradius befinden. Sollte dies
-	 * gegeben sein, wird die entsprechende Detonation der jeweiligen
-	 * Bombe ebenfalls aktiviert und das Sleep vom 1. Try-Blocks 
-	 * des zugehoerigen Threads interrupted.
+	 * Detonation der Bombe wird aktiviert und ueberprueft, ob sich weitere
+	 * Bomben im Detonationsradius befinden. Sollte dies gegeben sein, wird die
+	 * entsprechende Detonation der jeweiligen Bombe ebenfalls aktiviert und das
+	 * Sleep vom 1. Try-Blocks des zugehoerigen Threads interrupted.
 	 * 
 	 * @param bomb
 	 * @param player
@@ -110,45 +109,59 @@ public class Bomb extends JPanel {
 		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 8;
 		Field.bombPos[bomb.x][bomb.y] = false;
-		
+
 	}
-	
 
 	/**
-	 * Detonation wird beendet.
-	 * Abfrage bzgl. des Ausganges, ob dieser sich unter einer
-	 * Kiste befunden hat.
+	 * Detonation wird beendet. Abfrage bzgl. des Ausganges, ob dieser sich
+	 * unter einer Kiste befunden hat.
+	 * 
 	 * @param bomb
 	 * @param pl
 	 * @return
 	 */
-	
+
 	public static void endDetonation(Bomb bomb, Player pl) {
 
 		bomb.det = false;
 		bombToArray(bomb, pl);
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 0;
+			checkPowerUp(bomb.x + gor, bomb.y);
 		}
 		for (int gol = 1; gol <= bomb.l; gol++) {
 			Field.fieldNumbers[bomb.x - gol][bomb.y] = 0;
+			checkPowerUp(bomb.x - gol, bomb.y);
 		}
 		for (int goo = 1; goo <= bomb.o; goo++) {
 			Field.fieldNumbers[bomb.x][bomb.y - goo] = 0;
+			checkPowerUp(bomb.x, bomb.y - goo);
 		}
 		for (int gou = 1; gou <= bomb.u; gou++) {
 			Field.fieldNumbers[bomb.x][bomb.y + gou] = 0;
+			checkPowerUp(bomb.x, bomb.y + gou);
 		}
 		Field.fieldNumbers[bomb.x][bomb.y] = 0;
 
 		if (Field.fieldNumbers[Init.ex][Init.ey] == 0) {
 			Field.fieldNumbers[Init.ex][Init.ey] = 9;
 		}
+
 		pl.bP -= 1;
+	}
+
+	private static void checkPowerUp(int x, int y) {
+		if (Init.powerUps[x][y] == 42) {
+			Field.fieldNumbers[x][y] = 42;
+		} else if (Init.powerUps[x][y] == 41) {
+			Field.fieldNumbers[x][y] = 41;
+		}
+
 	}
 
 	/**
 	 * Abfrage, ob sich ein Feld zerstoeren laesst oder nicht.
+	 * 
 	 * @param coord
 	 * @return
 	 */
@@ -159,55 +172,56 @@ public class Bomb extends JPanel {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * Bombe wird zum statischen Bombenarray dieser Klasse hinzugefuegt.
+	 * 
 	 * @param bomb
 	 * @param pl
 	 */
-	
-	public static void bombToArray(Bomb bomb, Player pl){
+
+	public static void bombToArray(Bomb bomb, Player pl) {
 		if (pl == Init.Player1)
 			bombs[bomb.num] = bomb;
-		
+
 		if (Init.MP)
 			if (pl == Init.Player2)
 				bombs[bomb.num] = bomb;
 	}
 
 	/**
-	 * Abfrage, ob sich ein Spieler innerhalb eines Detonationsradius
-	 * einer Bombe befand. Falls ja, ist das Spiel vorbei.
+	 * Abfrage, ob sich ein Spieler innerhalb eines Detonationsradius einer
+	 * Bombe befand. Falls ja, ist das Spiel vorbei.
+	 * 
 	 * @param coord
 	 */
-	
+
 	public static void isGameOver(int coord) {
 		if (coord == 3) {
 			System.out.println("Spieler 2 siegt");
 			Init.reset();
-			GameOverPic.pic=1;
+			GameOverPic.pic = 1;
 			GameOverPic.DrawPic();
 			// Interface.closeGameOpenMenu();
 			// Menue.MainMenu();
 		} else if (coord == 4) {
 			System.out.println("Spieler 1 siegt");
 			Init.reset();
-			GameOverPic.pic=1;
+			GameOverPic.pic = 1;
 			GameOverPic.DrawPic();
 			// Interface.closeGameOpenMenu();
 			// Menue.MainMenu();
 		}
 	}
-	
+
 	/**
-	 * Die Methode bekommt ein Objekt der Klasse Bomb übergeben und die Größe
-	 * des Bombenradiuses. Es folg eine Überprüfung in jede Richtung. Die Explosion
-	 * der Bombe wird solange weiter geführt bis sie den maximal Wert erreicht hat
-	 * oder diese auf die erste Kiste in der jeweiligen Richtung stößt.
-	 * Hier zu werden Boolean-Werte eingesetzt welche solange auf True bleiben bis
-	 * einer diese Fälle auftritt.
-	 * Die länge der Explosion wir für jede Richtung abgespeichert so das diese 
-	 * später abgefragt werden kann.
+	 * Die Methode bekommt ein Objekt der Klasse Bomb ï¿½bergeben und die Grï¿½ï¿½e
+	 * des Bombenradiuses. Es folg eine ï¿½berprï¿½fung in jede Richtung. Die
+	 * Explosion der Bombe wird solange weiter gefï¿½hrt bis sie den maximal Wert
+	 * erreicht hat oder diese auf die erste Kiste in der jeweiligen Richtung
+	 * stï¿½ï¿½t. Hier zu werden Boolean-Werte eingesetzt welche solange auf True
+	 * bleiben bis einer diese Fï¿½lle auftritt. Die lï¿½nge der Explosion wir fï¿½r
+	 * jede Richtung abgespeichert so das diese spï¿½ter abgefragt werden kann.
 	 * 
 	 * @param bomb
 	 * @param pl
@@ -228,7 +242,7 @@ public class Bomb extends JPanel {
 		bomb.u = 0;
 
 		for (int i = 0; i <= pl.rad; i++) {
-			/* nach rechts überprüfen */
+			/* nach rechts ï¿½berprï¿½fen */
 			if (bomb.rb) {
 				bomb.r = i;
 				if (Field.fieldNumbers[x + i][y] == 2) {
@@ -239,7 +253,7 @@ public class Bomb extends JPanel {
 				}
 			}
 
-			/* nach links überprüfen */
+			/* nach links ï¿½berprï¿½fen */
 			if (bomb.lb) {
 				bomb.l = i;
 				if (Field.fieldNumbers[x - i][y] == 2) {
@@ -249,7 +263,7 @@ public class Bomb extends JPanel {
 					bomb.lb = false;
 				}
 			}
-			/* nach unten überprüfen */
+			/* nach unten ï¿½berprï¿½fen */
 			if (bomb.ub) {
 				bomb.u = i;
 				if (Field.fieldNumbers[x][y + i] == 2) {
@@ -259,7 +273,7 @@ public class Bomb extends JPanel {
 					bomb.ub = false;
 				}
 			}
-			/* nach oben überprüfen */
+			/* nach oben ï¿½berprï¿½fen */
 			if (bomb.ob) {
 				bomb.o = i;
 				if (Field.fieldNumbers[x][y - i] == 2) {
@@ -270,8 +284,8 @@ public class Bomb extends JPanel {
 				}
 			}
 		}
-		
+
 		bombToArray(bomb, pl);
-		
+
 	}
 }
