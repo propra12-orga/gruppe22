@@ -14,7 +14,7 @@ public class GameOverPic {
 		
 		if(pic==1){
 		try {
-			endGame = ImageIO.read(new File("src/Pictures/Game_over2.jpg"));
+			endGame = ImageIO.read(new File("src/Pictures/game_over2.jpg"));
 		} catch (IOException e) {
 			System.out.println("Game_over2.jpg konnte nicht gemalt werden");
 		}
