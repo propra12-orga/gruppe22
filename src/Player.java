@@ -1,5 +1,5 @@
 public class Player {
-
+	
 	int x;
 	int y;
 	int bCnt;
@@ -9,6 +9,10 @@ public class Player {
 	int num;
 	int bP; //bombs placed
 	String ctrl;
+	
+	int checkRad;
+	boolean danger;
+	
 	/**
 	 * Erzeugung des Spielerobjektes mit den Variablen:
 	 * x - X-Koordinate,
@@ -20,6 +24,9 @@ public class Player {
 	 * ctrl - Richtungsangabe des Spielers in die er geht,
 	 * num - Nummer des Spielers,
 	 * bP - aktive Bomben des Spielers auf dem Spielfeld
+	 * 
+	 * checkRad - Ueberpruefungsradius fuer Gefahr bzgl. Bomben (KI)
+	 * danger - Boolean bzgl. der Gefahr.
 	 */
 
 	public Player() {
@@ -35,7 +42,10 @@ public class Player {
 		this.bP = 0;
 	}
 	/**
-	 * Definiert die Position und die Spieler Nummer des Spieler 2.
+	 * Definiert die Position und die Spielernummer des Spieler 2 (Multiplayer)
+	 * 
+	 * @param player <br>
+	 * Spieler 2 wird uebergeben und seine Parameter entsprechend ueberschrieben.
 	 */
 	
 	public static void getStartPos2(Player player){
@@ -43,6 +53,23 @@ public class Player {
 		player.y = 15;
 		player.num = 2;
 		player.bP = 3;
+	}
+	
+	/**
+	 * Definiert die Position und die Spielernummer des Spieler 2 
+	 * mit zusaetzlichen spielereigenen Parametern (KI)
+	 * 
+	 * @param player <br>
+	 * Spieler 2 wird uebergeben und seine Parameter entsprechend ueberschrieben.
+	 */
+	
+	public static void initKI(Player player){
+		player.x = 19;
+		player.y = 15;
+		player.num = 2;
+		player.bP = 3;
+		player.checkRad = 1;
+		player.danger = false;
 	}
 	
 }
