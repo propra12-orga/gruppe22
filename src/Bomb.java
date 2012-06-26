@@ -43,8 +43,7 @@ public class Bomb extends JPanel {
 
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
-		Field.f = new Field();
-		Field.f.newPaint();
+//		Netzwerk senden	
 		bomb.num = player.bP;
 		bombToArray(bomb, player);
 

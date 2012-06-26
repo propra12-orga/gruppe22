@@ -38,10 +38,7 @@ public class Carl extends Thread {
 		
 		Bomb.detonate(bomb, player);
 			
-			Field.f = new Field();
-			Field.f.newPaint();
-		
-		
+//		Netzwerk senden		
 		
 		try {
 			sleep(1000);
@@ -52,9 +49,7 @@ public class Carl extends Thread {
 		Bomb.endDetonation(bomb, player);
 		Field.expPos[bomb.x][bomb.y] = false;
 		
-		Field.f = new Field();
-		Field.f.newPaint();
-	
+//		Netzwerk senden	
 
 		try {
 			sleep(50);

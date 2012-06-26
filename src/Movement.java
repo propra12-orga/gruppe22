@@ -14,30 +14,26 @@ public class Movement {
 		if (pl.ctrl == "Oben") {
 			if (checkMove(pl.x, pl.y - 1, pl)) {
 				goUp(pl.x, pl.y, pl);
-				playerToField(pl);
-				Field.f = new Field();
-				Field.f.newPaint();
+				
+//				Netzwerk senden	
 			}
 		} else if (pl.ctrl == "Unten") {
 			if (checkMove(pl.x, pl.y + 1, pl)) {
 				goDown(pl.x, pl.y, pl);
-				playerToField(pl);
-				Field.f = new Field();
-				Field.f.newPaint();
+
+//				Netzwerk senden	
 			}
 		} else if (pl.ctrl == "Links") {
 			if (checkMove(pl.x - 1, pl.y, pl)) {
 				goLeft(pl.x, pl.y, pl);
-				playerToField(pl);
-				Field.f = new Field();
-				Field.f.newPaint();
+
+//				Netzwerk senden	
 			}
 		} else if (pl.ctrl == "Rechts") {
 			if (checkMove(pl.x + 1, pl.y, pl)) {
 				goRight(pl.x, pl.y, pl);
-				playerToField(pl);
-				Field.f = new Field();
-				Field.f.newPaint();
+
+//				Netzwerk senden	
 			}
 		} else if (pl.ctrl == "Bombe") {
 			if (pl.bCnt > 0)

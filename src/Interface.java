@@ -196,6 +196,8 @@ public class Interface implements KeyListener, ActionListener {
 			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
+			Field.f = new Field();
+			new RepaintThread().start();
 		} else if (e.getSource() == this.continueGame) {
 			Game.main(null);
 			closeMenuOpenGame();
