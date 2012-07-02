@@ -189,6 +189,7 @@ public class Interface implements KeyListener, ActionListener {
 			GameMode.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
 			Boxes();
+			Init.KI = true;
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombPos();

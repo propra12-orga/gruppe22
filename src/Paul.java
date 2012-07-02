@@ -15,13 +15,14 @@ public class Paul extends Thread {
 	
 	public void run(){
 		while(true){
-			KI.checkEnv();
 			
 			try{
+				if (!KI.esc)
+					KI.checkEnv();
 				sleep(750);
 			}
 			catch(InterruptedException e){
-				
+				break;
 			}
 		}
 	}

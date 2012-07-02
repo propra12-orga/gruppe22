@@ -6,6 +6,7 @@ public class Init {
 
 	static int maxKisten = 90;
 	static Boolean MP = false;
+	static Boolean KI = false;
 	static Player Player1 = new Player();
 	static Player Player2 = new Player();
 	static BufferedReader in;
@@ -155,6 +156,13 @@ public class Init {
 			fields[19][14] = 0;
 			Player.getStartPos2(Player2);
 		}
+		
+		if (KI) {
+			fields[19][15] = 4;
+			fields[18][15] = 0;
+			fields[19][14] = 0;
+			Player1.initKI(Player2);
+		}
 
 		setPowerUps(fields);
 		SetExit(fields);
@@ -178,11 +186,14 @@ public class Init {
 		Field.fieldNumbers = fieldContent(Field.basicField);
 		Player1.x = 1;
 		Player1.y = 1;
-		if (MP) {
+		Bomb.gameOver = false;
+		
+		if (MP || KI) {
 			Player2.x = 20;
 			Player2.y = 16;
 
 			MP = false;
+			KI = false;
 		}
 		;
 	}
@@ -214,7 +225,7 @@ public class Init {
 
 	public static Bomb[] bombs() {
 		Bomb[] bombs;
-		if (MP) {
+		if (MP || KI) {
 			bombs = new Bomb[6];
 			for (int i = 0; i < 3; i++)
 				bombs[i] = new Bomb(Player1);

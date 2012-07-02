@@ -26,6 +26,7 @@ public class Carl extends Thread {
 		Bomb bomb = new Bomb(player);
 		Bomb.placeBomb(bomb, player);
 		Bomb.radCheck(bomb, player);
+		if (Init.KI) KI.setDanger(bomb);
 		try {
 			for (int i = 0; i < 30; i++){
 				sleep(100);
@@ -38,7 +39,9 @@ public class Carl extends Thread {
 		
 		Bomb.detonate(bomb, player);
 			
-//		Netzwerk senden		
+		// Netzwerk senden
+		
+		
 		
 		try {
 			sleep(1000);
@@ -47,9 +50,11 @@ public class Carl extends Thread {
 		}
 		
 		Bomb.endDetonation(bomb, player);
+		if(Init.KI) KI.clearDanger(bomb);
 		Field.expPos[bomb.x][bomb.y] = false;
 		
-//		Netzwerk senden	
+		// Netzwerk senden
+	
 
 		try {
 			sleep(50);

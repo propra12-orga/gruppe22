@@ -9,7 +9,8 @@ import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
 
-	Boolean ob, ub, lb, rb, det;
+	boolean ob, ub, lb, rb, det;
+	static boolean gameOver = false;
 	int x, y, o, u, l, r, num;
 	static Bomb[] bombs = Init.bombs();
 
@@ -43,7 +44,7 @@ public class Bomb extends JPanel {
 
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
-//		Netzwerk senden	
+		//Netzwerk senden
 		bomb.num = player.bP;
 		bombToArray(bomb, player);
 
@@ -186,6 +187,10 @@ public class Bomb extends JPanel {
 		if (Init.MP)
 			if (pl == Init.Player2)
 				bombs[bomb.num] = bomb;
+		
+		if (Init.KI)
+			if (pl == KI.kiPl)
+				bombs[bomb.num] = bomb;
 	}
 
 	/**
@@ -197,6 +202,11 @@ public class Bomb extends JPanel {
 
 	public static void isGameOver(int coord) {
 		if (coord == 3) {
+			if (Init.KI){
+				gameOver = true;
+				Game.kiThread.interrupt();
+			}
+			
 			System.out.println("Spieler 2 siegt");
 			Init.reset();
 			GameOverPic.pic = 1;
@@ -204,6 +214,11 @@ public class Bomb extends JPanel {
 			// Interface.closeGameOpenMenu();
 			// Menue.MainMenu();
 		} else if (coord == 4) {
+			if (Init.KI){
+				gameOver = true;
+				Game.kiThread.interrupt();
+			}
+			
 			System.out.println("Spieler 1 siegt");
 			Init.reset();
 			GameOverPic.pic = 1;
