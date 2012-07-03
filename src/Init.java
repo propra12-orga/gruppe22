@@ -84,7 +84,7 @@ public class Init {
 	 */
 
 	public static int[][] basicField() {
-		Eingabe.CtrlReader();
+		MenueEingabe.CtrlReader();
 		int[][] fields = new int[21][17];
 
 		// Zun�?chst bekommen alle Feldkoordinaten den Wert "0"

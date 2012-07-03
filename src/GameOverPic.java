@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 
 public class GameOverPic {
 
-	public static Boolean picOn;
+	public static Boolean picOn = false;
 	static BufferedImage endGame;
 	static int pic;
 
@@ -31,11 +31,11 @@ public class GameOverPic {
 	public static void DrawPic() {
 		LoadPic();
 		picOn = true;
+		Menue.MainMenu();
 		Interface.endPic.setFocusable(true);
 		Interface.frame.add(Interface.endPic);
 		Interface.game.setVisible(false);
 		Interface.endPic.setVisible(true);
-		Menue.MainMenu();
 
 	}
 

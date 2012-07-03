@@ -177,7 +177,7 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtomain) {
 			Menue.MainMenu();
 		} else if (e.getSource() == this.controls) {
-			Eingabe.CtrlReader();
+			MenueEingabe.CtrlReader();
 			displayCtrl();
 			Control.ControlMenu();
 		} else if (e.getSource() == this.backtooptions) {
@@ -213,7 +213,7 @@ public class Interface implements KeyListener, ActionListener {
 			closeMenuOpenGame();
 			Field.f.newPaint();
 		} else if (e.getSource() == this.save) {
-			Eingabe.CtrlWrite();
+			MenueEingabe.CtrlWrite();
 		} else if (e.getSource() == this.constMap) {
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.constMap();
@@ -227,7 +227,7 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtomulti) {
 			GameMode.MultiMenu();
 		} else if (e.getSource() == this.controls2) {
-			Eingabe.CtrlReader();
+			MenueEingabe.CtrlReader();
 			displayCtrl();
 			Control.ControlMenu2();
 		} else if (e.getSource() == this.startGame2) {
@@ -276,16 +276,16 @@ public class Interface implements KeyListener, ActionListener {
 	}
 
 	public static void displayCtrl() {
-		getUp1.setText(Eingabe.CtrlArray[0]);
-		getDown1.setText(Eingabe.CtrlArray[1]);
-		getRight1.setText(Eingabe.CtrlArray[2]);
-		getLeft1.setText(Eingabe.CtrlArray[3]);
-		getBomb1.setText(Eingabe.CtrlArray[4]);
-		getUp2.setText(Eingabe.CtrlArray[5]);
-		getDown2.setText(Eingabe.CtrlArray[6]);
-		getRight2.setText(Eingabe.CtrlArray[7]);
-		getLeft2.setText(Eingabe.CtrlArray[8]);
-		getBomb2.setText(Eingabe.CtrlArray[9]);
+		getUp1.setText(MenueEingabe.CtrlArray[0]);
+		getDown1.setText(MenueEingabe.CtrlArray[1]);
+		getRight1.setText(MenueEingabe.CtrlArray[2]);
+		getLeft1.setText(MenueEingabe.CtrlArray[3]);
+		getBomb1.setText(MenueEingabe.CtrlArray[4]);
+		getUp2.setText(MenueEingabe.CtrlArray[5]);
+		getDown2.setText(MenueEingabe.CtrlArray[6]);
+		getRight2.setText(MenueEingabe.CtrlArray[7]);
+		getLeft2.setText(MenueEingabe.CtrlArray[8]);
+		getBomb2.setText(MenueEingabe.CtrlArray[9]);
 
 	}
 
@@ -308,6 +308,7 @@ public class Interface implements KeyListener, ActionListener {
 	public static void invisPicOpenMenu() {
 		endPic.setVisible(false);
 		menu.setVisible(true);
+		GameOverPic.picOn = false;
 
 	}
 
@@ -317,7 +318,7 @@ public class Interface implements KeyListener, ActionListener {
 			invisPicOpenMenu();
 
 		} else {
-			String Key = Eingabe.Ctrl(e);
+			String Key = MenueEingabe.Ctrl(e);
 		}
 	}
 
