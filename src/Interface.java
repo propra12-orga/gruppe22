@@ -31,6 +31,7 @@ public class Interface implements KeyListener, ActionListener {
 			restart, backtomulti;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber;
+	static boolean isPause = false;
 	static JComboBox getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
@@ -200,6 +201,10 @@ public class Interface implements KeyListener, ActionListener {
 			Field.f = new Field();
 			new RepaintThread().start();
 		} else if (e.getSource() == this.continueGame) {
+			isPause = false;
+			if (Init.KI)
+				Paul.kiThread.resumeKI();
+			
 			Game.main(null);
 			closeMenuOpenGame();
 			Field.f.newPaint();

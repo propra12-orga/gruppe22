@@ -13,6 +13,7 @@ import java.io.IOException;
  */
 public class Eingabe {
 
+	static boolean isPause = false;
 	static String[] CtrlArray = new String[10]; /*
 												 * Feld zum speichern der
 												 * Steuerung
@@ -131,6 +132,8 @@ public class Eingabe {
 		} else if (KeyId.equals("NumPad -")) {
 			Init.Player1.rad--;
 		} else if (KeyId.equals("ESC")) {
+			Interface.isPause = true;
+			Paul.kiThread.interrupt();
 			Interface.closeGameOpenMenu();
 			IngameMenu.ingame();
 		}

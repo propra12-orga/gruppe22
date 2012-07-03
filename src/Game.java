@@ -14,16 +14,12 @@ public class Game implements KeyListener {
 	 * Initialisierung des Game-Panels.
 	 */
 	
-	static Paul kiThread;
-	
 	public Game() {
 
 		Interface.game = new Field();
-		if (Init.KI){
-			kiThread = new Paul();
-			kiThread.start();
-		}
-
+		if (Init.KI)
+			new Paul().start();
+		
 		Interface.game.setFocusable(true);
 		Interface.game.addKeyListener(this);
 

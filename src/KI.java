@@ -14,7 +14,7 @@ public class KI {
 	static Player kiPl = Init.Player2;
 	static boolean[][] danger = initDangerArray();
 	
-	static int cnt = 1;
+	static int cnt = 0;
 	static double shuffle;
 	static boolean l, r, o, u, esc, noBomb = false;
 	
@@ -47,6 +47,22 @@ public class KI {
 				}		
 				else if (Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl) && Field.fieldNumbers[kiPl.x - 2][kiPl.y] != 2){
 					moveLeft();
+					hasMoved = true;
+				}
+				else if (Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl) && (danger[kiPl.x][kiPl.y - 1] || danger[kiPl.x][kiPl.y + 1])){
+					moveLeft();
+					hasMoved = true;
+				}
+				else if (Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl) && (danger[kiPl.x][kiPl.y - 1] || danger[kiPl.x][kiPl.y + 1])){
+					moveRight();
+					hasMoved = true;
+				}
+				else if (Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl) && (danger[kiPl.x - 1][kiPl.y] || danger[kiPl.x + 1][kiPl.y])){
+					moveDown();
+					hasMoved = true;
+				}
+				else if (Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl) && (danger[kiPl.x - 1][kiPl.y] || danger[kiPl.x + 1][kiPl.y])){
+					moveUp();
 					hasMoved = true;
 				}
 				else {
@@ -152,26 +168,25 @@ public class KI {
 	 */
 	
 	public static void chooseDir(){
-		if (danger[kiPl.x + 1][kiPl.y] && danger[kiPl.x - 1][kiPl.y] && kiPl.y != 15 
-			&& kiPl.y != 1 && kiPl.x != 1 && kiPl.x != 19) //Gefahr von Links und Rechts
+		if (danger[kiPl.x][kiPl.y]){
+			if (!danger[kiPl.x + 1][kiPl.y] && Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)){
+				moveRight();
 				hasMoved = true;
-		else if (danger[kiPl.x][kiPl.y + 1] && danger[kiPl.x][kiPl.y - 1] && kiPl.y != 15 
-			&& kiPl.y != 1 && kiPl.x != 1 && kiPl.x != 19) // Gefahr von Oben und Unten
+			}
+			else if (!danger[kiPl.x - 1][kiPl.y] && Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)){
+				moveLeft();
 				hasMoved = true;
-		else if (danger[kiPl.x + 1][kiPl.y] && !Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)
-			&& kiPl.y != 15 && kiPl.y != 1 && kiPl.x != 1 && kiPl.x != 19) // Gefahr von Rechts, Links nicht begehbar
+			}
+			else if (!danger[kiPl.x][kiPl.y + 1] && Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)){
+				moveDown();
 				hasMoved = true;
-		else if (danger[kiPl.x - 1][kiPl.y] && !Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)
-			&& kiPl.y != 15 && kiPl.y != 1 && kiPl.x != 1 && kiPl.x != 19) // Gefahr von Links, Rechts nicht begehbar
+			}
+			else if (!danger[kiPl.x][kiPl.y - 1] && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl)){
+				moveUp();
 				hasMoved = true;
-		else if (danger[kiPl.x][kiPl.y - 1] && !Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)
-			&& kiPl.y != 15 && kiPl.y != 1 && kiPl.x != 1 && kiPl.x != 19) // Gefahr von Oben, Unten nicht begehbar
-				hasMoved = true;
-		else if (danger[kiPl.x][kiPl.y + 1] && !Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl)
-			&& kiPl.y != 15 && kiPl.y != 1 && kiPl.x != 1 && kiPl.x != 19) // Gefahr von Unten, Oben nicht begehbar
-				hasMoved = true;
-		
-	
+			}
+		}
+			
 		while(!hasMoved){
 			shuffle = Math.random();
 			if (shuffle < 0.25 && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl) && !danger[kiPl.x][kiPl.y - 1]){

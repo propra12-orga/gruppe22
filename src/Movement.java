@@ -62,13 +62,13 @@ public class Movement {
 			return true;
 		else if (Field.fieldNumbers[x][y] == 9) {
 			Bomb.gameOver = true;
-			Game.kiThread.interrupt();
+			Paul.kiThread.interrupt();
 			Init.reset();
 			GameOverPic.pic = 2;
 			GameOverPic.DrawPic();
-		} else if (Field.fieldNumbers[x][y] == 8) {
+		} else if (Field.fieldNumbers[x][y] == 8 && pl != KI.kiPl) {
 			Bomb.gameOver = true;
-			Game.kiThread.interrupt();
+			Paul.kiThread.interrupt();
 			Init.reset();
 			GameOverPic.pic = 1;
 			GameOverPic.DrawPic();

@@ -204,7 +204,7 @@ public class Bomb extends JPanel {
 		if (coord == 3) {
 			if (Init.KI){
 				gameOver = true;
-				Game.kiThread.interrupt();
+				Paul.kiThread.interrupt();
 			}
 			
 			System.out.println("Spieler 2 siegt");
@@ -216,7 +216,7 @@ public class Bomb extends JPanel {
 		} else if (coord == 4) {
 			if (Init.KI){
 				gameOver = true;
-				Game.kiThread.interrupt();
+				Paul.kiThread.interrupt();
 			}
 			
 			System.out.println("Spieler 1 siegt");
