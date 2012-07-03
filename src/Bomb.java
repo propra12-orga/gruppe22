@@ -210,7 +210,7 @@ public class Bomb extends JPanel {
 			System.out.println("Spieler 2 siegt");
 			Init.reset();
 			GameOverPic.pic = 1;
-			GameOverPic.DrawPic();
+			new GameOverPic();
 			// Interface.closeGameOpenMenu();
 			// Menue.MainMenu();
 		} else if (coord == 4) {
@@ -221,8 +221,9 @@ public class Bomb extends JPanel {
 			
 			System.out.println("Spieler 1 siegt");
 			Init.reset();
+			GameOverPic.picOn = true;
 			GameOverPic.pic = 1;
-			GameOverPic.DrawPic();
+			new GameOverPic();
 			// Interface.closeGameOpenMenu();
 			// Menue.MainMenu();
 		}

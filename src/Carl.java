@@ -8,6 +8,7 @@
 public class Carl extends Thread {
 
 	public Player player;
+	Sound boom;
 	
 	/**
 	 * Der Thread bekommt einen Spieler uebergeben, alles Weitere
@@ -38,6 +39,7 @@ public class Carl extends Thread {
 		}
 		
 		Bomb.detonate(bomb, player);
+		boom = new Sound("src/Sounds/bomb.wav");
 			
 		// Netzwerk senden
 		

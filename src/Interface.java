@@ -144,7 +144,6 @@ public class Interface implements KeyListener, ActionListener {
 		getBomb1.addKeyListener(this);
 		getBomb2.addKeyListener(this);
 		game.addKeyListener(this);
-		endPic.addKeyListener(this);
 
 		Menue.MainMenu();
 		frame.add(menu);
@@ -313,13 +312,7 @@ public class Interface implements KeyListener, ActionListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-
-		if (GameOverPic.picOn == true) {
-			invisPicOpenMenu();
-
-		} else {
-			String Key = MenueEingabe.Ctrl(e);
-		}
+		String Key = MenueEingabe.Ctrl(e);
 	}
 
 	public void keyReleased(KeyEvent e) {
