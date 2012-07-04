@@ -214,15 +214,17 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.save) {
 			MenueEingabe.CtrlWrite();
 		} else if (e.getSource() == this.constMap) {
-			String s = Load.loadMap();
-			Field.basicField = Init.basicField();
-			Field.fieldNumbers = Init.constMap(s);
-			Field.bombPos = Init.bombPos();
-			Field.expPos = Init.bombPos();
-			Bomb.bombs = Init.bombs();
-			Game.main(null);
-			closeMenuOpenGame();
-			new RepaintThread().start();
+			Load.loadMap();
+			if(Load.chosen){
+				Field.basicField = Init.basicField();
+				Field.fieldNumbers = Init.constMap(Load.s);
+				Field.bombPos = Init.bombPos();
+				Field.expPos = Init.bombPos();
+				Bomb.bombs = Init.bombs();
+				Game.main(null);
+				closeMenuOpenGame();
+				new RepaintThread().start();
+			}
 		} else if (e.getSource() == this.multi) {
 			GameMode.MultiMenu();
 		} else if (e.getSource() == this.backtomulti) {
