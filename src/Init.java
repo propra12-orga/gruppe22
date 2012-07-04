@@ -28,10 +28,10 @@ public class Init {
 	 * Methode zum �ffnen des Datenkanals zur Datei welche die Daten f�r die
 	 * konstante Karte beinhaltet.
 	 */
-	public static void MapReader() { /* 0815 Reader */
+	public static void MapReader(String s) { /* 0815 Reader */
 
 		try {
-			in = new BufferedReader(new FileReader("Map1.TXT"));
+			in = new BufferedReader(new FileReader(s));
 
 		} catch (IOException e) {
 		}
@@ -48,13 +48,13 @@ public class Init {
 	 * @return feld
 	 */
 
-	public static int[][] constMap() {
+	public static int[][] constMap(String s) {
 		maxKisten = 0;
 		String[] bufmap = new String[21];
 		String zeile;
 		zeile = "";
 		int[][] feld = new int[21][17];
-		MapReader();
+		MapReader(s);
 
 		for (int i = 0; i <= 16; i++) {
 
