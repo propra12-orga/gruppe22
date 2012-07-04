@@ -49,6 +49,7 @@ public class Init {
 	 */
 
 	public static int[][] constMap() {
+		maxKisten = 0;
 		String[] bufmap = new String[21];
 		String zeile;
 		zeile = "";
@@ -65,11 +66,13 @@ public class Init {
 			bufmap = zeile.split("_");
 			for (int o = 0; o <= 20; o++) {
 				feld[o][i] = Integer.parseInt(bufmap[o]);
-
+				if (feld[o][i] == 2)
+					maxKisten++;
 			}
 
 		}
-
+		
+		setPowerUps(feld);
 		SetExit(feld);
 
 		return feld;
@@ -105,7 +108,7 @@ public class Init {
 
 		for (int i = 2; i < 19; i += 2)
 			for (int j = 2; j < 15; j += 2)
-				fields[i][j] = 1;
+				fields[i][j] = 1;			
 
 		return fields;
 	}

@@ -98,7 +98,7 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
-	public void PaintContent(Graphics g) {
+	public void PaintGround(Graphics g) {
 
 		for (int i = 0; i < 21; i++) {
 			for (int j = 0; j < 17; j++) {
@@ -118,7 +118,7 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
-	public void PaintGround(Graphics g) {
+	public void PaintContent(Graphics g) {
 
 		for (int i = 0; i < 21; i++) {
 			for (int j = 0; j < 17; j++) {
@@ -238,3 +238,15 @@ public class Field extends JPanel {
 	}
 
 }
+
+
+/* Vorlage:
+
+for (int j = 0; j < 17; j++){
+	System.out.println();
+	for (int i = 0; i < 21; i++)
+		System.out.print(fieldNumbers[i][j]);
+	}
+	System.out.println();
+
+*/

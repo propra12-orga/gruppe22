@@ -221,6 +221,7 @@ public class Interface implements KeyListener, ActionListener {
 			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
+			new RepaintThread().start();
 		} else if (e.getSource() == this.multi) {
 			GameMode.MultiMenu();
 		} else if (e.getSource() == this.backtomulti) {

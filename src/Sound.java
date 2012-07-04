@@ -2,7 +2,7 @@ import java.io.*;
 import java.applet.*;
 
 /**
- * Simple Sound-Klasse. Gegenebenfalls wegen AudioClip ein wenig ueberholt?
+ * Simple Sound-Klasse. Gegebenenfalls wegen AudioClip ein wenig ueberholt?
  * @author Pierre Schwarz
  *
  */
