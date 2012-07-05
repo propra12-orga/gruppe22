@@ -47,6 +47,9 @@ public class Carl extends Thread {
 		try {
 			for (int i = 0; i < 30; i++){
 				sleep(100);
+				while(Interface.isPause){
+					sleep(10);
+				}
 				if (bomb.det)
 					interrupt();
 			}
