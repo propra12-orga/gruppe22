@@ -26,7 +26,7 @@ import javax.swing.JTextArea;
  */
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
-	static JButton single, multi, options, exit, sound, controls, controls2,
+	static JButton online,single, multi, options, exit, sound, controls, controls2,
 			backtomain, save, backtooptions, rndMapSingle, rndMapMulti,
 			constMap, startGame, startGame2, backtosingle, continueGame,
 			restart, backtomulti, saveGame;
@@ -67,6 +67,7 @@ public class Interface implements KeyListener, ActionListener {
 		frame.setLocationRelativeTo(null);
 
 		menu = new JPanel(new GridBagLayout());
+		online = new JButton("Online");
 		single = new JButton("Singleplayer");
 		multi = new JButton("Multiplayer");
 		options = new JButton("Optionen");
@@ -121,6 +122,7 @@ public class Interface implements KeyListener, ActionListener {
 		InitComponents.MultiComponents();
 		InitComponents.OptionsComponents();
 		InitComponents.IngameMenuComponents();
+		online.addActionListener(this);
 		single.addActionListener(this);
 		multi.addActionListener(this);
 		options.addActionListener(this);
@@ -257,7 +259,11 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == saveGame) {
 			IngameMenu.isSave = true;
 			IngameMenu.ingame();
+		}else if (e.getSource() == online) {
+			EinfacherChatClient.start();
+			
 		}
+
 
 	}
 

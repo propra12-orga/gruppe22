@@ -37,6 +37,8 @@ public class GameMode {
 		c.gridy = 2;
 		Interface.menu.add(Interface.controls2, c);
 		c.gridy = 3;
+		Interface.menu.add(Interface.online, c);
+		c.gridy = 4;
 		Interface.menu.add(Interface.backtomain, c);
 		Interface.menu.updateUI();
 	}

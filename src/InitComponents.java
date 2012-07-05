@@ -114,6 +114,12 @@ public class InitComponents {
 		Interface.startGame2.setHorizontalTextPosition(JButton.CENTER);
 		Interface.startGame2.setVerticalTextPosition(JButton.CENTER);
 		Interface.startGame2.setForeground(Color.white);
+		
+		Interface.online.setPreferredSize(Interface.dim);
+		Interface.online.setIcon(new ImageIcon(Interface.Button));
+		Interface.online.setHorizontalTextPosition(JButton.CENTER);
+		Interface.online.setVerticalTextPosition(JButton.CENTER);
+		Interface.online.setForeground(Color.white);
 	}
 	
 	/**
