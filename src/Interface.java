@@ -184,7 +184,8 @@ public class Interface implements KeyListener, ActionListener {
 			Options.OptionsMenu();
 		} else if (e.getSource() == this.backtomain) {
 			Menue.MainMenu();
-			Init.reset();
+			if (Game.played)
+				Init.reset();
 		} else if (e.getSource() == this.controls) {
 			MenueEingabe.CtrlReader();
 			displayCtrl();

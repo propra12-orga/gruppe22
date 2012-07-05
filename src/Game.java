@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 
 public class Game implements KeyListener {
 
+	static boolean played = false;
 	/**
 	 * Initialisierung des Game-Panels.
 	 */
@@ -29,6 +30,7 @@ public class Game implements KeyListener {
 		Interface.game.setFocusable(true);
 		Interface.game.addKeyListener(this);
 
+		played = true;
 		Interface.frame.add(Interface.game);
 		
 	}
