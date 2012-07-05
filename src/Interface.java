@@ -334,7 +334,7 @@ public class Interface implements KeyListener, ActionListener {
 			if (saveName.getText() != ""){
 				mapName = saveName.getText();
 				saved = new JLabel("'" + mapName + ".txt' gespeichert" ); 
-				Interface.saved.setForeground(Color.white);
+				Interface.saved.setForeground(Color.red);
 				Save.saveMap(mapName);
 				IngameMenu.isSave = false;
 				IngameMenu.ingame();

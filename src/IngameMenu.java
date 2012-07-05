@@ -22,15 +22,15 @@ public class IngameMenu {
 		c.gridy = 1;
 		Interface.menu.add(Interface.saveGame, c);
 		c.gridy = 2;
+		if (isSaved){
+			Interface.menu.add(Interface.saved, c);
+			c.gridy = 3;
+		}
 		if (isSave){
-			Interface.menu.add(Interface.saveAs);
+			Interface.menu.add(Interface.saveAs, c);
 			c.gridy = 3;
 			Interface.menu.add(Interface.saveName, c);
 			c.gridy = 4;
-		}
-		
-		if (isSaved){
-			Interface.menu.add(Interface.saved);
 		}
 		Interface.menu.add(Interface.backtomain, c);
 		Interface.menu.updateUI();
