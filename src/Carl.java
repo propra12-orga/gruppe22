@@ -9,6 +9,8 @@ public class Carl extends Thread {
 
 	public Player player;
 	Sound boom;
+	Boolean isSet = false;
+	Bomb crtBomb, bomb;
 	
 	/**
 	 * Der Thread bekommt einen Spieler uebergeben, alles Weitere
@@ -19,13 +21,27 @@ public class Carl extends Thread {
 	public Carl(Player crtPlayer) {
 		super();
 		player = crtPlayer;
+		isSet = false;
+	}
+	
+	public Carl(Bomb bomb, Player crtPlayer){
+		super();
+		player = crtPlayer;
+		crtBomb = bomb;
+		isSet = true;
 	}
 
 	public void run() {
 
-		player.bCnt -= 1;
-		Bomb bomb = new Bomb(player);
-		Bomb.placeBomb(bomb, player);
+		if(!isSet){
+			player.bCnt -= 1;
+			bomb = new Bomb(player);
+			Bomb.placeBomb(bomb, player);
+		}
+		else {
+			bomb = crtBomb;
+			player.bP += 1;
+		}
 		Bomb.radCheck(bomb, player);
 		if (Init.KI) KI.setDanger(bomb);
 		try {

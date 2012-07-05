@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
 
-	boolean ob, ub, lb, rb, det;
+	boolean ob, ub, lb, rb, det, active;
 	static boolean gameOver = false;
 	int x, y, o, u, l, r, num;
 	static Bomb[] bombs = Init.bombs();
@@ -32,6 +32,7 @@ public class Bomb extends JPanel {
 		this.lb = true;
 		this.rb = true;
 		this.det = false;
+		this.active = false;
 	}
 
 	/**
@@ -46,6 +47,7 @@ public class Bomb extends JPanel {
 		Field.bombPos[bomb.x][bomb.y] = true;
 		//Netzwerk senden
 		bomb.num = player.bP;
+		bomb.active = true;
 		bombToArray(bomb, player);
 
 		player.bP += 1;
@@ -106,6 +108,7 @@ public class Bomb extends JPanel {
 						bombs[i].det = true;
 			}
 		}
+		bomb.active = false;
 		isGameOver(Field.fieldNumbers[bomb.x][bomb.y]);
 		Field.fieldNumbers[bomb.x][bomb.y] = 8;
 		Field.bombPos[bomb.x][bomb.y] = false;

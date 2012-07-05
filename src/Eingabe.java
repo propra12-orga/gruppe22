@@ -96,7 +96,8 @@ public class Eingabe {
 			Init.Player1.rad--;
 		} else if (KeyId.equals("ESC")) {
 			Interface.isPause = true;
-			Paul.kiThread.interrupt();
+			if (Init.KI)
+				Paul.kiThread.interrupt();
 			Interface.closeGameOpenMenu();
 			IngameMenu.ingame();
 		}

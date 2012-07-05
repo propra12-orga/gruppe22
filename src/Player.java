@@ -71,5 +71,4 @@ public class Player {
 		player.checkRad = 1;
 		player.danger = false;
 	}
-	
 }

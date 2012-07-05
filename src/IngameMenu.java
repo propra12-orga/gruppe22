@@ -5,6 +5,9 @@ import java.awt.*;
  *
  */
 public class IngameMenu {
+	
+	static boolean isSave, isSaved = false;
+	
 	/**
 	 * Wird aufgerufen, wenn waehrend des Spiels ESC gedrueckt wird,
 	 * cleart Panel und befuellt es mit IngameMenue Widgets
@@ -17,6 +20,18 @@ public class IngameMenu {
 		c.gridy = 0;
 		Interface.menu.add(Interface.continueGame, c);
 		c.gridy = 1;
+		Interface.menu.add(Interface.saveGame, c);
+		c.gridy = 2;
+		if (isSave){
+			Interface.menu.add(Interface.saveAs);
+			c.gridy = 3;
+			Interface.menu.add(Interface.saveName, c);
+			c.gridy = 4;
+		}
+		
+		if (isSaved){
+			Interface.menu.add(Interface.saved);
+		}
 		Interface.menu.add(Interface.backtomain, c);
 		Interface.menu.updateUI();
 	}

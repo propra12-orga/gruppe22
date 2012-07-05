@@ -16,9 +16,15 @@ public class Game implements KeyListener {
 	
 	public Game() {
 
+		if (Init.loaded)
+			Load.content();
+		
+		
 		Interface.game = new Field();
 		if (Init.KI)
 			new Paul().start();
+		
+		new RepaintThread().start();
 		
 		Interface.game.setFocusable(true);
 		Interface.game.addKeyListener(this);

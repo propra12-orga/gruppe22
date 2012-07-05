@@ -21,7 +21,7 @@ public class Load{
 		s = "";
 		JFileChooser fc = new JFileChooser("src/Maps/");
 		fc.setFileSelectionMode( JFileChooser.FILES_ONLY );
-		fc.setDialogTitle("Map-Textdatei öffnen");
+		fc.setDialogTitle("Spielstand laden");
 		fc.setFileFilter(new FileNameExtensionFilter("Textdatei" , "txt"));
 		fc.setFileFilter( new FileFilter()
 		{
@@ -56,6 +56,59 @@ public class Load{
 					default:
 						System.out.println( "Auswahl abgebrochen" );
 						choose = false;
+			}
+	}
+	
+	public static void content(){
+
+		for (int i = 0; i < 6; i++){
+				Bomb.bombs[i].x = Integer.parseInt(Init.bombInfo[i][0]);
+				Bomb.bombs[i].y = Integer.parseInt(Init.bombInfo[i][1]);
+				Bomb.bombs[i].o = Integer.parseInt(Init.bombInfo[i][2]);
+				Bomb.bombs[i].u = Integer.parseInt(Init.bombInfo[i][3]);
+				Bomb.bombs[i].l = Integer.parseInt(Init.bombInfo[i][4]);
+				Bomb.bombs[i].r = Integer.parseInt(Init.bombInfo[i][5]);
+				
+				if(Init.bombInfo[i][6].equals("+")){
+					Field.bombPos[Bomb.bombs[i].x][Bomb.bombs[i].y] = true;
+					if(i < 3) new Carl(Bomb.bombs[i], Init.Player1).start();
+					else if (i >= 3) new Carl(Bomb.bombs[i], Init.Player2).start();
+						
+				}
+			}
+		
+		Init.Player1.bCnt = Integer.parseInt(Init.gameInfo[2]);
+		Init.Player1.rad = Integer.parseInt(Init.gameInfo[3]);
+		
+		if(Init.gameInfo[0].equals("+")){
+			Init.MP = true;
+			Init.Player2.bCnt = Integer.parseInt(Init.gameInfo[4]);
+			Init.Player2.rad = Integer.parseInt(Init.gameInfo[5]);
+		}
+		if(Init.gameInfo[1].equals("+")){
+			Init.KI = true;
+			Init.Player2.bCnt = Integer.parseInt(Init.gameInfo[6]);
+			Init.Player2.rad = Integer.parseInt(Init.gameInfo[7]);
+		}
+		
+		startPos();
+	}
+	
+	public static void startPos(){
+		for (int i = 0; i < 21; i++)
+			for (int j = 0; j < 17; j++){
+				if(Field.fieldNumbers[i][j] == 3){
+					Init.Player1.x = i;
+					Init.Player1.xo = i;
+					Init.Player1.y = j;
+					Init.Player1.yo = j;
+				}
+				if(Field.fieldNumbers[i][j] == 4 && (Init.MP || Init.KI)){
+					Init.Player2.x = i;
+					Init.Player2.xo = i;
+					Init.Player2.y = j;
+					Init.Player2.yo = j;
+				}
 			}
 	}
 }

@@ -196,6 +196,14 @@ public class InitComponents {
 		Interface.continueGame.setVerticalTextPosition(JButton.CENTER);
 		Interface.continueGame.setForeground(Color.white);
 		
+		Interface.saveGame.setPreferredSize(Interface.dim);
+		Interface.saveGame.setIcon(new ImageIcon(Interface.Button));
+		Interface.saveGame.setHorizontalTextPosition(JButton.CENTER);
+		Interface.saveGame.setVerticalTextPosition(JButton.CENTER);
+		Interface.saveGame.setForeground(Color.white);
+		
+		Interface.saveAs.setForeground(Color.white);
+		Interface.saveName.setPreferredSize(Interface.dim);
 		
 		Interface.restart.setPreferredSize(Interface.dim);
 		Interface.restart.setIcon(new ImageIcon(Interface.Button));

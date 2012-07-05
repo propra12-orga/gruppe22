@@ -7,13 +7,20 @@ public class Init {
 	static int maxKisten = 90;
 	static Boolean MP = false;
 	static Boolean KI = false;
+	static Boolean loaded = false;
+	static Boolean exitSet = false;
 	static Player Player1 = new Player();
 	static Player Player2 = new Player();
 	static BufferedReader in;
+	static String[] gameInfo = new String[8];
+	static String[][] bombInfo = new String[6][7];
 
 	static int ex;
 	static int ey;
 	static int[][] powerUps = new int[21][17];
+	
+	static int bombCnt;
+	static int rad;
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
@@ -51,6 +58,8 @@ public class Init {
 	public static int[][] constMap(String s) {
 		maxKisten = 0;
 		String[] bufmap = new String[21];
+		String[] bufPl = new String[8];
+		String[] bufB = new String[7];
 		String zeile;
 		zeile = "";
 		int[][] feld = new int[21][17];
@@ -72,8 +81,43 @@ public class Init {
 
 		}
 		
+		try {
+			zeile = in.readLine();
+		} catch (IOException e){
+			
+		}
+		bufPl = zeile.split("_");
+		//for (int i = 0; i < 8; i++)
+			//System.out.println("bufPl[" + i + "] = " + bufPl[i]);
+		
+		for (int i = 0; i < 8; i++)
+			gameInfo[i] = bufPl[i];
+		
+		for (int i = 0; i < 6; i++){
+			try {
+				zeile = in.readLine();
+			} catch (IOException e){
+				
+			}
+			bufB = zeile.split("_");
+			for (int j = 0; j < 7; j++)
+				bombInfo[i][j] = bufB[j];
+		}
+		
+		
+		loaded = true;
+		
+		for (int i = 0; i < 21; i++)
+			for(int j = 0; j < 17; j++){
+				if(feld[i][j] == 9)
+					exitSet = true;
+				if(feld[i][j] == 8)
+					feld[i][j] = 0;
+			}
+			
+		if (!exitSet)
+			SetExit(feld);
 		setPowerUps(feld);
-		SetExit(feld);
 
 		return feld;
 
@@ -190,6 +234,8 @@ public class Init {
 		Player1.x = 1;
 		Player1.y = 1;
 		Bomb.gameOver = false;
+		exitSet = false;
+		loaded = false;
 		
 		if (MP || KI) {
 			Player2.x = 20;
@@ -228,17 +274,11 @@ public class Init {
 
 	public static Bomb[] bombs() {
 		Bomb[] bombs;
-		if (MP || KI) {
 			bombs = new Bomb[6];
 			for (int i = 0; i < 3; i++)
 				bombs[i] = new Bomb(Player1);
 			for (int i = 3; i < 6; i++)
 				bombs[i] = new Bomb(Player2);
-		} else {
-			bombs = new Bomb[3];
-			for (int i = 0; i < 3; i++)
-				bombs[i] = new Bomb(Player1);
-		}
 
 		return bombs;
 

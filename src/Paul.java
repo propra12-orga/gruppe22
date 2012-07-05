@@ -14,6 +14,7 @@ public class Paul extends Thread {
 	public Paul(){
 		super();
 		kiThread = this;
+		KI.kiPl = Init.Player2;
 	}
 	
 	public void run(){
