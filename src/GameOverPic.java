@@ -11,6 +11,7 @@ public class GameOverPic implements KeyListener{
 	public static Boolean picOn = false;
 	static BufferedImage endGame;
 	static int pic;
+	static Sound gameOver;
 
 	public static void LoadPic(){
 		
@@ -21,6 +22,8 @@ public class GameOverPic implements KeyListener{
 			System.out.println("Game_over2.jpg konnte nicht gemalt werden");
 		}
 		} else if(pic==2){
+			if (Interface.isSound)
+				gameOver = new Sound("src/Sounds/win.wav");
 			try {
 				endGame = ImageIO.read(new File("src/Pictures/bd_exit2_2.jpg"));
 			} catch (IOException e) {
@@ -32,6 +35,12 @@ public class GameOverPic implements KeyListener{
 
 	public GameOverPic() {
 		LoadPic();
+		if (Interface.isSound && pic == 1)
+			gameOver = new Sound("src/Sounds/lose.wav");
+		
+		if (Interface.isSound && pic == 2)
+			gameOver = new Sound("src/Sounds/win.wav");
+		
 		picOn = true;
 		Menue.MainMenu();
 		Interface.endPic.addKeyListener(this);

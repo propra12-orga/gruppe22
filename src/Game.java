@@ -25,7 +25,6 @@ public class Game implements KeyListener {
 		if (Init.loaded)
 			Load.content();
 		
-		
 		Interface.game = new Field();
 		if (Init.KI)
 			new Paul().start();

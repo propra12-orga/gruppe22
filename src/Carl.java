@@ -74,7 +74,9 @@ public class Carl extends Thread {
 		}
 		
 		Bomb.detonate(bomb, player);
-		boom = new Sound("src/Sounds/bomb.wav");
+		
+		if (Interface.isSound)
+			boom = new Sound("src/Sounds/bomb.wav");
 			
 		// Netzwerk senden
 		

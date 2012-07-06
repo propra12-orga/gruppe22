@@ -276,9 +276,9 @@ public class Interface implements KeyListener, ActionListener {
 			EinfacherChatClient.start();
 			
 		} else if (e.getSource() == soundOn) {
-			isSound = false;
-		} else if (e.getSource() == soundOff) {
 			isSound = true;
+		} else if (e.getSource() == soundOff) {
+			isSound = false;
 		} else if (e.getSource() == sound) {
 			SoundMenu.Sound();
 		}

@@ -8,9 +8,12 @@ public class Movement {
 	 * 
 	 * @param pl
 	 */
+	
+	static Sound powerUp;
 
 	public static void getMovement(Player pl) {
 
+		
 		if (pl.ctrl == "Oben") {
 			if (checkMove(pl.x, pl.y - 1, pl)) {
 				goUp(pl.x, pl.y, pl);
@@ -77,12 +80,16 @@ public class Movement {
 			pl.bCnt++;
 			Field.fieldNumbers[x][y] = 0;
 			Init.powerUps[x][y] = 0;
+			if (Interface.isSound)
+				powerUp = new Sound("src/Sounds/powerUp.wav");
 			return true;
 		} else if (Field.fieldNumbers[x][y] == 41) {
 			if (pl == KI.kiPl) KI.noBomb = true;
 			pl.rad++;
 			Field.fieldNumbers[x][y] = 0;
 			Init.powerUps[x][y] = 0;
+			if (Interface.isSound)
+				powerUp = new Sound("src/Sounds/PowerUp.wav");
 			return true;
 		}
 		return false;
