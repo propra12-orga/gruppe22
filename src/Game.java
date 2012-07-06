@@ -10,7 +10,12 @@ import java.awt.event.KeyListener;
 
 public class Game implements KeyListener {
 
+	/**
+	 * Gibt an, ob seit dem Start von BomberDroid ein Spiel gespielt wurde. <br>
+	 * Falls nein, wird beim Klicken auf "Zurueck zum Hauptmenue" das Spielfeld auch nicht zurueckgesetzt.
+	 */
 	static boolean played = false;
+	
 	/**
 	 * Initialisierung des Game-Panels.
 	 */

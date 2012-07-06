@@ -1,7 +1,6 @@
 /**
  * 
- * Thread fuer die KI, greift lediglich alle 750ms auf
- * die Basismethode checkEnv aus der KI-Klasse zu.
+ * Thread fuer die KI.
  * 
  * @author Pierre Schwarz
  *
@@ -9,8 +8,17 @@
 
 public class Paul extends Thread {
 	
+	/**
+	 * Der Thread fuer die KI.
+	 */
 	static Paul kiThread;
 	
+	/**
+	 * Konstruktor: <br>
+	 * Initialisiert den kiThread und ueberschreibt das KI.kiPl-Objekt durch das Init.Player2-Objekt.
+	 * Der Thread greift dann, sofern die KI sich nicht grade auf der Flucht befindet,
+	 * alle 750ms auf die Basis-Methode der KI zu (KI.checkEnv()).
+	 */
 	public Paul(){
 		super();
 		kiThread = this;
@@ -40,6 +48,10 @@ public class Paul extends Thread {
 		}
 	}
 	
+	/**
+	 * Nach Pause: <br>
+	 * Startet die KI wieder.
+	 */
 	public void resumeKI(){
 		synchronized(this){
 			this.notify();

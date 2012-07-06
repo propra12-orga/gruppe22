@@ -10,11 +10,26 @@ import javax.swing.JPanel;
 
 public class Field extends JPanel {
 
+	/**
+	 * Standard-Feldarray eines Bomberdroid-Spieles.
+	 */
 	public static int[][] basicField;
+	
+	/**
+	 * Befuelltes Feldarray eines Bomberdroid-Spieles.
+	 */
 	public static int[][] fieldNumbers;
-	public static boolean[][] bombPos, expPos;
+	
+	/**
+	 * Gibt an, in welchem Feld sich eine Bombe befindet.
+	 */
+	public static boolean[][] bombPos; 
+	public static boolean[][] expPos;
 	// static Bomb crtBomb;
 
+	/**
+	 * Spielfeld-Objekt
+	 */
 	public static Field f;
 	// public static int bombCnt = 1;
 
@@ -33,7 +48,7 @@ public class Field extends JPanel {
 
 	// Zeichnen:
 	/**
-	 * Laden der Bilder und Zeichnen der Bilder im Spiel.
+	 * Zeichnung des kompletten, aktualisierten Spielfeldes.
 	 */
 	protected void paintComponent(Graphics g) {
 		setSize(800, 662);
@@ -49,6 +64,10 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Zeichnet die Bomben in Abhaengigkeit vom bombPos-Array.
+	 * @param g
+	 */
 	public void PaintBombs(Graphics g) {
 
 		for (int i = 0; i < 21; i++) {
@@ -64,6 +83,10 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Zeichnet die Explosion einer Bombe, sofern deren Parameter .det auf true gesetzt wurde.
+	 * @param g
+	 */
 	public void PaintExplosion(Graphics g) {
 
 		for (int i = 0; i < Bomb.bombs.length; i++) {
@@ -98,6 +121,10 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Zeichnet den Boden und feste Mauerstuecke.
+	 * @param g
+	 */
 	public void PaintGround(Graphics g) {
 
 		for (int i = 0; i < 21; i++) {
@@ -118,6 +145,10 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Zeichnet - ausgenommen der Spieler und des Basisfeldes - den Inhalt eines Spielfeldes.
+	 * @param g
+	 */
 	public void PaintContent(Graphics g) {
 
 		for (int i = 0; i < 21; i++) {
@@ -140,6 +171,10 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Zeichnet die PowerUps.
+	 * @param g
+	 */
 	public void PaintPowerUp(Graphics g) {
 
 		for (int i = 0; i < 21; i++) {
@@ -162,7 +197,7 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 	/**
-	 * Methode zum neumalen des Inhaltes des Spielfeldes
+	 * Methode zum Neumalen des kompletten Spielfeldes.
 	 */
 
 	public void newPaint() {
@@ -171,6 +206,10 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Zeichnet die Spieler und noch einmal den Boden.
+	 * @param g
+	 */
 	public void PaintBD(Graphics g) {
 		g.drawImage(boden, Init.Player1.x * (getWidth() / 21), Init.Player1.y
 				* (getHeight() / 17), null);
@@ -188,6 +227,9 @@ public class Field extends JPanel {
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * Laedt noetige Bilder zum Befuellen des Spielfeldes.
+	 */
 	protected static void LoadImg() {
 		try {
 			kiste = ImageIO.read(new File("src/Pictures/Kiste.png"));

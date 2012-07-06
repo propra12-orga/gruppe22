@@ -1,34 +1,52 @@
 public class Player {
 	
+	/**
+	 * X-Koordinate des Spielers
+	 */
 	int x;
+	/**
+	 * Y-Koordinate des Spielers
+	 */
 	int y;
+	/**
+	 * Maximale Bombenanzahl des Spielers
+	 */
 	int bCnt;
+	/**
+	 * Bombenradius des Spielers
+	 */
 	int rad;
+	/**
+	 * Vorhergegangene X-Koordinate des Spielers
+	 */
 	int xo;
+	/**
+	 * Vorhergegangene Y-Koordinate des Spielers
+	 */
 	int yo;
+	/**
+	 * Spielernummer
+	 */
 	int num;
-	int bP; //bombs placed
+	/**
+	 * zZ aktive Bomben des Spielers auf dem Spielfeld
+	 */
+	int bP; 
 	String ctrl;
 	
+	/**
+	 * Radius des Computergegners zum Berechnen seiner Sicherheit bzgl. der Bomben auf dem Spielfeld
+	 */
 	int checkRad;
+	/**
+	 * Gibt an, ob sich der Computergegner in Gefahr befindet.
+	 */
 	boolean danger;
 	
 	/**
-	 * Erzeugung des Spielerobjektes mit den Variablen:
-	 * x - X-Koordinate,
-	 * y - Y-Koordinate,
-	 * xo - X-Koordinate im vorrangehenden Zug,
-	 * yo - Y-Koordinate im vorrangehenden Zug,
-	 * bCnt - Anzahl der Bomben des jeweiligen Spielers,
-	 * rad - Radius der Bomben des Spielers,
-	 * ctrl - Richtungsangabe des Spielers in die er geht,
-	 * num - Nummer des Spielers,
-	 * bP - aktive Bomben des Spielers auf dem Spielfeld
-	 * 
-	 * checkRad - Ueberpruefungsradius fuer Gefahr bzgl. Bomben (KI)
-	 * danger - Boolean bzgl. der Gefahr.
+	 * Konstruktor: <br>
+	 * Erzeugt ein neues Spielerobjekt mit entsprechenden Variablen, die zunaechst auf Standard gesetzt sind.
 	 */
-
 	public Player() {
 		this.x = 1;
 		this.y = 1;

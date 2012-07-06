@@ -11,10 +11,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Load{
 	
+	/**
+	 * Dateiname der zu ladenden Datei.
+	 */
 	public static String s;
+	
+	/**
+	 * Gibt an, ob eine Datei zum Laden grade ausgewaehlt wird.
+	 */
 	public static boolean choose = true;
+	
+	/**
+	 * Gibt an, ob eine Dateiauswahl stattgefunden hat.
+	 */
 	public static boolean chosen = false;
 	
+	/**
+	 * Laedt eine Textdatei. <br>
+	 * Oeffnet einen JFileChooser und setzt diverse Filter (es MUSS sich um den src/Maps-Directory handeln
+	 * und die Datei MUSS mit .txt enden)
+	 */
 	public static void loadMap(){
 		chosen = false;
 		choose = true;
@@ -59,6 +75,11 @@ public class Load{
 			}
 	}
 	
+	/**
+	 * Laedt einen Spielstand anhand der zuvor geladenen und ausgelesenen Textdatei. <br>
+	 * Das Bombenarray der Bomb-Klasse, wichtige Player-Parameter und der Spielmodus (KI/MP)
+	 * werden entsprechend ueberschrieben.
+	 */
 	public static void content(){
 
 		for (int i = 0; i < 6; i++){
@@ -94,6 +115,9 @@ public class Load{
 		startPos();
 	}
 	
+	/**
+	 * Laedt die Startpositionen der Spieler.
+	 */
 	public static void startPos(){
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++){

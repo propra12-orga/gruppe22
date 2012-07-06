@@ -4,12 +4,42 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Klasse zum Speichern eines Spielstandes
+ * @author Pierre Schwarz
+ *
+ */
+
 public class Save {
 	
+	/**
+	 * Name der zu speichernden Textdatei.
+	 */
 	public static String s;
-	public static boolean choose = true;
-	public static boolean chosen = false;
+	
+	/**
+	 * Zu speichernde Datei
+	 */
 	public static File file;
+	
+	/**
+	 * Methode zum Speichern eines Spielstandes: <br>
+	 * Erhaelt den Namen der zu speichernden Textdatei. Diese wird erzeugt und beschrieben. <br> <br>
+	 * 
+	 * <u>Zeile 1-17:</u> <br>
+	 * Field.fieldNumbers<br><br>
+	 * 
+	 * <u>Zeile 18:</u><br>
+	 * Die ersten beiden +/- geben an, ob ein Spielmodus aktiv ist (MP/KI)<br>
+	 * Die weiteren 6 Informationen, die gespeichert werden, beziehen sich auf den Bombenradius und die Bombenanzahl
+	 * der jeweiligen Spielerobjekte: Init.Player1, Init.Player2 und KI.kiPl<br><br>
+	 * 
+	 * <u>Zeile 19-24:</u><br>
+	 * Informationen bzgl. der einzelnen Bomben: Detonationsradius in alle 4 Richtungen <br>
+	 * Das letzte +/- gibt an, ob die jeweilige Bombe aktiv ist. 
+	 *
+	 * @param s
+	 */
 	
 	public static void saveMap(String s){
 			try{

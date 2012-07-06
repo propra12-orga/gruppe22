@@ -9,16 +9,45 @@ import javax.swing.JPanel;
 
 public class Bomb extends JPanel {
 
-	boolean ob, ub, lb, rb, det, active;
+	/**
+	 * Abfrage bzgl. der einzelnen Richtungsradien einer Bombe. <br>
+	 * (s. Bomb.radcheck-Methode)
+	 */
+	boolean ob, ub, lb, rb; 
+	
+	/**
+	 * Gibt Detonation der Bombe an. <br>
+	 * Wenn dieser Boolean auf true steht, wird die Detonation gezeichnet.
+	 */
+	boolean det; 
+	
+	/**
+	 * Gibt an, ob die jeweilige Bombe des Bombenarrays aktiv ist oder noch nicht
+	 * gelegt wurde. Insb. wichtig fuer das Speichern eines Spielstandes oder das Uebermitteln
+	 * der Daten an einen anderen Client.
+	 */
+	boolean active;
+	
+	/**
+	 * Gibt an, ob ein Spiel beendet ist.
+	 */
 	static boolean gameOver = false;
+	
+	/**
+	 * Parameter fuer ein Bombenobjekt.
+	 */
 	int x, y, o, u, l, r, num;
+	
+	/**
+	 * Bombenarray, das alle 6 Bomben-Objekte eines Bomberdroit-Spieles beinhaltet.
+	 */
 	static Bomb[] bombs = Init.bombs();
 
 	/**
 	 * Bombenobjekt wird initialisiert und bekommt sowohl Koordinaten, als auch
 	 * Radien fuer die einzelnen Richtungen, eine Nummer und Detonationsabfrage.
 	 * 
-	 * @param player
+	 * @param Player player
 	 */
 	public Bomb(Player player) {
 		this.x = player.x;
@@ -36,10 +65,10 @@ public class Bomb extends JPanel {
 	}
 
 	/**
-	 * Bombe wird platziert, bekommt eine Nummer und wird gezeichnet.
+	 * Bombe wird platziert, bekommt eine Nummer, wird aktiviert und gezeichnet.
 	 * 
-	 * @param bomb
-	 * @param player
+	 * @param Bomb bomb
+	 * @param Player player
 	 * @return
 	 */
 
@@ -60,8 +89,8 @@ public class Bomb extends JPanel {
 	 * entsprechende Detonation der jeweiligen Bombe ebenfalls aktiviert und das
 	 * Sleep vom 1. Try-Blocks des zugehoerigen Threads interrupted.
 	 * 
-	 * @param bomb
-	 * @param player
+	 * @param Bomb bomb
+	 * @param Player player
 	 * @return
 	 */
 	public static void detonate(Bomb bomb, Player player) {
@@ -116,11 +145,11 @@ public class Bomb extends JPanel {
 	}
 
 	/**
-	 * Detonation wird beendet. Abfrage bzgl. des Ausganges, ob dieser sich
+	 * Detonation wird beendet. Abfrage bzgl. des Ausganges und der PowerUps, ob ein entsprechendes Objekt sich
 	 * unter einer Kiste befunden hat.
 	 * 
-	 * @param bomb
-	 * @param pl
+	 * @param Bomb bomb
+	 * @param Player pl
 	 * @return
 	 */
 
@@ -165,7 +194,7 @@ public class Bomb extends JPanel {
 	/**
 	 * Abfrage, ob sich ein Feld zerstoeren laesst oder nicht.
 	 * 
-	 * @param coord
+	 * @param int coord
 	 * @return
 	 */
 	public static boolean isDestructable(int coord) {
@@ -179,8 +208,8 @@ public class Bomb extends JPanel {
 	/**
 	 * Bombe wird zum statischen Bombenarray dieser Klasse hinzugefuegt.
 	 * 
-	 * @param bomb
-	 * @param pl
+	 * @param Bomb bomb
+	 * @param Player pl
 	 */
 
 	public static void bombToArray(Bomb bomb, Player pl) {
@@ -200,7 +229,7 @@ public class Bomb extends JPanel {
 	 * Abfrage, ob sich ein Spieler innerhalb eines Detonationsradius einer
 	 * Bombe befand. Falls ja, ist das Spiel vorbei.
 	 * 
-	 * @param coord
+	 * @param int coord
 	 */
 
 	public static void isGameOver(int coord) {
@@ -233,16 +262,16 @@ public class Bomb extends JPanel {
 	}
 
 	/**
-	 * Die Methode bekommt ein Objekt der Klasse Bomb �bergeben und die Gr��e
-	 * des Bombenradiuses. Es folg eine �berpr�fung in jede Richtung. Die
-	 * Explosion der Bombe wird solange weiter gef�hrt bis sie den maximal Wert
-	 * erreicht hat oder diese auf die erste Kiste in der jeweiligen Richtung
-	 * st��t. Hier zu werden Boolean-Werte eingesetzt welche solange auf True
-	 * bleiben bis einer diese F�lle auftritt. Die l�nge der Explosion wir f�r
-	 * jede Richtung abgespeichert so das diese sp�ter abgefragt werden kann.
+	 * Die Methode bekommt ein Objekt der Klasse Bomb und eines der Klasse Player uebergeben. 
+	 * Es folg eine ueberpruefung in jede Richtung. Die
+	 * Explosion der Bombe wird solange weiter gefuehrt, bis sie den maximalen Radius
+	 * erreicht hat oder diese auf die erste Kiste/feste Mauer in der jeweiligen Richtung
+	 * stoesst. Hierzu werden Boolean-Werte eingesetzt, welche solange auf true
+	 * bleiben, bis einer diese Faelle auftritt. Die laenge der Explosion wird fuer
+	 * jede Richtung abgespeichert, so dass diese spaeter abgefragt werden kann.
 	 * 
-	 * @param bomb
-	 * @param pl
+	 * @param Bomb bomb
+	 * @param Player pl
 	 */
 
 	public static void radCheck(Bomb bomb, Player pl) {

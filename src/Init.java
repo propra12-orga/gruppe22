@@ -4,19 +4,59 @@ import java.io.IOException;
 
 public class Init {
 
+	/**
+	 * Maximale Kistenanzahl in einem Bomberdroid-Spiel. <br>
+	 * Das generelle Maximum liegt bei 90, wird aber je nach zuvor festgelegter Anzahl der Kisten
+	 * (durch Auswahl im Popdown-Menue oder Laden eines Spieles) veraendert.
+	 */
 	static int maxKisten = 90;
+	/**
+	 * Gibt an, ob im Multiplayer gespielt wird.
+	 */
 	static Boolean MP = false;
+	/**
+	 * Gibt an, ob ein KI-Spieler gestartet werden soll oder nicht.
+	 */
 	static Boolean KI = false;
+	/**
+	 * Gibt an, ob ein aelterer Spielstand geladen wurde.
+	 */
 	static Boolean loaded = false;
+	/**
+	 * Gibt an, ob beim Laden eines aelteren Spielstandes der Ausgang schon gesetzt war.
+	 */
 	static Boolean exitSet = false;
+	
+	/**
+	 * Spieler1-Objekt
+	 */
 	static Player Player1 = new Player();
+	/**
+	 * Spieler2-Objekt
+	 */
 	static Player Player2 = new Player();
 	static BufferedReader in;
+	
+	/**
+	 * Bei Spielstand laden: <br>
+	 * Speichert den Gamemodus (KI/MP) und die wichtigen Parameter der Spielerobjekte (Radius und Bombenanzahl)
+	 */
 	static String[] gameInfo = new String[8];
+	
+	/**
+	 * Bei Spielstand laden: <br>
+	 * Speichert die wichtigen Parameter der Bomben (Aktiv/Inaktiv, Richtungsradien fuer Detonation)
+	 */
 	static String[][] bombInfo = new String[6][7];
 
-	static int ex;
-	static int ey;
+	/**
+	 * Koordinaten des Ausgangs
+	 */
+	static int ex, ey;
+	
+	/**
+	 * Speichert Wert/Koordinaten der PowerUps.
+	 */
 	static int[][] powerUps = new int[21][17];
 	
 	static int bombCnt;
@@ -32,7 +72,7 @@ public class Init {
 	 */
 
 	/**
-	 * Methode zum �ffnen des Datenkanals zur Datei welche die Daten f�r die
+	 * Methode zum oeffnen des Datenkanals zur Datei welche die Daten fuer die
 	 * konstante Karte beinhaltet.
 	 */
 	public static void MapReader(String s) { /* 0815 Reader */
@@ -46,11 +86,10 @@ public class Init {
 	}
 
 	/**
-	 * Die Methode ruft den BufferedReader der f�r die Karten auslesung
-	 * zust�ndig ist auf. Sie liest die Zeilen der Datei einzelt aus und spaltet
-	 * den String den sie erh�lt auf die jeweiligen zahlenw erden in ein
-	 * zweidimensionales Feld eingespeichert. Dieses bef�llte Feld wird zur�ck
-	 * gegeben.
+	 * Ruft den Bufferedreader auf. <br>
+	 * Liest die einzelnen Zeilen eines Textdatei und spaltet den erhaltenen String in
+	 * seine Einzelteile. Diese werden je nach Zeile in entsprechenden Arrays gespeichert,
+	 * mit deren Hilfe das Spielfeld initialisiert wird.
 	 * 
 	 * @return feld
 	 */
@@ -127,7 +166,7 @@ public class Init {
 	 * Initialisierungsmethode eines Standard-Spielfeldes, lediglich bestehend
 	 * aus festen Mauerstuecken und frei begehbaren Feldern.
 	 * 
-	 * @return
+	 * @return fields
 	 */
 
 	public static int[][] basicField() {
@@ -163,7 +202,7 @@ public class Init {
 	 * Initialisierung des Inhalts eines Spielfeldes (Kisten, Spieler....)
 	 * 
 	 * @param fields
-	 * @return
+	 * @return fields
 	 */
 
 	public static int[][] fieldContent(int[][] fields) {
@@ -219,7 +258,7 @@ public class Init {
 
 	/**
 	 * Reset-Methode fuer das Spielfeld. Befuellt das Spielfeld neu und setzt
-	 * die Spieler wieder auf ihre Startpositionen.
+	 * die Spieler-Objekte wieder auf ihren jeweiligen Startzustand.
 	 */
 
 	public static void reset() {
@@ -252,7 +291,7 @@ public class Init {
 	 * wo sich Bomben befinden, und von welchen Bomben Detonationen gestartet
 	 * werden.
 	 * 
-	 * @return
+	 * @return bombPos
 	 */
 
 	public static boolean[][] bombPos() {
@@ -266,10 +305,9 @@ public class Init {
 	}
 
 	/**
-	 * Initialisierung des statischen Bombenarrays der Klasse Bomb, unter der
-	 * Beruecksichtigung des Spielmodus.
+	 * Initialisierung des statischen Bombenarrays der Klasse Bomb.
 	 * 
-	 * @return
+	 * @return bombs
 	 */
 
 	public static Bomb[] bombs() {
@@ -285,10 +323,10 @@ public class Init {
 	}
 
 	/**
-	 * Die Methode durch l�uft bevor das Spiel beginnt das Spielfeld und
-	 * �berpr�ft wo sich Kisten befinden. Wenn eine Kiste vorhanden ist an der
-	 * Stelle wo sich die For-Schleifen befinden wird ein zuf�lliger Wert
-	 * erzeugt. Bei einem Ergebniss gr��er als 0,99 (bei einem Maximum von 1)
+	 * Die Methode durchlaeuft - bevor das Spiel beginnt - das Spielfeld und
+	 * ueberprueft, wo sich Kisten befinden. Wenn sich eine Kiste an der
+	 * For-Schleifen-Stelle befindet wird ein zufaelliger Wert
+	 * erzeugt. Bei einem Ergebniss groesser als 0,99 (bei einem Maximum von 1)
 	 * wird der Ausgang gesetzt. Es kann sich maximal ein Ausgang auf dem
 	 * Spielfeld befinden.
 	 * 
@@ -315,6 +353,12 @@ public class Init {
 
 	}
 
+	/**
+	 * Initialisiert die PowerUps nach dem gleichen Prinzip wie der Ausgang in der
+	 * Init.setExit-Methode gesetzt wird.
+	 *
+	 * @param fields
+	 */
 	public static void setPowerUps(int[][] fields) {
 		int value = 0;
 		double randomBox;

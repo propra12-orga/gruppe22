@@ -8,15 +8,35 @@
 public class KI {
 	
 	/**
-	 * @param kiPl <br>
-	 * Der zweite Spieler wird als Computergegner verwendet.
+	 * Computergegner-Spielerobjekt
 	 */
 	static Player kiPl = Init.Player2;
+	
+	/**
+	 * Gibt an, wo der Computergegner sich in Gefahr befinden wuerde, von einer
+	 * Bombe getroffen zu werden.
+	 */
 	static boolean[][] danger = initDangerArray();
 	
 	static int cnt = 0;
 	static double shuffle;
-	static boolean l, r, o, u, esc, noBomb = false;
+	static boolean l, r, o, u = false;
+	
+	/**
+	 * Gibt an, ob der Computergegner sich auf einem PowerUp befindet, der direkt
+	 * neben einer Kiste liegt. Dieser soll dann keine Bombe legen, um eine Exception
+	 * zu vermeiden.
+	 */
+	static boolean noBomb = false;
+	
+	/**
+	 * Gibt an, ob der Computergegner sich grade auf der Flucht befindet. <br>
+	 * In manchen Faellen ist es noetig, dass der Computergegner sich in einem
+	 * Threaddurchlauf mehrmals bewegt. Damit dieser aber waehrrenddessen nicht
+	 * wieder in die KI.checkEnv-Methode geht ist der Zugriff auf eben diese von diesem
+	 * Boolean abhaengig.
+	 */
+	static boolean esc = false;
 	
 	/**
 	 * @param hasMoved <br>
@@ -460,6 +480,9 @@ public class KI {
 
 	}*/
 	
+	/**
+	 * Laesst den Computergegner 3 Sekunden warten.
+	 */
 	public static void wait3sec(){
 		try{
 			Thread.sleep(3000);
@@ -469,6 +492,9 @@ public class KI {
 		}
 	}
 	
+	/**
+	 * Laesst den Cumputergegner 750ms warten.
+	 */
 	public static void wait750ms(){
 		try{
 			Thread.sleep(750);
