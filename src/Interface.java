@@ -27,13 +27,14 @@ import javax.swing.*;
  */
 public class Interface implements KeyListener, ActionListener {
 	static JFrame frame = new JFrame();
-	static JButton online,single, multi, options, exit, sound, controls, controls2,
+	static JButton soundOn, soundOff, online,single, multi, options, exit, sound, controls, controls2,
 			backtomain, save, backtooptions, rndMapSingle, rndMapMulti,
 			constMap, startGame, startGame2, backtosingle, continueGame,
 			restart, backtomulti, saveGame;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber, saveAs, saved, wrongName;
 	static boolean isPause, isWrong = false;
+	static boolean isSound = true;
 	static JComboBox getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
@@ -68,6 +69,8 @@ public class Interface implements KeyListener, ActionListener {
 		frame.setLocationRelativeTo(null);
 
 		menu = new JPanel(new GridBagLayout());
+		soundOn = new JButton("Sound an");
+		soundOff = new JButton("Sound aus");
 		online = new JButton("Online");
 		single = new JButton("Singleplayer");
 		multi = new JButton("Multiplayer");
@@ -124,6 +127,8 @@ public class Interface implements KeyListener, ActionListener {
 		InitComponents.MultiComponents();
 		InitComponents.OptionsComponents();
 		InitComponents.IngameMenuComponents();
+		soundOn.addActionListener(this);
+		soundOff.addActionListener(this);
 		online.addActionListener(this);
 		single.addActionListener(this);
 		multi.addActionListener(this);
@@ -270,6 +275,12 @@ public class Interface implements KeyListener, ActionListener {
 		}else if (e.getSource() == online) {
 			EinfacherChatClient.start();
 			
+		} else if (e.getSource() == soundOn) {
+			isSound = false;
+		} else if (e.getSource() == soundOff) {
+			isSound = true;
+		} else if (e.getSource() == sound) {
+			SoundMenu.Sound();
 		}
 
 

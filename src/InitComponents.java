@@ -145,6 +145,18 @@ public class InitComponents {
 		Interface.sound.setVerticalTextPosition(JButton.CENTER);
 		Interface.sound.setForeground(Color.white);
 		
+		Interface.soundOn.setPreferredSize(Interface.dim);
+		Interface.soundOn.setIcon(new ImageIcon(Interface.Button));
+		Interface.soundOn.setHorizontalTextPosition(JButton.CENTER);
+		Interface.soundOn.setVerticalTextPosition(JButton.CENTER);
+		Interface.soundOn.setForeground(Color.white);
+		
+		Interface.soundOff.setPreferredSize(Interface.dim);
+		Interface.soundOff.setIcon(new ImageIcon(Interface.Button));
+		Interface.soundOff.setHorizontalTextPosition(JButton.CENTER);
+		Interface.soundOff.setVerticalTextPosition(JButton.CENTER);
+		Interface.soundOff.setForeground(Color.white);
+		
 		
 		Interface.backtomain.setPreferredSize(Interface.dim);
 		Interface.backtomain.setIcon(new ImageIcon(Interface.Button));
