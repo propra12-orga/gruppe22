@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.*;
 
 /**
  * Bomberdroid Startklasse
@@ -31,8 +32,8 @@ public class Interface implements KeyListener, ActionListener {
 			constMap, startGame, startGame2, backtosingle, continueGame,
 			restart, backtomulti, saveGame;
 	static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
-			up2, down2, right2, left2, bomb2, boxNumber, saveAs, saved;
-	static boolean isPause = false;
+			up2, down2, right2, left2, bomb2, boxNumber, saveAs, saved, wrongName;
+	static boolean isPause, isWrong = false;
 	static JComboBox getBoxNumber;
 	static JPanel menu;
 	public static JPanel game = new JPanel();
@@ -45,7 +46,7 @@ public class Interface implements KeyListener, ActionListener {
 
 	static JTextArea getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2;
-	static JTextArea saveName;
+	static JTextField saveName;
 	static String[] amountBoxes = { "10", "20", "30", "40", "50", "60", "70",
 			"80", "90", "100" };
 	static Dimension dim = new Dimension(200, 25);
@@ -95,7 +96,7 @@ public class Interface implements KeyListener, ActionListener {
 		getRight2 = new JTextArea(1, 6);
 		getLeft2 = new JTextArea(1, 6);
 		getBomb2 = new JTextArea(1, 6);
-		saveName = new JTextArea(1, 18);
+		saveName = new JTextField();
 		ctrlmenu = new JLabel("Steuerung");
 		player1 = new JLabel("Spieler 1");
 		player2 = new JLabel("Spieler 2");
@@ -112,6 +113,7 @@ public class Interface implements KeyListener, ActionListener {
 		boxNumber = new JLabel("Kistenanzahl : ");
 		saveAs = new JLabel("Name fuer Spielstand festlegen");
 		saved = new JLabel("'" + mapName + ".txt' gespeichert" ); 
+		wrongName = new JLabel("Unzulaessiger Dateiname: Bitte nur a-z, 0-9, -, _");
 		backtooptions = new JButton("Zurueck");
 		save = new JButton("Speichern");
 		backtomain = new JButton("Zurueck zum Hauptmenue");
@@ -235,6 +237,7 @@ public class Interface implements KeyListener, ActionListener {
 				Bomb.bombs = Init.bombs();
 				Game.main(null);
 				closeMenuOpenGame();
+				Field.f = new Field();
 			}
 		} else if (e.getSource() == this.multi) {
 			GameMode.MultiMenu();
@@ -337,16 +340,22 @@ public class Interface implements KeyListener, ActionListener {
 		String Key = MenueEingabe.Ctrl(e);
 		String KeyId = KeyEvent.getKeyText(code);
 		if (KeyId.equals("Eingabe") && IngameMenu.isSave){
-			IngameMenu.isSaved = true;
-			if (saveName.getText() != ""){
+			if (saveName.getText() != null && saveName.getText() != "" && checkWrong()){
+
+				IngameMenu.isSaved = true;
 				mapName = saveName.getText();
 				saved = new JLabel("'" + mapName + ".txt' gespeichert" ); 
 				Interface.saved.setForeground(Color.red);
 				Save.saveMap(mapName);
 				IngameMenu.isSave = false;
 				IngameMenu.ingame();
-				IngameMenu.isSaved = false;
 			}
+			else {
+				isWrong = true;
+				IngameMenu.ingame();
+			}
+			isWrong = false;
+			IngameMenu.isSaved = false;
 		}
 	}
 
@@ -356,6 +365,30 @@ public class Interface implements KeyListener, ActionListener {
 
 	public void keyTyped(KeyEvent e) {
 
+	}
+	
+	public boolean checkWrong(){
+		if (!saveName.getText().contains(" ") && !saveName.getText().contains("!")
+				&& !saveName.getText().contains("'") && !saveName.getText().contains("§")
+				&& !saveName.getText().contains("$") && !saveName.getText().contains("%")
+				&& !saveName.getText().contains("[") && !saveName.getText().contains("&")
+				&& !saveName.getText().contains("{") && !saveName.getText().contains("/")
+				&& !saveName.getText().contains("³") && !saveName.getText().contains("(")
+				&& !saveName.getText().contains("²") && !saveName.getText().contains(")")
+				&& !saveName.getText().contains("?") && !saveName.getText().contains("=")
+				&& !saveName.getText().contains("ß") && !saveName.getText().contains("@")
+				&& !saveName.getText().contains("]") && !saveName.getText().contains("´")
+				&& !saveName.getText().contains("}") && !saveName.getText().contains("`")
+				&& !saveName.getText().contains("<") && !saveName.getText().contains(";")
+				&& !saveName.getText().contains(">") && !saveName.getText().contains(".")
+				&& !saveName.getText().contains("|") && !saveName.getText().contains(":")
+				&& !saveName.getText().contains("°") && !saveName.getText().contains("^")
+				&& !saveName.getText().contains("*") && !saveName.getText().contains("+")
+				&& !saveName.getText().contains("~") && !saveName.getText().contains("#")
+				&& !saveName.getText().contains("\\") && !saveName.getText().contains(",")
+				&& !saveName.getText().contains("€"))
+					return true;
+		else return false;
 	}
 
 }

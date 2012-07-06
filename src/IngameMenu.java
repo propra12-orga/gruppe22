@@ -27,8 +27,13 @@ public class IngameMenu {
 			c.gridy = 3;
 		}
 		if (isSave){
-			Interface.menu.add(Interface.saveAs, c);
-			c.gridy = 3;
+			if(Interface.isWrong){
+				Interface.menu.add(Interface.wrongName, c);
+				c.gridy = 3;
+			} else {
+				Interface.menu.add(Interface.saveAs, c);
+				c.gridy = 3;
+			}
 			Interface.menu.add(Interface.saveName, c);
 			c.gridy = 4;
 		}

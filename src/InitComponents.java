@@ -209,6 +209,7 @@ public class InitComponents {
 		Interface.saveGame.setForeground(Color.white);
 		
 		Interface.saveAs.setForeground(Color.red);
+		Interface.wrongName.setForeground(Color.red);
 		Interface.saveName.setPreferredSize(Interface.dim);
 		
 		Interface.restart.setPreferredSize(Interface.dim);
