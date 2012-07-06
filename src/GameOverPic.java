@@ -16,20 +16,18 @@ public class GameOverPic implements KeyListener{
 	public static void LoadPic(){
 		
 		if(pic==1){
-		try {
-			endGame = ImageIO.read(new File("src/Pictures/game_over2.jpg"));
-		} catch (IOException e) {
-			System.out.println("Game_over2.jpg konnte nicht gemalt werden");
-		}
+			try {
+				endGame = ImageIO.read(new File("src/Pictures/game_over2.jpg"));
+			} catch (IOException e) {
+				System.out.println("Game_over2.jpg konnte nicht gemalt werden");
+			}
 		} else if(pic==2){
-			if (Interface.isSound)
-				gameOver = new Sound("src/Sounds/win.wav");
 			try {
 				endGame = ImageIO.read(new File("src/Pictures/bd_exit2_2.jpg"));
 			} catch (IOException e) {
 				System.out.println("bd_exit2_2.jpg konnte nicht gemalt werden");
 			}
-			}
+		}
 
 	}
 
