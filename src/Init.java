@@ -359,6 +359,10 @@ public class Init {
 	 *
 	 * @param fields
 	 */
+	
+	
+	
+	
 	public static void setPowerUps(int[][] fields) {
 		int value = 0;
 		double randomBox;
@@ -385,6 +389,22 @@ public class Init {
 				}
 		}
 
+	}
+	
+	public static int[][] InitPlayer1(int[][] field) {
+		field[1][1] = 3;
+		field[1][2] = 0;
+		field[2][1] = 0;
+
+		return field;
+	}
+
+	public static int[][] InitPlayer2(int[][] field) {
+		field[19][15] = 4;
+		field[18][15] = 0;
+		field[19][14] = 0;
+		Player.getStartPos2(Player2);
+		return field;
 	}
 
 }

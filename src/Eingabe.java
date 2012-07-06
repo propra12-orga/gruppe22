@@ -45,29 +45,31 @@ public class Eingabe {
 		/*
 		 * Vergleichen der Steuerungs-Optionen mit dem KeyText
 		 */
-		if (KeyId.equals(MenueEingabe.CtrlArray[0])) {
-			Init.Player1.ctrl = "Oben";
+		if(Interface.ctrlP1 == true) {
+			if (KeyId.equals(MenueEingabe.CtrlArray[0])) {
+				Init.Player1.ctrl = "Oben";
 
-			Movement.getMovement(Init.Player1);
-		} else if (KeyId.equals(MenueEingabe.CtrlArray[1])) {
-			Init.Player1.ctrl = "Unten";
+				Movement.getMovement(Init.Player1);
+			} else if (KeyId.equals(MenueEingabe.CtrlArray[1])) {
+				Init.Player1.ctrl = "Unten";
 
-			Movement.getMovement(Init.Player1);
-		} else if (KeyId.equals(MenueEingabe.CtrlArray[2])) {
-			Init.Player1.ctrl = "Rechts";
+				Movement.getMovement(Init.Player1);
+			} else if (KeyId.equals(MenueEingabe.CtrlArray[2])) {
+				Init.Player1.ctrl = "Rechts";
 
-			Movement.getMovement(Init.Player1);
-		} else if (KeyId.equals(MenueEingabe.CtrlArray[3])) {
-			Init.Player1.ctrl = "Links";
+				Movement.getMovement(Init.Player1);
+			} else if (KeyId.equals(MenueEingabe.CtrlArray[3])) {
+				Init.Player1.ctrl = "Links";
 
-			Movement.getMovement(Init.Player1);
-		} else if (KeyId.equals(MenueEingabe.CtrlArray[4])) {
-			Init.Player1.ctrl = "Bombe";
+				Movement.getMovement(Init.Player1);
+			} else if (KeyId.equals(MenueEingabe.CtrlArray[4])) {
+				Init.Player1.ctrl = "Bombe";
 
-			Movement.getMovement(Init.Player1);
+				Movement.getMovement(Init.Player1);
+			}
 		}
 
-		if (Init.MP == true) {
+		if (Init.MP == true && Interface.ctrlP2 == true) {
 			if (KeyId.equals(MenueEingabe.CtrlArray[5])) {
 				Init.Player2.ctrl = "Oben";
 

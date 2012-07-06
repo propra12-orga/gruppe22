@@ -15,8 +15,10 @@ public class ClientGameReader extends Thread {
 							Field.fieldNumbers[j][i] = EinfacherChatClient.streamReader
 									.readInt();
 							if (Field.fieldNumbers[j][i] == 4) {
+								Init.Player2.x = j;
+								Init.Player2.y = i;
 								Stift = true;
-							}
+								}
 
 							if (Field.fieldNumbers[j][i] == 3) {
 								Init.Player1.x = j;

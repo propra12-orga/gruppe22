@@ -31,7 +31,7 @@ public class EinfacherChatClient {
 	private void netzwerkEinrichten() {
 
 		try {
-			sock = new Socket("192.168.123.107", 5001);
+			sock = new Socket("192.168.1.105", 5001);
 			streamReader = new DataInputStream(sock.getInputStream());
 			streamWriter = new DataOutputStream(sock.getOutputStream());
 			System.out.println("Netzwerkverbindung steht");
@@ -79,9 +79,18 @@ public class EinfacherChatClient {
 		boolean complet = false;
 
 		public void Losgehts() {
-			//Hier Player Initieren ? o.0 
+			if (Field.fieldNumbers[1][1] == 3) {
+				Field.fieldNumbers = Init.InitPlayer2(Field.fieldNumbers);
+				Init.MP = true;
+				Interface.ctrlP2 = true;
+				System.out.println("Spieler 2 wird gesetzt.");
+			} else {
+				Interface.ctrlP1 = true;
+				Init.InitPlayer1(Field.fieldNumbers);
+				System.out.println("Spieler 1 wird gesetzt.");
+			} 
 
-//			Interface.Boxes();
+			Interface.Boxes();
 			Field.basicField = Init.basicField();
 			Init.MP = true;
 			Bomb.bombs = Init.bombs();

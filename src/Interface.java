@@ -52,7 +52,7 @@ public class Interface implements KeyListener, ActionListener {
 	static Dimension dim = new Dimension(200, 25);
 	static Image img = new ImageIcon("src/Pictures/menubg.jpg").getImage();
 	static Image Button = new ImageIcon("src/Pictures/button.png").getImage();
-
+	static boolean offline, ctrlP2, ctrlP1;
 	static String mapName;
 	/**
 	 * Konstruktor initialisiert alle Widgets, addet KeyListener und
@@ -203,6 +203,8 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtosingle) {
 			GameMode.SingleMenu();
 		} else if (e.getSource() == this.startGame) {
+			offline = true;
+			ctrlP1 = true;
 			Boxes();
 			Init.KI = true;
 			Field.basicField = Init.basicField();
@@ -248,6 +250,9 @@ public class Interface implements KeyListener, ActionListener {
 			displayCtrl();
 			Control.ControlMenu2();
 		} else if (e.getSource() == this.startGame2) {
+			offline = true;
+			ctrlP1 = true;
+			ctrlP2 = true;
 			Init.MP = true;
 			Boxes(); // Anzeige wie viele Boxen auf der Zufallskarte sein sollen
 			Field.basicField = Init.basicField();
@@ -273,7 +278,7 @@ public class Interface implements KeyListener, ActionListener {
 	/**
 	 * verarbeitet Combobox Auswahl fuer Kistenanzahl bei Random Map
 	 */
-	private void Boxes() {
+	public static void Boxes() {
 		if (getBoxNumber.getSelectedItem() == "10") {
 			Init.maxKisten = 10;
 		} else if (getBoxNumber.getSelectedItem() == "20") {
