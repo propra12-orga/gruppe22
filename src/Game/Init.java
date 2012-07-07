@@ -271,6 +271,7 @@ public class Init {
 					Field.fieldNumbers[i][j] = 0;
 
 		Field.fieldNumbers = fieldContent(Field.basicField);
+		Bomb.bombs = bombs();
 		Player1.x = 1;
 		Player1.y = 1;
 		Bomb.gameOver = false;
