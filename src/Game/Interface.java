@@ -23,7 +23,8 @@ import Menues.Menue;
 import Menues.Options;
 import Menues.RandomMapMenu;
 import Menues.SoundMenu;
-import Client.EinfacherChatClient;
+import Client.Client;
+
 
 /**
  * Bomberdroid Startklasse
@@ -280,7 +281,7 @@ public class Interface implements KeyListener, ActionListener {
 			IngameMenu.isSave = true;
 			IngameMenu.ingame();
 		}else if (e.getSource() == online) {
-			EinfacherChatClient.start();
+			Client.start();
 			
 		} else if (e.getSource() == soundOn) {
 			isSound = true;

@@ -90,7 +90,6 @@ public class Eingabe {
 			}
 		}
 		if (KeyId.equals("NumPad +")) {
-			// Test.newPaint();
 		} else if (KeyId.equals("NumPad -")) {
 			Init.Player1.rad--;
 		} else if (KeyId.equals("ESC")) {

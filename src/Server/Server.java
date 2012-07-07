@@ -8,32 +8,56 @@ public class Server {
 
 	public static int[][] basicField;
 	public static int[][] fieldNumbers;
+	public static int[] playerInfo= new int[12];
+	public static int [] bombInfoInt = new int[12];
+	public static boolean [] bombInfoBoolean = new boolean[6];
 	static int[][] powerUps = new int[21][17];
 	static boolean[][] bombPos;
-	static int[] bomb = new int[24];
-	 public static DataInputStream streamReader1;
-	 public static DataInputStream streamReader2;
-	 public static DataOutputStream streamWriter1;
-	 public static DataOutputStream streamWriter2;
-
-	public static void main(String[] args) {
-		basicField = ServerFieldInit.basicField();
-		bomb=ServerFieldInit.Bombrad(bomb);
-		
-	
-	//Nachfolgender Befehl verändert basicField. basicFiel=fieldNumbers
-		fieldNumbers = ServerFieldInit.fieldContent(basicField);
-		bombPos=ServerFieldInit.bombPos(bombPos);
-		System.out.println("Server: Feld wurde erstellt");
-		new Server().los();
-	}
-
+	public static DataInputStream streamReader1;
+	public static DataInputStream streamReader2;	
+	public static DataOutputStream streamWriter1;
+	public static DataOutputStream streamWriter2;
 	boolean max = true;
 	int maxx = 0;
 	static Socket client1;
 	static Socket client2;
 
-	public void los() {
+	/**
+	 * <u>Main-Methode des Servers:</u><br>
+	 * Initialisiert das <b>basicField</b> um auf dieser Basis <b>fieldNumbers</b>
+	 * zu initaliesieren. Nach der Initialisierung von fieldNumbers
+	 * wird das <b>powerUps</b> Feld gefüllt.<br>
+	 * Danach wird das feld <b>bombPos</b> Initialisiert.
+	 * Es folg der Aufruf der Methode <b>Go()</b>.
+	 * 
+	 * @param args
+	 * 
+	 */
+	
+	public static void main(String[] args) {
+		basicField = ServerFieldInit.basicField();
+		fieldNumbers = ServerFieldInit.fieldContent(basicField);
+		bombPos=ServerFieldInit.bombPos(bombPos);
+		System.out.println("Server: Feld wurde erstellt");
+		new Server().Go();
+	}
+	
+	/**
+	 * <u>go():</u><br>
+	 * Der Port des Servers ist 5001.<br>
+	 * Es wird in einer Schleife gewartet bis zwei Klienten
+	 * sich mit dem Server verbunden haben.<br> verbindet sich ein 
+	 * Klient mit dem Server wird sein Socket gespeichert.<br>
+	 * Ist dies der Fall werden die Methoden <b>IOStreams1</b> 
+	 * und <b>IOStreams2</b> aufgerufen welche die Streams fuer
+	 *  die Klienten oeffnen.<br>
+	 * Daraufhin wird der Thread <b>waitClient1</b> gestartet.<br>
+	 * Es wird die Methode <b>SendClient1()</b> aufgerufen.
+	 * 
+	 * 
+	 */
+
+	public void Go() {
 
 		try {
 			ServerSocket serverSock = new ServerSocket(5001);
@@ -50,10 +74,8 @@ public class Server {
 					client2 = clientSocket;
 					System.out.println("Server: Habe 2 Clienten.");
 				}
-				if (maxx >= 2) {
+				if (maxx == 2) {
 					max = false;
-
-					
 
 					IOStreams1(client1);
 					IOStreams2(client2);
@@ -68,13 +90,19 @@ public class Server {
 			ex.printStackTrace();
 		}
 	}
+	
+	/**
+	 * <u>IOStreams1:</u><br>
+	 * Mit dem übergebenen Socket wird der Inputstream (<b>streamReader1</b>) geöffnet.<br>
+	 *  Mit dem übergebenen Socket wird der Outputstream (<b>streamWriter1</b>) geöffnet.<br>
+	 * @param clientSocket
+	 */
 
 	public void IOStreams1(Socket clientSocket) {
 		try {
 			System.out.println("Server: Stream fuer Client 1 wird erstellt.");
-			Socket sock = clientSocket;
-			streamReader1 = new DataInputStream(sock.getInputStream());
-			streamWriter1 = new DataOutputStream(sock.getOutputStream());
+			streamReader1 = new DataInputStream(clientSocket.getInputStream());
+			streamWriter1 = new DataOutputStream(clientSocket.getOutputStream());
 
 		} catch (Exception ex) {
 			System.out
@@ -83,7 +111,13 @@ public class Server {
 		}
 
 	}
-
+	
+	/**
+	 * <u>IOStreams1:</u><br>
+	 * Mit dem übergebenen Socket wird der Inputstream (<b>streamReader2</b>) geöffnet.<br>
+	 *  Mit dem übergebenen Socket wird der Outputstream (<b>streamWriter2</b>) geöffnet.<br>
+	 * @param clientSocket
+	 */
 	public void IOStreams2(Socket clientSocket) {
 
 		try {
@@ -101,31 +135,20 @@ public class Server {
 	}
 
 	public void SendClient1() {
-
 	
 		try {
 			for (int i = 0; i < 17; i++) {
 				for (int j = 0; j < 21; j++) {
 					streamWriter1.writeInt(fieldNumbers[j][i]);
+					streamWriter1.writeInt(powerUps[j][i]);
 				}
 			}
-			System.out.println("Server: fieldNumbers an Client 1 gesendet.");
+			System.out.println("Server: fieldNumbers und powerUps an Client 1 gesendet.");
 		} catch (Exception ex) {
 			System.out.println("Server: Probleme in SendClient1.");
 			ex.printStackTrace();
 		}
 		
-		try {
-			for (int i = 0; i < 17; i++) {
-				for (int j = 0; j < 21; j++) {
-					streamWriter1.writeBoolean(bombPos[j][i]);
-				}
-			}
-			System.out.println("Server: bombPos an Client 1 gesendet.");
-		} catch (Exception ex) {
-			System.out.println("Server: Probleme in SendClient1.");
-			ex.printStackTrace();
-		}
 	}
 
 	public static void SendClient2() {
@@ -134,56 +157,60 @@ public class Server {
 			for (int i = 0; i < 17; i++) {
 				for (int j = 0; j < 21; j++) {
 					streamWriter2.writeInt(fieldNumbers[j][i]);
+					streamWriter2.writeInt(powerUps[j][i]);
 				}
 			}
-			System.out.println("Server: fieldNumbers an Client 2 gesendet.");
-		} catch (Exception ex) {
-			System.out.println("Server: Probleme in SendClient2.");
-			ex.printStackTrace();
-		}
-		
-		try {
-			for (int i = 0; i < 17; i++) {
-				for (int j = 0; j < 21; j++) {
-					streamWriter2.writeBoolean(bombPos[j][i]);
-				}
-			}
-			System.out.println("Server: bombPos an Client 2 gesendet.");
+			System.out.println("Server: fieldNumbers und powerUps an Client 2 gesendet.");
 		} catch (Exception ex) {
 			System.out.println("Server: Probleme in SendClient2.");
 			ex.printStackTrace();
 		}
 	}
 
-	public static void esAllenWeitersagen() {
+	public static void SendToAll() {
 
 		try {
 			System.out
 					.println("Server: Versuche es weiter zusagen an Client1&2.");
-			for (int i = 0; i < 17; i++) {
-				for (int j = 0; j < 21; j++) {
-					streamWriter1.writeInt(fieldNumbers[j][i]);
-					streamWriter2.writeInt(fieldNumbers[j][i]);
-				}
-			}
 			
-			for (int i = 0; i < 17; i++){
-				for (int j = 0; j < 21; j++){
-					streamWriter1.writeInt(powerUps[j][i]);
-					streamWriter2.writeInt(powerUps[j][i]);
-				}
+			for(int i=0;i<12;i++){
+				streamWriter1.writeInt(playerInfo[i]);
+				streamWriter2.writeInt(playerInfo[i]);
 			}
-				
-			for (int i = 0; i < 17; i++) {
-				for (int j = 0; j < 21; j++) {
-					streamWriter1.writeBoolean(bombPos[j][i]);
-					streamWriter2.writeBoolean(bombPos[j][i]);
-				}
+			for(int i=0;i<6;i++){
+				streamWriter1.writeInt(bombInfoInt[(i*2)]);
+				streamWriter2.writeInt(bombInfoInt[(i*2)]);
+				streamWriter1.writeInt(bombInfoInt[(i*2+1)]);
+				streamWriter2.writeInt(bombInfoInt[(i*2+1)]);
+				streamWriter1.writeBoolean(bombInfoBoolean[i]);
+				streamWriter2.writeBoolean(bombInfoBoolean[i]);
 			}
-			for (int i=0;i<=23;i++){
-				streamWriter1.writeInt(bomb[i]);
-				streamWriter2.writeInt(bomb[i]);
-			}
+
+			
+			
+			
+			
+			
+//			for (int i = 0; i < 17; i++) {
+//				for (int j = 0; j < 21; j++) {
+//					streamWriter1.writeInt(fieldNumbers[j][i]);
+//					streamWriter2.writeInt(fieldNumbers[j][i]);
+//				}
+//			}
+//			
+//			for (int i = 0; i < 17; i++){
+//				for (int j = 0; j < 21; j++){
+//					streamWriter1.writeInt(powerUps[j][i]);
+//					streamWriter2.writeInt(powerUps[j][i]);
+//				}
+//			}
+//				
+//			for (int i = 0; i < 17; i++) {
+//				for (int j = 0; j < 21; j++) {
+//					streamWriter1.writeBoolean(bombPos[j][i]);
+//					streamWriter2.writeBoolean(bombPos[j][i]);
+//				}
+//			}
 
 		} catch (Exception ex) {
 			System.out

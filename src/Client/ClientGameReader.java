@@ -1,62 +1,47 @@
 package Client;
 import java.io.IOException;
 
-import Game.Bomb;
-import Game.Field;
-import Game.Init;
-
 public class ClientGameReader extends Thread {
 	static boolean Stift = false;
+	int x;
+	int y;
+	int num;
+	int bCnt;
+	int rad;
+	int bP;
+	int bx;
+	int by;
+	boolean act;
 
 	public void run() {
 
 		System.out.println("gameReader gestartet.");
 		try {
 			while (true) {
-
-				if (EinfacherChatClient.streamReader.available() >= 3309) {
-					for (int i = 0; i <= 16; i++) {
-						for (int j = 0; j <= 20; j++) {
-							Field.fieldNumbers[j][i] = EinfacherChatClient.streamReader
-									.readInt();
-							if (Field.fieldNumbers[j][i] == 4) {
-								Init.Player2.x = j;
-								Init.Player2.y = i;
-								Stift = true;
-								}
-
-							if (Field.fieldNumbers[j][i] == 3) {
-								Init.Player1.x = j;
-								Init.Player1.y = i;
-							}
-						}
-
-					}
-					for (int i = 0; i <= 16; i++) {
-						for (int j = 0; j <= 20; j++) {
-							Init.powerUps[j][i] = EinfacherChatClient.streamReader
-									.readInt();
-						}
-					}
-					for (int i = 0; i <= 16; i++) {
-						for (int j = 0; j <= 20; j++) {
-							Field.bombPos[j][i] = EinfacherChatClient.streamReader
-									.readBoolean();
-						}
-					}
+				if (Client.streamReader.available() == 102) {
+					Stift = true;
+					x = Client.streamReader.readInt();
+					y = Client.streamReader.readInt();
+					num = Client.streamReader.readInt();
+					bCnt = Client.streamReader.readInt();
+					rad = Client.streamReader.readInt();
+					bP = Client.streamReader.readInt();
+					Update.player(x, y, num, bCnt, rad, bP);
+					x = Client.streamReader.readInt();
+					y = Client.streamReader.readInt();
+					num = Client.streamReader.readInt();
+					bCnt = Client.streamReader.readInt();
+					rad = Client.streamReader.readInt();
+					bP = Client.streamReader.readInt();
+					Update.player(x, y, num, bCnt, rad, bP);
 					for (int i = 0; i < 6; i++) {
-						Bomb.bombs[i].o = EinfacherChatClient.streamReader
-								.readInt();
-						Bomb.bombs[i].u = EinfacherChatClient.streamReader
-								.readInt();
-						Bomb.bombs[i].l = EinfacherChatClient.streamReader
-								.readInt();
-						Bomb.bombs[i].r = EinfacherChatClient.streamReader
-								.readInt();
-
+						bx = Client.streamReader.readInt();
+						by = Client.streamReader.readInt();
+						act = Client.streamReader.readBoolean();
+						Update.bomb(bx, by, i, act);
 					}
-
 				}
+
 			}
 
 		} catch (IOException e) {

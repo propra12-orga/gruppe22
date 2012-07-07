@@ -2,42 +2,39 @@ package Server;
 import java.io.IOException;
 
 public class waitClient2 implements Runnable {
-
+	
+	/**
+	 * <u>run:</u><br>
+	 * Es wird eine Schleife gestartet die auf das <b>fieldNumbers</b> Feld wartet,
+	 *  dass vom Klienten 2 gesendet wird. Wenn diese beendet ist wird der
+	 *  <b>gameReader</b> Thread gestartet.
+	 */
 	public void run() {
 
 		boolean check = true;
 		try {
 			System.out.println("waitClient2: gestartet.");
 			while (check == true) {
-				if (Server.streamReader2.available() >= 3261) {
+				if (Server.streamReader2.available() == 1506) {
 
-					for (int i1 = 0; i1 <= 16; i1++) {
-						for (int j1 = 0; j1 <= 20; j1++) {
-							Server.fieldNumbers[j1][i1] = Server.streamReader2
+					for (int i = 0; i <= 16; i++) {
+						for (int j = 0; j <= 20; j++) {
+							Server.fieldNumbers[j][i] = Server.streamReader2
 								.readInt();
-					}
-				}
-					for (int i1 = 0; i1 <= 16; i1++) {
-						for (int j1 = 0; j1 <= 20; j1++) {
-							Server.powerUps[j1][i1] = Server.streamReader2
-								.readInt();
-					}
-				}
-					for (int i1 = 0; i1 <= 16; i1++) {
-						for (int j1 = 0; j1 <= 20; j1++) {
-							Server.bombPos[j1][i1] = Server.streamReader2
-								.readBoolean();
-							
-					}
-				}	
-					for(int i=0;i<=23;i++){
-						Server.bomb[i]=Server.streamReader2.readInt();
-						if(i==23){
-							check=false;
 						}
+					}
+					for(int i=6;i<12;i++){
+						Server.playerInfo[i]=Server.streamReader2.readInt();	
+					}
+					for(int i = 0;i<11;i++){
+						Server.bombInfoInt[i]=Server.streamReader2.readInt();
+					}
+					for(int i=0;i<6;i++){
+						Server.bombInfoBoolean[i]=Server.streamReader2.readBoolean();
 					}
 				}
 			}
+			check = false;
 			System.out.println("waitClient2: beenden.");
 			Thread t3 = new Thread(new gameReader());
 			t3.start();

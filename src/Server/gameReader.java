@@ -7,13 +7,13 @@ public class gameReader extends Thread {
 
 		try {
 			System.out.println("gameReader: gestartet");
-			Server.esAllenWeitersagen();
+			Server.SendToAll();
 			while (true) {
 
-				if (Server.streamReader1.available() >= 3262) {
+				if (Server.streamReader1.available() >= 102) {
 					ReadClient1();
 				}
-				if (Server.streamReader2.available() >= 3262) {
+				if (Server.streamReader2.available() >= 102) {
 					ReadClient2();
 				}
 
@@ -30,29 +30,17 @@ public class gameReader extends Thread {
 		try{
 			System.out.println("Stream1 hat: "
 				+ Server.streamReader1.available());
-			for (int i1 = 0; i1 <= 16; i1++) {
-				for (int j1 = 0; j1 <= 20; j1++) {
-					Server.fieldNumbers[j1][i1] = Server.streamReader1
-						.readInt();
+			for(int i=6;i<12;i++){
+				Server.playerInfo[i]=Server.streamReader1.readInt();	
 			}
-		}
-			for (int i1 = 0; i1 <= 16; i1++) {
-				for (int j1 = 0; j1 <= 20; j1++) {
-					Server.powerUps[j1][i1] = Server.streamReader1
-						.readInt();
+			for(int i = 0;i<11;i++){
+				Server.bombInfoInt[i]=Server.streamReader1.readInt();
 			}
-		}
-			for (int i1 = 0; i1 <= 16; i1++) {
-				for (int j1 = 0; j1 <= 20; j1++) {
-					Server.bombPos[j1][i1] = Server.streamReader1
-						.readBoolean();
-			}
-		}
-			for(int i=0;i<=23;i++){
-				Server.bomb[i]=Server.streamReader1.readInt();
+			for(int i=0;i<6;i++){
+				Server.bombInfoBoolean[i]=Server.streamReader1.readBoolean();
 			}
 	
-		Server.esAllenWeitersagen();
+		Server.SendToAll();
 		}catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("bla2");
@@ -63,28 +51,16 @@ public class gameReader extends Thread {
 		try{
 			System.out.println("Stream2 hat: "
 				+ Server.streamReader2.available());
-			for (int i1 = 0; i1 <= 16; i1++) {
-				for (int j1 = 0; j1 <= 20; j1++) {
-					Server.fieldNumbers[j1][i1] = Server.streamReader2
-						.readInt();
+			for(int i=6;i<12;i++){
+				Server.playerInfo[i]=Server.streamReader2.readInt();	
 			}
-		}
-			for (int i1 = 0; i1 <= 16; i1++) {
-				for (int j1 = 0; j1 <= 20; j1++) {
-					Server.powerUps[j1][i1] = Server.streamReader2
-						.readInt();
+			for(int i = 0;i<11;i++){
+				Server.bombInfoInt[i]=Server.streamReader2.readInt();
 			}
-		}
-			for (int i1 = 0; i1 <= 16; i1++) {
-				for (int j1 = 0; j1 <= 20; j1++) {
-					Server.bombPos[j1][i1] = Server.streamReader2
-						.readBoolean();
+			for(int i=0;i<6;i++){
+				Server.bombInfoBoolean[i]=Server.streamReader2.readBoolean();
 			}
-		}
-			for(int i=0;i<=23;i++){
-				Server.bomb[i]=Server.streamReader2.readInt();
-			}
-		Server.esAllenWeitersagen();
+		Server.SendToAll();
 		}catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("bla2");

@@ -1,5 +1,6 @@
 package Game;
 
+import Client.Client;
 import Menues.GameOverPic;
 
 public class Movement {
@@ -24,6 +25,7 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
+				Client.Send();
 			}
 		} else if (pl.ctrl == "Unten") {
 			if (checkMove(pl.x, pl.y + 1, pl)) {
@@ -31,6 +33,7 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
+				Client.Send();
 			}
 		} else if (pl.ctrl == "Links") {
 			if (checkMove(pl.x - 1, pl.y, pl)) {
@@ -38,6 +41,7 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
+				Client.Send();
 			}
 		} else if (pl.ctrl == "Rechts") {
 			if (checkMove(pl.x + 1, pl.y, pl)) {
@@ -45,6 +49,7 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
+				Client.Send();
 			}
 		} else if (pl.ctrl == "Bombe") {
 			if (pl.bCnt > 0)
