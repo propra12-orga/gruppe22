@@ -149,8 +149,11 @@ public class Init {
 		
 		for (int i = 0; i < 21; i++)
 			for(int j = 0; j < 17; j++){
-				if(feld[i][j] == 9)
+				if(feld[i][j] == 9){
 					exitSet = true;
+					ex = i;
+					ey = j;
+				}
 				if(feld[i][j] == 8)
 					feld[i][j] = 0;
 			}
@@ -266,8 +269,7 @@ public class Init {
 
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
-				if (Field.fieldNumbers[i][j] != 1
-						&& Field.fieldNumbers[i][j] != 9)
+				if (Field.fieldNumbers[i][j] != 1)
 					Field.fieldNumbers[i][j] = 0;
 
 		Field.fieldNumbers = fieldContent(Field.basicField);
