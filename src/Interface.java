@@ -236,10 +236,13 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.constMap) {
 			Load.loadMap();
 			if(Load.chosen){
-				Field.basicField = Init.basicField();
-				Field.fieldNumbers = Init.constMap(Load.s);
+				offline = true;
+				ctrlP1 = true;
 				Field.bombPos = Init.bombPos();
 				Bomb.bombs = Init.bombs();
+				Field.basicField = Init.basicField();
+				Field.fieldNumbers = Init.constMap(Load.s);
+				Load.content();
 				Game.main(null);
 				closeMenuOpenGame();
 				Field.f = new Field();

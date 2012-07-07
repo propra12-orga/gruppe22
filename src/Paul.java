@@ -1,6 +1,6 @@
 /**
  * 
- * Thread fuer die KI.
+ * Thread-Klasse fuer die KI.
  * 
  * @author Pierre Schwarz
  *
@@ -22,6 +22,7 @@ public class Paul extends Thread {
 	public Paul(){
 		super();
 		kiThread = this;
+		Player.initKI(Init.Player2);
 		KI.kiPl = Init.Player2;
 	}
 	

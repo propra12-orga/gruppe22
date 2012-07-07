@@ -12,7 +12,6 @@ public class Movement {
 	static Sound powerUp;
 
 	public static void getMovement(Player pl) {
-
 		
 		if (pl.ctrl == "Oben") {
 			if (checkMove(pl.x, pl.y - 1, pl)) {
