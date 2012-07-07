@@ -1,3 +1,4 @@
+package Server;
 public class ServerFieldInit {
 
 	public static int[][] basicField() {

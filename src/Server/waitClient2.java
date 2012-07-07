@@ -1,3 +1,4 @@
+package Server;
 import java.io.IOException;
 
 public class waitClient2 implements Runnable {
