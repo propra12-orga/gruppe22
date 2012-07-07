@@ -88,7 +88,7 @@ public class Init {
 
 	/**
 	 * Ruft den Bufferedreader auf. <br>
-	 * Liest die einzelnen Zeilen eines Textdatei und spaltet den erhaltenen String in
+	 * Liest die einzelnen Zeilen einer Textdatei und spaltet den erhaltenen String in
 	 * seine Einzelteile. Diese werden je nach Zeile in entsprechenden Arrays gespeichert,
 	 * mit deren Hilfe das Spielfeld initialisiert wird.
 	 * 
@@ -286,6 +286,8 @@ public class Init {
 
 			MP = false;
 			KI = false;
+			if (KI)
+				Paul.kiThread.interrupt();
 		}
 		;
 	}

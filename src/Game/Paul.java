@@ -29,35 +29,18 @@ public class Paul extends Thread {
 	
 	public void run(){
 		while(true){
-			
-			try{		
+			try{
+				
 				if (!KI.esc)
 					KI.checkEnv();
-				sleep(750);
-			}
-			catch(InterruptedException e){
-				if (Interface.isPause)
-					synchronized(this){
-						try{
-							this.wait();
-						}
-						catch (InterruptedException f){
-							
-						}
-					}
+				for (int i = 0; i < 10; i++){
+					sleep(75);
+					while (Interface.isPause)
+						sleep(10);
+				}
+			} catch(InterruptedException e){
 				break;
 			}
-		}
-	}
-	
-	/**
-	 * Nach Pause: <br>
-	 * Startet die KI wieder.
-	 */
-	public void resumeKI(){
-		synchronized(this){
-			this.notify();
-			this.interrupt();
 		}
 	}
 }

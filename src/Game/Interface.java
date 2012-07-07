@@ -230,10 +230,7 @@ public class Interface implements KeyListener, ActionListener {
 			closeMenuOpenGame();
 			Field.f = new Field();
 		} else if (e.getSource() == this.continueGame) {
-			isPause = false;
-			if (Init.KI)
-				Paul.kiThread.resumeKI();
-			
+			isPause = false;			
 			Game.main(null);
 			closeMenuOpenGame();
 			Field.f.newPaint();

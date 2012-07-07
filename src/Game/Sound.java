@@ -4,6 +4,11 @@ import java.applet.*;
 
 /**
  * Simple Sound-Klasse. Gegebenenfalls wegen AudioClip ein wenig ueberholt?
+ * Jeder Sound ist Freeware, gefunden auf folgenden Plattformen:
+ * 
+ * http://www.talkingwav.com/various_wav_sounds.html
+ * http://www.villagegeek.com/HTML/wavfiles1.htm
+ * 
  * @author Pierre Schwarz
  *
  */
