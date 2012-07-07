@@ -24,8 +24,6 @@ public class Field extends JPanel {
 	 * Gibt an, in welchem Feld sich eine Bombe befindet.
 	 */
 	public static boolean[][] bombPos; 
-	public static boolean[][] expPos;
-	// static Bomb crtBomb;
 
 	/**
 	 * Spielfeld-Objekt

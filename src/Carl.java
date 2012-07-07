@@ -90,7 +90,6 @@ public class Carl extends Thread {
 		
 		Bomb.endDetonation(bomb, player);
 		if(Init.KI) KI.clearDanger(bomb);
-		Field.expPos[bomb.x][bomb.y] = false;
 		
 		// Netzwerk senden
 	

@@ -215,7 +215,6 @@ public class Interface implements KeyListener, ActionListener {
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombPos();
-			Field.expPos = Init.bombPos();
 			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();
@@ -240,7 +239,6 @@ public class Interface implements KeyListener, ActionListener {
 				Field.basicField = Init.basicField();
 				Field.fieldNumbers = Init.constMap(Load.s);
 				Field.bombPos = Init.bombPos();
-				Field.expPos = Init.bombPos();
 				Bomb.bombs = Init.bombs();
 				Game.main(null);
 				closeMenuOpenGame();
@@ -263,7 +261,6 @@ public class Interface implements KeyListener, ActionListener {
 			Field.basicField = Init.basicField();
 			Field.fieldNumbers = Init.fieldContent(Field.basicField);
 			Field.bombPos = Init.bombPos();
-			Field.expPos = Init.bombPos();
 			Bomb.bombs = Init.bombs();
 			Game.main(null);
 			closeMenuOpenGame();

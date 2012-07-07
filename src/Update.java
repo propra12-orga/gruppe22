@@ -1,3 +1,10 @@
+/**
+ * Aktualisiert das Spielfeld im Onlinemodus.
+ * 
+ * @author Pierre Schwarz
+ *
+ */
+
 
 public class Update {
 	
