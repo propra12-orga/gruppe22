@@ -19,7 +19,12 @@ public class Bomb extends JPanel {
 	 * Gibt Detonation der Bombe an. <br>
 	 * Wenn dieser Boolean auf true steht, wird die Detonation gezeichnet.
 	 */
-	boolean det; 
+	boolean det;
+	
+	/**
+	 * Gibt an, ob beim jeweiligen Client der Thread der jeweils aktiven Bombe schon gestartet wurde.
+	 */
+	boolean isSet;
 	
 	/**
 	 * Gibt an, ob die jeweilige Bombe des Bombenarrays aktiv ist oder noch nicht
@@ -62,6 +67,7 @@ public class Bomb extends JPanel {
 		this.rb = true;
 		this.det = false;
 		this.active = false;
+		this.isSet = false;
 	}
 
 	/**
