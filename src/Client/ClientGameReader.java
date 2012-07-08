@@ -17,7 +17,7 @@ public class ClientGameReader extends Thread {
 		System.out.println("gameReader gestartet.");
 		try {
 			while (true) {
-				if (Client.streamReader.available() >= 74) {
+				if (Client.streamReader.available() >= 47) {
 					Stift = true;
 					x = Client.streamReader.readInt();
 					y = Client.streamReader.readInt();
@@ -25,11 +25,20 @@ public class ClientGameReader extends Thread {
 					bCnt = Client.streamReader.readInt();
 					rad = Client.streamReader.readInt();
 					Update.player(x, y, num, bCnt, rad);
-					for (int i = 0; i < 6; i++) {
-						bx = Client.streamReader.readInt();
-						by = Client.streamReader.readInt();
-						act = Client.streamReader.readBoolean();
-						Update.bomb(bx, by, i, act);
+					if(num==1){
+						for (int i = 0; i < 3; i++) {
+							bx = Client.streamReader.readInt();
+							by = Client.streamReader.readInt();
+							act = Client.streamReader.readBoolean();
+							Update.bomb(bx, by, i, act);
+						}
+					} else if(num == 2){
+						for (int i = 3; i < 6; i++) {
+							bx = Client.streamReader.readInt();
+							by = Client.streamReader.readInt();
+							act = Client.streamReader.readBoolean();
+							Update.bomb(bx, by, i, act);
+						}
 					}
 				}
 

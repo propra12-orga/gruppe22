@@ -57,7 +57,7 @@ public class Movement {
 					Client.Send();
 			}
 		} else if (pl.ctrl == "Bombe") {
-			if (pl.bCnt > 0){
+			if (pl.bCnt > 0 && pl.bCnt <=3){
 				crtBomb = new Bomb(pl);
 				startBombThread(pl, crtBomb);
 			

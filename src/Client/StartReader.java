@@ -21,6 +21,7 @@ public class StartReader extends Thread {
 	public void run() {
 		try {
 			while (complete == false) {
+				System.out.println(Client.streamReader.available());
 				if (Client.streamReader.available() == 2856) {
 					IOfields();
 					complete = true;
@@ -94,13 +95,28 @@ public class StartReader extends Thread {
 				Client.streamWriter.writeInt(Init.Player2.bCnt);
 				Client.streamWriter.writeInt(Init.Player2.rad);
 			}
-			for (int i = 0; i < 6; i++) {
-				Client.streamWriter.writeInt(Bomb.bombs[i].x);
-				Client.streamWriter.writeInt(Bomb.bombs[i].y);
+			if (Interface.ctrlP1){
+				for (int i = 0; i < 3; i++) {
+					Client.streamWriter.writeInt(Bomb.bombs[i].x);
+					Client.streamWriter.writeInt(Bomb.bombs[i].y);
+				}
+			} else {
+				for (int i = 3; i < 6; i++) {
+					Client.streamWriter.writeInt(Bomb.bombs[i].x);
+					Client.streamWriter.writeInt(Bomb.bombs[i].y);
+				}
 			}
-			for (int i = 0; i < 6; i++) {
-				Client.streamWriter.writeBoolean(Bomb.bombs[i].active);
+				
+			if (Interface.ctrlP1){
+				for (int i = 0; i < 3; i++) {
+					Client.streamWriter.writeBoolean(Bomb.bombs[i].active);
+				}
+			} else {
+				for (int i = 3; i < 6; i++) {
+					Client.streamWriter.writeBoolean(Bomb.bombs[i].active);
+				}
 			}
+
 
 		} catch (Exception ex) {
 			System.out.println("StartReader: Probleme beim senden.");

@@ -73,12 +73,26 @@ public class Client {
 				streamWriter.writeInt(Init.Player2.rad);
 			}
 			
-			for (int i = 0; i < 6; i++) {
-				streamWriter.writeInt(Bomb.bombs[i].x);
-				streamWriter.writeInt(Bomb.bombs[i].y);
+			if (Interface.ctrlP1){
+				for (int i = 0; i < 3; i++) {
+					streamWriter.writeInt(Bomb.bombs[i].x);
+					streamWriter.writeInt(Bomb.bombs[i].y);
+				}
+			} else {
+				for (int i = 3; i < 6; i++) {
+					streamWriter.writeInt(Bomb.bombs[i].x);
+					streamWriter.writeInt(Bomb.bombs[i].y);
+				}
 			}
-			for (int i = 0; i < 6; i++) {
-				streamWriter.writeBoolean(Bomb.bombs[i].active);
+				
+			if (Interface.ctrlP1){
+				for (int i = 0; i < 3; i++) {
+					streamWriter.writeBoolean(Bomb.bombs[i].active);
+				}
+			} else {
+				for (int i = 3; i < 6; i++) {
+					streamWriter.writeBoolean(Bomb.bombs[i].active);
+				}
 			}
 
 		} catch (Exception ex) {

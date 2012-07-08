@@ -396,7 +396,7 @@ public class Init {
 						randomBox = Math.random();
 						if (randomBox > 0.99) {
 							whichPower = Math.random();
-							if (whichPower > 0.5 && bombCnt <= 3){
+							if (whichPower > 0.5 && bombCnt < 3){
 								bombCnt++;
 								powerUps[i][j] = 42;
 								value++;

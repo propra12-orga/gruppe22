@@ -44,7 +44,7 @@ public class Carl extends Thread {
 
 	public void run() {
 		
-		player.bCnt -= 1;
+		player.bCnt --;
 		end = false;
 		bomb = crtBomb;
 		setActivation(bomb);
@@ -99,7 +99,9 @@ public class Carl extends Thread {
 		}}}
 		remActivation(bomb);
 		inactive(bomb);
-		player.bCnt += 1;
+		if (player.bCnt <3){
+			player.bCnt ++;
+		}
 	}
 	
 	public void inactive(Bomb bomb){
