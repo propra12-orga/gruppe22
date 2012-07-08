@@ -9,7 +9,15 @@ package Game;
 public class Carl extends Thread {
 
 	public Player player;
+	public boolean act, end = false;
 	Sound boom;
+	
+	public static Carl bomb0 = new Carl(Bomb.bombs[0],Init.Player1);
+	public static Carl bomb1 = new Carl(Bomb.bombs[1],Init.Player1);
+	public static Carl bomb2 = new Carl(Bomb.bombs[2],Init.Player1);
+	public static Carl bomb3 = new Carl(Bomb.bombs[3],Init.Player1);
+	public static Carl bomb4 = new Carl(Bomb.bombs[4],Init.Player1);
+	public static Carl bomb5 = new Carl(Bomb.bombs[5],Init.Player1);
 	
 	/**
 	 * Wichtig fuer geladene Spiele oder von fremden Clienten uebermittelte Informationen.
@@ -20,21 +28,7 @@ public class Carl extends Thread {
 	Bomb crtBomb, bomb;
 	
 	/**
-	 * 1. Carl-Konstruktor: <br>
-	 * Der Thread bekommt einen Spieler uebergeben, alles Weitere
-	 * ist von diesem abhaengig. Hier wird die entsprechende Bombe
-	 * des Threads im Thread selbst initialisiert.
-	 * @param Player crtPlayer
-	 */
-	
-	public Carl(Player crtPlayer) {
-		super();
-		player = crtPlayer;
-		isSet = false;
-	}
-	
-	/**
-	 * 2. Carl-Kontruktor: <br>
+	 * Carl-Kontruktor: <br>
 	 * Hier bekommt der Thread sowohl einen Spieler, als auch eine Bombe uebergeben.
 	 * Die Bombe wird in der run()-Methode so benutzt, wie sie hier uebergeben wird
 	 * und nicht ueberschrieben/neu initialisiert.
@@ -45,62 +39,95 @@ public class Carl extends Thread {
 		super();
 		player = crtPlayer;
 		crtBomb = bomb;
-		isSet = true;
 	}
 
 	public void run() {
-		Interface.isPause = false;
-		if(!isSet){
-			player.bCnt -= 1;
-			bomb = new Bomb(player);
-			Bomb.placeBomb(bomb, player);
-		}
-		else {
-			bomb = crtBomb;
-			player.bP += 1;
-		}
+		
+		player.bCnt -= 1;
+		end = false;
+		bomb = crtBomb;
+		setActivation(bomb);
+		
 		Bomb.radCheck(bomb, player);
 		if (Init.KI) KI.setDanger(bomb);
+		
 		try {
 			for (int i = 0; i < 30; i++){
 				sleep(100);
 				while(Interface.isPause){
 					sleep(10);
 				}
-				if (bomb.det)
+				if (bomb.det){
 					interrupt();
+					end = true;
+				}
 			}
 		} catch (InterruptedException e) {
-			
+			interrupt();
 		}
 		
-		Bomb.detonate(bomb, player);
+		if (!isInterrupted() || end){
+			Bomb.detonate(bomb, player);
 		
-		if (Interface.isSound)
-			boom = new Sound("src/Sounds/bomb.wav");
+			if (Interface.isSound)
+				boom = new Sound("src/Sounds/bomb.wav");
 			
-		// Netzwerk senden
-		
-		
+			// Netzwerk senden
 		
 		try {
-			sleep(1000);
+			for (int i = 0; i < 10; i++){
+				sleep(100);
+				while(Interface.isPause)
+					sleep(10);
+			}
 		} catch (InterruptedException e) {
-
+			interrupt();
 		}
 		
-		Bomb.endDetonation(bomb, player);
-		if(Init.KI) KI.clearDanger(bomb);
+		if (!isInterrupted() || end){
+			Bomb.endDetonation(bomb, player);
+			if(Init.KI) KI.clearDanger(bomb);
 		
-		// Netzwerk senden
-	
+			// Netzwerk senden
+		
 
 		try {
 			sleep(50);
 		} catch (InterruptedException e) {
 
-		}
+		}}}
+		remActivation(bomb);
 		player.bCnt += 1;
+	}
+	
+	public void setActivation(Bomb bomb){
+		if (bomb.num == 0)
+			bomb0.act = true;
+		else if (bomb.num == 1)
+			bomb1.act = true;
+		else if (bomb.num == 2)
+			bomb2.act = true;
+		else if (bomb.num == 3)
+			bomb3.act = true;
+		else if (bomb.num == 4)
+			bomb4.act = true;
+		else if (bomb.num == 5)
+			bomb5.act = true;
+	}
+	
+	public void remActivation(Bomb bomb){
+		if (bomb.num == 0)
+			bomb0.act = false;
+		else if (bomb.num == 1)
+			bomb1.act = false;
+		else if (bomb.num == 2)
+			bomb2.act = false;
+		else if (bomb.num == 3)
+			bomb3.act = false;
+		else if (bomb.num == 4)
+			bomb4.act = false;
+		else if (bomb.num == 5)
+			bomb5.act = false;
 	}
 
 }

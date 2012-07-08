@@ -52,6 +52,8 @@ public class Bomb extends JPanel {
 	 * Bombenarray, das alle 6 Bomben-Objekte eines Bomberdroit-Spieles beinhaltet.
 	 */
 	public static Bomb[] bombs = Init.bombs();
+	
+	public boolean pl1;
 
 	/**
 	 * Bombenobjekt wird initialisiert und bekommt sowohl Koordinaten, als auch
@@ -73,6 +75,26 @@ public class Bomb extends JPanel {
 		this.det = false;
 		this.active = false;
 		this.isSet = false;
+		
+		pl1 = false;
+		
+		if (!Init.isInit){
+			if(player == Init.Player1)
+				for (int i = 0; i < 3; i++)
+					if (!Bomb.bombs[i].active){
+						this.num = i;
+						pl1 = true;
+						break;
+					}
+			if (!pl1)
+				for (int j = 3; j < 6; j++){
+					if (!Bomb.bombs[j].active){
+						this.num = j;
+						break;
+					}	
+			}
+		}
+			
 	}
 
 	/**
@@ -86,12 +108,8 @@ public class Bomb extends JPanel {
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
 		//Netzwerk senden
-		bomb.num = player.bP;
 		bomb.active = true;
-		bombToArray(bomb, player);
-
-		player.bP += 1;
-
+		bombToArray(bomb);
 	}
 
 	/**
@@ -107,7 +125,7 @@ public class Bomb extends JPanel {
 	public static void detonate(Bomb bomb, Player player) {
 
 		bomb.det = true;
-		bombToArray(bomb, player);
+		bombToArray(bomb);
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			isGameOver(Field.fieldNumbers[bomb.x + gor][bomb.y]);
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 8;
@@ -167,7 +185,7 @@ public class Bomb extends JPanel {
 	public static void endDetonation(Bomb bomb, Player pl) {
 
 		bomb.det = false;
-		bombToArray(bomb, pl);
+		bombToArray(bomb);
 		for (int gor = 1; gor <= bomb.r; gor++) {
 			Field.fieldNumbers[bomb.x + gor][bomb.y] = 0;
 			checkPowerUp(bomb.x + gor, bomb.y);
@@ -189,8 +207,6 @@ public class Bomb extends JPanel {
 		if (Field.fieldNumbers[Init.ex][Init.ey] == 0) {
 			Field.fieldNumbers[Init.ex][Init.ey] = 9;
 		}
-
-		pl.bP -= 1;
 	}
 
 	private static void checkPowerUp(int x, int y) {
@@ -223,17 +239,8 @@ public class Bomb extends JPanel {
 	 * @param Player pl
 	 */
 
-	public static void bombToArray(Bomb bomb, Player pl) {
-		if (pl == Init.Player1)
-			bombs[bomb.num] = bomb;
-
-		if (Init.MP)
-			if (pl == Init.Player2)
-				bombs[bomb.num] = bomb;
-		
-		if (Init.KI)
-			if (pl == KI.kiPl)
-				bombs[bomb.num] = bomb;
+	public static void bombToArray(Bomb bomb) {
+		bombs[bomb.num] = bomb;
 	}
 
 	/**
@@ -343,7 +350,7 @@ public class Bomb extends JPanel {
 			}
 		}
 
-		bombToArray(bomb, pl);
+		bombToArray(bomb);
 
 	}
 }

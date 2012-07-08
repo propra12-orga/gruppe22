@@ -29,10 +29,7 @@ public class Player {
 	 * Spielernummer
 	 */
 	public int num;
-	/**
-	 * zZ aktive Bomben des Spielers auf dem Spielfeld
-	 */
-	public int bP; 
+
 	public String ctrl;
 	
 	/**
@@ -58,7 +55,6 @@ public class Player {
 		this.rad = 1;
 		this.ctrl ="";
 		this.num = 1;
-		this.bP = 0;
 	}
 	/**
 	 * Definiert die Position und die Spielernummer des Spieler 2 (Multiplayer)
@@ -71,7 +67,6 @@ public class Player {
 		player.x = 19;
 		player.y = 15;
 		player.num = 2;
-		player.bP = 3;
 	}
 	
 	/**
@@ -86,7 +81,6 @@ public class Player {
 		player.x = 19;
 		player.y = 15;
 		player.num = 2;
-		player.bP = 3;
 		player.checkRad = 1;
 		player.danger = false;
 	}

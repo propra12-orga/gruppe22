@@ -62,6 +62,7 @@ public class Init {
 	
 	public static int bombCnt;
 	public static int rad;
+	public static boolean isInit = true;
 
 	// /////////////////////////////////////////////////////////////////////////////////////
 
@@ -273,9 +274,11 @@ public class Init {
 					Field.fieldNumbers[i][j] = 0;
 
 		Field.fieldNumbers = fieldContent(Field.basicField);
-		Bomb.bombs = bombs();
+		resetBombs();
 		Player1.x = 1;
 		Player1.y = 1;
+		Player1.rad = 1;
+		Player1.bCnt = 1;
 		Bomb.gameOver = false;
 		exitSet = false;
 		loaded = false;
@@ -283,6 +286,8 @@ public class Init {
 		if (MP || KI) {
 			Player2.x = 20;
 			Player2.y = 16;
+			Player2.rad = 1;
+			Player2.bCnt = 1;
 
 			MP = false;
 			KI = false;
@@ -290,6 +295,15 @@ public class Init {
 				Paul.kiThread.interrupt();
 		}
 		;
+		Carl.bomb0.interrupt();
+		Carl.bomb1.interrupt();
+		Carl.bomb2.interrupt();
+		Carl.bomb3.interrupt();
+		Carl.bomb4.interrupt();
+		Carl.bomb5.interrupt();
+		threadActivation();
+		Interface.isPause = false;
+		isInit = true;
 	}
 
 	/**
@@ -411,6 +425,38 @@ public class Init {
 		field[19][14] = 0;
 		Player.getStartPos2(Player2);
 		return field;
+	}
+	
+	public static void threadActivation(){
+		Carl.bomb0.act = false;
+		Carl.bomb1.act = false;
+		Carl.bomb2.act = false;
+		Carl.bomb3.act = false;
+		Carl.bomb4.act = false;
+		Carl.bomb5.act = false;
+	}
+	
+	public static void resetBombs(){
+		for (int i = 0; i < 6; i++){
+			if (i < 3){
+				Bomb.bombs[i].x = Player1.x;
+				Bomb.bombs[i].y = Player1.y;
+			} else {
+				Bomb.bombs[i].x = Player2.x;
+				Bomb.bombs[i].y = Player2.y;
+			}
+				Bomb.bombs[i].o = 0;
+				Bomb.bombs[i].u = 0;
+				Bomb.bombs[i].l = 0;
+				Bomb.bombs[i].r = 0;
+				Bomb.bombs[i].ob = true;
+				Bomb.bombs[i].ub = true;
+				Bomb.bombs[i].lb = true;
+				Bomb.bombs[i].rb = true;
+				Bomb.bombs[i].det = false;
+				Bomb.bombs[i].active = false;
+				Bomb.bombs[i].isSet = false;
+			}
 	}
 
 }

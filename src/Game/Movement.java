@@ -15,17 +15,19 @@ public class Movement {
 	 */
 	
 	static Sound powerUp;
+	public static Bomb crtBomb;
 
 	
 	public static void getMovement(Player pl) {
-			
+		
 		if (pl.ctrl == "Oben") {
 			if (checkMove(pl.x, pl.y - 1, pl)) {
 				goUp(pl.x, pl.y, pl);
 				playerToField(pl);
 				
 				//Netzwerk senden
-				Client.Send();
+				if (!Interface.offline)
+					Client.Send();
 			}
 		} else if (pl.ctrl == "Unten") {
 			if (checkMove(pl.x, pl.y + 1, pl)) {
@@ -33,7 +35,8 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
-				Client.Send();
+				if (!Interface.offline)
+					Client.Send();
 			}
 		} else if (pl.ctrl == "Links") {
 			if (checkMove(pl.x - 1, pl.y, pl)) {
@@ -41,7 +44,8 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
-				Client.Send();
+				if (!Interface.offline)
+					Client.Send();
 			}
 		} else if (pl.ctrl == "Rechts") {
 			if (checkMove(pl.x + 1, pl.y, pl)) {
@@ -49,17 +53,48 @@ public class Movement {
 				playerToField(pl);
 				
 				//Netzwerk senden
-				Client.Send();
+				if (!Interface.offline)
+					Client.Send();
 			}
 		} else if (pl.ctrl == "Bombe") {
-			if (pl.bCnt > 0)
-				new Carl(pl).start();
-				//Netzwerk senden
-				Client.Send();
-
+			if (pl.bCnt > 0){
+				crtBomb = new Bomb(pl);
+				startBombThread(pl, crtBomb);
+			
+			}
 		}
 
 		/* hier erweitern mit if-Bedinungen f�r weitere Spieler */
+	}
+	
+	public static void startBombThread(Player pl, Bomb bomb){
+			if (bomb.num == 0){
+				Bomb.placeBomb(bomb, pl);
+				Carl.bomb0 = new Carl(bomb, pl);
+				Carl.bomb0.start();
+			} else if (bomb.num == 1){
+				Bomb.placeBomb(bomb, pl);
+				Carl.bomb1 = new Carl(bomb, pl);
+				Carl.bomb1.start();
+			} else if (bomb.num == 2){
+				Bomb.placeBomb(bomb, pl);
+				Carl.bomb2 = new Carl(bomb, pl);
+				Carl.bomb2.start();
+			} else if (bomb.num == 3){
+				Bomb.placeBomb(bomb, pl);
+				Carl.bomb3 = new Carl(bomb, pl);		
+				Carl.bomb3.start();
+			} else if (bomb.num == 4){
+				Bomb.placeBomb(bomb, pl);
+				Carl.bomb4 = new Carl(bomb, pl);
+				Carl.bomb4.start();
+			} else if (bomb.num == 5){
+				Bomb.placeBomb(bomb, pl);
+				Carl.bomb5 = new Carl(bomb, pl);
+				Carl.bomb5.start();
+			}
+			if (!Interface.offline)
+				Client.Send();
 	}
 
 	/**

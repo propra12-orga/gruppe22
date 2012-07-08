@@ -34,6 +34,7 @@ public class Game implements KeyListener {
 		Interface.game.addKeyListener(this);
 
 		played = true;
+		Init.isInit = false;
 		Interface.frame.add(Interface.game);
 		
 	}
