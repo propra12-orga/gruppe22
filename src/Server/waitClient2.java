@@ -1,4 +1,4 @@
-package Server;
+
 import java.io.IOException;
 
 public class waitClient2 implements Runnable {
@@ -17,8 +17,8 @@ public class waitClient2 implements Runnable {
 			while (check == true) {
 				if (Server.streamReader2.available() == 1506) {
 
-					for (int i = 0; i <= 16; i++) {
-						for (int j = 0; j <= 20; j++) {
+					for (int i = 0; i < 17; i++) {
+						for (int j = 0; j <21; j++) {
 							Server.fieldNumbers[j][i] = Server.streamReader2
 								.readInt();
 						}
@@ -26,15 +26,16 @@ public class waitClient2 implements Runnable {
 					for(int i=6;i<12;i++){
 						Server.playerInfo[i]=Server.streamReader2.readInt();	
 					}
-					for(int i = 0;i<11;i++){
+					for(int i = 0;i<12;i++){
 						Server.bombInfoInt[i]=Server.streamReader2.readInt();
 					}
 					for(int i=0;i<6;i++){
 						Server.bombInfoBoolean[i]=Server.streamReader2.readBoolean();
 					}
+					check = false;
 				}
 			}
-			check = false;
+			
 			System.out.println("waitClient2: beenden.");
 			Thread t3 = new Thread(new gameReader());
 			t3.start();

@@ -30,7 +30,10 @@ public class Update {
 	 * Gibt an, um welchen Spieler es sich handelt.
 	 */
 	static boolean pl1, pl2 = false;
-	
+	static int xo1 = Init.Player1.x;
+	static int yo1 = Init.Player1.y;
+	static int xo2 = Init.Player2.x;
+	static int yo2 = Init.Player2.y;
 	/**
 	 * Aktualisiert das Gegenspielerobjekt im Onlinemodus.
 	 * 	
@@ -48,47 +51,36 @@ public class Update {
 		 * Initialisiere Spielerobjekt und ueberschreibe die zugehoerigen Parameter
 		 * entsprechend der erhaltenen Informationen.
 		 */
-		
-		player = new Player();
-		player.x = x;
-		player.y = x;
-		
-		player.xo = x;
-		player.yo = y;
-		player.num = num;
-		player.bCnt = bCnt;
-		player.rad = rad;
-		player.ctrl ="";
+
 		if (bP >= 1)
-			player.bP = bP - 1;
-		else player.bP = 0;
+			bP = bP - 1;
+		else bP = 0;
 		
 		/*
 		 * Ueberschreibe beim Clienten das entsprechende Spielerobjekt
 		 */
-		
-		if (player.num == 1){
-			Init.Player1 = player;
-			pl1 = true;
+		if (num == 1){
+			Field.fieldNumbers[x][y]=3;
+			Field.fieldNumbers[xo1][yo1]=0;
+			Init.Player1.x=x;
+			Init.Player1.y=y;
+			Init.Player1.bCnt=bCnt;
+			Init.Player1.rad=rad;
+			Init.Player1.bP=bP;
+			xo1=x;
+			yo1=y;
+			
 		} else {
-			Init.Player2 = player;
-			pl2 = true;
+			Field.fieldNumbers[x][y]=4;
+			Field.fieldNumbers[xo2][yo2]=0;
+			Init.Player2.x=x;
+			Init.Player2.y=y;
+			Init.Player2.bCnt=bCnt;
+			Init.Player2.rad=rad;
+			Init.Player2.bP=bP;
+			xo2=x;
+			yo2=y;
 		}
-		
-		/*
-		 * Durchlaufe das Spielfeld, suche und setze die Spieler.
-		 */
-		
-		for (int i = 0; i < 21; i++)
-			for (int j = 0; j < 17; j++){
-				if (i == player.x && j == player.y && pl1)
-					Field.fieldNumbers[i][j] = 3;
-				else if (i == player.x && j == player.y && pl2)
-					Field.fieldNumbers[i][j] = 4;
-			}
-		
-		pl1 = false;
-		pl2 = false;
 	}
 	
 	/**
@@ -123,6 +115,9 @@ public class Update {
 		bomb.num = num;
 		bomb.active = act;
 		
+		if (bomb.active){
+			Field.bombPos[bomb.x][bomb.y] = true;
+		}
 		/*
 		 * Ueberpruefen, ob der Bombenthread beim Clienten zuvor schon gestartet wurde.
 		 */

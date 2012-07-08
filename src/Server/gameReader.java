@@ -1,4 +1,4 @@
-package Server;
+
 import java.io.IOException;
 
 public class gameReader extends Thread {
@@ -28,12 +28,10 @@ public class gameReader extends Thread {
 	
 	public void ReadClient1(){
 		try{
-			System.out.println("Stream1 hat: "
-				+ Server.streamReader1.available());
-			for(int i=6;i<12;i++){
+			for(int i=0;i<12;i++){
 				Server.playerInfo[i]=Server.streamReader1.readInt();	
 			}
-			for(int i = 0;i<11;i++){
+			for(int i = 0;i<12;i++){
 				Server.bombInfoInt[i]=Server.streamReader1.readInt();
 			}
 			for(int i=0;i<6;i++){
@@ -49,12 +47,10 @@ public class gameReader extends Thread {
 	
 	public void ReadClient2(){
 		try{
-			System.out.println("Stream2 hat: "
-				+ Server.streamReader2.available());
-			for(int i=6;i<12;i++){
+			for(int i=0;i<12;i++){
 				Server.playerInfo[i]=Server.streamReader2.readInt();	
 			}
-			for(int i = 0;i<11;i++){
+			for(int i = 0;i<12;i++){
 				Server.bombInfoInt[i]=Server.streamReader2.readInt();
 			}
 			for(int i=0;i<6;i++){

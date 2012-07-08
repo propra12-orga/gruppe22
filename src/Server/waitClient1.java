@@ -1,4 +1,4 @@
-package Server;
+
 import java.io.IOException;
 
 public class waitClient1 implements Runnable
@@ -31,7 +31,7 @@ public class waitClient1 implements Runnable
 					for(int i=0;i<6;i++){
 						Server.playerInfo[i]=Server.streamReader1.readInt();	
 					}
-					for(int i = 0;i<11;i++){
+					for(int i = 0;i<12;i++){
 						Server.bombInfoInt[i]=Server.streamReader1.readInt();
 					}
 					for(int i=0;i<6;i++){

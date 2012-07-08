@@ -18,7 +18,7 @@ public class ClientGameReader extends Thread {
 		System.out.println("gameReader gestartet.");
 		try {
 			while (true) {
-				if (Client.streamReader.available() == 102) {
+				if (Client.streamReader.available() >= 102) {
 					Stift = true;
 					x = Client.streamReader.readInt();
 					y = Client.streamReader.readInt();

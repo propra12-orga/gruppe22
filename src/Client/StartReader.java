@@ -27,6 +27,7 @@ public class StartReader extends Thread {
 				}
 			}
 		} catch (IOException e) {
+			System.out.println("Fehler");
 			e.printStackTrace();
 		}
 		DoIt();
@@ -47,8 +48,6 @@ public class StartReader extends Thread {
 	 */
 	public void DoIt() {
 		if (Field.fieldNumbers[1][1] == 3) {
-			Field.fieldNumbers = Init.InitPlayer2(Field.fieldNumbers);
-			Init.MP = true;
 			Interface.ctrlP2 = true;
 			System.out.println("Spieler 2 wird gesetzt.");
 		} else {
@@ -56,10 +55,11 @@ public class StartReader extends Thread {
 			Init.InitPlayer1(Field.fieldNumbers);
 			System.out.println("Spieler 1 wird gesetzt.");
 		}
-
+		Init.InitPlayer2(Field.fieldNumbers);
 		Field.basicField = Init.basicField();
 		Init.MP = true;
 		Bomb.bombs = Init.bombs();
+		Field.bombPos = Init.bombPos();
 		Thread game = new Thread(new ClientGameReader());
 		game.start();
 		SendFirstTime();
