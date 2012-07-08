@@ -79,19 +79,23 @@ public class Bomb extends JPanel {
 		pl1 = false;
 		
 		if (!Init.isInit){
-			if(player == Init.Player1)
-				for (int i = 0; i < 3; i++)
-					if (!Bomb.bombs[i].active){
-						this.num = i;
-						pl1 = true;
-						break;
-					}
-			if (!pl1)
-				for (int j = 3; j < 6; j++){
-					if (!Bomb.bombs[j].active){
-						this.num = j;
-						break;
-					}	
+			if(player == Init.Player1){
+				if(!Carl.bomb0.isAlive()){
+					this.num =0;
+				}else if(!Carl.bomb1.isAlive()){
+					this.num =1;
+				}else if(!Carl.bomb2.isAlive()){
+					this.num =2;
+				}
+			}
+			if (player == Init.Player2){
+				if(!Carl.bomb3.isAlive()){
+					this.num =3;
+				}else if(!Carl.bomb4.isAlive()){
+					this.num =4;
+				}else if(!Carl.bomb5.isAlive()){
+					this.num =5;
+				}
 			}
 		}
 			
@@ -207,6 +211,7 @@ public class Bomb extends JPanel {
 		if (Field.fieldNumbers[Init.ex][Init.ey] == 0) {
 			Field.fieldNumbers[Init.ex][Init.ey] = 9;
 		}
+		
 	}
 
 	private static void checkPowerUp(int x, int y) {

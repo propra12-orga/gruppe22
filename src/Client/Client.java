@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import Game.Bomb;
+import Game.Field;
 import Game.Init;
 import Game.Interface;
 
@@ -58,7 +59,6 @@ public class Client {
 
 	public static void Send() {
 		try {
-			System.out.println("Client sendet");
 			if( Interface.ctrlP1){
 				streamWriter.writeInt(Init.Player1.x);
 				streamWriter.writeInt(Init.Player1.y);

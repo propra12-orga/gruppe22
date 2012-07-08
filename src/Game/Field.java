@@ -292,7 +292,7 @@ public class Field extends JPanel {
 for (int j = 0; j < 17; j++){
 	System.out.println();
 	for (int i = 0; i < 21; i++)
-		System.out.print(fieldNumbers[i][j]);
+		System.out.print(Field.fieldNumbers[i][j]);
 	}
 	System.out.println();
 

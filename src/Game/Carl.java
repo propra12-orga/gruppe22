@@ -9,7 +9,8 @@ package Game;
 public class Carl extends Thread {
 
 	public Player player;
-	public boolean act, end = false;
+	public boolean end = false;
+	public boolean act = false;
 	Sound boom;
 	
 	public static Carl bomb0 = new Carl(Bomb.bombs[0],Init.Player1);
@@ -97,9 +98,14 @@ public class Carl extends Thread {
 
 		}}}
 		remActivation(bomb);
+		inactive(bomb);
 		player.bCnt += 1;
 	}
 	
+	public void inactive(Bomb bomb){
+		bomb.active=false;
+	}
+
 	public void setActivation(Bomb bomb){
 		if (bomb.num == 0)
 			bomb0.act = true;
