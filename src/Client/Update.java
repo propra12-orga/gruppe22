@@ -45,16 +45,12 @@ public class Update {
 	 * @param bP Anzahl gelegter Bomben
 	 */
 	
-	public static void player(int x, int y, int num, int bCnt, int rad, int bP){
+	public static void player(int x, int y, int num, int bCnt, int rad){
 		
 		/*
 		 * Initialisiere Spielerobjekt und ueberschreibe die zugehoerigen Parameter
 		 * entsprechend der erhaltenen Informationen.
 		 */
-
-		if (bP >= 1)
-			bP = bP - 1;
-		else bP = 0;
 		
 		/*
 		 * Ueberschreibe beim Clienten das entsprechende Spielerobjekt
@@ -66,7 +62,6 @@ public class Update {
 			Init.Player1.y=y;
 			Init.Player1.bCnt=bCnt;
 			Init.Player1.rad=rad;
-			Init.Player1.bP=bP;
 			xo1=x;
 			yo1=y;
 			
@@ -77,7 +72,6 @@ public class Update {
 			Init.Player2.y=y;
 			Init.Player2.bCnt=bCnt;
 			Init.Player2.rad=rad;
-			Init.Player2.bP=bP;
 			xo2=x;
 			yo2=y;
 		}

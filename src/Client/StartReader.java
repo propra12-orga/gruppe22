@@ -87,14 +87,12 @@ public class StartReader extends Thread {
 				Client.streamWriter.writeInt(Init.Player1.num);
 				Client.streamWriter.writeInt(Init.Player1.bCnt);
 				Client.streamWriter.writeInt(Init.Player1.rad);
-				Client.streamWriter.writeInt(Init.Player1.bP);
 			} else {
 				Client.streamWriter.writeInt(Init.Player2.x);
 				Client.streamWriter.writeInt(Init.Player2.y);
 				Client.streamWriter.writeInt(Init.Player2.num);
 				Client.streamWriter.writeInt(Init.Player2.bCnt);
 				Client.streamWriter.writeInt(Init.Player2.rad);
-				Client.streamWriter.writeInt(Init.Player2.bP);
 			}
 			for (int i = 0; i < 6; i++) {
 				Client.streamWriter.writeInt(Bomb.bombs[i].x);

@@ -65,14 +65,12 @@ public class Client {
 				streamWriter.writeInt(Init.Player1.num);
 				streamWriter.writeInt(Init.Player1.bCnt);
 				streamWriter.writeInt(Init.Player1.rad);
-				streamWriter.writeInt(Init.Player1.bP);
 			}else {
 				streamWriter.writeInt(Init.Player2.x);
 				streamWriter.writeInt(Init.Player2.y);
 				streamWriter.writeInt(Init.Player2.num);
 				streamWriter.writeInt(Init.Player2.bCnt);
 				streamWriter.writeInt(Init.Player2.rad);
-				streamWriter.writeInt(Init.Player2.bP);
 			}
 			
 			for (int i = 0; i < 6; i++) {

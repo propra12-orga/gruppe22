@@ -15,9 +15,9 @@ public class Carl extends Thread {
 	public static Carl bomb0 = new Carl(Bomb.bombs[0],Init.Player1);
 	public static Carl bomb1 = new Carl(Bomb.bombs[1],Init.Player1);
 	public static Carl bomb2 = new Carl(Bomb.bombs[2],Init.Player1);
-	public static Carl bomb3 = new Carl(Bomb.bombs[3],Init.Player1);
-	public static Carl bomb4 = new Carl(Bomb.bombs[4],Init.Player1);
-	public static Carl bomb5 = new Carl(Bomb.bombs[5],Init.Player1);
+	public static Carl bomb3 = new Carl(Bomb.bombs[3],Init.Player2);
+	public static Carl bomb4 = new Carl(Bomb.bombs[4],Init.Player2);
+	public static Carl bomb5 = new Carl(Bomb.bombs[5],Init.Player2);
 	
 	/**
 	 * Wichtig fuer geladene Spiele oder von fremden Clienten uebermittelte Informationen.
