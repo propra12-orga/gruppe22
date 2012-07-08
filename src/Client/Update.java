@@ -97,53 +97,81 @@ public class Update {
 		/*
 		 * Festlegen, zu welchem Spieler die Bombe gehoert.
 		 */
+		if (act){
+			Field.bombPos[x][y] = true;
+
+		}
+		else Bomb.bombs[num].isSet = false;
 		
-		if (num == 0 || num == 1 || num == 2){
-			bomb = new Bomb(Init.Player1);
-			pl1 = true;
-		} else {
-			bomb = new Bomb(Init.Player2);
-			pl2 = true;
+		if(num <3){
+			if (act && !Bomb.bombs[num].isSet){
+				Bomb.bombs[num].x=x;
+				Bomb.bombs[num].y=y;
+				Bomb.bombs[num].active=true;
+				new Carl(Bomb.bombs[num], Init.Player1).start(); 
+				Bomb.bombs[num].isSet=true;
+			}
+				
+		}else{
+			if (act && !Bomb.bombs[num].isSet){
+				Bomb.bombs[num].x=x;
+				Bomb.bombs[num].y=y;
+				Bomb.bombs[num].active=true;
+				new Carl(Bomb.bombs[num], Init.Player2).start(); 
+				Bomb.bombs[num].isSet=true;
+			}
+			
 		}
 		
-		/*
-		 * Ueberschreiben wichtige Werte des Bombenobjektes.
-		 * Festlegen, ob Bombe aktiv ist oder nicht.
-		 */
-		bomb.x = x;
-		bomb.y = y;
-		bomb.num = num;
-		bomb.active = act;
 		
-		if (bomb.active){
-			Field.bombPos[bomb.x][bomb.y] = true;
-		}
+		
+		
+//		if (num == 0 || num == 1 || num == 2){
+//			bomb = new Bomb(Init.Player1);
+//			pl1 = true;
+//		} else {
+//			bomb = new Bomb(Init.Player2);
+//			pl2 = true;
+//		}
+//		
+//		/*
+//		 * Ueberschreiben wichtige Werte des Bombenobjektes.
+//		 * Festlegen, ob Bombe aktiv ist oder nicht.
+//		 */
+//		bomb.x = x;
+//		bomb.y = y;
+//		bomb.num = num;
+//		bomb.active = act;
+//		
+//		if (bomb.active){
+//			Field.bombPos[bomb.x][bomb.y] = true;
+//		}
 		/*
 		 * Ueberpruefen, ob der Bombenthread beim Clienten zuvor schon gestartet wurde.
 		 */
 		
-		for (int i = 0; i < 21; i++)
-			for (int j = 0; j < 17; j++)
-				if ((Field.bombPos[i][j] || Field.fieldNumbers[i][j] == 8) && bomb.x == i && bomb.y == j)
-					bomb.isSet = true;
-		
-		/*
-		 * Bomb.bombs-Array entsprechend ueberschreiben
-		 */
-		
-		Bomb.bombs[num] = bomb;
-		
-		/*
-		 * Ist Bombe aktiv und wurde noch nicht gesetzt, starte Bombenthread.
-		 */
-		
-		if (bomb.active && !bomb.isSet && pl1)
-			new Carl(bomb, Init.Player1); 
-		else if (bomb.active && !bomb.isSet && pl2)
-			new Carl(bomb, Init.Player2);
-		
-		pl1 = false;
-		pl2 = false;
+//		for (int i = 0; i < 21; i++)
+//			for (int j = 0; j < 17; j++)
+//				if ((Field.bombPos[i][j] || Field.fieldNumbers[i][j] == 8) && bomb.x == i && bomb.y == j)
+//					bomb.isSet = true;
+//		
+//		/*
+//		 * Bomb.bombs-Array entsprechend ueberschreiben
+//		 */
+//		
+//		Bomb.bombs[num] = bomb;
+//		
+//		/*
+//		 * Ist Bombe aktiv und wurde noch nicht gesetzt, starte Bombenthread.
+//		 */
+//		
+//		if (bomb.active && !bomb.isSet && pl1)
+//			new Carl(bomb, Init.Player1); 
+//		else if (bomb.active && !bomb.isSet && pl2)
+//			new Carl(bomb, Init.Player2);
+//		
+//		pl1 = false;
+//		pl2 = false;
 			
 	}
 }
