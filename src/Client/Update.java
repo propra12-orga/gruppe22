@@ -93,31 +93,37 @@ public class Update {
 		 */
 		Field.bombPos[x][y] = act;
 		if (!act){
-			Bomb.bombs[num].isSet = false;
+		Bomb.bombs[num].isSet = false;
 
 		}
-	
-		
-		if(num <3){
-			if (act && !Bomb.bombs[num].isSet){
-				Bomb.bombs[num].x=x;
-				Bomb.bombs[num].y=y;
-				Bomb.bombs[num].active=true;
-				new Carl(Bomb.bombs[num], Init.Player1).start(); 
-				Bomb.bombs[num].isSet=true;
-			}
-				
-		}else{
-			if (act && !Bomb.bombs[num].isSet){
-				Bomb.bombs[num].x=x;
-				Bomb.bombs[num].y=y;
-				Bomb.bombs[num].active=true;
-				new Carl(Bomb.bombs[num], Init.Player2).start(); 
-				Bomb.bombs[num].isSet=true;
-			}
-			
+
+
+
+		Bomb.bombs[num].num = num;
+		Bomb.bombs[num].x=x;
+		Bomb.bombs[num].y=y;
+		Bomb.bombs[num].active=act;
+		if(num == 0 && Bomb.bombs[num].active) {
+		Carl.bomb0 = new Carl(Bomb.bombs[num], Init.Player1);
+		Carl.bomb0.start();
+		} else if (num == 1 && Bomb.bombs[num].active) {
+		Carl.bomb1 = new Carl(Bomb.bombs[num], Init.Player1);
+		Carl.bomb1.start();
+		} else if (num == 2 && Bomb.bombs[num].active) {
+		Carl.bomb2 = new Carl(Bomb.bombs[num], Init.Player1);
+		Carl.bomb2.start();
+		} else if (num == 3 && Bomb.bombs[num].active) {
+		Carl.bomb3 = new Carl(Bomb.bombs[num], Init.Player2);
+		Carl.bomb3.start();
+		} else if (num == 4 && Bomb.bombs[num].active) {
+		Carl.bomb4 = new Carl(Bomb.bombs[num], Init.Player2);
+		Carl.bomb4.start();
+		} else if (num == 5 && Bomb.bombs[num].active) {
+		Carl.bomb5 = new Carl(Bomb.bombs[num], Init.Player2);
+		Carl.bomb5.start();
 		}
-		
+		Bomb.bombs[num].isSet=true;
+
 		
 		
 		
