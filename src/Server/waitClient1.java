@@ -18,7 +18,7 @@ public class waitClient1 implements Runnable
 		try {
 			System.out.println("waitClient1: gestartet.");
 			while (check == true) {
-				if (Server.streamReader1.available() == 1506)
+				if (Server.streamReader1.available() == 1475)
 				{
 					for (int i = 0; i < 17; i++)
 					{
@@ -28,13 +28,13 @@ public class waitClient1 implements Runnable
 								.readInt();
 						}
 					}
-					for(int i=0;i<6;i++){
+					for(int i=0;i<5;i++){
 						Server.playerInfo[i]=Server.streamReader1.readInt();	
 					}
-					for(int i = 0;i<12;i++){
+					for(int i = 0;i<6;i++){
 						Server.bombInfoInt[i]=Server.streamReader1.readInt();
 					}
-					for(int i=0;i<6;i++){
+					for(int i=0;i<3;i++){
 						Server.bombInfoBoolean[i]=Server.streamReader1.readBoolean();
 					}
 					check=false;

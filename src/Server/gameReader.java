@@ -10,10 +10,10 @@ public class gameReader extends Thread {
 			Server.SendToAll();
 			while (true) {
 
-				if (Server.streamReader1.available() >= 78) {
+				if (Server.streamReader1.available() >= 47) {
 					ReadClient1();
 				}
-				if (Server.streamReader2.available() >= 78) {
+				if (Server.streamReader2.available() >= 47) {
 					ReadClient2();
 				}
 
@@ -28,13 +28,13 @@ public class gameReader extends Thread {
 	
 	public void ReadClient1(){
 		try{
-			for(int i=0;i<6;i++){
+			for(int i=0;i<5;i++){
 				Server.playerInfo[i]=Server.streamReader1.readInt();	
 			}
-			for(int i = 0;i<12;i++){
+			for(int i = 0;i<6;i++){
 				Server.bombInfoInt[i]=Server.streamReader1.readInt();
 			}
-			for(int i=0;i<6;i++){
+			for(int i=0;i<3;i++){
 				Server.bombInfoBoolean[i]=Server.streamReader1.readBoolean();
 			}
 	
@@ -47,13 +47,13 @@ public class gameReader extends Thread {
 	
 	public void ReadClient2(){
 		try{
-			for(int i=0;i<6;i++){
+			for(int i=0;i<5;i++){
 				Server.playerInfo[i]=Server.streamReader2.readInt();	
 			}
-			for(int i = 0;i<12;i++){
+			for(int i = 0;i<6;i++){
 				Server.bombInfoInt[i]=Server.streamReader2.readInt();
 			}
-			for(int i=0;i<6;i++){
+			for(int i=0;i<3;i++){
 				Server.bombInfoBoolean[i]=Server.streamReader2.readBoolean();
 			}
 		Server.SendToAll();

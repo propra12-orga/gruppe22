@@ -8,9 +8,9 @@ public class Server {
 
 	public static int[][] basicField;
 	public static int[][] fieldNumbers;
-	public static int[] playerInfo= new int[6];
-	public static int [] bombInfoInt = new int[12];
-	public static boolean [] bombInfoBoolean = new boolean[6];
+	public static int[] playerInfo= new int[5];
+	public static int [] bombInfoInt = new int[6];
+	public static boolean [] bombInfoBoolean = new boolean[3];
 	static int[][] powerUps = new int[21][17];
 	static boolean[][] bombPos;
 	public static DataInputStream streamReader1;
@@ -173,11 +173,11 @@ public class Server {
 			System.out
 					.println("Server: Versuche es weiter zusagen an Client1&2.");
 			
-			for(int i=0;i<6;i++){
+			for(int i=0;i<5;i++){
 				streamWriter1.writeInt(playerInfo[i]);
 				streamWriter2.writeInt(playerInfo[i]);
 			}
-			for(int i=0;i<6;i++){
+			for(int i=0;i<3;i++){
 				streamWriter1.writeInt(bombInfoInt[(i*2)]);
 				streamWriter2.writeInt(bombInfoInt[(i*2)]);
 				streamWriter1.writeInt(bombInfoInt[(i*2+1)]);
