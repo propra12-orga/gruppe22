@@ -8,7 +8,7 @@ public class Server {
 
 	public static int[][] basicField;
 	public static int[][] fieldNumbers;
-	public static int[] playerInfo= new int[12];
+	public static int[] playerInfo= new int[6];
 	public static int [] bombInfoInt = new int[12];
 	public static boolean [] bombInfoBoolean = new boolean[6];
 	static int[][] powerUps = new int[21][17];
@@ -173,7 +173,7 @@ public class Server {
 			System.out
 					.println("Server: Versuche es weiter zusagen an Client1&2.");
 			
-			for(int i=0;i<12;i++){
+			for(int i=0;i<6;i++){
 				streamWriter1.writeInt(playerInfo[i]);
 				streamWriter2.writeInt(playerInfo[i]);
 			}

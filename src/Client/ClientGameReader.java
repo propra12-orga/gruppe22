@@ -18,15 +18,8 @@ public class ClientGameReader extends Thread {
 		System.out.println("gameReader gestartet.");
 		try {
 			while (true) {
-				if (Client.streamReader.available() >= 102) {
+				if (Client.streamReader.available() >= 78) {
 					Stift = true;
-					x = Client.streamReader.readInt();
-					y = Client.streamReader.readInt();
-					num = Client.streamReader.readInt();
-					bCnt = Client.streamReader.readInt();
-					rad = Client.streamReader.readInt();
-					bP = Client.streamReader.readInt();
-					Update.player(x, y, num, bCnt, rad, bP);
 					x = Client.streamReader.readInt();
 					y = Client.streamReader.readInt();
 					num = Client.streamReader.readInt();

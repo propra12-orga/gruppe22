@@ -81,14 +81,14 @@ public class StartReader extends Thread {
 				}
 			}
 			System.out.println("StartReader: fieldNumbers an Server gesendet.");
-			if (Interface.ctrlP1 == true) {
+			if (Interface.ctrlP1) {
 				Client.streamWriter.writeInt(Init.Player1.x);
 				Client.streamWriter.writeInt(Init.Player1.y);
 				Client.streamWriter.writeInt(Init.Player1.num);
 				Client.streamWriter.writeInt(Init.Player1.bCnt);
 				Client.streamWriter.writeInt(Init.Player1.rad);
 				Client.streamWriter.writeInt(Init.Player1.bP);
-			} else if (Interface.ctrlP2 == true) {
+			} else {
 				Client.streamWriter.writeInt(Init.Player2.x);
 				Client.streamWriter.writeInt(Init.Player2.y);
 				Client.streamWriter.writeInt(Init.Player2.num);

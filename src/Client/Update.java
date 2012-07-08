@@ -97,11 +97,12 @@ public class Update {
 		/*
 		 * Festlegen, zu welchem Spieler die Bombe gehoert.
 		 */
-		if (act){
-			Field.bombPos[x][y] = true;
+		Field.bombPos[x][y] = act;
+		if (!act){
+			Bomb.bombs[num].isSet = false;
 
 		}
-		else Bomb.bombs[num].isSet = false;
+	
 		
 		if(num <3){
 			if (act && !Bomb.bombs[num].isSet){

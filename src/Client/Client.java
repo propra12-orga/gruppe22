@@ -6,6 +6,7 @@ import java.net.Socket;
 
 import Game.Bomb;
 import Game.Init;
+import Game.Interface;
 
 public class Client {
 
@@ -58,18 +59,22 @@ public class Client {
 	public static void Send() {
 		try {
 			System.out.println("Client sendet");
-			streamWriter.writeInt(Init.Player1.x);
-			streamWriter.writeInt(Init.Player1.y);
-			streamWriter.writeInt(Init.Player1.num);
-			streamWriter.writeInt(Init.Player1.bCnt);
-			streamWriter.writeInt(Init.Player1.rad);
-			streamWriter.writeInt(Init.Player1.bP);
-			streamWriter.writeInt(Init.Player2.x);
-			streamWriter.writeInt(Init.Player2.y);
-			streamWriter.writeInt(Init.Player2.num);
-			streamWriter.writeInt(Init.Player2.bCnt);
-			streamWriter.writeInt(Init.Player2.rad);
-			streamWriter.writeInt(Init.Player2.bP);
+			if( Interface.ctrlP1){
+				streamWriter.writeInt(Init.Player1.x);
+				streamWriter.writeInt(Init.Player1.y);
+				streamWriter.writeInt(Init.Player1.num);
+				streamWriter.writeInt(Init.Player1.bCnt);
+				streamWriter.writeInt(Init.Player1.rad);
+				streamWriter.writeInt(Init.Player1.bP);
+			}else {
+				streamWriter.writeInt(Init.Player2.x);
+				streamWriter.writeInt(Init.Player2.y);
+				streamWriter.writeInt(Init.Player2.num);
+				streamWriter.writeInt(Init.Player2.bCnt);
+				streamWriter.writeInt(Init.Player2.rad);
+				streamWriter.writeInt(Init.Player2.bP);
+			}
+			
 			for (int i = 0; i < 6; i++) {
 				streamWriter.writeInt(Bomb.bombs[i].x);
 				streamWriter.writeInt(Bomb.bombs[i].y);

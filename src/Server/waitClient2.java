@@ -23,7 +23,7 @@ public class waitClient2 implements Runnable {
 								.readInt();
 						}
 					}
-					for(int i=6;i<12;i++){
+					for(int i=0;i<6;i++){
 						Server.playerInfo[i]=Server.streamReader2.readInt();	
 					}
 					for(int i = 0;i<12;i++){
