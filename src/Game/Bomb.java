@@ -88,7 +88,7 @@ public class Bomb extends JPanel {
 					this.num =2;
 				}
 			}
-			if (player == Init.Player2){
+			if (player == Init.Player2 || player == KI.kiPl){
 				if(!Carl.bomb3.isAlive()){
 					this.num =3;
 				}else if(!Carl.bomb4.isAlive()){

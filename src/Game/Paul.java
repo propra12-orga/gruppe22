@@ -12,7 +12,7 @@ public class Paul extends Thread {
 	/**
 	 * Der Thread fuer die KI.
 	 */
-	static Paul kiThread;
+	static Paul kiThread = new Paul();
 	
 	/**
 	 * Konstruktor: <br>
@@ -23,23 +23,27 @@ public class Paul extends Thread {
 	public Paul(){
 		super();
 		kiThread = this;
-		Player.initKI(Init.Player2);
+		if (!Load.chosen)
+			Player.initKI(Init.Player2);
 		KI.kiPl = Init.Player2;
 	}
 	
 	public void run(){
 		while(true){
-			try{
+			synchronized(this){
+				try{
 				
-				if (!KI.esc)
-					KI.checkEnv();
-				for (int i = 0; i < 10; i++){
-					sleep(75);
-					while (Interface.isPause)
-						sleep(10);
+					if (!KI.esc)
+						KI.checkEnv();
+					for (int i = 0; i < 10; i++){
+						sleep(75);
+						if(Interface.isPause)
+							wait();
+					}
+				} catch(InterruptedException e){
+					if (isInterrupted())
+						break;
 				}
-			} catch(InterruptedException e){
-				break;
 			}
 		}
 	}

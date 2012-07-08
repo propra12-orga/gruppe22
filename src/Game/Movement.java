@@ -20,6 +20,8 @@ public class Movement {
 	
 	public static void getMovement(Player pl) {
 		
+		System.out.println("!!!");
+		
 		if (pl.ctrl == "Oben") {
 			if (checkMove(pl.x, pl.y - 1, pl)) {
 				goUp(pl.x, pl.y, pl);
