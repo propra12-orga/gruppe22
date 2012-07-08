@@ -231,7 +231,10 @@ public class Interface implements KeyListener, ActionListener {
 			closeMenuOpenGame();
 			Field.f = new Field();
 		} else if (e.getSource() == this.continueGame) {
-			isPause = false;			
+			isPause = false;	
+			synchronized(Paul.kiThread){
+				Paul.kiThread.notify();
+			}
 			Game.main(null);
 			closeMenuOpenGame();
 			Field.f.newPaint();

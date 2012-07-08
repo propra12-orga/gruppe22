@@ -25,7 +25,7 @@ public class Game implements KeyListener {
 	public Game() {
 		
 		Interface.game = new Field();
-		if (Init.KI)
+		if (Init.KI && !Paul.kiThread.isAlive())
 			new Paul().start();
 		
 		new RepaintThread().start();
