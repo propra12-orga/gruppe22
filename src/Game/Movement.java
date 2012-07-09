@@ -58,16 +58,17 @@ public class Movement {
 						Client.Send();
 				}
 			} else if (pl.ctrl == "Bombe") {
-				if (pl.bCnt > 0 && pl.bCnt < 3){
+				if (pl.bCnt > 0 && pl.bCnt <= 3){
 					crtBomb = new Bomb(pl);
 					startBombThread(pl, crtBomb);
 			
 				}
 			}
+			if (pl.ctrl != "Bombe")
 			new LockControl(1).start();
 		}
 		
-		else if (!isPlayer1(pl) && Interface.ctrlP2){
+		else if (!isPlayer1(pl) && (Interface.ctrlP2 || Init.KI)){
 			if (pl.ctrl == "Oben") {
 				if (checkMove(pl.x, pl.y - 1, pl)) {
 					goUp(pl.x, pl.y, pl);
@@ -105,13 +106,14 @@ public class Movement {
 						Client.Send();
 				}
 			} else if (pl.ctrl == "Bombe") {
-				if (pl.bCnt > 0 && pl.bCnt < 3){
+				if (pl.bCnt > 0 && pl.bCnt <= 3){
 					crtBomb = new Bomb(pl);
 					startBombThread(pl, crtBomb);
 			
 				}
 			}
-			new LockControl(2).start();
+			if (!Init.KI && pl.ctrl != "Bombe")
+				new LockControl(2).start();
 		}
 
 		/* hier erweitern mit if-Bedinungen f�r weitere Spieler */
