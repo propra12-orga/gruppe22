@@ -10,9 +10,13 @@ public class Player {
 	 */
 	public int y;
 	/**
-	 * Maximale Bombenanzahl des Spielers
+	 * Anzahl der Bomben die der Spieler noch legen kann
 	 */
 	public int bCnt;
+	/**
+	 * Maximale Bombenanzahl des Spielers
+	 */
+	public int maxB;
 	/**
 	 * Bombenradius des Spielers
 	 */
@@ -52,6 +56,7 @@ public class Player {
 		this.xo = x;
 		this.yo = y;
 		this.bCnt = 1;
+		this.maxB = 1;
 		this.rad = 1;
 		this.ctrl ="";
 		this.num = 1;

@@ -181,7 +181,10 @@ public class Movement {
 			}
 		} else if (Field.fieldNumbers[x][y] == 42) {
 			if (Init.KI && pl == Init.Player2) KI.noBomb = true;
-			pl.bCnt++;
+			pl.maxB++;
+			if (pl.bCnt < 3){
+				pl.bCnt++;
+			}
 			Field.fieldNumbers[x][y] = 0;
 			Init.powerUps[x][y] = 0;
 			if (Interface.isSound)

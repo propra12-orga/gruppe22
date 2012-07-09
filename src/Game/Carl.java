@@ -89,7 +89,7 @@ public class Carl extends Thread {
 		} catch (InterruptedException e) {
 		}
 		inactive(bomb);
-		if (player.bCnt < 3)
+		if (player.bCnt < player.maxB)
 			player.bCnt ++;
 		cnt += 1;
 		}
