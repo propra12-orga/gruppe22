@@ -1,8 +1,12 @@
+package Server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import Client.Client;
 
 public class Server {
 
@@ -35,6 +39,7 @@ public class Server {
 	 */
 	
 	public static void main(String[] args) {
+		getHostIp();
 		basicField = ServerFieldInit.basicField();
 		fieldNumbers = ServerFieldInit.fieldContent(basicField);
 		bombPos=ServerFieldInit.bombPos(bombPos);
@@ -76,7 +81,7 @@ public class Server {
 				}
 				if (maxx == 2) {
 					max = false;
-
+					
 					IOStreams1(client1);
 					IOStreams2(client2);
 
@@ -220,4 +225,15 @@ public class Server {
 
 	} // esAllenWeitersagen schlieﬂen
 
+	
+	private static void getHostIp() {
+		try{
+			InetAddress thisIp = InetAddress.getLocalHost();
+			System.out.println(thisIp.getHostAddress());
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 } // Klasse schlieﬂen

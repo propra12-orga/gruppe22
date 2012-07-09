@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.net.InetAddress;
 
 import javax.swing.*;
 
@@ -20,6 +21,7 @@ import Menues.GameOverPic;
 import Menues.IngameMenu;
 import Menues.InitComponents;
 import Menues.Menue;
+import Menues.OnlineMenu;
 import Menues.Options;
 import Menues.RandomMapMenu;
 import Menues.SoundMenu;
@@ -34,11 +36,11 @@ import Client.Client;
  */
 public class Interface implements KeyListener, ActionListener {
 	public static JFrame frame = new JFrame();
-	public static JButton soundOn, soundOff, online,single, multi, options, exit, sound, controls, controls2,
+	public static JButton join, soundOn, soundOff, online,single, multi, options, exit, sound, controls, controls2,
 			backtomain, save, backtooptions, rndMapSingle, rndMapMulti,
 			constMap, startGame, startGame2, backtosingle, continueGame,
 			restart, backtomulti, saveGame;
-	public static JLabel ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
+	public static JLabel ipLabel, ctrlmenu, player1, player2, up1, down1, right1, left1, bomb1,
 			up2, down2, right2, left2, bomb2, boxNumber, saveAs, saved, wrongName;
 	public static boolean isPause, isWrong = false;
 	public static boolean isSound = true;
@@ -57,7 +59,7 @@ public class Interface implements KeyListener, ActionListener {
 
 	public static JTextArea getUp1, getUp2, getDown1, getDown2, getRight1, getRight2,
 			getLeft1, getLeft2, getBomb1, getBomb2;
-	public static JTextField saveName;
+	public static JTextField saveName, getIp;
 	public static String[] amountBoxes = { "10", "20", "30", "40", "50", "60", "70",
 			"80", "90", "100" };
 	public static Dimension dim = new Dimension(200, 25);
@@ -80,6 +82,7 @@ public class Interface implements KeyListener, ActionListener {
 		frame.setLocationRelativeTo(null);
 
 		menu = new JPanel(new GridBagLayout());
+		join = new JButton("Einem Spiel beitreten");
 		soundOn = new JButton("Sound an");
 		soundOff = new JButton("Sound aus");
 		online = new JButton("Online");
@@ -111,6 +114,8 @@ public class Interface implements KeyListener, ActionListener {
 		getLeft2 = new JTextArea(1, 6);
 		getBomb2 = new JTextArea(1, 6);
 		saveName = new JTextField();
+		getIp = new JTextField(20);
+		ipLabel = new JLabel("IP-Adresse eingeben");
 		ctrlmenu = new JLabel("Steuerung");
 		player1 = new JLabel("Spieler 1");
 		player2 = new JLabel("Spieler 2");
@@ -138,6 +143,7 @@ public class Interface implements KeyListener, ActionListener {
 		InitComponents.MultiComponents();
 		InitComponents.OptionsComponents();
 		InitComponents.IngameMenuComponents();
+		join.addActionListener(this);
 		soundOn.addActionListener(this);
 		soundOff.addActionListener(this);
 		online.addActionListener(this);
@@ -284,18 +290,22 @@ public class Interface implements KeyListener, ActionListener {
 			IngameMenu.isSave = true;
 			IngameMenu.ingame();
 		}else if (e.getSource() == online) {
-			Client.start();
-			
+			OnlineMenu.online();
 		} else if (e.getSource() == soundOn) {
 			isSound = true;
 		} else if (e.getSource() == soundOff) {
 			isSound = false;
 		} else if (e.getSource() == sound) {
 			SoundMenu.Sound();
+		} else if (e.getSource() == join) {
+			Client.ip = getIp.getText();
+			Client.start();
 		}
 
 
 	}
+
+	
 
 	/**
 	 * verarbeitet Combobox Auswahl fuer Kistenanzahl bei Random Map

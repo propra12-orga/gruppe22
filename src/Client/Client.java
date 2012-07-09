@@ -14,6 +14,7 @@ public class Client {
 	Socket sock;
 	static DataInputStream streamReader;
 	static DataOutputStream streamWriter;
+	public static String ip;
 
 	/**
 	 * <u>Start:</u><br>
@@ -47,7 +48,7 @@ public class Client {
 	private void Network() {
 
 		try {
-			sock = new Socket("192.168.2.111", 5001);
+			sock = new Socket(ip, 5001);
 			streamReader = new DataInputStream(sock.getInputStream());
 			streamWriter = new DataOutputStream(sock.getOutputStream());
 			System.out.println("Netzwerkverbindung steht");

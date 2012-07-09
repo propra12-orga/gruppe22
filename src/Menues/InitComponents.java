@@ -125,6 +125,16 @@ public class InitComponents {
 		Interface.online.setHorizontalTextPosition(JButton.CENTER);
 		Interface.online.setVerticalTextPosition(JButton.CENTER);
 		Interface.online.setForeground(Color.white);
+		
+		
+		Interface.join.setPreferredSize(Interface.dim);
+		Interface.join.setIcon(new ImageIcon(Interface.Button));
+		Interface.join.setHorizontalTextPosition(JButton.CENTER);
+		Interface.join.setVerticalTextPosition(JButton.CENTER);
+		Interface.join.setForeground(Color.white);
+		
+
+		Interface.ipLabel.setForeground(Color.white);
 	}
 	
 	/**
