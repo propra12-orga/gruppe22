@@ -216,13 +216,11 @@ public class Field extends JPanel {
 				* (getHeight() / 17), null);
 		g.drawImage(bomberman, Init.Player1.x * (getWidth() / 21),
 				Init.Player1.y * (getHeight() / 17), null);
-		if (Init.MP){
+			fieldNumbers[Init.Player1.x][Init.Player1.y] = 3;
+		if (Init.MP || Init.KI){
 			g.drawImage(bomberman, Init.Player2.x * (getWidth() / 21),
 					Init.Player2.y * (getHeight() / 17), null);
-		}
-		else if (Init.KI){
-			g.drawImage(bomberman, KI.kiPl.x * (getWidth() / 21),
-					KI.kiPl.y * (getHeight() / 17), null);
+			fieldNumbers[Init.Player2.x][Init.Player2.y] = 4;
 		}
 	}
 

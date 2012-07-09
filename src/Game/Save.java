@@ -28,8 +28,8 @@ public class Save {
 	 * 
 	 * <u>Zeile 18:</u><br>
 	 * Die ersten beiden +/- geben an, ob ein Spielmodus aktiv ist (MP/KI)<br>
-	 * Die weiteren 6 Informationen, die gespeichert werden, beziehen sich auf den Bombenradius und die Bombenanzahl
-	 * der jeweiligen Spielerobjekte: Init.Player1, Init.Player2 und KI.kiPl<br><br>
+	 * Die weiteren 4 Informationen, die gespeichert werden, beziehen sich auf den Bombenradius und die Bombenanzahl
+	 * der jeweiligen Spielerobjekte: Init.Player1, Init.Player2<br><br>
 	 * 
 	 * <u>Zeile 19-24:</u><br>
 	 * Informationen bzgl. der einzelnen Bomben: Detonationsradius in alle 4 Richtungen <br>
@@ -58,17 +58,9 @@ public class Save {
 				else writer.write("-" + "_");
 				writer.write(Init.Player1.bCnt + "_");
 				writer.write(Init.Player1.rad + "_");
-				if(Init.MP){
+				if(Init.MP || Init.KI){
 					writer.write(Init.Player2.bCnt + "_");
 					writer.write(Init.Player2.rad + "_");
-				}
-				else {
-					writer.write("0_");
-					writer.write("0_");
-				}
-				if(Init.KI){
-					writer.write(KI.kiPl.bCnt + "_");
-					writer.write(KI.kiPl.rad + "_");
 				}
 				else {
 					writer.write("0_");

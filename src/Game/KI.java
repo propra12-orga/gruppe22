@@ -9,11 +9,6 @@ package Game;
 public class KI {
 	
 	/**
-	 * Computergegner-Spielerobjekt
-	 */
-	static Player kiPl = Init.Player2;
-	
-	/**
 	 * Gibt an, wo der Computergegner sich in Gefahr befinden wuerde, von einer
 	 * Bombe getroffen zu werden.
 	 */
@@ -52,37 +47,37 @@ public class KI {
 	
 	public static void placeBomb(){
 		esc = true;
-		kiPl.ctrl = "Bombe";
-		Movement.getMovement(kiPl);
+		Init.Player2.ctrl = "Bombe";
+		Movement.getMovement(Init.Player2);
 		wait750ms();
 		
-		if (kiPl.rad <= 1)
+		if (Init.Player2.rad <= 1)
 			while(!hasMoved){
-				if (Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl) && Field.fieldNumbers[kiPl.x][kiPl.y - 2] != 2){
+				if (Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2) && Field.fieldNumbers[Init.Player2.x][Init.Player2.y - 2] != 2){
 					moveUp();
 					hasMoved = true;
 				}
-				else if (Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl) && Field.fieldNumbers[kiPl.x][kiPl.y + 2] != 2){
+				else if (Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2) && Field.fieldNumbers[Init.Player2.x][Init.Player2.y + 2] != 2){
 					moveDown();
 					hasMoved = true;
 				}		
-				else if (Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl) && Field.fieldNumbers[kiPl.x - 2][kiPl.y] != 2){
+				else if (Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2) && Field.fieldNumbers[Init.Player2.x - 2][Init.Player2.y] != 2){
 					moveLeft();
 					hasMoved = true;
 				}
-				else if (Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl) && (danger[kiPl.x][kiPl.y - 1] || danger[kiPl.x][kiPl.y + 1])){
+				else if (Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2) && (danger[Init.Player2.x][Init.Player2.y - 1] || danger[Init.Player2.x][Init.Player2.y + 1])){
 					moveLeft();
 					hasMoved = true;
 				}
-				else if (Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl) && (danger[kiPl.x][kiPl.y - 1] || danger[kiPl.x][kiPl.y + 1])){
+				else if (Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2) && (danger[Init.Player2.x][Init.Player2.y - 1] || danger[Init.Player2.x][Init.Player2.y + 1])){
 					moveRight();
 					hasMoved = true;
 				}
-				else if (Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl) && (danger[kiPl.x - 1][kiPl.y] || danger[kiPl.x + 1][kiPl.y])){
+				else if (Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2) && (danger[Init.Player2.x - 1][Init.Player2.y] || danger[Init.Player2.x + 1][Init.Player2.y])){
 					moveDown();
 					hasMoved = true;
 				}
-				else if (Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl) && (danger[kiPl.x - 1][kiPl.y] || danger[kiPl.x + 1][kiPl.y])){
+				else if (Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2) && (danger[Init.Player2.x - 1][Init.Player2.y] || danger[Init.Player2.x + 1][Init.Player2.y])){
 					moveUp();
 					hasMoved = true;
 				}
@@ -93,17 +88,17 @@ public class KI {
 			}
 			
 		else {
-			while(danger[kiPl.x][kiPl.y]){
+			while(danger[Init.Player2.x][Init.Player2.y]){
 				esc = true;
-				if (Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl) && Field.fieldNumbers[kiPl.x][kiPl.y - 2] != 2){
+				if (Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2) && Field.fieldNumbers[Init.Player2.x][Init.Player2.y - 2] != 2){
 					moveUp();
 					hasMoved = true;
 				}
-				else if (Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl) && Field.fieldNumbers[kiPl.x][kiPl.y + 2] != 2){
+				else if (Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2) && Field.fieldNumbers[Init.Player2.x][Init.Player2.y + 2] != 2){
 					moveDown();
 					hasMoved = true;
 				}		
-				else if (Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl) && Field.fieldNumbers[kiPl.x - 2][kiPl.y] != 2){
+				else if (Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2) && Field.fieldNumbers[Init.Player2.x - 2][Init.Player2.y] != 2){
 					moveLeft();
 					hasMoved = true;
 				}
@@ -114,8 +109,11 @@ public class KI {
 				wait750ms();
 			}
 		}
-		hasMoved = false;
 		esc = false;
+		synchronized(Paul.kiThread){
+			Paul.kiThread.notify();
+		}
+		hasMoved = false;
 	}
 	
 	/**
@@ -123,9 +121,9 @@ public class KI {
 	 */
 	
 	public static void moveUp(){
-		kiPl.ctrl = "Oben";
-		Movement.getMovement(kiPl);
-		//System.out.println("x = " + kiPl.x + " | y = " + kiPl.y);
+		Init.Player2.ctrl = "Oben";
+		Movement.getMovement(Init.Player2);
+		//System.out.println("x = " + Init.Player2.x + " | y = " + Init.Player2.y);
 	}
 	
 	/**
@@ -133,9 +131,9 @@ public class KI {
 	 */
 	
 	public static void moveDown(){
-		kiPl.ctrl = "Unten";
-		Movement.getMovement(kiPl);
-		//System.out.println("x = " + kiPl.x + " | y = " + kiPl.y);
+		Init.Player2.ctrl = "Unten";
+		Movement.getMovement(Init.Player2);
+		//System.out.println("x = " + Init.Player2.x + " | y = " + Init.Player2.y);
 	}
 	
 	/**
@@ -143,9 +141,9 @@ public class KI {
 	 */
 	
 	public static void moveLeft(){
-		kiPl.ctrl = "Links";
-		Movement.getMovement(kiPl);
-		//System.out.println("x = " + kiPl.x + " | y = " + kiPl.y);
+		Init.Player2.ctrl = "Links";
+		Movement.getMovement(Init.Player2);
+		//System.out.println("x = " + Init.Player2.x + " | y = " + Init.Player2.y);
 	}
 	
 	/**
@@ -153,56 +151,30 @@ public class KI {
 	 */
 	
 	public static void moveRight(){
-		kiPl.ctrl = "Rechts";
-		Movement.getMovement(kiPl);
-		//System.out.println("x = " + kiPl.x + " | y = " + kiPl.y);
+		Init.Player2.ctrl = "Rechts";
+		Movement.getMovement(Init.Player2);
+		//System.out.println("x = " + Init.Player2.x + " | y = " + Init.Player2.y);
 	}
-	
-	/**
-	 * Basismethode fuer die KI. <br>
-	 * Ueberpruefung der Umgebung. <br>
-	 * 
-	 * @param checkRad <br>
-	 * Der Computergegner bekommt den Radius des ersten Spielers zur spaeteren Ueberpruefung
-	 * seiner Sicherheit bzgl. der Bombendetonationen seines Feindes.
-	 */
-	
-	public static void checkEnv(){
-		
-		if(kiPl.rad <= Init.Player1.rad)
-			kiPl.checkRad = Init.Player1.rad;
-		else kiPl.checkRad = kiPl.rad;
-		
-		//isDanger();
-		setDet();
-		checkEnemy();
-		checkBoxes();
-		//surrounded();
-		
-		if (!kiPl.danger)
-			chooseDir();
-	}
-	
 	
 	/**
 	 * Waehlt eine Bewegungsrichtung nach dem Zufallsprinzip.
 	 */
 	
 	public static void chooseDir(){
-		if (danger[kiPl.x][kiPl.y]){
-			if (!danger[kiPl.x + 1][kiPl.y] && Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)){
+		if (danger[Init.Player2.x][Init.Player2.y]){
+			if (!danger[Init.Player2.x + 1][Init.Player2.y] && Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)){
 				moveRight();
 				hasMoved = true;
 			}
-			else if (!danger[kiPl.x - 1][kiPl.y] && Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)){
+			else if (!danger[Init.Player2.x - 1][Init.Player2.y] && Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)){
 				moveLeft();
 				hasMoved = true;
 			}
-			else if (!danger[kiPl.x][kiPl.y + 1] && Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)){
+			else if (!danger[Init.Player2.x][Init.Player2.y + 1] && Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)){
 				moveDown();
 				hasMoved = true;
 			}
-			else if (!danger[kiPl.x][kiPl.y - 1] && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl)){
+			else if (!danger[Init.Player2.x][Init.Player2.y - 1] && Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2)){
 				moveUp();
 				hasMoved = true;
 			}
@@ -210,19 +182,19 @@ public class KI {
 			
 		while(!hasMoved){
 			shuffle = Math.random();
-			if (shuffle < 0.25 && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl) && !danger[kiPl.x][kiPl.y - 1]){
+			if (shuffle < 0.25 && Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2) && !danger[Init.Player2.x][Init.Player2.y - 1]){
 				moveUp();
 				hasMoved = true;
 			}
-			if (shuffle >= 0.25 && shuffle < 0.5 && Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl) && !danger[kiPl.x][kiPl.y + 1]){
+			if (shuffle >= 0.25 && shuffle < 0.5 && Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2) && !danger[Init.Player2.x][Init.Player2.y + 1]){
 				moveDown();
 				hasMoved = true;
 			}		
-			if (shuffle >= 0.5 && shuffle < 0.75 && Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl) && !danger[kiPl.x - 1][kiPl.y]){
+			if (shuffle >= 0.5 && shuffle < 0.75 && Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2) && !danger[Init.Player2.x - 1][Init.Player2.y]){
 				moveLeft();
 				hasMoved = true;
 			}
-			if (shuffle >= 0.75 && Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl) && !danger[kiPl.x + 1][kiPl.y]){
+			if (shuffle >= 0.75 && Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2) && !danger[Init.Player2.x + 1][Init.Player2.y]){
 				moveRight();
 				hasMoved = true;
 			}
@@ -235,26 +207,26 @@ public class KI {
 	 */
 
 	public static void checkEnemy(){
-		for (int i = 0; i <= kiPl.rad; i++){
-			if (kiPl.x - i >= 0)
-				if (Field.fieldNumbers[kiPl.x - i][kiPl.y] == 3 ){
+		for (int i = 0; i <= Init.Player2.rad; i++){
+			if (Init.Player2.x - i >= 0)
+				if (Field.fieldNumbers[Init.Player2.x - i][Init.Player2.y] == 3 ){
 					placeBomb();
-					//kiPl.danger = true;
+					//Init.Player2.danger = true;
 				}
-			if(kiPl.x + i < 21)
-				if(Field.fieldNumbers[kiPl.x + i][kiPl.y] == 3){
+			if(Init.Player2.x + i < 21)
+				if(Field.fieldNumbers[Init.Player2.x + i][Init.Player2.y] == 3){
 					placeBomb();
-					//kiPl.danger = true;
+					//Init.Player2.danger = true;
 				}
-			if (kiPl.y - i >= 0)
-				if (Field.fieldNumbers[kiPl.x][kiPl.y - i] == 3){
+			if (Init.Player2.y - i >= 0)
+				if (Field.fieldNumbers[Init.Player2.x][Init.Player2.y - i] == 3){
 					placeBomb();
-					//kiPl.danger = true;
+					//Init.Player2.danger = true;
 				}			
-			if (kiPl.y + i < 17)
-				if (Field.fieldNumbers[kiPl.x][kiPl.y + i] == 3){
+			if (Init.Player2.y + i < 17)
+				if (Field.fieldNumbers[Init.Player2.x][Init.Player2.y + i] == 3){
 					placeBomb();
-					//kiPl.danger = true;
+					//Init.Player2.danger = true;
 				}	
 		}
 	}
@@ -264,41 +236,53 @@ public class KI {
 	 */
 	
 	public static void checkBoxes(){
-		for (int i = 1; i <= kiPl.rad; i++){
-			if (kiPl.x + i < 21)
-				if (Field.fieldNumbers[kiPl.x + i][kiPl.y] == 2){
+		for (int i = 1; i <= Init.Player2.rad; i++){
+			if (Init.Player2.x + i < 21)
+				if (Field.fieldNumbers[Init.Player2.x + i][Init.Player2.y] == 2){
 					
 					esc = true;
 					if(!noBomb) placeBomb();
 					wait750ms();
 					esc = false;
+					synchronized(Paul.kiThread){
+						Paul.kiThread.notify();
+					}
 			}
 					
-			else if (kiPl.x - i >= 0)
-				if (Field.fieldNumbers[kiPl.x - i][kiPl.y] == 2){
+			else if (Init.Player2.x - i >= 0)
+				if (Field.fieldNumbers[Init.Player2.x - i][Init.Player2.y] == 2){
 					
 					esc = true;
 					if(!noBomb) placeBomb();
 					wait750ms();
 					esc = false;
-			}
-				
-			else if (kiPl.y + i < 17)
-				if (Field.fieldNumbers[kiPl.x][kiPl.y + i] == 2){
-					
-					esc = true;
-					if(!noBomb) placeBomb();
-					wait750ms();
-					esc = false;
+					synchronized(Paul.kiThread){
+						Paul.kiThread.notify();
+					}
 			}
 				
-			else if (kiPl.y - i >= 0)
-				if (Field.fieldNumbers[kiPl.x][kiPl.y - i] == 2){
+			else if (Init.Player2.y + i < 17)
+				if (Field.fieldNumbers[Init.Player2.x][Init.Player2.y + i] == 2){
 					
 					esc = true;
 					if(!noBomb) placeBomb();
 					wait750ms();
 					esc = false;
+					synchronized(Paul.kiThread){
+						Paul.kiThread.notify();
+					}
+			}
+				
+			else if (Init.Player2.y - i >= 0)
+				if (Field.fieldNumbers[Init.Player2.x][Init.Player2.y - i] == 2){
+					
+					esc = true;
+					if(!noBomb) placeBomb();
+					wait750ms();
+					esc = false;
+					synchronized(Paul.kiThread){
+						Paul.kiThread.notify();
+					}
 			}
 		}
 		noBomb = false;
@@ -319,31 +303,31 @@ public class KI {
 			while(!hasMoved){
 				shuffle = Math.random();
 				
-				if (shuffle < 0.33 && Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle < 0.33 && Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveDown();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
-				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveLeft();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}		
-				if (shuffle >= 0.66 && Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.66 && Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveRight();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
 			}
@@ -351,31 +335,31 @@ public class KI {
 			while(!hasMoved){
 				shuffle = Math.random();
 				
-				if (shuffle < 0.33 && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle < 0.33 && Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveUp();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
-				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveLeft();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}		
-				if (shuffle >= 0.66 && Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.66 && Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveRight();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
 			}
@@ -383,31 +367,31 @@ public class KI {
 			while(!hasMoved){
 				shuffle = Math.random();
 				
-				if (shuffle < 0.33 && Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle < 0.33 && Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveDown();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
-				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveUp();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}		
-				if (shuffle >= 0.66 && Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.66 && Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveRight();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
 			}
@@ -415,31 +399,31 @@ public class KI {
 			while(!hasMoved){
 				shuffle = Math.random();
 				
-				if (shuffle < 0.33 && Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle < 0.33 && Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveDown();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
-				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.33 && shuffle < 0.66 && Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveLeft();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}		
-				if (shuffle >= 0.66 && Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl)){
-					while (cnt + 1 <= kiPl.checkRad){
+				if (shuffle >= 0.66 && Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2)){
+					while (cnt + 1 <= Init.Player2.checkRad){
 						moveUp();
 						wait750ms();
 						cnt++;
 					}
-					kiPl.danger = false;
+					Init.Player2.danger = false;
 					hasMoved = true;
 				}
 			}
@@ -454,27 +438,27 @@ public class KI {
 	
 /*	public static void isDanger(){
 
-			for (int i = 0; i <= kiPl.checkRad && kiPl.y - i >= 0; i++)
-				if (Field.bombPos[kiPl.x][kiPl.y - i] || Field.fieldNumbers[kiPl.x][kiPl.y - i] == 8){
-					kiPl.danger = true;
+			for (int i = 0; i <= Init.Player2.checkRad && Init.Player2.y - i >= 0; i++)
+				if (Field.bombPos[Init.Player2.x][Init.Player2.y - i] || Field.fieldNumbers[Init.Player2.x][Init.Player2.y - i] == 8){
+					Init.Player2.danger = true;
 					checkEsc("Oben");
 				}
 
-			for (int i = 0; i <= kiPl.checkRad && kiPl.y + i < 17; i++)
-				if (Field.bombPos[kiPl.x][kiPl.y + i] || Field.fieldNumbers[kiPl.x][kiPl.y + i] == 8){
-					kiPl.danger = true;
+			for (int i = 0; i <= Init.Player2.checkRad && Init.Player2.y + i < 17; i++)
+				if (Field.bombPos[Init.Player2.x][Init.Player2.y + i] || Field.fieldNumbers[Init.Player2.x][Init.Player2.y + i] == 8){
+					Init.Player2.danger = true;
 					checkEsc("Unten");
 				}
 		
-			for (int i = 0; i <= kiPl.checkRad && kiPl.x + i < 21; i++)
-				if (Field.bombPos[kiPl.x + i][kiPl.y] || Field.fieldNumbers[kiPl.x + i][kiPl.y] == 8){
-					kiPl.danger = true;
+			for (int i = 0; i <= Init.Player2.checkRad && Init.Player2.x + i < 21; i++)
+				if (Field.bombPos[Init.Player2.x + i][Init.Player2.y] || Field.fieldNumbers[Init.Player2.x + i][Init.Player2.y] == 8){
+					Init.Player2.danger = true;
 					checkEsc("Rechts");
 				}
 
-			for (int i = 0; i <= kiPl.checkRad && kiPl.x - i >= 0; i++)
-				if (Field.bombPos[kiPl.x - i][kiPl.y] || Field.fieldNumbers[kiPl.x - i][kiPl.y] == 8){
-					kiPl.danger = true;
+			for (int i = 0; i <= Init.Player2.checkRad && Init.Player2.x - i >= 0; i++)
+				if (Field.bombPos[Init.Player2.x - i][Init.Player2.y] || Field.fieldNumbers[Init.Player2.x - i][Init.Player2.y] == 8){
+					Init.Player2.danger = true;
 					checkEsc("Links");
 				}
 		}
@@ -582,48 +566,48 @@ public class KI {
 	 */
 	
 	public static void surrounded(){
-		if (danger[kiPl.x + 1][kiPl.y] && danger[kiPl.x - 1][kiPl.y]
-				&& danger[kiPl.x][kiPl.y + 1] && danger[kiPl.x][kiPl.y - 1]
-				&& Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+		if (danger[Init.Player2.x + 1][Init.Player2.y] && danger[Init.Player2.x - 1][Init.Player2.y]
+				&& danger[Init.Player2.x][Init.Player2.y + 1] && danger[Init.Player2.x][Init.Player2.y - 1]
+				&& Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 			
 					random4way();
 		
 		//Links, Unten, Oben
-		else if (danger[kiPl.x - 1][kiPl.y]
-				&& danger[kiPl.x][kiPl.y + 1] && danger[kiPl.x][kiPl.y - 1]
-				&& Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+		else if (danger[Init.Player2.x - 1][Init.Player2.y]
+				&& danger[Init.Player2.x][Init.Player2.y + 1] && danger[Init.Player2.x][Init.Player2.y - 1]
+				&& Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 				
 					random3way(1);
 		
 		//Rechts, Unten, Oben
-		else if (danger[kiPl.x + 1][kiPl.y]
-				&& danger[kiPl.x][kiPl.y + 1] && danger[kiPl.x][kiPl.y - 1]
-				&& Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+		else if (danger[Init.Player2.x + 1][Init.Player2.y]
+				&& danger[Init.Player2.x][Init.Player2.y + 1] && danger[Init.Player2.x][Init.Player2.y - 1]
+				&& Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 				
 					random3way(2);
 		
 		//Links, Rechts, Oben
-		else if (danger[kiPl.x + 1][kiPl.y] 
-				&& danger[kiPl.x - 1][kiPl.y] && danger[kiPl.x][kiPl.y - 1]
-				&& Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+		else if (danger[Init.Player2.x + 1][Init.Player2.y] 
+				&& danger[Init.Player2.x - 1][Init.Player2.y] && danger[Init.Player2.x][Init.Player2.y - 1]
+				&& Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 			
 					random3way(3);
 		
 		//Links, Rechts, Unten
-		else if (danger[kiPl.x + 1][kiPl.y] 
-				&& danger[kiPl.x - 1][kiPl.y] && danger[kiPl.x][kiPl.y + 1]
-				&& Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl)
-				&& Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl))
+		else if (danger[Init.Player2.x + 1][Init.Player2.y] 
+				&& danger[Init.Player2.x - 1][Init.Player2.y] && danger[Init.Player2.x][Init.Player2.y + 1]
+				&& Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2)
+				&& Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2))
 			
 					random3way(4);
 	}
@@ -631,40 +615,40 @@ public class KI {
 	public static void random4way(){
 		shuffle = Math.random();
 		if (shuffle < 0.25)
-			while(danger[kiPl.x][kiPl.y]){
+			while(danger[Init.Player2.x][Init.Player2.y]){
 				esc = true;
 				moveUp();
 				wait750ms();
-				if(!Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+				if(!Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 					break;
 			}
 
 		if (shuffle >= 0.25 && shuffle < 0.5)
-			while(danger[kiPl.x][kiPl.y]){
+			while(danger[Init.Player2.x][Init.Player2.y]){
 				esc = true;
 				moveDown();
 				wait750ms();
-				if(!Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl))
+				if(!Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2))
 					break;
 			}
 		
 		if (shuffle >= 0.5 && shuffle < 0.75)
-			while(danger[kiPl.x][kiPl.y]){
+			while(danger[Init.Player2.x][Init.Player2.y]){
 				
 				esc = true;
 				moveLeft();
 				wait750ms();
-				if(!Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl))
+				if(!Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2))
 					break;
 			}
 		
 		if (shuffle >= 0.75)
-			while(danger[kiPl.x][kiPl.y]){
+			while(danger[Init.Player2.x][Init.Player2.y]){
 				
 				esc = true;
 				moveRight();
 				wait750ms();
-				if(!Movement.checkMove(kiPl.x + 1, kiPl.y, kiPl))
+				if(!Movement.checkMove(Init.Player2.x + 1, Init.Player2.y, Init.Player2))
 					break;
 			}
 		
@@ -677,32 +661,32 @@ public class KI {
 		//Links, Unten, Oben
 		if (w == 1){
 			if (shuffle < 0.33)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveLeft();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 						break;
 				}
 
 			if (shuffle >= 0.33 && shuffle < 0.66)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveDown();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2))
 						break;
 				}
 			
 			if (shuffle >= 0.66 && shuffle <= 1)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveUp();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl))
+					if(!Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2))
 						break;
 				}
 		}
@@ -710,32 +694,32 @@ public class KI {
 		//Rechts, Unten, Oben
 		else if (w == 2){
 			if (shuffle < 0.33)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveRight();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 						break;
 				}
 
 			if (shuffle >= 0.33 && shuffle < 0.66)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveDown();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2))
 						break;
 				}
 			
 			if (shuffle >= 0.66 && shuffle <= 1)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveUp();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl))
+					if(!Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2))
 						break;
 				}
 		}
@@ -743,32 +727,32 @@ public class KI {
 		//Links, Rechts, Unten
 		else if (w == 3){
 			if (shuffle < 0.33)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveLeft();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 						break;
 				}
 
 			if (shuffle >= 0.33 && shuffle < 0.66)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveDown();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2))
 						break;
 				}
 			
 			if (shuffle >= 0.66 && shuffle <= 1)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveRight();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl))
+					if(!Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2))
 						break;
 				}
 		}
@@ -776,32 +760,32 @@ public class KI {
 		//Links, Rechts, Oben	
 		else if (w == 4){
 			if (shuffle < 0.33)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveLeft();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y - 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y - 1, Init.Player2))
 						break;
 				}
 
 			if (shuffle >= 0.33 && shuffle < 0.66)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveRight();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x, kiPl.y + 1, kiPl))
+					if(!Movement.checkMove(Init.Player2.x, Init.Player2.y + 1, Init.Player2))
 						break;
 				}
 			
 			if (shuffle >= 0.66 && shuffle <= 1)
-				while(danger[kiPl.x][kiPl.y]){
+				while(danger[Init.Player2.x][Init.Player2.y]){
 					
 					esc = true;
 					moveUp();
 					wait750ms();
-					if(!Movement.checkMove(kiPl.x - 1, kiPl.y, kiPl))
+					if(!Movement.checkMove(Init.Player2.x - 1, Init.Player2.y, Init.Player2))
 						break;
 				}
 		}

@@ -42,7 +42,7 @@ public class Init {
 	 * Bei Spielstand laden: <br>
 	 * Speichert den Gamemodus (KI/MP) und die wichtigen Parameter der Spielerobjekte (Radius und Bombenanzahl)
 	 */
-	public static String[] gameInfo = new String[8];
+	public static String[] gameInfo = new String[6];
 	
 	/**
 	 * Bei Spielstand laden: <br>
@@ -89,8 +89,8 @@ public class Init {
 
 	/**
 	 * Ruft den Bufferedreader auf. <br>
-	 * Liest die einzelnen linen einer Textdatei und spaltet den erhaltenen String in
-	 * seine Einzelteile. Diese werden je nach line in entsprechenden Arrays gespeichert,
+	 * Liest die einzelnen Zeilen einer Textdatei und spaltet den erhaltenen String in
+	 * seine Einzelteile. Diese werden je nach Zeile in entsprechenden Arrays gespeichert,
 	 * mit deren Hilfe das Spielfeld initialisiert wird.
 	 * 
 	 * @return feld
@@ -101,46 +101,46 @@ public class Init {
 		String[] bufmap = new String[21];
 		String[] bufPl = new String[8];
 		String[] bufB = new String[7];
-		String line;
-		line = "";
-		int[][] field = new int[21][17];
+		String zeile;
+		zeile = "";
+		int[][] feld = new int[21][17];
 		MapReader(s);
 
 		for (int i = 0; i <= 16; i++) {
 
 			try {
-				line = in.readLine();
+				zeile = in.readLine();
 			} catch (IOException e) {
 
 			}
-			bufmap = line.split("_");
+			bufmap = zeile.split("_");
 			for (int o = 0; o <= 20; o++) {
-				field[o][i] = Integer.parseInt(bufmap[o]);
-				if (field[o][i] == 2)
+				feld[o][i] = Integer.parseInt(bufmap[o]);
+				if (feld[o][i] == 2)
 					maxBoxes++;
 			}
 
 		}
 		
 		try {
-			line = in.readLine();
+			zeile = in.readLine();
 		} catch (IOException e){
 			
 		}
-		bufPl = line.split("_");
+		bufPl = zeile.split("_");
 		//for (int i = 0; i < 8; i++)
 			//System.out.println("bufPl[" + i + "] = " + bufPl[i]);
 		
-		for (int i = 0; i < 8; i++)
+		for (int i = 0; i < 6; i++)
 			gameInfo[i] = bufPl[i];
 		
 		for (int i = 0; i < 6; i++){
 			try {
-				line = in.readLine();
+				zeile = in.readLine();
 			} catch (IOException e){
 				
 			}
-			bufB = line.split("_");
+			bufB = zeile.split("_");
 			for (int j = 0; j < 7; j++)
 				bombInfo[i][j] = bufB[j];
 		}
@@ -150,20 +150,21 @@ public class Init {
 		
 		for (int i = 0; i < 21; i++)
 			for(int j = 0; j < 17; j++){
-				if(field[i][j] == 9){
+				if(feld[i][j] == 9){
 					exitSet = true;
 					ex = i;
 					ey = j;
 				}
-				if(field[i][j] == 8)
-					field[i][j] = 0;
+				if(feld[i][j] == 8)
+					feld[i][j] = 0;
 			}
 			
 		if (!exitSet)
-			SetExit(field);
-		setPowerUps(field);
+			SetExit(feld);
+		
+		setPowerUps(feld);
 
-		return field;
+		return feld;
 
 	}
 
@@ -175,10 +176,10 @@ public class Init {
 	 */
 
 	public static int[][] basicField() {
-		MenuInput.CtrlReader();
+		MenueEingabe.CtrlReader();
 		int[][] fields = new int[21][17];
 
-		// Zunaechst bekommen alle Feldkoordinaten den Wert "0"
+		// Zun�?chst bekommen alle Feldkoordinaten den Wert "0"
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
 				fields[i][j] = 0;
@@ -255,8 +256,8 @@ public class Init {
 			Player.initKI(Player2);
 		}
 
-		setPowerUps(fields);
 		SetExit(fields);
+		setPowerUps(fields);
 
 		return fields;
 	}
@@ -273,7 +274,7 @@ public class Init {
 				if (Field.fieldNumbers[i][j] != 1)
 					Field.fieldNumbers[i][j] = 0;
 
-		Field.fieldNumbers = fieldContent(Field.basicField);
+		Field.fieldNumbers = basicField();
 		resetBombs();
 		Player1.x = 1;
 		Player1.y = 1;
@@ -288,11 +289,9 @@ public class Init {
 			Player2.y = 16;
 			Player2.rad = 1;
 			Player2.bCnt = 1;
-
 			MP = false;
 			KI = false;
-			if (KI)
-				Paul.kiThread.interrupt();
+			Paul.resetKI();
 		}
 		;
 		Carl.bomb0.interrupt();
@@ -301,6 +300,7 @@ public class Init {
 		Carl.bomb3.interrupt();
 		Carl.bomb4.interrupt();
 		Carl.bomb5.interrupt();
+		initBombThreads();
 		threadActivation();
 		Interface.isPause = false;
 		isInit = true;
@@ -394,7 +394,7 @@ public class Init {
 				for (int j = 1; j < 16 && value < (maxBoxes / 2); j++) {
 					if (fields[i][j] == 2) {
 						randomBox = Math.random();
-						if (randomBox > 0.99) {
+						if (randomBox > 0.99 && i != ex && j != ey) {
 							whichPower = Math.random();
 							if (whichPower > 0.5 && bombCnt < 3){
 								bombCnt++;
@@ -457,6 +457,15 @@ public class Init {
 				Bomb.bombs[i].active = false;
 				Bomb.bombs[i].isSet = false;
 			}
+	}
+	
+	public static void initBombThreads(){
+		Carl.bomb0 = new Carl(Bomb.bombs[0],Init.Player1);
+		Carl.bomb1 = new Carl(Bomb.bombs[1],Init.Player1);
+		Carl.bomb2 = new Carl(Bomb.bombs[2],Init.Player1);
+		Carl.bomb3 = new Carl(Bomb.bombs[3],Init.Player2);
+		Carl.bomb4 = new Carl(Bomb.bombs[4],Init.Player2);
+		Carl.bomb5 = new Carl(Bomb.bombs[5],Init.Player2);
 	}
 
 }

@@ -25,26 +25,55 @@ public class Paul extends Thread {
 		kiThread = this;
 		if (!Load.chosen)
 			Player.initKI(Init.Player2);
-		KI.kiPl = Init.Player2;
 	}
 	
 	public void run(){
-		while(true){
+		boolean kiActive = true;
+		while(kiActive){
 			synchronized(this){
 				try{
-				
-					if (!KI.esc)
-						KI.checkEnv();
+					if (Bomb.gameOver)
+						break;
+					
+					if (KI.esc) wait();
+					
+					if(Init.Player2.rad <= Init.Player1.rad)
+						Init.Player2.checkRad = Init.Player1.rad;
+					else Init.Player2.checkRad = Init.Player2.rad;
+					
+					if(!Bomb.gameOver)
+						KI.setDet();
+					if(!Bomb.gameOver)
+						KI.checkEnemy();
+					if(!Bomb.gameOver)
+						KI.checkBoxes();
+					
+					if (!Init.Player2.danger && !Bomb.gameOver)
+						KI.chooseDir();
+					
 					for (int i = 0; i < 10; i++){
 						sleep(75);
+						if (Bomb.gameOver)
+							kiActive = false;
 						if(Interface.isPause)
 							wait();
 					}
 				} catch(InterruptedException e){
-					if (isInterrupted())
-						break;
+					kiActive = false;
 				}
 			}
 		}
+	}
+	
+	public static void resetKI(){
+		KI.danger = KI.initDangerArray();
+		KI.cnt = 0;
+		KI.l = false; 
+		KI.r = false;
+		KI.o = false;
+		KI.u = false;
+		KI.noBomb = false;
+		KI.esc = false;
+		KI.hasMoved = false;
 	}
 }

@@ -26,7 +26,8 @@ public class Carl extends Thread {
 	 * als Parameter, wodurch diese in der run()-Methode nichtmehr ueberschrieben wird.
 	 */
 	Boolean isSet = false;
-	Bomb crtBomb, bomb;
+	Bomb bomb;
+	int cnt;
 	
 	/**
 	 * Carl-Kontruktor: <br>
@@ -36,40 +37,33 @@ public class Carl extends Thread {
 	 * @param Bomb bomb
 	 * @param Player crtPlayer
 	 */
-	public Carl(Bomb bomb, Player crtPlayer){
+	public Carl(Bomb crtBomb, Player crtPlayer){
 		super();
 		player = crtPlayer;
-		crtBomb = bomb;
+		bomb = crtBomb;
 	}
 
 	public void run() {
+		int cnt = 1;
+		while(cnt == 1){
+			player.bCnt --;
+			end = false;
 		
-		player.bCnt --;
-		end = false;
-		bomb = crtBomb;
-		setActivation(bomb);
+			Bomb.radCheck(bomb, player);
+			if (Init.KI) KI.setDanger(bomb);
 		
-		Bomb.radCheck(bomb, player);
-		if (Init.KI) KI.setDanger(bomb);
-		
-		try {
-			for (int i = 0; i < 30; i++){
-				sleep(100);
-				while(Interface.isPause){
-					sleep(10);
-				}
-				if (bomb.det){
+			try {
+				for (int i = 0; i < 30; i++){
+					sleep(100);
+					while(Interface.isPause)
+						sleep(10);
+					if (bomb.det){
 					interrupt();
-					end = true;
 				}
 			}
 		} catch (InterruptedException e) {
-			interrupt();
 		}
-		
-		if (!isInterrupted() || end){
 			Bomb.detonate(bomb, player);
-		
 			if (Interface.isSound)
 				boom = new Sound("src/Sounds/bomb.wav");
 			
@@ -82,60 +76,27 @@ public class Carl extends Thread {
 					sleep(10);
 			}
 		} catch (InterruptedException e) {
-			interrupt();
 		}
 		
-		if (!isInterrupted() || end){
-			Bomb.endDetonation(bomb, player);
-			if(Init.KI) KI.clearDanger(bomb);
+		Bomb.endDetonation(bomb, player);
+		if(Init.KI) KI.clearDanger(bomb);
 		
-			// Netzwerk senden
+		// Netzwerk senden
 		
 
 		try {
 			sleep(50);
 		} catch (InterruptedException e) {
-
-		}}}
-		remActivation(bomb);
+		}
 		inactive(bomb);
-		if (player.bCnt <3){
+		if (player.bCnt < 3)
 			player.bCnt ++;
+		cnt += 1;
 		}
 	}
 	
 	public void inactive(Bomb bomb){
 		bomb.active=false;
+		Bomb.bombToArray(bomb);
 	}
-
-	public void setActivation(Bomb bomb){
-		if (bomb.num == 0)
-			bomb0.act = true;
-		else if (bomb.num == 1)
-			bomb1.act = true;
-		else if (bomb.num == 2)
-			bomb2.act = true;
-		else if (bomb.num == 3)
-			bomb3.act = true;
-		else if (bomb.num == 4)
-			bomb4.act = true;
-		else if (bomb.num == 5)
-			bomb5.act = true;
-	}
-	
-	public void remActivation(Bomb bomb){
-		if (bomb.num == 0)
-			bomb0.act = false;
-		else if (bomb.num == 1)
-			bomb1.act = false;
-		else if (bomb.num == 2)
-			bomb2.act = false;
-		else if (bomb.num == 3)
-			bomb3.act = false;
-		else if (bomb.num == 4)
-			bomb4.act = false;
-		else if (bomb.num == 5)
-			bomb5.act = false;
-	}
-
 }

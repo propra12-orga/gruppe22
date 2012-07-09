@@ -20,47 +20,101 @@ public class Movement {
 	
 	public static void getMovement(Player pl) {
 		
-		if (pl.ctrl == "Oben") {
-			if (checkMove(pl.x, pl.y - 1, pl)) {
-				goUp(pl.x, pl.y, pl);
-				playerToField(pl);
+		if (isPlayer1(pl) && Interface.ctrlP1){
+			if (pl.ctrl == "Oben") {
+				if (checkMove(pl.x, pl.y - 1, pl)) {
+					goUp(pl.x, pl.y, pl);
+					playerToField(pl);
 				
-				if (!Interface.offline)
-					Client.Send();
-			}
-		} else if (pl.ctrl == "Unten") {
-			if (checkMove(pl.x, pl.y + 1, pl)) {
-				goDown(pl.x, pl.y, pl);
-				playerToField(pl);
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Unten") {
+				if (checkMove(pl.x, pl.y + 1, pl)) {
+					goDown(pl.x, pl.y, pl);
+					playerToField(pl);
 				
-				if (!Interface.offline)
-					Client.Send();
-			}
-		} else if (pl.ctrl == "Links") {
-			if (checkMove(pl.x - 1, pl.y, pl)) {
-				goLeft(pl.x, pl.y, pl);
-				playerToField(pl);
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Links") {
+				if (checkMove(pl.x - 1, pl.y, pl)) {
+					goLeft(pl.x, pl.y, pl);
+					playerToField(pl);
 				
-				if (!Interface.offline)
-					Client.Send();
-			}
-		} else if (pl.ctrl == "Rechts") {
-			if (checkMove(pl.x + 1, pl.y, pl)) {
-				goRight(pl.x, pl.y, pl);
-				playerToField(pl);
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Rechts") {
+				if (checkMove(pl.x + 1, pl.y, pl)) {
+					goRight(pl.x, pl.y, pl);
+					playerToField(pl);
 				
-				if (!Interface.offline)
-					Client.Send();
-			}
-		} else if (pl.ctrl == "Bombe") {
-			if (pl.bCnt > 0 && pl.bCnt <=3){
-				crtBomb = new Bomb(pl);
-				startBombThread(pl, crtBomb);
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Bombe") {
+				if (pl.bCnt > 0 && pl.bCnt < 3){
+					crtBomb = new Bomb(pl);
+					startBombThread(pl, crtBomb);
 			
+				}
 			}
+			new LockControl(1).start();
+		}
+		
+		else if (!isPlayer1(pl) && Interface.ctrlP2){
+			if (pl.ctrl == "Oben") {
+				if (checkMove(pl.x, pl.y - 1, pl)) {
+					goUp(pl.x, pl.y, pl);
+					playerToField(pl);
+				
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Unten") {
+				if (checkMove(pl.x, pl.y + 1, pl)) {
+					goDown(pl.x, pl.y, pl);
+					playerToField(pl);
+				
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Links") {
+				if (checkMove(pl.x - 1, pl.y, pl)) {
+					goLeft(pl.x, pl.y, pl);
+					playerToField(pl);
+				
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Rechts") {
+				if (checkMove(pl.x + 1, pl.y, pl)) {
+					goRight(pl.x, pl.y, pl);
+					playerToField(pl);
+				
+					//Netzwerk senden
+					if (!Interface.offline)
+						Client.Send();
+				}
+			} else if (pl.ctrl == "Bombe") {
+				if (pl.bCnt > 0 && pl.bCnt < 3){
+					crtBomb = new Bomb(pl);
+					startBombThread(pl, crtBomb);
+			
+				}
+			}
+			new LockControl(2).start();
 		}
 
-		/* hier erweitern mit if-Bedinungen fuer weitere Spieler */
+		/* hier erweitern mit if-Bedinungen f�r weitere Spieler */
 	}
 	
 	public static void startBombThread(Player pl, Bomb bomb){
@@ -94,9 +148,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode ueberprueft ob die Koordinaten auf die der Spieler gehen will
-	 * begehbar sind oder nicht. Es wir ein boolean aufgerufen und dieser zurueck
-	 * gegeben. Es wir ebenfalls ueberprueft ob der Spieler, mit dem Schritt den
+	 * Diese Methode �berpr�ft ob die Koordinaten auf die der Spieler gehen will
+	 * begehbar sind oder nicht. Es wir ein boolean aufgerufen und dieser zur�ck
+	 * gegeben. Es wir ebenfalls �berpr�ft ob der Spieler, mit dem Schritt den
 	 * er vorhat, durch den Ausgang geht .
 	 * 
 	 * @param coord
@@ -111,14 +165,20 @@ public class Movement {
 			Init.reset();
 			GameOverPic.pic = 2;
 			new GameOverPic();
-		} else if (Field.fieldNumbers[x][y] == 8 && pl != KI.kiPl) {
-			Bomb.gameOver = true;
-			if (Init.KI)Paul.kiThread.interrupt();
-			Init.reset();
-			GameOverPic.pic = 1;
-			new GameOverPic();
+		} else if (Field.fieldNumbers[x][y] == 8) {
+			
+			if (Init.KI && pl == Init.Player2){
+				
+			}
+			else {
+				Bomb.gameOver = true;
+				if (Init.KI)Paul.kiThread.interrupt();
+				Init.reset();
+				GameOverPic.pic = 1;
+				new GameOverPic();
+			}
 		} else if (Field.fieldNumbers[x][y] == 42) {
-			if (pl == KI.kiPl) KI.noBomb = true;
+			if (Init.KI && pl == Init.Player2) KI.noBomb = true;
 			pl.bCnt++;
 			Field.fieldNumbers[x][y] = 0;
 			Init.powerUps[x][y] = 0;
@@ -126,7 +186,7 @@ public class Movement {
 				powerUp = new Sound("src/Sounds/powerUp.wav");
 			return true;
 		} else if (Field.fieldNumbers[x][y] == 41) {
-			if (pl == KI.kiPl) KI.noBomb = true;
+			if (Init.KI && pl == Init.Player2) KI.noBomb = true;
 			pl.rad++;
 			Field.fieldNumbers[x][y] = 0;
 			Init.powerUps[x][y] = 0;
@@ -138,9 +198,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der Ueberpruefung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * uebergeben speichert diese als alte Position des Spielers ab und zieht der
+	 * �bergeben speichert diese als alte Position des Spielers ab und zieht der
 	 * Y-Koordinate den Wert 1 ab (dies ist die Bewegung nach oben).
 	 * 
 	 * @param x
@@ -157,9 +217,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der Ueberpruefung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * uebergeben speichert diese als alte Position des Spielers ab und addiert
+	 * �bergeben speichert diese als alte Position des Spielers ab und addiert
 	 * der Y-Koordinate den Wert 1 dazu (dies ist die Bewegung nach unten).
 	 * 
 	 * @param x
@@ -176,9 +236,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der Ueberpruefungob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * uebergeben speichert diese als alte Position des Spielers ab und addiert
+	 * �bergeben speichert diese als alte Position des Spielers ab und addiert
 	 * der X-Koordinate den Wert 1 dazu (dies ist die Bewegung nach rechts).
 	 * 
 	 * @param x
@@ -195,9 +255,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der Ueberpruefung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * uebergeben speichert diese als alte Position des Spielers ab und zieht der
+	 * �bergeben speichert diese als alte Position des Spielers ab und zieht der
 	 * X-Koordinate den Wert 1 ab (dies ist die Bewegung nach links).
 	 * 
 	 * @param x
@@ -214,8 +274,8 @@ public class Movement {
 	}
 
 	/**
-	 * Methode kriegt den Spieler der seine Position veraendert uebergeben und
-	 * loescht seine Darstellung auf dem alten Feld um ihn auf dem naechsten Feld
+	 * Methode kriegt den Spieler der seine Position ver�ndert �bergeben und
+	 * l�scht seine Darstellung auf dem alten Feld um ihn auf dem n�chsten Feld
 	 * darzustellen.
 	 * 
 	 * @param pl
@@ -227,6 +287,11 @@ public class Movement {
 			Field.fieldNumbers[pl.x][pl.y] = 3;
 		else
 			Field.fieldNumbers[pl.x][pl.y] = 4;
+	}
+	
+	public static boolean isPlayer1(Player pl){
+		if (pl.num == 2) return false;
+		else return true;
 	}
 
 }

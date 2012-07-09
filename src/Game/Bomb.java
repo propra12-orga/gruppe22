@@ -88,7 +88,7 @@ public class Bomb extends JPanel {
 					this.num =2;
 				}
 			}
-			if (player == Init.Player2 || player == KI.kiPl){
+			if (player == Init.Player2){
 				if(!Carl.bomb3.isAlive()){
 					this.num =3;
 				}else if(!Carl.bomb4.isAlive()){
@@ -111,6 +111,7 @@ public class Bomb extends JPanel {
 
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
+		//Netzwerk senden
 		bomb.active = true;
 		bombToArray(bomb);
 	}
@@ -262,9 +263,10 @@ public class Bomb extends JPanel {
 			}
 			
 			System.out.println("Spieler 2 siegt");
-			Init.reset();
 			GameOverPic.pic = 1;
 			new GameOverPic();
+			// Interface.closeGameOpenMenu();
+			// Menue.MainMenu();
 		} else if (coord == 4) {
 			if (Init.KI){
 				gameOver = true;
@@ -272,10 +274,11 @@ public class Bomb extends JPanel {
 			}
 			
 			System.out.println("Spieler 1 siegt");
-			Init.reset();
 			GameOverPic.picOn = true;
 			GameOverPic.pic = 1;
 			new GameOverPic();
+			// Interface.closeGameOpenMenu();
+			// Menue.MainMenu();
 		}
 	}
 
@@ -307,7 +310,7 @@ public class Bomb extends JPanel {
 		bomb.u = 0;
 
 		for (int i = 0; i <= pl.rad; i++) {
-			/* nach rechts ueberpruefen */
+			/* nach rechts �berpr�fen */
 			if (bomb.rb) {
 				bomb.r = i;
 				if (Field.fieldNumbers[x + i][y] == 2) {
@@ -318,7 +321,7 @@ public class Bomb extends JPanel {
 				}
 			}
 
-			/* nach links ueberpruefen */
+			/* nach links �berpr�fen */
 			if (bomb.lb) {
 				bomb.l = i;
 				if (Field.fieldNumbers[x - i][y] == 2) {
@@ -328,7 +331,7 @@ public class Bomb extends JPanel {
 					bomb.lb = false;
 				}
 			}
-			/* nach unten ueberpruefen */
+			/* nach unten �berpr�fen */
 			if (bomb.ub) {
 				bomb.u = i;
 				if (Field.fieldNumbers[x][y + i] == 2) {
@@ -338,7 +341,7 @@ public class Bomb extends JPanel {
 					bomb.ub = false;
 				}
 			}
-			/* nach oben ueberpruefen */
+			/* nach oben �berpr�fen */
 			if (bomb.ob) {
 				bomb.o = i;
 				if (Field.fieldNumbers[x][y - i] == 2) {

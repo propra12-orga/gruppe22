@@ -82,6 +82,18 @@ public class Load{
 	 * werden entsprechend ueberschrieben.
 	 */
 	public static void content(){
+		
+		
+		Init.Player1.bCnt = Integer.parseInt(Init.gameInfo[2]);
+		Init.Player1.rad = Integer.parseInt(Init.gameInfo[3]);
+		Init.Player2.bCnt = Integer.parseInt(Init.gameInfo[4]);
+		Init.Player2.rad = Integer.parseInt(Init.gameInfo[5]);
+		
+		if(Init.gameInfo[0].equals("+"))
+			Init.MP = true;
+
+		if(Init.gameInfo[1].equals("+"))
+			Init.KI = true;
 
 		for (int i = 0; i < 6; i++){
 				Bomb.bombs[i].x = Integer.parseInt(Init.bombInfo[i][0]);
@@ -90,30 +102,44 @@ public class Load{
 				Bomb.bombs[i].u = Integer.parseInt(Init.bombInfo[i][3]);
 				Bomb.bombs[i].l = Integer.parseInt(Init.bombInfo[i][4]);
 				Bomb.bombs[i].r = Integer.parseInt(Init.bombInfo[i][5]);
+				Bomb.bombs[i].num = i;
 				
 				if(Init.bombInfo[i][6].equals("+")){
-					Field.bombPos[Bomb.bombs[i].x][Bomb.bombs[i].y] = true;
-					if(i < 3) new Carl(Bomb.bombs[i], Init.Player1).start();
-					else if (i >= 3) new Carl(Bomb.bombs[i], Init.Player2).start();
+					if(i == 0){
+						Init.Player1.bCnt += 1;
+						Bomb.placeBomb(Bomb.bombs[i], Init.Player1);
+						Carl.bomb0 = new Carl(Bomb.bombs[i], Init.Player1);
+						Carl.bomb0.start();
+					} else if (i == 1){
+						Init.Player1.bCnt += 1;
+						Bomb.placeBomb(Bomb.bombs[i], Init.Player1);
+						Carl.bomb1 = new Carl(Bomb.bombs[i], Init.Player1);
+						Carl.bomb1.start();
+					} else if (i == 2){
+						Init.Player1.bCnt += 1;
+						Bomb.placeBomb(Bomb.bombs[i], Init.Player1);
+						Carl.bomb2 = new Carl(Bomb.bombs[i], Init.Player1);
+						Carl.bomb2.start();
+					} else if (i == 3){
+						Init.Player2.bCnt += 1;
+						Bomb.placeBomb(Bomb.bombs[i], Init.Player1);
+						Carl.bomb3 = new Carl(Bomb.bombs[i], Init.Player2);
+						Carl.bomb3.start();
+					} else if (i == 4){
+						Init.Player2.bCnt += 1;
+						Bomb.placeBomb(Bomb.bombs[i], Init.Player1);
+						Carl.bomb4 = new Carl(Bomb.bombs[i], Init.Player2);
+						Carl.bomb4.start();
+					} else if (i == 5){
+						Init.Player2.bCnt += 1;
+						Bomb.placeBomb(Bomb.bombs[i], Init.Player1);
+						Carl.bomb5 = new Carl(Bomb.bombs[i], Init.Player2);
+						Carl.bomb5.start();
+					}
 						
 				}
 			}
-		
-		Init.Player1.bCnt = Integer.parseInt(Init.gameInfo[2]);
-		Init.Player1.rad = Integer.parseInt(Init.gameInfo[3]);
-		
-		if(Init.gameInfo[0].equals("+")){
-			Init.MP = true;
-			Init.Player2.bCnt = Integer.parseInt(Init.gameInfo[4]);
-			Init.Player2.rad = Integer.parseInt(Init.gameInfo[5]);
-		}
-		if(Init.gameInfo[1].equals("+")){
-			Init.KI = true;
-			Init.Player2.bCnt = Integer.parseInt(Init.gameInfo[6]);
-			Init.Player2.rad = Integer.parseInt(Init.gameInfo[7]);
-		}
-		
-		startPos();
+			startPos();
 	}
 	
 	/**

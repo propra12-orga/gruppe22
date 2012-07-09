@@ -27,7 +27,6 @@ public class Game implements KeyListener {
 		Interface.game = new Field();
 		if (Init.KI && !Paul.kiThread.isAlive())
 			new Paul().start();
-		
 		new RepaintThread().start();
 		
 		Interface.game.setFocusable(true);
@@ -45,7 +44,7 @@ public class Game implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		Key = Input.Ctrl(e);
+		Key = Eingabe.Ctrl(e);
 	}
 
 	public void keyReleased(KeyEvent e) {
