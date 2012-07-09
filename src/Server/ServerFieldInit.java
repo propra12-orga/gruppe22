@@ -83,6 +83,12 @@ public class ServerFieldInit {
 						}
 					}
 				}
+			Server.powerUps[1][1] = 0;
+			Server.powerUps[1][2] = 0;
+			Server.powerUps[2][1] = 0;
+			Server.powerUps[19][15] = 0;
+			Server.powerUps[19][14] = 0;
+			Server.powerUps[18][15] = 0;
 		}
 	}
 	public static int[] Bombrad(int[]bombrad){

@@ -99,9 +99,6 @@ public class Update {
 	public static void bomb(int x, int y, int num, boolean act){
 
 		Field.bombPos[x][y] = act;
-		System.out.println("Player 1 bCnt: "+Init.Player1.bCnt+" Player 2 bCnt: "+ Init.Player2.bCnt);
-		System.out.println("Bombe"+ num +": "+ " X: "+ x + " Y: "+ y + " Aktiv: "+ act);
-		System.out.println("___________________________________________________");
 		Bomb.bombs[num].num = num;
 		Bomb.bombs[num].x=x;
 		Bomb.bombs[num].y=y;

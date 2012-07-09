@@ -21,7 +21,6 @@ public class StartReader extends Thread {
 	public void run() {
 		try {
 			while (complete == false) {
-				System.out.println(Client.streamReader.available());
 				if (Client.streamReader.available() == 2856) {
 					IOfields();
 					complete = true;
@@ -148,6 +147,14 @@ public class StartReader extends Thread {
 				}
 			}
 		}
+		for (int j = 0; j < 17; j++){
+			System.out.println();
+			for (int i = 0; i < 21; i++)
+				System.out.print(Init.powerUps[i][j]);
+			}
+			System.out.println();
+		
+		
 	} // IOfieldNumbers schließen
 } // Klasse schließen
 

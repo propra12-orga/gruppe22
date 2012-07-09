@@ -1,6 +1,8 @@
 package Client;
 import java.io.IOException;
 
+import Game.Init;
+
 public class ClientGameReader extends Thread {
 	static boolean gameOn = false;
 	int x;
@@ -41,7 +43,7 @@ public class ClientGameReader extends Thread {
 						}
 					}
 				}
-
+				checkPowerUp(x,y);
 			}
 
 		} catch (IOException e) {
@@ -49,4 +51,11 @@ public class ClientGameReader extends Thread {
 			e.printStackTrace();
 		}
 	} // run schlieﬂen
+	
+	private void checkPowerUp(int x, int y){
+		if (Init.powerUps[x][y]== 41 || Init.powerUps[x][y]== 42){
+			Init.powerUps[x][y]=0;
+		}
+		
+	}
 } // innere Klasse EingehendReader schlieﬂen

@@ -93,6 +93,10 @@ public class Carl extends Thread {
 			player.bCnt ++;
 		cnt += 1;
 		}
+		if (player.bCnt > player.maxB){
+			player.bCnt = 1;
+		}
+		
 	}
 	
 	public void inactive(Bomb bomb){
