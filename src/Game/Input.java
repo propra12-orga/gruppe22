@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
  * Klasse für die Methoden zur Feststellung der Tastatureingabe
  * 
  * @author Jan Reckfort
+ * @author Bastian Siefen
  * 
  */
 public class Input {

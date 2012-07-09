@@ -6,6 +6,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+/**
+ * Verarbeitung des Tastatureingabe während das Menue geoeffnet ist.
+ * 
+ * @author Bastian Siefen
+ *
+ */
 public class MenuInput {
 	static String[] CtrlArray = new String[10];
 

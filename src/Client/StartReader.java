@@ -1,12 +1,17 @@
 package Client;
 
 import java.io.IOException;
-
 import Game.Bomb;
 import Game.Field;
 import Game.Init;
 import Game.Interface;
 
+/**
+ * Thread der auf die ersten Daten des Servers wartet.
+ * 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ */
 public class StartReader extends Thread {
 	boolean complete = false;
 
@@ -22,7 +27,7 @@ public class StartReader extends Thread {
 		try {
 			while (complete == false) {
 				if (Client.streamReader.available() == 2856) {
-					IOfields();
+					iOfields();
 					complete = true;
 				}
 			}
@@ -30,7 +35,7 @@ public class StartReader extends Thread {
 			System.out.println("Fehler");
 			e.printStackTrace();
 		}
-		DoIt();
+		doIt();
 	} // run schlieﬂen
 
 	/**
@@ -46,7 +51,7 @@ public class StartReader extends Thread {
 	 * boolean <b>Interface.ctrlP2</b>. Diese booleans aktivieren den
 	 * <i>Multiplayer</i> und die Steuerung fuer den jeweiligen Spieler.
 	 */
-	public void DoIt() {
+	public void doIt() {
 		if (Field.fieldNumbers[1][1] == 3) {
 			Interface.ctrlP2 = true;
 			System.out.println("Spieler 2 wird gesetzt.");
@@ -71,7 +76,8 @@ public class StartReader extends Thread {
 	/**
 	 * <u>SendfieldNumbers:</u><br>
 	 * Durchlaeuft eine Schleife, die <b>Field.fieldNumbers</b> durchgeht und
-	 * jedes mal den jeweiligen Wert verschickt.
+	 * jedes mal den jeweiligen Wert verschickt. Ebenfalls werden auch die entsprechenden
+	 * Bomben Informationen gesendet.
 	 */
 	public void SendFirstTime() {
 		try {
@@ -130,7 +136,7 @@ public class StartReader extends Thread {
 	 * jedem Schritt den jeweiligen Wert fuer <b>Field.fieldNumbers</b> und
 	 * <b>Init.powerUps</b> aus und speichert ihn im jeweiligen Array.
 	 */
-	public void IOfields() {
+	public void iOfields() {
 		System.out
 				.println("EinfacherChatClient: Versuche fieldNumbers zu lesen.");
 		Field.fieldNumbers = new int[21][17];

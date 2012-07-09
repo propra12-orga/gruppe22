@@ -2,13 +2,19 @@ package Server;
 
 import java.io.IOException;
 
+/**
+ * Thread der während eines Onlinespiels dauerhaft auf Daten der Klienten wartet.
+ * 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ */
 public class gameReader extends Thread {
 
 	public void run() {
 
 		try {
 			System.out.println("gameReader: gestartet");
-			Server.SendToAll();
+			Server.sendToAll();
 			while (true) {
 
 				if (Server.streamReader1.available() >= 47) {
@@ -26,7 +32,9 @@ public class gameReader extends Thread {
 		}
 
 	} // run schließen
-	
+	/**
+	 * Auslesen des Daten vom Klienten 1.
+	 */
 	public void ReadClient1(){
 		try{
 			for(int i=0;i<5;i++){
@@ -39,13 +47,15 @@ public class gameReader extends Thread {
 				Server.bombInfoBoolean[i]=Server.streamReader1.readBoolean();
 			}
 	
-		Server.SendToAll();
+		Server.sendToAll();
 		}catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("bla2");
 		}
 	}
-	
+	/**
+	 * Auslesen des Daten vom Klienten 2.
+	 */
 	public void ReadClient2(){
 		try{
 			for(int i=0;i<5;i++){
@@ -57,7 +67,7 @@ public class gameReader extends Thread {
 			for(int i=0;i<3;i++){
 				Server.bombInfoBoolean[i]=Server.streamReader2.readBoolean();
 			}
-		Server.SendToAll();
+		Server.sendToAll();
 		}catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("bla2");

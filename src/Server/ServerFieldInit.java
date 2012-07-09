@@ -1,7 +1,21 @@
 package Server;
 
+/**
+ * Serverseitige Initialiesierungsklasse für spielrelevante Felder.
+ * 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ *
+ */
+
 public class ServerFieldInit {
 
+	/**
+	 * Initialisierungsmethode eines Standard-Spielfeldes, lediglich bestehend
+	 * aus festen Mauerstuecken und frei begehbaren Feldern.
+	 * 
+	 * @return fields
+	 */
 	public static int[][] basicField() {
 		int[][] fields1 = new int[21][17];
 
@@ -27,7 +41,12 @@ public class ServerFieldInit {
 
 		return fields1;
 	}
-
+	/**
+	 * Initialisierung des Inhalts eines Spielfeldes (Kisten, Spieler....)
+	 * 
+	 * @param fields
+	 * @return fields
+	 */
 	public static int[][] fieldContent(int[][] field) {
 
 		/*
@@ -55,11 +74,15 @@ public class ServerFieldInit {
 		}
 
 		 setPowerUps(fields);
-		// SetExit(fields);
 
 		return fields;
 	}
-
+	/**
+	 * Initialisiert die PowerUps nach dem gleichen Prinzip wie der Ausgang in der
+	 * Init.setExit-Methode gesetzt wird.
+	 *
+	 * @param fields
+	 */
 	public static void setPowerUps(int[][] fields) {
 		int value = 0;
 		double randomBox;

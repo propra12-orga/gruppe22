@@ -1,4 +1,10 @@
 package Game;
+
+/**
+ * Konstruktoren für die Spielerobjekte.
+ * @author Pierre Schwarz
+ *
+ */
 public class Player {
 	
 	/**

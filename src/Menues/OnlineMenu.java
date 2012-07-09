@@ -5,6 +5,11 @@ import java.awt.Insets;
 
 import Game.Interface;
 
+/**
+ * Vorlage fuer das Online-Menue. 
+ * @author Bastian Siefen
+ *
+ */
 public class OnlineMenu {
 
 	static GridBagConstraints c = new GridBagConstraints();

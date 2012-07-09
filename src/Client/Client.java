@@ -5,10 +5,16 @@ import java.io.IOException;
 import java.net.Socket;
 
 import Game.Bomb;
-import Game.Field;
 import Game.Init;
 import Game.Interface;
 
+/**
+ * Klasse um den Onlineclienten zu verarbeiten.
+ * 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ *
+ */
 public class Client {
 
 	Socket sock;
@@ -23,7 +29,7 @@ public class Client {
 	 */
 	public static void start() {
 		Client client = new Client();
-		client.Go();
+		client.go();
 	}
 
 	/**
@@ -31,9 +37,9 @@ public class Client {
 	 * Aufrufen der Methode <b>Network</b>.<br>
 	 * Starten des Threads <b>StartReader</b>.
 	 */
-	public void Go() {
+	public void go() {
 
-		Network();
+		network();
 
 		Thread readerThread = new Thread(new StartReader());
 		readerThread.start();
@@ -45,19 +51,28 @@ public class Client {
 	 * Deklarierung der Input- und Outputstreams: <b>streamReader</b> und
 	 * <b>streamWriter</b>.<br>
 	 */
-	private void Network() {
+	private void network() {
 
 		try {
 			sock = new Socket(ip, 5001);
 			streamReader = new DataInputStream(sock.getInputStream());
 			streamWriter = new DataOutputStream(sock.getOutputStream());
-			System.out.println("Netzwerkverbindung steht");
-
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-	} // netzwerkEinrichten schließen
+	} 
 
+	/**
+	 * <u>Send</u><br>
+	 * Sendet zuerst die Spieler bezogenen Informationen:<br>
+	 * x - X-Koordinaten des Spielers<br>
+	 * y - Y-Koordinaten des Spielers<br>
+	 * num - Nummer des Spielers<br>
+	 * bCnt - Anzahl der Bomben die noch gelegt werden kann<br>
+	 * rad - Radius der Bomben des Spielers<br>
+	 * Danach werden die Informationen über die Bomben die zu diesem Spieler gehören
+	 * gesendet.<br>
+	 */
 	public static void Send() {
 		try {
 			if( Interface.ctrlP1){

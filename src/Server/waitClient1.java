@@ -2,16 +2,20 @@ package Server;
 
 import java.io.IOException;
 
+
+/**
+ *Thread der eine Schleife startet die auf das <b>fieldNumbers</b> Feld wartet,
+ *  dass vom Klienten 1 gesendet wird. Wenn diese beendet ist wird der
+ *  <b>waitClient2</b> Thread gestartet und der Server sendet mit der Methode
+ *  <b>SendClient2</b> das aktuelle fieldNumbers Feld an den zweiten Klienten.
+ *  
+ *  @author Jan Reckfort
+ *  @author Bastian Siefen
+ */
+
 public class waitClient1 implements Runnable
 {
 
-	/**
-	 * <u>run:</u><br>
-	 * Es wird eine Schleife gestartet die auf das <b>fieldNumbers</b> Feld wartet,
-	 *  dass vom Klienten 1 gesendet wird. Wenn diese beendet ist wird der
-	 *  <b>waitClient2</b> Thread gestartet und der Server sendet mit der Methode
-	 *  <b>SendClient2</b> das aktuelle fieldNumbers Feld an den zweiten Klienten.
-	 */
 	public void run()
 	{
 
@@ -44,7 +48,7 @@ public class waitClient1 implements Runnable
 			System.out.println("waitClient1: beenden.");
 			Thread t2 = new Thread(new waitClient2());
 			t2.start();
-			Server.SendClient2();
+			Server.sendClient2();
 		} catch (IOException e)
 		{
 			e.printStackTrace();

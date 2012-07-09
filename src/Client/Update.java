@@ -11,6 +11,7 @@ import Game.Player;
  * Aktualisiert das Spielfeld im Onlinemodus.
  * 
  * @author Pierre Schwarz
+ * @author Jan Reckfort
  *
  */
 
@@ -44,15 +45,9 @@ public class Update {
 	 * @param num Spielernummer
 	 * @param bCnt max. Bombenanzahl
 	 * @param rad Spielerradius
-	 * @param bP Anzahl gelegter Bomben
 	 */
 	
 	public static void player(int x, int y, int num, int bCnt, int rad){
-		
-		/*
-		 * Initialisiere Spielerobjekt und ueberschreibe die zugehoerigen Parameter
-		 * entsprechend der erhaltenen Informationen.
-		 */
 		
 		/*
 		 * Ueberschreibe beim Clienten das entsprechende Spielerobjekt

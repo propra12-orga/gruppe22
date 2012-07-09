@@ -2,6 +2,7 @@ package Game;
 /**
  * Carl ist unser Bombenthread.
  * @author Pierre Schwarz
+ * @author Jan Reckfort
  *
  */
 
@@ -66,8 +67,6 @@ public class Carl extends Thread {
 			Bomb.detonate(bomb, player);
 			if (Interface.isSound)
 				boom = new Sound("src/Sounds/bomb.wav");
-			
-			// Netzwerk senden
 		
 		try {
 			for (int i = 0; i < 10; i++){
@@ -80,9 +79,6 @@ public class Carl extends Thread {
 		
 		Bomb.endDetonation(bomb, player);
 		if(Init.KI) KI.clearDanger(bomb);
-		
-		// Netzwerk senden
-		
 
 		try {
 			sleep(50);
@@ -91,14 +87,18 @@ public class Carl extends Thread {
 		inactive(bomb);
 		if (player.bCnt < player.maxB)
 			player.bCnt ++;
-		cnt += 1;
+			cnt += 1;
 		}
 		if (player.bCnt > player.maxB){
 			player.bCnt = 1;
 		}
 		
 	}
-	
+
+	/**
+	 * Setzt die übergebene Bombe auf false.
+	 * @param bomb
+	 */
 	public void inactive(Bomb bomb){
 		bomb.active=false;
 		Bomb.bombToArray(bomb);

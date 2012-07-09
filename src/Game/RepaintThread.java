@@ -1,6 +1,6 @@
 package Game;
 /**
- * 
+ * Verantwortlich für das andauernde neu zeichnen des Spielfeldes während des Spiels.
  * 
  * @author Jan Reckfort
  * 

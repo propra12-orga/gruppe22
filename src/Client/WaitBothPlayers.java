@@ -3,7 +3,13 @@ package Client;
 import Game.Game;
 import Game.Interface;
 import Game.RepaintThread;
-
+/**
+ * <u>WaitBothPlayers</u><br>
+ * Startet die Spielmechanismen erst wenn bestätigt ist das alle Daten die benötigt werden vorhanden sind.
+ * 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ */
 public class WaitBothPlayers extends Thread {
 
 	public void run() {

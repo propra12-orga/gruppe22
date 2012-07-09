@@ -106,7 +106,6 @@ public class Bomb extends JPanel {
 	 * 
 	 * @param Bomb bomb
 	 * @param Player player
-	 * @return
 	 */
 
 	public static void placeBomb(Bomb bomb, Player player) {
@@ -124,7 +123,6 @@ public class Bomb extends JPanel {
 	 * 
 	 * @param Bomb bomb
 	 * @param Player player
-	 * @return
 	 */
 	public static void detonate(Bomb bomb, Player player) {
 
@@ -183,7 +181,6 @@ public class Bomb extends JPanel {
 	 * 
 	 * @param Bomb bomb
 	 * @param Player pl
-	 * @return
 	 */
 
 	public static void endDetonation(Bomb bomb, Player pl) {
@@ -227,7 +224,6 @@ public class Bomb extends JPanel {
 	 * Abfrage, ob sich ein Feld zerstoeren laesst oder nicht.
 	 * 
 	 * @param int coord
-	 * @return
 	 */
 	public static boolean isDestructable(int coord) {
 		if (coord == 1) {
@@ -265,8 +261,6 @@ public class Bomb extends JPanel {
 			System.out.println("Spieler 2 siegt");
 			GameOverPic.pic = 1;
 			new GameOverPic();
-			// Interface.closeGameOpenMenu();
-			// Menue.MainMenu();
 		} else if (coord == 4) {
 			if (Init.KI){
 				gameOver = true;
@@ -277,8 +271,6 @@ public class Bomb extends JPanel {
 			GameOverPic.picOn = true;
 			GameOverPic.pic = 1;
 			new GameOverPic();
-			// Interface.closeGameOpenMenu();
-			// Menue.MainMenu();
 		}
 	}
 
@@ -310,7 +302,6 @@ public class Bomb extends JPanel {
 		bomb.u = 0;
 
 		for (int i = 0; i <= pl.rad; i++) {
-			/* nach rechts �berpr�fen */
 			if (bomb.rb) {
 				bomb.r = i;
 				if (Field.fieldNumbers[x + i][y] == 2) {
@@ -321,7 +312,6 @@ public class Bomb extends JPanel {
 				}
 			}
 
-			/* nach links �berpr�fen */
 			if (bomb.lb) {
 				bomb.l = i;
 				if (Field.fieldNumbers[x - i][y] == 2) {
@@ -331,7 +321,7 @@ public class Bomb extends JPanel {
 					bomb.lb = false;
 				}
 			}
-			/* nach unten �berpr�fen */
+			
 			if (bomb.ub) {
 				bomb.u = i;
 				if (Field.fieldNumbers[x][y + i] == 2) {
@@ -341,7 +331,7 @@ public class Bomb extends JPanel {
 					bomb.ub = false;
 				}
 			}
-			/* nach oben �berpr�fen */
+
 			if (bomb.ob) {
 				bomb.o = i;
 				if (Field.fieldNumbers[x][y - i] == 2) {

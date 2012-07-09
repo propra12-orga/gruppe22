@@ -1,4 +1,9 @@
 package Game;
+/**
+ * Thread der die Steuerung für eine gewisse Zeit blockiert damit der Spieler nicht zu schnell ist.
+ * @author Pierre Schwarz
+ *
+ */
 
 public class LockControl extends Thread{
 	

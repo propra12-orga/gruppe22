@@ -9,6 +9,14 @@ import javax.swing.JPanel;
 
 //Hier wird das Feld gezeichnet...
 
+
+/**
+ * Steuert das Zeichnen des Spielfelds mit all seinen Inhalten.
+ * 
+ * @author Jan Reckfort
+ * @author Pierre Schwarz
+ *
+ */
 public class Field extends JPanel {
 
 	private static final long serialVersionUID = 1L;
@@ -32,7 +40,6 @@ public class Field extends JPanel {
 	 * Spielfeld-Objekt
 	 */
 	public static Field f;
-	// public static int bombCnt = 1;
 
 	private static BufferedImage kiste;
 	private static BufferedImage boden;
@@ -47,7 +54,7 @@ public class Field extends JPanel {
 	private static BufferedImage exp_m;
 	private static BufferedImage exp_h;
 
-	// Zeichnen:
+
 	/**
 	 * Zeichnung des kompletten, aktualisierten Spielfeldes.
 	 */

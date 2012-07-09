@@ -3,6 +3,18 @@ import java.io.IOException;
 
 import Game.Init;
 
+/**
+ * <u>ClientGameReader</u><br>
+ *Thread zur dauerhaften Auslesung der Informationen die vom Server an den Client gesendet werden.
+ *Nachdem ein Datenblock der fuer den Spieler verantwortlich ist ausgelesen wurde werden die Daten
+ *an die Funktion Update.player weiter gegeben um diese Daten weiter zuverarbeiten.<br>
+ *Es folgt das Auslesen und Weiterverarbeiten der Informationen für die Bombe.<br>
+ *Nach jeden Datenpacket wird die Position des gerade ausgelesenen Spielers mit der Position der
+ *Powerups verglichen und ggf. werden die Powerups aktualisiert.
+ *
+ *@author Jan Reckfort
+ *@author Bastian Siefen
+ */
 public class ClientGameReader extends Thread {
 	static boolean gameOn = false;
 	int x;
@@ -13,10 +25,9 @@ public class ClientGameReader extends Thread {
 	int bx;
 	int by;
 	boolean act;
-
+	
 	public void run() {
 
-		System.out.println("gameReader gestartet.");
 		try {
 			while (true) {
 				if (Client.streamReader.available() >= 47) {
@@ -52,6 +63,11 @@ public class ClientGameReader extends Thread {
 		}
 	} // run schließen
 	
+	/**
+	 * <u>checkPowerUp</u><br>
+	 *Vergleicht die Position des Spielers der ausgelesen wurde und aktualisiert 
+	 *ggf das Init.powerUps.
+	 */
 	private void checkPowerUp(int x, int y){
 		if (Init.powerUps[x][y]== 41 || Init.powerUps[x][y]== 42){
 			Init.powerUps[x][y]=0;

@@ -44,7 +44,7 @@ public class Game implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent e) {
-		Key = Eingabe.Ctrl(e);
+		Key = Input.Ctrl(e);
 	}
 
 	public void keyReleased(KeyEvent e) {

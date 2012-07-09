@@ -7,7 +7,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import Client.Client;
-
+/** 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ *
+ */
 public class Server {
 
 	public static int[][] basicField;
@@ -43,8 +47,7 @@ public class Server {
 		basicField = ServerFieldInit.basicField();
 		fieldNumbers = ServerFieldInit.fieldContent(basicField);
 		bombPos=ServerFieldInit.bombPos(bombPos);
-		System.out.println("Server: Feld wurde erstellt");
-		new Server().Go();
+		new Server().go();
 	}
 	
 	/**
@@ -62,7 +65,7 @@ public class Server {
 	 * 
 	 */
 
-	public void Go() {
+	public void go() {
 
 		try {
 			ServerSocket serverSock = new ServerSocket(5001);
@@ -74,20 +77,18 @@ public class Server {
 
 				if (maxx == 1) {
 					client1 = clientSocket;
-					System.out.println("Server: Habe 1 Clienten.");
 				} else {
 					client2 = clientSocket;
-					System.out.println("Server: Habe 2 Clienten.");
 				}
 				if (maxx == 2) {
 					max = false;
 					
-					IOStreams1(client1);
-					IOStreams2(client2);
+					iOStreams1(client1);
+					iOStreams2(client2);
 
 					Thread t1 = new Thread(new waitClient1());
 					t1.start();
-					SendClient1();
+					sendClient1();
 
 				}
 			}
@@ -103,9 +104,8 @@ public class Server {
 	 * @param clientSocket
 	 */
 
-	public void IOStreams1(Socket clientSocket) {
+	public void iOStreams1(Socket clientSocket) {
 		try {
-			System.out.println("Server: Stream fuer Client 1 wird erstellt.");
 			streamReader1 = new DataInputStream(clientSocket.getInputStream());
 			streamWriter1 = new DataOutputStream(clientSocket.getOutputStream());
 
@@ -123,10 +123,9 @@ public class Server {
 	 *  Mit dem übergebenen Socket wird der Outputstream (<b>streamWriter2</b>) geöffnet.<br>
 	 * @param clientSocket
 	 */
-	public void IOStreams2(Socket clientSocket) {
+	public void iOStreams2(Socket clientSocket) {
 
 		try {
-			System.out.println("Server: Stream fuer Client 2 wird erstellt.");
 			Socket sock = clientSocket;
 			streamReader2 = new DataInputStream(sock.getInputStream());
 			streamWriter2 = new DataOutputStream(sock.getOutputStream());
@@ -138,8 +137,12 @@ public class Server {
 		}
 
 	}
+	
+	/**
+	 * Senden der fieldNumbers und powerUp Felder an den Klienten 1.
+	 */
 
-	public void SendClient1() {
+	public void sendClient1() {
 	
 		try {
 			for (int i = 0; i < 17; i++) {
@@ -148,7 +151,6 @@ public class Server {
 					streamWriter1.writeInt(powerUps[j][i]);
 				}
 			}
-			System.out.println("Server: fieldNumbers und powerUps an Client 1 gesendet.");
 		} catch (Exception ex) {
 			System.out.println("Server: Probleme in SendClient1.");
 			ex.printStackTrace();
@@ -156,7 +158,11 @@ public class Server {
 		
 	}
 
-	public static void SendClient2() {
+	/**
+	 * Senden der fieldNumbers und powerUp Felder an den Klienten 2.
+	 */
+	
+	public static void sendClient2() {
 		
 		try {
 			for (int i = 0; i < 17; i++) {
@@ -165,19 +171,19 @@ public class Server {
 					streamWriter2.writeInt(powerUps[j][i]);
 				}
 			}
-			System.out.println("Server: fieldNumbers und powerUps an Client 2 gesendet.");
 		} catch (Exception ex) {
 			System.out.println("Server: Probleme in SendClient2.");
 			ex.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Weitergabe der erhaltenen Daten die den Spieler und die Bombe angeht an beide Klienten.
+	 */
 
-	public static void SendToAll() {
+	public static void sendToAll() {
 
 		try {
-			System.out
-					.println("Server: Versuche es weiter zusagen an Client1&2.");
-			
 			for(int i=0;i<5;i++){
 				streamWriter1.writeInt(playerInfo[i]);
 				streamWriter2.writeInt(playerInfo[i]);
@@ -191,31 +197,6 @@ public class Server {
 				streamWriter2.writeBoolean(bombInfoBoolean[i]);
 			}
 
-			
-			
-			
-			
-			
-//			for (int i = 0; i < 17; i++) {
-//				for (int j = 0; j < 21; j++) {
-//					streamWriter1.writeInt(fieldNumbers[j][i]);
-//					streamWriter2.writeInt(fieldNumbers[j][i]);
-//				}
-//			}
-//			
-//			for (int i = 0; i < 17; i++){
-//				for (int j = 0; j < 21; j++){
-//					streamWriter1.writeInt(powerUps[j][i]);
-//					streamWriter2.writeInt(powerUps[j][i]);
-//				}
-//			}
-//				
-//			for (int i = 0; i < 17; i++) {
-//				for (int j = 0; j < 21; j++) {
-//					streamWriter1.writeBoolean(bombPos[j][i]);
-//					streamWriter2.writeBoolean(bombPos[j][i]);
-//				}
-//			}
 
 		} catch (Exception ex) {
 			System.out
@@ -225,11 +206,13 @@ public class Server {
 
 	} // esAllenWeitersagen schließen
 
-	
+	/**
+	 * Erhält die Ipaddresse des Host Rechners.
+	 */
 	private static void getHostIp() {
 		try{
 			InetAddress thisIp = InetAddress.getLocalHost();
-			System.out.println(thisIp.getHostAddress());
+			System.out.println("Host-IP: "+ thisIp.getHostAddress());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

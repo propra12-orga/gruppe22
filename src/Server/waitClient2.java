@@ -2,14 +2,18 @@ package Server;
 
 import java.io.IOException;
 
+
+/**
+ * Thread der eine Schleife startet die auf das <b>fieldNumbers</b> Feld wartet,
+ *  dass vom Klienten 2 gesendet wird. Wenn diese beendet ist wird der
+ *  <b>gameReader</b> Thread gestartet.
+ *  
+ *  @author Jan Reckfort
+ *  @author Bastian Siefen
+ */
+
 public class waitClient2 implements Runnable {
-	
-	/**
-	 * <u>run:</u><br>
-	 * Es wird eine Schleife gestartet die auf das <b>fieldNumbers</b> Feld wartet,
-	 *  dass vom Klienten 2 gesendet wird. Wenn diese beendet ist wird der
-	 *  <b>gameReader</b> Thread gestartet.
-	 */
+
 	public void run() {
 
 		boolean check = true;

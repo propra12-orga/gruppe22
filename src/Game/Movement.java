@@ -17,7 +17,10 @@ public class Movement {
 	static Sound powerUp;
 	public static Bomb crtBomb;
 
-	
+	/**
+	 * Klasse zur Verarbeitung der erkannten Tastatureingaben. 
+	 * @param pl
+	 */
 	public static void getMovement(Player pl) {
 		
 		if (isPlayer1(pl) && Interface.ctrlP1){
@@ -119,6 +122,11 @@ public class Movement {
 		/* hier erweitern mit if-Bedinungen f�r weitere Spieler */
 	}
 	
+	/**
+	 * Sicheres Starten der Bombenthreads.
+	 * @param pl
+	 * @param bomb
+	 */
 	public static void startBombThread(Player pl, Bomb bomb){
 			if (bomb.num == 0){
 				Bomb.placeBomb(bomb, pl);

@@ -3,6 +3,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+/**
+ * Steuert die Initialisierung von Feldern.
+ * 
+ * @author Jan Reckfort
+ * @author Bastian Siefen
+ * @author Pierre Schwarz
+ *
+ */
 public class Init {
 
 	/**
