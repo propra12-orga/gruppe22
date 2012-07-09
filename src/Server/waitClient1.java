@@ -1,8 +1,7 @@
-package Server;
 
 import java.io.IOException;
 
-public class WaitClient1 implements Runnable
+public class waitClient1 implements Runnable
 {
 
 	/**
@@ -42,9 +41,9 @@ public class WaitClient1 implements Runnable
 				}
 			}
 			System.out.println("waitClient1: beenden.");
-			Thread t2 = new Thread(new WaitClient2());
+			Thread t2 = new Thread(new waitClient2());
 			t2.start();
-			Server.sendClient2();
+			Server.SendClient2();
 		} catch (IOException e)
 		{
 			e.printStackTrace();

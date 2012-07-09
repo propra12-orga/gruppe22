@@ -39,7 +39,7 @@ public class Server {
 		fieldNumbers = ServerFieldInit.fieldContent(basicField);
 		bombPos=ServerFieldInit.bombPos(bombPos);
 		System.out.println("Server: Feld wurde erstellt");
-		new Server().go();
+		new Server().Go();
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class Server {
 	 * 
 	 */
 
-	public void go() {
+	public void Go() {
 
 		try {
 			ServerSocket serverSock = new ServerSocket(5001);
@@ -80,9 +80,9 @@ public class Server {
 					IOStreams1(client1);
 					IOStreams2(client2);
 
-					Thread t1 = new Thread(new WaitClient1());
+					Thread t1 = new Thread(new waitClient1());
 					t1.start();
-					sendClient1();
+					SendClient1();
 
 				}
 			}
@@ -134,7 +134,7 @@ public class Server {
 
 	}
 
-	public void sendClient1() {
+	public void SendClient1() {
 	
 		try {
 			for (int i = 0; i < 17; i++) {
@@ -151,7 +151,7 @@ public class Server {
 		
 	}
 
-	public static void sendClient2() {
+	public static void SendClient2() {
 		
 		try {
 			for (int i = 0; i < 17; i++) {
@@ -167,7 +167,7 @@ public class Server {
 		}
 	}
 
-	public static void sendToAll() {
+	public static void SendToAll() {
 
 		try {
 			System.out
@@ -186,11 +186,38 @@ public class Server {
 				streamWriter2.writeBoolean(bombInfoBoolean[i]);
 			}
 
+			
+			
+			
+			
+			
+//			for (int i = 0; i < 17; i++) {
+//				for (int j = 0; j < 21; j++) {
+//					streamWriter1.writeInt(fieldNumbers[j][i]);
+//					streamWriter2.writeInt(fieldNumbers[j][i]);
+//				}
+//			}
+//			
+//			for (int i = 0; i < 17; i++){
+//				for (int j = 0; j < 21; j++){
+//					streamWriter1.writeInt(powerUps[j][i]);
+//					streamWriter2.writeInt(powerUps[j][i]);
+//				}
+//			}
+//				
+//			for (int i = 0; i < 17; i++) {
+//				for (int j = 0; j < 21; j++) {
+//					streamWriter1.writeBoolean(bombPos[j][i]);
+//					streamWriter2.writeBoolean(bombPos[j][i]);
+//				}
+//			}
 
 		} catch (Exception ex) {
 			System.out
 					.println("Server: Versuche es weiter zusagen geht nicht.");
 			ex.printStackTrace();
 		}
-	} 
-}
+
+	} // esAllenWeitersagen schließen
+
+} // Klasse schließen

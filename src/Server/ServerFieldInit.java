@@ -4,7 +4,7 @@ public class ServerFieldInit {
 	public static int[][] basicField() {
 		int[][] fields1 = new int[21][17];
 
-		// Zunaechst bekommen alle Feldkoordinaten den Wert "0"
+		// Zun�?chst bekommen alle Feldkoordinaten den Wert "0"
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
 				fields1[i][j] = 0;
@@ -54,6 +54,7 @@ public class ServerFieldInit {
 		}
 
 		 setPowerUps(fields);
+		// SetExit(fields);
 
 		return fields;
 	}
@@ -84,7 +85,7 @@ public class ServerFieldInit {
 				}
 		}
 	}
-	public static int[] bombRad(int[]bombrad){
+	public static int[] Bombrad(int[]bombrad){
 		for (int i=0;i<=23;i++)
 		{ 
 			bombrad[i]=0;

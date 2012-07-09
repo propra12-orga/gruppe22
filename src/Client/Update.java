@@ -4,6 +4,7 @@ import Game.Bomb;
 import Game.Carl;
 import Game.Field;
 import Game.Init;
+import Game.Interface;
 import Game.Player;
 
 /**
@@ -34,6 +35,7 @@ public class Update {
 	static int yo1 = Init.Player1.y;
 	static int xo2 = Init.Player2.x;
 	static int yo2 = Init.Player2.y;
+	static int eatbCnt = 0;
 	/**
 	 * Aktualisiert das Gegenspielerobjekt im Onlinemodus.
 	 * 	
@@ -60,7 +62,11 @@ public class Update {
 			Field.fieldNumbers[xo1][yo1]=0;
 			Init.Player1.x=x;
 			Init.Player1.y=y;
+			if (Interface.ctrlP1){
+				eatbCnt=bCnt;
+			} else {
 			Init.Player1.bCnt=bCnt;
+			}
 			Init.Player1.rad=rad;
 			xo1=x;
 			yo1=y;
@@ -70,7 +76,11 @@ public class Update {
 			Field.fieldNumbers[xo2][yo2]=0;
 			Init.Player2.x=x;
 			Init.Player2.y=y;
+			if (Interface.ctrlP2){
+				eatbCnt=bCnt;
+			} else {
 			Init.Player2.bCnt=bCnt;
+			}
 			Init.Player2.rad=rad;
 			xo2=x;
 			yo2=y;
