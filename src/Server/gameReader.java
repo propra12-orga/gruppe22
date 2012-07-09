@@ -7,14 +7,14 @@ public class gameReader extends Thread {
 
 		try {
 			System.out.println("gameReader: gestartet");
-			Server.SendToAll();
+			Server.sendToAll();
 			while (true) {
 
 				if (Server.streamReader1.available() >= 47) {
-					ReadClient1();
+					readClient1();
 				}
 				if (Server.streamReader2.available() >= 47) {
-					ReadClient2();
+					readClient2();
 				}
 
 			}
@@ -24,9 +24,9 @@ public class gameReader extends Thread {
 			System.out.println("bla2");
 		}
 
-	} // run schließen
+	} 
 	
-	public void ReadClient1(){
+	public void readClient1(){
 		try{
 			for(int i=0;i<5;i++){
 				Server.playerInfo[i]=Server.streamReader1.readInt();	
@@ -38,14 +38,14 @@ public class gameReader extends Thread {
 				Server.bombInfoBoolean[i]=Server.streamReader1.readBoolean();
 			}
 	
-		Server.SendToAll();
+		Server.sendToAll();
 		}catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("bla2");
+			System.out.println("gameReader: sendToAll ERROR");
 		}
 	}
 	
-	public void ReadClient2(){
+	public void readClient2(){
 		try{
 			for(int i=0;i<5;i++){
 				Server.playerInfo[i]=Server.streamReader2.readInt();	
@@ -56,7 +56,7 @@ public class gameReader extends Thread {
 			for(int i=0;i<3;i++){
 				Server.bombInfoBoolean[i]=Server.streamReader2.readBoolean();
 			}
-		Server.SendToAll();
+		Server.sendToAll();
 		}catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("bla2");

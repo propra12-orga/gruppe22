@@ -207,7 +207,7 @@ public class Interface implements KeyListener, ActionListener {
 			if (Game.played)
 				Init.reset();
 		} else if (e.getSource() == this.controls) {
-			MenueEingabe.CtrlReader();
+			MenuInput.CtrlReader();
 			displayCtrl();
 			Control.ControlMenu();
 		} else if (e.getSource() == this.backtooptions) {
@@ -243,7 +243,7 @@ public class Interface implements KeyListener, ActionListener {
 			closeMenuOpenGame();
 			Field.f.newPaint();
 		} else if (e.getSource() == this.save) {
-			MenueEingabe.CtrlWrite();
+			MenuInput.CtrlWrite();
 		} else if (e.getSource() == this.constMap) {
 			Load.loadMap();
 			if(Load.chosen){
@@ -263,7 +263,7 @@ public class Interface implements KeyListener, ActionListener {
 		} else if (e.getSource() == this.backtomulti) {
 			GameMode.MultiMenu();
 		} else if (e.getSource() == this.controls2) {
-			MenueEingabe.CtrlReader();
+			MenuInput.CtrlReader();
 			displayCtrl();
 			Control.ControlMenu2();
 		} else if (e.getSource() == this.startGame2) {
@@ -302,40 +302,40 @@ public class Interface implements KeyListener, ActionListener {
 	 */
 	public static void Boxes() {
 		if (getBoxNumber.getSelectedItem() == "10") {
-			Init.maxKisten = 10;
+			Init.maxBoxes = 10;
 		} else if (getBoxNumber.getSelectedItem() == "20") {
-			Init.maxKisten = 20;
+			Init.maxBoxes = 20;
 		} else if (getBoxNumber.getSelectedItem() == "30") {
-			Init.maxKisten = 30;
+			Init.maxBoxes = 30;
 		} else if (getBoxNumber.getSelectedItem() == "40") {
-			Init.maxKisten = 40;
+			Init.maxBoxes = 40;
 		} else if (getBoxNumber.getSelectedItem() == "50") {
-			Init.maxKisten = 50;
+			Init.maxBoxes = 50;
 		} else if (getBoxNumber.getSelectedItem() == "60") {
-			Init.maxKisten = 60;
+			Init.maxBoxes = 60;
 		} else if (getBoxNumber.getSelectedItem() == "70") {
-			Init.maxKisten = 70;
+			Init.maxBoxes = 70;
 		} else if (getBoxNumber.getSelectedItem() == "80") {
-			Init.maxKisten = 80;
+			Init.maxBoxes = 80;
 		} else if (getBoxNumber.getSelectedItem() == "90") {
-			Init.maxKisten = 90;
+			Init.maxBoxes = 90;
 		} else if (getBoxNumber.getSelectedItem() == "100") {
-			Init.maxKisten = 100;
+			Init.maxBoxes = 100;
 		}
 
 	}
 
 	public static void displayCtrl() {
-		getUp1.setText(MenueEingabe.CtrlArray[0]);
-		getDown1.setText(MenueEingabe.CtrlArray[1]);
-		getRight1.setText(MenueEingabe.CtrlArray[2]);
-		getLeft1.setText(MenueEingabe.CtrlArray[3]);
-		getBomb1.setText(MenueEingabe.CtrlArray[4]);
-		getUp2.setText(MenueEingabe.CtrlArray[5]);
-		getDown2.setText(MenueEingabe.CtrlArray[6]);
-		getRight2.setText(MenueEingabe.CtrlArray[7]);
-		getLeft2.setText(MenueEingabe.CtrlArray[8]);
-		getBomb2.setText(MenueEingabe.CtrlArray[9]);
+		getUp1.setText(MenuInput.CtrlArray[0]);
+		getDown1.setText(MenuInput.CtrlArray[1]);
+		getRight1.setText(MenuInput.CtrlArray[2]);
+		getLeft1.setText(MenuInput.CtrlArray[3]);
+		getBomb1.setText(MenuInput.CtrlArray[4]);
+		getUp2.setText(MenuInput.CtrlArray[5]);
+		getDown2.setText(MenuInput.CtrlArray[6]);
+		getRight2.setText(MenuInput.CtrlArray[7]);
+		getLeft2.setText(MenuInput.CtrlArray[8]);
+		getBomb2.setText(MenuInput.CtrlArray[9]);
 
 	}
 
@@ -364,7 +364,7 @@ public class Interface implements KeyListener, ActionListener {
 
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
-		Key = MenueEingabe.Ctrl(e);
+		Key = MenuInput.Ctrl(e);
 		String KeyId = KeyEvent.getKeyText(code);
 		if (KeyId.equals("Eingabe") && IngameMenu.isSave){
 			if (saveName.getText() != null && saveName.getText() != "" && checkWrong()){

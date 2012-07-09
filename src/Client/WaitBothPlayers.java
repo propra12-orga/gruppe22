@@ -7,11 +7,11 @@ import Game.RepaintThread;
 public class WaitBothPlayers extends Thread {
 
 	public void run() {
-		boolean koks = true;
+		boolean wait = true;
 		System.out.println("WaitBothPlayers: Gestartet.");
-		while (koks == true) {
-			if (ClientGameReader.Stift == true) {
-				koks = false;
+		while (wait == true) {
+			if (ClientGameReader.gameOn == true) {
+				wait = false;
 				Game.main(null);
 				Interface.closeMenuOpenGame();
 

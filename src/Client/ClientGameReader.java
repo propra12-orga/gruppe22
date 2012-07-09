@@ -2,7 +2,7 @@ package Client;
 import java.io.IOException;
 
 public class ClientGameReader extends Thread {
-	static boolean Stift = false;
+	static boolean gameOn = false;
 	int x;
 	int y;
 	int num;
@@ -18,7 +18,7 @@ public class ClientGameReader extends Thread {
 		try {
 			while (true) {
 				if (Client.streamReader.available() >= 47) {
-					Stift = true;
+					gameOn = true;
 					x = Client.streamReader.readInt();
 					y = Client.streamReader.readInt();
 					num = Client.streamReader.readInt();

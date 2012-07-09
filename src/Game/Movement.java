@@ -20,14 +20,11 @@ public class Movement {
 	
 	public static void getMovement(Player pl) {
 		
-		System.out.println("!!!");
-		
 		if (pl.ctrl == "Oben") {
 			if (checkMove(pl.x, pl.y - 1, pl)) {
 				goUp(pl.x, pl.y, pl);
 				playerToField(pl);
 				
-				//Netzwerk senden
 				if (!Interface.offline)
 					Client.Send();
 			}
@@ -36,7 +33,6 @@ public class Movement {
 				goDown(pl.x, pl.y, pl);
 				playerToField(pl);
 				
-				//Netzwerk senden
 				if (!Interface.offline)
 					Client.Send();
 			}
@@ -45,7 +41,6 @@ public class Movement {
 				goLeft(pl.x, pl.y, pl);
 				playerToField(pl);
 				
-				//Netzwerk senden
 				if (!Interface.offline)
 					Client.Send();
 			}
@@ -54,7 +49,6 @@ public class Movement {
 				goRight(pl.x, pl.y, pl);
 				playerToField(pl);
 				
-				//Netzwerk senden
 				if (!Interface.offline)
 					Client.Send();
 			}
@@ -66,7 +60,7 @@ public class Movement {
 			}
 		}
 
-		/* hier erweitern mit if-Bedinungen f�r weitere Spieler */
+		/* hier erweitern mit if-Bedinungen fuer weitere Spieler */
 	}
 	
 	public static void startBombThread(Player pl, Bomb bomb){
@@ -100,9 +94,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode �berpr�ft ob die Koordinaten auf die der Spieler gehen will
-	 * begehbar sind oder nicht. Es wir ein boolean aufgerufen und dieser zur�ck
-	 * gegeben. Es wir ebenfalls �berpr�ft ob der Spieler, mit dem Schritt den
+	 * Diese Methode ueberprueft ob die Koordinaten auf die der Spieler gehen will
+	 * begehbar sind oder nicht. Es wir ein boolean aufgerufen und dieser zurueck
+	 * gegeben. Es wir ebenfalls ueberprueft ob der Spieler, mit dem Schritt den
 	 * er vorhat, durch den Ausgang geht .
 	 * 
 	 * @param coord
@@ -144,9 +138,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der Ueberpruefung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * �bergeben speichert diese als alte Position des Spielers ab und zieht der
+	 * uebergeben speichert diese als alte Position des Spielers ab und zieht der
 	 * Y-Koordinate den Wert 1 ab (dies ist die Bewegung nach oben).
 	 * 
 	 * @param x
@@ -163,9 +157,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der Ueberpruefung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * �bergeben speichert diese als alte Position des Spielers ab und addiert
+	 * uebergeben speichert diese als alte Position des Spielers ab und addiert
 	 * der Y-Koordinate den Wert 1 dazu (dies ist die Bewegung nach unten).
 	 * 
 	 * @param x
@@ -182,9 +176,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der Ueberpruefungob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * �bergeben speichert diese als alte Position des Spielers ab und addiert
+	 * uebergeben speichert diese als alte Position des Spielers ab und addiert
 	 * der X-Koordinate den Wert 1 dazu (dies ist die Bewegung nach rechts).
 	 * 
 	 * @param x
@@ -201,9 +195,9 @@ public class Movement {
 	}
 
 	/**
-	 * Diese Methode kriegt, nach der �berpr�fung ob der Spieler seinen Zug den
+	 * Diese Methode kriegt, nach der Ueberpruefung ob der Spieler seinen Zug den
 	 * er vorhat machen kann, die aktuellen Koordinaten des jeweiligen Spielers
-	 * �bergeben speichert diese als alte Position des Spielers ab und zieht der
+	 * uebergeben speichert diese als alte Position des Spielers ab und zieht der
 	 * X-Koordinate den Wert 1 ab (dies ist die Bewegung nach links).
 	 * 
 	 * @param x
@@ -220,8 +214,8 @@ public class Movement {
 	}
 
 	/**
-	 * Methode kriegt den Spieler der seine Position ver�ndert �bergeben und
-	 * l�scht seine Darstellung auf dem alten Feld um ihn auf dem n�chsten Feld
+	 * Methode kriegt den Spieler der seine Position veraendert uebergeben und
+	 * loescht seine Darstellung auf dem alten Feld um ihn auf dem naechsten Feld
 	 * darzustellen.
 	 * 
 	 * @param pl

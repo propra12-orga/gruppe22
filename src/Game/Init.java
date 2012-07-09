@@ -10,7 +10,7 @@ public class Init {
 	 * Das generelle Maximum liegt bei 90, wird aber je nach zuvor festgelegter Anzahl der Kisten
 	 * (durch Auswahl im Popdown-Menue oder Laden eines Spieles) veraendert.
 	 */
-	public static int maxKisten = 90;
+	public static int maxBoxes = 90;
 	/**
 	 * Gibt an, ob im Multiplayer gespielt wird.
 	 */
@@ -89,45 +89,45 @@ public class Init {
 
 	/**
 	 * Ruft den Bufferedreader auf. <br>
-	 * Liest die einzelnen Zeilen einer Textdatei und spaltet den erhaltenen String in
-	 * seine Einzelteile. Diese werden je nach Zeile in entsprechenden Arrays gespeichert,
+	 * Liest die einzelnen linen einer Textdatei und spaltet den erhaltenen String in
+	 * seine Einzelteile. Diese werden je nach line in entsprechenden Arrays gespeichert,
 	 * mit deren Hilfe das Spielfeld initialisiert wird.
 	 * 
 	 * @return feld
 	 */
 
 	public static int[][] constMap(String s) {
-		maxKisten = 0;
+		maxBoxes = 0;
 		String[] bufmap = new String[21];
 		String[] bufPl = new String[8];
 		String[] bufB = new String[7];
-		String zeile;
-		zeile = "";
-		int[][] feld = new int[21][17];
+		String line;
+		line = "";
+		int[][] field = new int[21][17];
 		MapReader(s);
 
 		for (int i = 0; i <= 16; i++) {
 
 			try {
-				zeile = in.readLine();
+				line = in.readLine();
 			} catch (IOException e) {
 
 			}
-			bufmap = zeile.split("_");
+			bufmap = line.split("_");
 			for (int o = 0; o <= 20; o++) {
-				feld[o][i] = Integer.parseInt(bufmap[o]);
-				if (feld[o][i] == 2)
-					maxKisten++;
+				field[o][i] = Integer.parseInt(bufmap[o]);
+				if (field[o][i] == 2)
+					maxBoxes++;
 			}
 
 		}
 		
 		try {
-			zeile = in.readLine();
+			line = in.readLine();
 		} catch (IOException e){
 			
 		}
-		bufPl = zeile.split("_");
+		bufPl = line.split("_");
 		//for (int i = 0; i < 8; i++)
 			//System.out.println("bufPl[" + i + "] = " + bufPl[i]);
 		
@@ -136,11 +136,11 @@ public class Init {
 		
 		for (int i = 0; i < 6; i++){
 			try {
-				zeile = in.readLine();
+				line = in.readLine();
 			} catch (IOException e){
 				
 			}
-			bufB = zeile.split("_");
+			bufB = line.split("_");
 			for (int j = 0; j < 7; j++)
 				bombInfo[i][j] = bufB[j];
 		}
@@ -150,20 +150,20 @@ public class Init {
 		
 		for (int i = 0; i < 21; i++)
 			for(int j = 0; j < 17; j++){
-				if(feld[i][j] == 9){
+				if(field[i][j] == 9){
 					exitSet = true;
 					ex = i;
 					ey = j;
 				}
-				if(feld[i][j] == 8)
-					feld[i][j] = 0;
+				if(field[i][j] == 8)
+					field[i][j] = 0;
 			}
 			
 		if (!exitSet)
-			SetExit(feld);
-		setPowerUps(feld);
+			SetExit(field);
+		setPowerUps(field);
 
-		return feld;
+		return field;
 
 	}
 
@@ -175,10 +175,10 @@ public class Init {
 	 */
 
 	public static int[][] basicField() {
-		MenueEingabe.CtrlReader();
+		MenuInput.CtrlReader();
 		int[][] fields = new int[21][17];
 
-		// Zun�?chst bekommen alle Feldkoordinaten den Wert "0"
+		// Zunaechst bekommen alle Feldkoordinaten den Wert "0"
 		for (int i = 0; i < 21; i++)
 			for (int j = 0; j < 17; j++)
 				fields[i][j] = 0;
@@ -222,9 +222,9 @@ public class Init {
 		double randomBox;
 		int value = 0;
 
-		while (value < maxKisten) {
+		while (value < maxBoxes) {
 			for (int i = 1; i < 20; i++)
-				for (int j = 1; j < 16 && value < maxKisten; j++) {
+				for (int j = 1; j < 16 && value < maxBoxes; j++) {
 					if (fields[i][j] == 0) {
 						randomBox = Math.random();
 						if (randomBox > 0.99) {
@@ -359,7 +359,7 @@ public class Init {
 
 		while (value < 1) {
 			for (int i = 1; i < 20; i++)
-				for (int j = 1; j < 16 && value < maxKisten; j++) {
+				for (int j = 1; j < 16 && value < maxBoxes; j++) {
 					if (fields[i][j] == 2) {
 						randomBox = Math.random();
 						if (randomBox > 0.99) {
@@ -389,9 +389,9 @@ public class Init {
 		double whichPower;
 		int bombCnt = 1;
 
-		while (value < (maxKisten / 2)) {
+		while (value < (maxBoxes / 2)) {
 			for (int i = 1; i < 20; i++)
-				for (int j = 1; j < 16 && value < (maxKisten / 2); j++) {
+				for (int j = 1; j < 16 && value < (maxBoxes / 2); j++) {
 					if (fields[i][j] == 2) {
 						randomBox = Math.random();
 						if (randomBox > 0.99) {

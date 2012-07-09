@@ -1,7 +1,8 @@
+package Server;
 
 import java.io.IOException;
 
-public class waitClient2 implements Runnable {
+public class WaitClient2 implements Runnable {
 	
 	/**
 	 * <u>run:</u><br>

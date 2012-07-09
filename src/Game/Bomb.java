@@ -111,7 +111,6 @@ public class Bomb extends JPanel {
 
 	public static void placeBomb(Bomb bomb, Player player) {
 		Field.bombPos[bomb.x][bomb.y] = true;
-		//Netzwerk senden
 		bomb.active = true;
 		bombToArray(bomb);
 	}
@@ -266,8 +265,6 @@ public class Bomb extends JPanel {
 			Init.reset();
 			GameOverPic.pic = 1;
 			new GameOverPic();
-			// Interface.closeGameOpenMenu();
-			// Menue.MainMenu();
 		} else if (coord == 4) {
 			if (Init.KI){
 				gameOver = true;
@@ -279,8 +276,6 @@ public class Bomb extends JPanel {
 			GameOverPic.picOn = true;
 			GameOverPic.pic = 1;
 			new GameOverPic();
-			// Interface.closeGameOpenMenu();
-			// Menue.MainMenu();
 		}
 	}
 
@@ -312,7 +307,7 @@ public class Bomb extends JPanel {
 		bomb.u = 0;
 
 		for (int i = 0; i <= pl.rad; i++) {
-			/* nach rechts �berpr�fen */
+			/* nach rechts ueberpruefen */
 			if (bomb.rb) {
 				bomb.r = i;
 				if (Field.fieldNumbers[x + i][y] == 2) {
@@ -323,7 +318,7 @@ public class Bomb extends JPanel {
 				}
 			}
 
-			/* nach links �berpr�fen */
+			/* nach links ueberpruefen */
 			if (bomb.lb) {
 				bomb.l = i;
 				if (Field.fieldNumbers[x - i][y] == 2) {
@@ -333,7 +328,7 @@ public class Bomb extends JPanel {
 					bomb.lb = false;
 				}
 			}
-			/* nach unten �berpr�fen */
+			/* nach unten ueberpruefen */
 			if (bomb.ub) {
 				bomb.u = i;
 				if (Field.fieldNumbers[x][y + i] == 2) {
@@ -343,7 +338,7 @@ public class Bomb extends JPanel {
 					bomb.ub = false;
 				}
 			}
-			/* nach oben �berpr�fen */
+			/* nach oben ueberpruefen */
 			if (bomb.ob) {
 				bomb.o = i;
 				if (Field.fieldNumbers[x][y - i] == 2) {

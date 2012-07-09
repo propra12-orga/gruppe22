@@ -17,7 +17,6 @@ public class RepaintThread extends Thread {
 
 			while (true) {
 				sleep(30);
-//				Field.f = new Field();
 				Interface.game.repaint();
 			}
 		} catch (InterruptedException e) {
