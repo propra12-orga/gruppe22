@@ -15,7 +15,7 @@ public class LockControl extends Thread{
 		else Interface.ctrlP2 = false;
 		
 		try{
-			sleep(170);
+			sleep(40);
 		} catch (InterruptedException e){
 			
 		}
